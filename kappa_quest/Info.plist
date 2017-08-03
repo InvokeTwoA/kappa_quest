@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>かっぱクエスト</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -42,6 +44,14 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>PixelMplus12-Regular.ttf</string>
+		<string>PixelMplus12-Bold.ttf</string>
+		<string>GN-KillGothic-U-KanaNA.ttf</string>
+		<string>GN-KillGothic-U-KanaNB.ttf</string>
+		<string>GN-KillGothic-U-KanaO.ttf</string>
 	</array>
 </dict>
 </plist>

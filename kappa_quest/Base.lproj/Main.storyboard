@@ -1,14 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="kappa_quest" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8aa-yV-Osq"/>
                         <viewControllerLayoutGuide type="bottom" id="qHh-Mt-9TT"/>
@@ -16,11 +21,47 @@
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z22-8u-c4A" customClass="SKView">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dSA-6b-E50" customClass="GADBannerView">
+                                <rect key="frame" x="27" y="617" width="320" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="GNe-jR-5Lw"/>
+                                    <constraint firstAttribute="width" constant="320" id="eJi-MD-220"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Z22-8u-c4A" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="FeE-45-r6q"/>
+                            <constraint firstItem="Z22-8u-c4A" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="GSo-d9-Ore"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dSA-6b-E50" secondAttribute="trailing" constant="12" id="RE3-wf-BcR"/>
+                            <constraint firstItem="dSA-6b-E50" firstAttribute="bottom" secondItem="qHh-Mt-9TT" secondAttribute="top" id="ShS-hT-x5x"/>
+                            <constraint firstItem="dSA-6b-E50" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leadingMargin" constant="11" id="VId-SQ-z2q"/>
+                            <constraint firstItem="Z22-8u-c4A" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="Wsl-vC-PaQ"/>
+                            <constraint firstAttribute="trailing" secondItem="Z22-8u-c4A" secondAttribute="trailing" id="cxp-Uh-Vcf"/>
+                            <constraint firstItem="qHh-Mt-9TT" firstAttribute="top" secondItem="Z22-8u-c4A" secondAttribute="bottom" id="hyp-vI-6Lp"/>
+                            <constraint firstItem="dSA-6b-E50" firstAttribute="top" secondItem="8aa-yV-Osq" secondAttribute="bottom" constant="597" id="nUw-gy-Hc8"/>
+                            <constraint firstItem="Z22-8u-c4A" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="q6X-uK-mdb"/>
+                            <constraint firstItem="dSA-6b-E50" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leadingMargin" constant="11" id="rhW-CM-UjK"/>
+                            <constraint firstItem="qHh-Mt-9TT" firstAttribute="top" secondItem="dSA-6b-E50" secondAttribute="bottom" id="sLH-04-Clb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dSA-6b-E50" secondAttribute="trailing" constant="12" id="veK-tu-8D2"/>
+                            <constraint firstItem="dSA-6b-E50" firstAttribute="top" secondItem="Z22-8u-c4A" secondAttribute="bottom" constant="-50" id="wkM-hG-yk4"/>
+                            <constraint firstAttribute="trailing" secondItem="Z22-8u-c4A" secondAttribute="trailing" id="xUK-ml-7Pa"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="_bannerView" destination="dSA-6b-E50" id="wdb-zx-C7i"/>
+                        <outlet property="_skView" destination="Z22-8u-c4A" id="0lb-bd-uYO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="37.331334332833585"/>
         </scene>
     </scenes>
 </document>

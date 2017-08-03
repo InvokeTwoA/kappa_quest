@@ -1,43 +1,32 @@
-//
-//  GameViewController.swift
-//  kappa_quest
-//
-//  Created by ItoNaoya on 2017/07/13.
-//  Copyright © 2017年 kappa. All rights reserved.
-//
-
 import UIKit
 import SpriteKit
 import GameplayKit
+import GoogleMobileAds
 
 class GameViewController: UIViewController {
 
+    @IBOutlet weak var _bannerView: GADBannerView!
+
+    @IBOutlet weak var _skView: SKView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
-        // including entities and graphs.
+        // adMob
+        self.view.addSubview(_bannerView)
+        _bannerView.adUnitID = Const.adMobID
+        _bannerView.rootViewController = self
+        _bannerView.load(GADRequest())
+
         if let scene = GKScene(fileNamed: "GameScene") {
-            
-            // Get the SKScene from the loaded GKScene
             if let sceneNode = scene.rootNode as! GameScene? {
-                
-                // Copy gameplay related content over to the scene
                 sceneNode.entities = scene.entities
                 sceneNode.graphs = scene.graphs
-                
-                // Set the scale mode to scale to fit the window
                 sceneNode.scaleMode = .aspectFill
-                
-                // Present the scene
-                if let view = self.view as! SKView? {
-                    view.presentScene(sceneNode)
-                    
-                    view.ignoresSiblingOrder = true
-                    
-                    view.showsFPS = true
-                    view.showsNodeCount = true
-                }
+                _skView.presentScene(sceneNode)
+                _skView.ignoresSiblingOrder = true
+//                    view.showsFPS = true
+//                    view.showsNodeCount = true
             }
         }
     }
@@ -56,7 +45,6 @@ class GameViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
     }
 
     override var prefersStatusBarHidden: Bool {
