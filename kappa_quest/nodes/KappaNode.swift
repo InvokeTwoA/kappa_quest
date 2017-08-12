@@ -44,6 +44,10 @@ class KappaNode: SKSpriteNode {
         int += jobModel.int
         pie += jobModel.pie
         luc += jobModel.luc
+        setNextExp(jobModel)
+    }
+    
+    func setNextExp(_ jobModel : JobModel){
         nextExp = lv + jobModel.lv*10
     }
     

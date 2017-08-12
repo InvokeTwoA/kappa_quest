@@ -11,6 +11,8 @@
 		CE049FD51F2D6C460079DEDB /* JobModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE049FD41F2D6C460079DEDB /* JobModel.swift */; };
 		CE049FD71F2E0EED0079DEDB /* jobs.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE049FD61F2E0EED0079DEDB /* jobs.plist */; };
 		CE049FD91F3312EB0079DEDB /* ActionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE049FD81F3312EB0079DEDB /* ActionModel.swift */; };
+		CE049FDB1F3614C80079DEDB /* UpDownMoveComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE049FDA1F3614C70079DEDB /* UpDownMoveComponent.swift */; };
+		CE049FDE1F36238D0079DEDB /* maoudamashii_fantasy15.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CE049FDD1F36238D0079DEDB /* maoudamashii_fantasy15.mp3 */; };
 		CE524F7E1F20AB8E00A6D14C /* SwordNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE524F7D1F20AB8E00A6D14C /* SwordNode.swift */; };
 		CE524F801F20D5B900A6D14C /* jpn.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE524F7F1F20D5B900A6D14C /* jpn.strings */; };
 		CE524F831F20D88800A6D14C /* eng.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE524F821F20D88800A6D14C /* eng.strings */; };
@@ -52,6 +54,8 @@
 		CE049FD41F2D6C460079DEDB /* JobModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JobModel.swift; path = models/JobModel.swift; sourceTree = "<group>"; };
 		CE049FD61F2E0EED0079DEDB /* jobs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = jobs.plist; path = resources/plists/jobs.plist; sourceTree = "<group>"; };
 		CE049FD81F3312EB0079DEDB /* ActionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActionModel.swift; path = models/ActionModel.swift; sourceTree = "<group>"; };
+		CE049FDA1F3614C70079DEDB /* UpDownMoveComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UpDownMoveComponent.swift; path = components/UpDownMoveComponent.swift; sourceTree = "<group>"; };
+		CE049FDD1F36238D0079DEDB /* maoudamashii_fantasy15.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = maoudamashii_fantasy15.mp3; path = resources/musics/maoudamashii_fantasy15.mp3; sourceTree = "<group>"; };
 		CE524F7D1F20AB8E00A6D14C /* SwordNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwordNode.swift; path = nodes/SwordNode.swift; sourceTree = "<group>"; };
 		CE524F7F1F20D5B900A6D14C /* jpn.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = jpn.strings; path = resources/texts/jpn.strings; sourceTree = "<group>"; };
 		CE524F821F20D88800A6D14C /* eng.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = eng.strings; path = resources/texts/eng.strings; sourceTree = "<group>"; };
@@ -118,9 +122,18 @@
 		CE049FCF1F2C927F0079DEDB /* musics */ = {
 			isa = PBXGroup;
 			children = (
+				CE049FDD1F36238D0079DEDB /* maoudamashii_fantasy15.mp3 */,
 				CE049FCD1F2C927B0079DEDB /* maoudamashii_lastboss02.mp3 */,
 			);
 			name = musics;
+			sourceTree = "<group>";
+		};
+		CE049FDC1F3614CC0079DEDB /* components */ = {
+			isa = PBXGroup;
+			children = (
+				CE049FDA1F3614C70079DEDB /* UpDownMoveComponent.swift */,
+			);
+			name = components;
 			sourceTree = "<group>";
 		};
 		CE524F811F20D5C500A6D14C /* texts */ = {
@@ -166,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				CEC2B67E1F177A3C0014B114 /* AppDelegate.swift */,
+				CE049FDC1F3614CC0079DEDB /* components */,
 				CEC2B6A91F1B6ED30014B114 /* sks */,
 				CEC2B6A41F1A4DD30014B114 /* nodes */,
 				CE524F861F236F7000A6D14C /* models */,
@@ -329,6 +343,7 @@
 				CE049FCE1F2C927B0079DEDB /* maoudamashii_lastboss02.mp3 in Resources */,
 				CEB904551F24EBA10061A919 /* ShopScene.sks in Resources */,
 				CEC2B68C1F177A3C0014B114 /* Assets.xcassets in Resources */,
+				CE049FDE1F36238D0079DEDB /* maoudamashii_fantasy15.mp3 in Resources */,
 				CE524F801F20D5B900A6D14C /* jpn.strings in Resources */,
 				CE524F831F20D88800A6D14C /* eng.strings in Resources */,
 				CEC2B68F1F177A3C0014B114 /* LaunchScreen.storyboard in Resources */,
@@ -394,6 +409,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEC2B6A61F1A4DE70014B114 /* EnemyNode.swift in Sources */,
+				CE049FDB1F3614C80079DEDB /* UpDownMoveComponent.swift in Sources */,
 				CE524F851F236EEC00A6D14C /* GameData.swift in Sources */,
 				CEC2B6A81F1AE6FA0014B114 /* TapNode.swift in Sources */,
 				CEB904571F24EBBE0061A919 /* ShopScene.swift in Sources */,

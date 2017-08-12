@@ -5,10 +5,14 @@ import AVFoundation
 
 class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     
+    // components
+    let UpDownMoveComponentSystem = GKComponentSystem(componentClass: UpDownMoveComponent.self)
+    
+    
     // 音楽
     var _audioPlayer:AVAudioPlayer!
     
-    var entities = [GKEntity]()
+    var entities = [UpDownMoveComponentSystem]
     var graphs = [String : GKGraph]()
     private var lastUpdateTime : TimeInterval = 0
 
@@ -56,7 +60,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     
     private var isSceneDidLoaded = false
     
+    // Scene load 時に呼ばれる
     override func sceneDidLoad() {
+        print("scene did load")
+        
+        
         // 二重読み込みの防止
         if isSceneDidLoaded {
             return
@@ -67,7 +75,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
         self.lastUpdateTime = 0
         
         // 音楽関係の処理
-        prepareBGM(fileName: Const.bgm_last_battle)
+        //prepareBGM(fileName: Const.bgm_last_battle)
+        prepareBGM(fileName: Const.bgm_fantasy)
         playBGM()
         
         // データをセット
@@ -86,6 +95,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
         
         showMessage("冒険の始まりだ！")
     }
+    
+    // 画面が読み込まれた時に呼ばれる
+    override func didMove(to view: SKView) {
+        updateStatus()
+    }
+    
+
+    
     
     func setInitData(){
         TapCountLabel?.text = "\(gameData.tapCount)"
@@ -123,7 +140,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     func createKappa(){
         self.kappa = self.childNode(withName: "//kappa") as? KappaNode
         kappa?.setParameterByUserDefault()
-        kappa?.setPhysic()
+//        kappa?.setPhysic()
         setFirstPosition()
         sword = self.childNode(withName: "//Sword") as? SwordNode
         sword?.setSwordByKappa(kappa_x: (self.kappa?.position.x)!)
@@ -163,6 +180,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
         enemy.position.x = getPositionX(pos)
         enemy.position.y = (kappa?.position.y)!
         self.addChild(enemy)
+        
+        let upDownComponent = UpDownComponent(node: enemy)
+        UpDownMoveComponentSystem.addComponent(upDownComponent)
         
 //        createEnemyLifeBar(pos: pos, x: enemy.position.x, y: enemy.position.y - 120)
         enemyModel.enemies[pos] = enemy
@@ -221,7 +241,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
         sword?.setSwordByKappa(kappa_x: (self.kappa?.position.x)!)
         map.myPosition += 1
         
-        kappa?.run(actionModel.moveRightSequence!, completion: {() -> Void in
+        kappa?.run(actionModel.moveRight!, completion: {() -> Void in
             if self.map.myPosition == Const.maxPosition {
                 self.goNextMap()
             } else {
@@ -229,7 +249,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
             }
             self.isMoving = false
         })
-        sword?.run(actionModel.moveRightSequence!)
+        sword?.run(actionModel.moveRight!)
     }
     
     // マップを右に移動
@@ -254,7 +274,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
         sword?.setSwordByKappa(kappa_x: (self.kappa?.position.x)!)
         
         map.myPosition -= 1
-        kappa?.run(actionModel.moveLeftSequence!, completion: {() -> Void in
+        kappa?.run(actionModel.moveLeft!, completion: {() -> Void in
             self.isMoving = false
             if self.map.myPosition == Const.minPosition {
                 self.goBackMap()
@@ -263,7 +283,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
             }
 
         })
-        sword?.run(actionModel.moveLeftSequence!)
+        sword?.run(actionModel.moveLeft!)
     }
 
     // マップを左に移動
@@ -301,7 +321,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
 
     // 攻撃
     func attack(pos: Int){
-        kappa?.run(actionModel.attackSequence!, completion: {() -> Void in
+        kappa?.run(actionModel.attack!, completion: {() -> Void in
+            if self.enemyModel.enemies[pos].isDead {
+                return
+            }
             let damage = self.calculateDamage(str: (self.kappa?.str)!, def: self.enemyModel.enemies[pos].def)
             let point = CGPoint(x: self.enemyModel.enemies[pos].position.x, y: self.enemyModel.enemies[pos].position.y + 30)
             self.displayDamage(value: damage, point: point, color: UIColor.white)
@@ -311,11 +334,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
 //            bar?.run(SKAction.resize(toWidth: 50, duration: 0.01))
             
             if self.enemyModel.enemies[pos].hp <= 0 {
-                self.enemyModel.enemies[pos].hp = 0
                 self.beatEnemy(pos: pos)
             }
         })
-        sword?.run(actionModel.attackSequence!)
+        sword?.run(actionModel.attack!)
     }
     
     func calculateDamage(str: Int, def: Int) -> Int {
@@ -337,14 +359,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
         label.zPosition = 90
         self.addChild(label)
         
-        label.run(actionModel.displayDamageSequence!)
+        label.run(actionModel.displayDamage!)
     }
     
     // モンスター撃破処理
     func beatEnemy(pos: Int){
-        enemyModel.enemies[pos].removeFromParent()
+        self.enemyModel.enemies[pos].hp = 0
+        self.enemyModel.enemies[pos].isDead = true
+        
+        let yVector = CommonUtil.rnd(150)
+        
+        enemyModel.enemies[pos].setBeatPhysic()
+//        enemyModel.enemies[pos].physicsBody!.applyImpulse(CGVector(dx: 200, dy: yVector), at: CGPoint(x: 0, y: 28))
+        enemyModel.enemies[pos].physicsBody!.applyImpulse(CGVector(dx: 250, dy: yVector))
+        enemyModel.enemies[pos].physicsBody!.applyTorque(Const.beatRotatePower)
+        
         map.positionData[pos] = "free"
         updateExp(enemyModel.enemies[pos].exp)
+        enemyModel.enemies[pos].run(actionModel.fadeOutEternal!)
     }
     
     // 経験値更新
@@ -362,37 +394,37 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
         if jobModel.hp != 0 {
             HPUpLabel?.isHidden = false
             HPUpLabel?.text = "+\(jobModel.hp)"
-            HPUpLabel?.run(actionModel.fadeInOutSequence!)
+            HPUpLabel?.run(actionModel.fadeInOut!)
         }
         if jobModel.str != 0 {
             StrUpLabel?.isHidden = false
             StrUpLabel?.text = "+\(jobModel.str)"
-            StrUpLabel?.run(actionModel.fadeInOutSequence!)
+            StrUpLabel?.run(actionModel.fadeInOut!)
         }
         if jobModel.def != 0 {
             DefUpLabel?.isHidden = false
             DefUpLabel?.text = "+\(jobModel.def)"
-            DefUpLabel?.run(actionModel.fadeInOutSequence!)
+            DefUpLabel?.run(actionModel.fadeInOut!)
         }
         if jobModel.str != 0 {
             AgiUpLabel?.isHidden = false
             AgiUpLabel?.text = "+\(jobModel.agi)"
-            AgiUpLabel?.run(actionModel.fadeInOutSequence!)
+            AgiUpLabel?.run(actionModel.fadeInOut!)
         }
         if jobModel.int != 0 {
             IntUpLabel?.isHidden = false
             IntUpLabel?.text = "+\(jobModel.int)"
-            IntUpLabel?.run(actionModel.fadeInOutSequence!)
+            IntUpLabel?.run(actionModel.fadeInOut!)
         }
         if jobModel.pie != 0 {
             PieUpLabel?.isHidden = false
             PieUpLabel?.text = "+\(jobModel.pie)"
-            PieUpLabel?.run(actionModel.fadeInOutSequence!)
+            PieUpLabel?.run(actionModel.fadeInOut!)
         }
         if jobModel.luc != 0 {
             LucUpLabel?.isHidden = false
             LucUpLabel?.text = "+\(jobModel.luc)"
-            LucUpLabel?.run(actionModel.fadeInOutSequence!)
+            LucUpLabel?.run(actionModel.fadeInOut!)
         }
     }
     
@@ -423,7 +455,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     func showMessage(_ text : String){
         MessageLabel?.text = text
         MessageNode?.position.x += 100
-        MessageNode?.run(actionModel.displayMessageSequence!)
+        MessageNode?.run(actionModel.displayMessage!)
     }
     
     /***********************************************************************************/
@@ -433,9 +465,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     // 店へ行く
     func goShop(){
         let scene = ShopScene(fileNamed: "ShopScene")
-        scene?.size = self.scene!.size
-        scene?.scaleMode = SKSceneScaleMode.aspectFill
         scene!.backScene = self.scene as! GameScene
+        scene!.size = self.scene!.size
+        scene!.scaleMode = SKSceneScaleMode.aspectFill
         self.view!.presentScene(scene!, transition: .doorway(withDuration: 2.0))
     }
     
@@ -530,20 +562,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
 //        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
     }
     
-    override func update(_ currentTime: TimeInterval) {
-        if (self.lastUpdateTime == 0) {
-            self.lastUpdateTime = currentTime
-        }
-        let dt = currentTime - self.lastUpdateTime
-        
-        for entity in self.entities {
-            entity.update(deltaTime: dt)
-        }
-        
-        self.lastUpdateTime = currentTime
-    }
-    
-    
     /***********************************************************************************/
     /********************************** music ******************************************/
     /***********************************************************************************/
@@ -567,7 +585,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
         }
         _audioPlayer.delegate = self
         _audioPlayer.prepareToPlay()
- 
     }
     
     func playBGM(){
@@ -582,5 +599,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
             _audioPlayer.play()
         }
     }
+
+    /***********************************************************************************/
+    /********************************** update ******************************************/
+    /***********************************************************************************/
     
+    override func update(_ currentTime: TimeInterval) {
+        if (self.lastUpdateTime == 0) {
+            self.lastUpdateTime = currentTime
+        }
+        let dt = currentTime - self.lastUpdateTime
+        
+        for entity in self.entities {
+            entity.update(deltaTime: dt)
+        }
+        
+        self.lastUpdateTime = currentTime
+    }
+
 }

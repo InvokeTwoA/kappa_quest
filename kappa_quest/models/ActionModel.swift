@@ -4,30 +4,31 @@ import Foundation
 
 class ActionModel {
 
-    var attackSequence          : SKAction?
-    var moveRightSequence       : SKAction?
-    var moveLeftSequence        : SKAction?
-    var displayDamageSequence   : SKAction?
-    var displayMessageSequence  : SKAction?
-    var fadeInOutSequence       : SKAction?
-    
+    var attack          : SKAction?
+    var moveRight       : SKAction?
+    var moveLeft        : SKAction?
+    var displayDamage   : SKAction?
+    var displayMessage  : SKAction?
+    var fadeInOut       : SKAction?
+    var fadeOutEternal  : SKAction?
+
     func setActionData(sceneWidth : CGFloat){
         
         // 攻撃アクション
-        attackSequence = SKAction.sequence([
+        attack = SKAction.sequence([
             SKAction.moveBy(x: 20, y: 0, duration: 0.1),
             SKAction.moveBy(x: -20, y: 0, duration: 0.1),
         ])
         
         // 移動
         let moveSpace = sceneWidth/7.0/4.0
-        moveRightSequence = SKAction.sequence([
+        moveRight = SKAction.sequence([
             SKAction.moveBy(x: moveSpace, y:    Const.jumpSpace, duration: Const.moveSpeed),
             SKAction.moveBy(x: moveSpace, y: -1*Const.jumpSpace, duration: Const.moveSpeed),
             SKAction.moveBy(x: moveSpace, y:    Const.jumpSpace, duration: Const.moveSpeed),
             SKAction.moveBy(x: moveSpace, y: -1*Const.jumpSpace, duration: Const.moveSpeed),
         ])
-        moveLeftSequence = SKAction.sequence([
+        moveLeft = SKAction.sequence([
             SKAction.moveBy(x: -1*moveSpace, y:    Const.jumpSpace, duration: Const.moveSpeed),
             SKAction.moveBy(x: -1*moveSpace, y: -1*Const.jumpSpace, duration: Const.moveSpeed),
             SKAction.moveBy(x: -1*moveSpace, y:    Const.jumpSpace, duration: Const.moveSpeed),
@@ -35,25 +36,30 @@ class ActionModel {
         ])
         
         // ダメージ表示
-        displayDamageSequence = SKAction.sequence([
+        displayDamage = SKAction.sequence([
             SKAction.moveBy(x: 20, y:  70, duration: 0.1),
             SKAction.moveBy(x: 20, y: -40, duration: 0.1),
             SKAction.fadeOut(withDuration: 0.5)
         ])
         
         // 右上のメッセージダイアログ表示
-        displayMessageSequence = SKAction.sequence([
+        displayMessage = SKAction.sequence([
             SKAction.fadeIn(withDuration: 0.1),
             SKAction.moveBy(x: -100, y:  0, duration: 0.1),
             SKAction.fadeOut(withDuration: 4.5)
         ])
         
         // 少しだけ表示して消える
-        fadeInOutSequence = SKAction.sequence([
+        fadeInOut = SKAction.sequence([
             SKAction.fadeIn(withDuration: 0.1),
             SKAction.fadeOut(withDuration: 4.5)
-            ])
+        ])
         
-        
+        // 一定時間後に完全消滅
+        // 少しだけ表示して消える
+        fadeOutEternal = SKAction.sequence([
+            SKAction.fadeOut(withDuration: 4.5),
+            SKAction.removeFromParent()
+        ])        
     }
 }

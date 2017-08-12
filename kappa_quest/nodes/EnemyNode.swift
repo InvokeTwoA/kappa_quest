@@ -11,6 +11,7 @@ class EnemyNode: SKSpriteNode {
     var exp = 1
     var isMagic = false
     var displayName = "敵"
+    var isDead = false
     
     class func makeEnemy(name : String) -> EnemyNode {
         let enemy = EnemyNode(imageNamed: name)
@@ -33,5 +34,22 @@ class EnemyNode: SKSpriteNode {
     
     // 上下移動
     
+    
+    // 撃破時の物理属性を適用
+    func setBeatPhysic(){
+        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        
+        let physic = SKPhysicsBody(rectangleOf: CGSize(width: Const.kappaSize, height: Const.kappaSize))
+        physic.affectedByGravity = false
+        physic.allowsRotation = true
+        //        physic.categoryBitMask = kappaCategory
+        //        physic.contactTestBitMask = goalCategory | coinCategory | worldCategory | wallCategory | enemyCategory | itemCategory | blockCategory | downWorldCategory
+        //        physic.collisionBitMask = worldCategory | wallCategory | horizonWorldCategory | downWorldCategory
+        //        physic.contactTestBitMask = worldCategory
+        //        physic.collisionBitMask = worldCategory
+        //        physic.linearDamping = 0
+        //        physic.friction = 0
+        self.physicsBody = physic
+    }
 
 }

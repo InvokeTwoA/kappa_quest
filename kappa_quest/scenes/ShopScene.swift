@@ -10,8 +10,8 @@ class ShopScene: SKScene {
     // node
     private var jobLvLabel : SKLabelNode?
     private var jobNameLabel : SKLabelNode?
-    private var jobImage : SKSpriteNode?
-    private var graph : SKSpriteNode?
+    private var jobImage : SKSpriteNode!
+    private var graph : SKSpriteNode!
 
     private var jobLvLabel0 : SKLabelNode?
     private var jobLvLabel1 : SKLabelNode?
@@ -40,7 +40,12 @@ class ShopScene: SKScene {
         jobImage        = self.childNode(withName: "//JobImage") as? SKSpriteNode
         graph           = self.childNode(withName: "//graph") as? SKSpriteNode
         
-        jobLvLabel0     = self.childNode(withName: "//JobLvLabel0") as? SKLabelNode
+        jobLvLabel0     = self.childNode(withName: "//JobLv0") as? SKLabelNode
+        jobLvLabel1     = self.childNode(withName: "//JobLv1") as? SKLabelNode
+        jobLvLabel2     = self.childNode(withName: "//JobLv2") as? SKLabelNode
+        jobLvLabel3     = self.childNode(withName: "//JobLv3") as? SKLabelNode
+        jobLvLabel4     = self.childNode(withName: "//JobLv4") as? SKLabelNode
+        jobLvLabel5     = self.childNode(withName: "//JobLv5") as? SKLabelNode
 
         jobImage0       = self.childNode(withName: "//JobImage0") as? SKSpriteNode
 
@@ -50,7 +55,9 @@ class ShopScene: SKScene {
         job3            = self.childNode(withName: "//Job3") as? SKShapeNode
         job4            = self.childNode(withName: "//Job4") as? SKShapeNode
         job5            = self.childNode(withName: "//Job5") as? SKShapeNode
-
+    }
+    
+    override func didMove(to view: SKView) {
         setJobData()
     }
     
@@ -76,9 +83,9 @@ class ShopScene: SKScene {
     
     func setCurrentJobInfo(){
         jobLvLabel?.text = "LV  \(backScene.jobModel.lv)"
-        jobNameLabel?.text = backScene?.jobModel.displayName
-        jobImage?.texture = SKTexture(imageNamed: backScene.jobModel.name)
-        graph?.texture = SKTexture(imageNamed: "graph_\(backScene.jobModel.name)")
+        jobNameLabel?.text = backScene.jobModel.displayName
+        jobImage!.texture = SKTexture(imageNamed: backScene.jobModel.name)
+        graph!.texture = SKTexture(imageNamed: "graph_\(backScene.jobModel.name)")
     }
     
     func goBack(){
@@ -86,9 +93,10 @@ class ShopScene: SKScene {
     }
     
     func changeJob(_ position: Int) {
-        backScene?.jobModel.setData(jobList[position])
+        backScene.jobModel.setData(jobList[position])
         setCurrentJobInfo()
         changeBoxColor(position)
+        backScene.kappa?.setNextExp(backScene.jobModel)
     }
     
     func changeBoxColor(_ position: Int) {

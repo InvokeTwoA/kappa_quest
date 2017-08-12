@@ -29,7 +29,8 @@ class JobModel {
     }
 
     // 職業データを設定
-    func setData(_ name : String){
+    func setData(_ key : String){
+        name = key
         lv = JobModel.getLV(name)
         let data = dictionary.object(forKey: name) as! NSDictionary
         displayName     = data.object(forKey: "name") as! String
