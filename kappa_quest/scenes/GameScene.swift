@@ -5,16 +5,15 @@ import AVFoundation
 
 class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     
-    // components
-    let UpDownMoveComponentSystem = GKComponentSystem(componentClass: UpDownMoveComponent.self)
-    
-    
     // 音楽
     var _audioPlayer:AVAudioPlayer!
     
-    var entities = [UpDownMoveComponentSystem]
     var graphs = [String : GKGraph]()
     private var lastUpdateTime : TimeInterval = 0
+    
+    // Timer
+    private var actionTimer = 10  // 行動タイマー。 100 になるとリセット
+    private var doubleTimer = 0.0 // 経過時間（小数点単位で厳密）
 
     // 各種モデル
     private var gameData : GameData = GameData()
@@ -55,14 +54,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     private var sword : SwordNode?   // 剣
     private var underground : SKShapeNode?   // 地面
     private var MessageNode : SKShapeNode?   // メッセージノード
-
-    private var isMoving = false  // 移動中かどうか
     
     private var isSceneDidLoaded = false
     
     // Scene load 時に呼ばれる
     override func sceneDidLoad() {
-        print("scene did load")
         
         
         // 二重読み込みの防止
@@ -181,9 +177,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
         enemy.position.y = (kappa?.position.y)!
         self.addChild(enemy)
         
-        let upDownComponent = UpDownComponent(node: enemy)
-        UpDownMoveComponentSystem.addComponent(upDownComponent)
-        
 //        createEnemyLifeBar(pos: pos, x: enemy.position.x, y: enemy.position.y - 120)
         enemyModel.enemies[pos] = enemy
     }
@@ -232,10 +225,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     
     // 右へ移動
     func moveRight(){
-        if isMoving {
+        if map.isMoving {
             return
         }
-        isMoving = true
+        map.isMoving = true
         kappa?.xScale = 1
         sword?.xScale = 1
         sword?.setSwordByKappa(kappa_x: (self.kappa?.position.x)!)
@@ -247,7 +240,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
             } else {
                 self.updateButtonByPos()
             }
-            self.isMoving = false
+            self.map.isMoving = false
         })
         sword?.run(actionModel.moveRight!)
     }
@@ -265,17 +258,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     
     // 左へ移動
     func moveLeft(){
-        if isMoving {
+        if map.isMoving {
             return
         }
-        isMoving = true
+        map.isMoving = true
         kappa?.xScale = -1
         sword?.xScale = -1
         sword?.setSwordByKappa(kappa_x: (self.kappa?.position.x)!)
         
         map.myPosition -= 1
         kappa?.run(actionModel.moveLeft!, completion: {() -> Void in
-            self.isMoving = false
+            self.map.isMoving = false
             if self.map.myPosition == Const.minPosition {
                 self.goBackMap()
             } else {
@@ -328,6 +321,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
             let damage = self.calculateDamage(str: (self.kappa?.str)!, def: self.enemyModel.enemies[pos].def)
             let point = CGPoint(x: self.enemyModel.enemies[pos].position.x, y: self.enemyModel.enemies[pos].position.y + 30)
             self.displayDamage(value: damage, point: point, color: UIColor.white)
+            self.makeSpark(point: CGPoint(x: self.enemyModel.enemies[pos].position.x, y: self.enemyModel.enemies[pos].position.y))
             self.enemyModel.enemies[pos].hp -= damage
             
 //            let bar = self.childNode(withName: "//life_bar\(pos)") as? SKShapeNode
@@ -337,7 +331,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
                 self.beatEnemy(pos: pos)
             }
         })
-        sword?.run(actionModel.attack!)
+        sword?.run(actionModel.swordSlash!)
+    }
+    
+    func makeSpark(point : CGPoint){
+        let particle = SparkEmitterNode.makeSpark()
+        particle.position = point
+        particle.run(actionModel.sparkFadeOut!)
+        self.addChild(particle)
     }
     
     func calculateDamage(str: Int, def: Int) -> Int {
@@ -608,13 +609,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
         if (self.lastUpdateTime == 0) {
             self.lastUpdateTime = currentTime
         }
-        let dt = currentTime - self.lastUpdateTime
-        
+
+/*
+
         for entity in self.entities {
             entity.update(deltaTime: dt)
         }
-        
+ */
+        let dt = currentTime - self.lastUpdateTime
         self.lastUpdateTime = currentTime
+        
+        doubleTimer += dt
+        if doubleTimer > 1.0 {
+            actionTimer += 1
+            doubleTimer = 0.0
+        } else {
+            return
+        }
+        
+        for enemy in enemyModel.enemies {
+            enemy.timerUp()
+            
+            if enemy.isAttack() {
+                enemy.run(actionModel.enemyJump!)
+                enemy.makeWeapon()
+                self.addChild(enemy.weaponNode)
+                enemy.weaponNode.run(actionModel.normalAttack!)
+                enemy.timerReset()
+            }
+        }
+        
+        if actionTimer > 10 {
+            actionTimer = 0
+        }
     }
 
 }

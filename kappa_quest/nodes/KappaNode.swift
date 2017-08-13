@@ -14,7 +14,7 @@ class KappaNode: SKSpriteNode {
     var pie = 3
     var luc = 3
     var nextExp = 10
-    
+        
     // パラメーターを userDefault から読み取り
     func setParameterByUserDefault(){
         if UserDefaults.standard.object(forKey: "lv") == nil {

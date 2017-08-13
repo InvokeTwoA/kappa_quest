@@ -20,7 +20,6 @@ class GameViewController: UIViewController {
 
         if let scene = GKScene(fileNamed: "GameScene") {
             if let sceneNode = scene.rootNode as! GameScene? {
-                sceneNode.entities = scene.entities
                 sceneNode.graphs = scene.graphs
                 sceneNode.scaleMode = .aspectFill
                 _skView.presentScene(sceneNode)
@@ -31,23 +30,25 @@ class GameViewController: UIViewController {
         }
     }
 
-    override var shouldAutorotate: Bool {
-        return true
-    }
-
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return .allButUpsideDown
-        } else {
-            return .all
-        }
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
     override var prefersStatusBarHidden: Bool {
         return true
+    }
+    
+    // 画面を自動で回転させるか
+    override var shouldAutorotate: Bool {
+        get {
+            return false
+        }
+    }
+    
+    // 画面の向きを指定
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        get {
+            return .portrait
+        }
     }
 }

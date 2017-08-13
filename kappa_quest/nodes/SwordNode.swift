@@ -12,9 +12,4 @@ class SwordNode: SKSpriteNode {
             position.x = kappa_x - 50
         }
     }
-    
-    
-    // 回転アニメーション
-    
-    
 }

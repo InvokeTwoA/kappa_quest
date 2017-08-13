@@ -11,7 +11,6 @@
 		CE049FD51F2D6C460079DEDB /* JobModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE049FD41F2D6C460079DEDB /* JobModel.swift */; };
 		CE049FD71F2E0EED0079DEDB /* jobs.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE049FD61F2E0EED0079DEDB /* jobs.plist */; };
 		CE049FD91F3312EB0079DEDB /* ActionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE049FD81F3312EB0079DEDB /* ActionModel.swift */; };
-		CE049FDB1F3614C80079DEDB /* UpDownMoveComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE049FDA1F3614C70079DEDB /* UpDownMoveComponent.swift */; };
 		CE049FDE1F36238D0079DEDB /* maoudamashii_fantasy15.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CE049FDD1F36238D0079DEDB /* maoudamashii_fantasy15.mp3 */; };
 		CE524F7E1F20AB8E00A6D14C /* SwordNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE524F7D1F20AB8E00A6D14C /* SwordNode.swift */; };
 		CE524F801F20D5B900A6D14C /* jpn.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE524F7F1F20D5B900A6D14C /* jpn.strings */; };
@@ -35,6 +34,12 @@
 		CEC2B69F1F198F7F0014B114 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC2B69E1F198F7F0014B114 /* Const.swift */; };
 		CEC2B6A61F1A4DE70014B114 /* EnemyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC2B6A51F1A4DE70014B114 /* EnemyNode.swift */; };
 		CEC2B6A81F1AE6FA0014B114 /* TapNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC2B6A71F1AE6FA0014B114 /* TapNode.swift */; };
+		CED621D61F4035B600C92480 /* bokeh.sks in Resources */ = {isa = PBXBuildFile; fileRef = CED621D41F4035B600C92480 /* bokeh.sks */; };
+		CED621D71F4035B600C92480 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CED621D51F4035B600C92480 /* Assets.xcassets */; };
+		CED621D91F4035F000C92480 /* firefly.sks in Resources */ = {isa = PBXBuildFile; fileRef = CED621D81F4035F000C92480 /* firefly.sks */; };
+		CED621DB1F40361200C92480 /* fire.sks in Resources */ = {isa = PBXBuildFile; fileRef = CED621DA1F40361200C92480 /* fire.sks */; };
+		CED621DD1F40363300C92480 /* spark.sks in Resources */ = {isa = PBXBuildFile; fileRef = CED621DC1F40363300C92480 /* spark.sks */; };
+		CED621DF1F40380600C92480 /* SparkEmitterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED621DE1F40380600C92480 /* SparkEmitterNode.swift */; };
 		CEDBE7931F1C5274007E72B9 /* GN-KillGothic-U-KanaNB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEEB83D41F1C464B0025E021 /* GN-KillGothic-U-KanaNB.ttf */; };
 		CEDBE7941F1C5278007E72B9 /* GN-KillGothic-U-KanaO.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEEB83D51F1C464B0025E021 /* GN-KillGothic-U-KanaO.ttf */; };
 		CEDBE7961F1CC469007E72B9 /* enemies.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEDBE7951F1CC469007E72B9 /* enemies.plist */; };
@@ -54,7 +59,6 @@
 		CE049FD41F2D6C460079DEDB /* JobModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JobModel.swift; path = models/JobModel.swift; sourceTree = "<group>"; };
 		CE049FD61F2E0EED0079DEDB /* jobs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = jobs.plist; path = resources/plists/jobs.plist; sourceTree = "<group>"; };
 		CE049FD81F3312EB0079DEDB /* ActionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ActionModel.swift; path = models/ActionModel.swift; sourceTree = "<group>"; };
-		CE049FDA1F3614C70079DEDB /* UpDownMoveComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UpDownMoveComponent.swift; path = components/UpDownMoveComponent.swift; sourceTree = "<group>"; };
 		CE049FDD1F36238D0079DEDB /* maoudamashii_fantasy15.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = maoudamashii_fantasy15.mp3; path = resources/musics/maoudamashii_fantasy15.mp3; sourceTree = "<group>"; };
 		CE524F7D1F20AB8E00A6D14C /* SwordNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwordNode.swift; path = nodes/SwordNode.swift; sourceTree = "<group>"; };
 		CE524F7F1F20D5B900A6D14C /* jpn.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = jpn.strings; path = resources/texts/jpn.strings; sourceTree = "<group>"; };
@@ -82,6 +86,12 @@
 		CEC2B6A71F1AE6FA0014B114 /* TapNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TapNode.swift; path = nodes/TapNode.swift; sourceTree = "<group>"; };
 		CEC2B6AA1F1BB9EF0014B114 /* PixelMplus12-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "PixelMplus12-Bold.ttf"; path = "resources/fonts/PixelMplus12-Bold.ttf"; sourceTree = "<group>"; };
 		CEC2B6AB1F1BB9EF0014B114 /* PixelMplus12-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "PixelMplus12-Regular.ttf"; path = "resources/fonts/PixelMplus12-Regular.ttf"; sourceTree = "<group>"; };
+		CED621D41F4035B600C92480 /* bokeh.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = bokeh.sks; path = resources/particles/bokeh.sks; sourceTree = "<group>"; };
+		CED621D51F4035B600C92480 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = resources/particles/Assets.xcassets; sourceTree = "<group>"; };
+		CED621D81F4035F000C92480 /* firefly.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = firefly.sks; path = resources/particles/firefly.sks; sourceTree = "<group>"; };
+		CED621DA1F40361200C92480 /* fire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = fire.sks; path = resources/particles/fire.sks; sourceTree = "<group>"; };
+		CED621DC1F40363300C92480 /* spark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = spark.sks; path = resources/particles/spark.sks; sourceTree = "<group>"; };
+		CED621DE1F40380600C92480 /* SparkEmitterNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SparkEmitterNode.swift; path = emitters/SparkEmitterNode.swift; sourceTree = "<group>"; };
 		CEDBE7951F1CC469007E72B9 /* enemies.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = enemies.plist; path = resources/plists/enemies.plist; sourceTree = "<group>"; };
 		CEDBE7981F1CECA9007E72B9 /* KappaNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KappaNode.swift; path = nodes/KappaNode.swift; sourceTree = "<group>"; };
 		CEEB83D11F1BCE200025E021 /* CommonUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommonUtil.swift; path = common/CommonUtil.swift; sourceTree = "<group>"; };
@@ -128,14 +138,6 @@
 			name = musics;
 			sourceTree = "<group>";
 		};
-		CE049FDC1F3614CC0079DEDB /* components */ = {
-			isa = PBXGroup;
-			children = (
-				CE049FDA1F3614C70079DEDB /* UpDownMoveComponent.swift */,
-			);
-			name = components;
-			sourceTree = "<group>";
-		};
 		CE524F811F20D5C500A6D14C /* texts */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,9 +181,9 @@
 			isa = PBXGroup;
 			children = (
 				CEC2B67E1F177A3C0014B114 /* AppDelegate.swift */,
-				CE049FDC1F3614CC0079DEDB /* components */,
 				CEC2B6A91F1B6ED30014B114 /* sks */,
 				CEC2B6A41F1A4DD30014B114 /* nodes */,
+				CED621E01F40381400C92480 /* emitters */,
 				CE524F861F236F7000A6D14C /* models */,
 				CEC2B6A01F1991BD0014B114 /* scenes */,
 				CEC2B6961F1792FA0014B114 /* resources */,
@@ -198,6 +200,7 @@
 		CEC2B6961F1792FA0014B114 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				CED621CB1F40337C00C92480 /* particles */,
 				CE049FCF1F2C927F0079DEDB /* musics */,
 				CE524F811F20D5C500A6D14C /* texts */,
 				CEDBE7971F1CCB7D007E72B9 /* plists */,
@@ -258,6 +261,26 @@
 				CEEB83D51F1C464B0025E021 /* GN-KillGothic-U-KanaO.ttf */,
 			);
 			name = fonts;
+			sourceTree = "<group>";
+		};
+		CED621CB1F40337C00C92480 /* particles */ = {
+			isa = PBXGroup;
+			children = (
+				CED621D41F4035B600C92480 /* bokeh.sks */,
+				CED621DA1F40361200C92480 /* fire.sks */,
+				CED621DC1F40363300C92480 /* spark.sks */,
+				CED621D51F4035B600C92480 /* Assets.xcassets */,
+				CED621D81F4035F000C92480 /* firefly.sks */,
+			);
+			name = particles;
+			sourceTree = "<group>";
+		};
+		CED621E01F40381400C92480 /* emitters */ = {
+			isa = PBXGroup;
+			children = (
+				CED621DE1F40380600C92480 /* SparkEmitterNode.swift */,
+			);
+			name = emitters;
 			sourceTree = "<group>";
 		};
 		CEDBE7971F1CCB7D007E72B9 /* plists */ = {
@@ -333,11 +356,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEDBE7941F1C5278007E72B9 /* GN-KillGothic-U-KanaO.ttf in Resources */,
+				CED621D71F4035B600C92480 /* Assets.xcassets in Resources */,
 				CE6BB8271F24CAA30046DA65 /* GameScene.sks in Resources */,
 				CEDBE7931F1C5274007E72B9 /* GN-KillGothic-U-KanaNB.ttf in Resources */,
+				CED621D91F4035F000C92480 /* firefly.sks in Resources */,
+				CED621DD1F40363300C92480 /* spark.sks in Resources */,
 				CEEB83D61F1C46760025E021 /* GN-KillGothic-U-KanaNA.ttf in Resources */,
 				CEEB83CF1F1BBD240025E021 /* PixelMplus12-Bold.ttf in Resources */,
 				CE049FD71F2E0EED0079DEDB /* jobs.plist in Resources */,
+				CED621D61F4035B600C92480 /* bokeh.sks in Resources */,
+				CED621DB1F40361200C92480 /* fire.sks in Resources */,
 				CEEB83D01F1BBD240025E021 /* PixelMplus12-Regular.ttf in Resources */,
 				CEC2B68A1F177A3C0014B114 /* Main.storyboard in Resources */,
 				CE049FCE1F2C927B0079DEDB /* maoudamashii_lastboss02.mp3 in Resources */,
@@ -409,7 +437,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEC2B6A61F1A4DE70014B114 /* EnemyNode.swift in Sources */,
-				CE049FDB1F3614C80079DEDB /* UpDownMoveComponent.swift in Sources */,
 				CE524F851F236EEC00A6D14C /* GameData.swift in Sources */,
 				CEC2B6A81F1AE6FA0014B114 /* TapNode.swift in Sources */,
 				CEB904571F24EBBE0061A919 /* ShopScene.swift in Sources */,
@@ -419,6 +446,7 @@
 				CEC2B6851F177A3C0014B114 /* GameScene.swift in Sources */,
 				CEC2B6871F177A3C0014B114 /* GameViewController.swift in Sources */,
 				CE6BB81F1F23C8860046DA65 /* Map.swift in Sources */,
+				CED621DF1F40380600C92480 /* SparkEmitterNode.swift in Sources */,
 				CEDBE7991F1CECA9007E72B9 /* KappaNode.swift in Sources */,
 				CE049FD91F3312EB0079DEDB /* ActionModel.swift in Sources */,
 				CE6BB8231F24C2430046DA65 /* EnemyModel.swift in Sources */,

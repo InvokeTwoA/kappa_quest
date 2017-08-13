@@ -2,6 +2,8 @@ import Foundation
 
 class Map {
 
+    var isMoving = false
+    
     var positionData = Array(arrayLiteral: "free", "free", "free", "free", "enemy", "enemy", "free", "free")
 
     var myPosition = 1  // 自分のいる位置   0(左端) 1 2 3 4 5 6 7 8(右画面へ)

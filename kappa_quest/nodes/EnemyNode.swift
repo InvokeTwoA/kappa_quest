@@ -2,7 +2,7 @@ import Foundation
 import SpriteKit
 
 class EnemyNode: SKSpriteNode {
-    
+
     var hp = 10
     var str = 1
     var def = 1
@@ -13,13 +13,28 @@ class EnemyNode: SKSpriteNode {
     var displayName = "敵"
     var isDead = false
     
+    var weaponNode : SKSpriteNode!
+
+
+
+    var attackTimer = 100 // この数値が10になったら攻撃する
+    
+    
     class func makeEnemy(name : String) -> EnemyNode {
         let enemy = EnemyNode(imageNamed: name)
         enemy.size = CGSize(width: Const.enemySize, height: Const.enemySize)
         enemy.anchorPoint = CGPoint(x: 0.5, y: 0)     // 中央下がアンカーポイント
         enemy.zPosition = 2
+        enemy.attackTimer = CommonUtil.rnd(10)
         return enemy
     }
+    
+    func makeWeapon(){
+        weaponNode = SKSpriteNode(imageNamed: "hatena")
+        weaponNode.position = position
+        weaponNode.zPosition = 3
+    }
+    
     
     func setParameterByDictionary(dictionary : NSDictionary){
         displayName = dictionary.object(forKey: "name") as! String
@@ -32,7 +47,18 @@ class EnemyNode: SKSpriteNode {
         isMagic = dictionary.object(forKey: "isMagic") as! Bool
     }
     
-    // 上下移動
+
+    func timerUp(){
+        attackTimer += CommonUtil.rnd(agi) + 1
+    }
+    
+    func isAttack() -> Bool {
+        return !isDead && attackTimer > 100
+    }
+    
+    func timerReset(){
+        attackTimer = 0
+    }
     
     
     // 撃破時の物理属性を適用
