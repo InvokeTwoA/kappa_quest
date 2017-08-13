@@ -11,9 +11,9 @@ class EnemyNode: SKSpriteNode {
     var exp = 1
     var isMagic = false
     var displayName = "敵"
-    var isDead = false
+    var isDead = true
     
-    var weaponNode : SKSpriteNode!
+    var fire : FireEmitterNode!
 
 
 
@@ -25,14 +25,14 @@ class EnemyNode: SKSpriteNode {
         enemy.size = CGSize(width: Const.enemySize, height: Const.enemySize)
         enemy.anchorPoint = CGPoint(x: 0.5, y: 0)     // 中央下がアンカーポイント
         enemy.zPosition = 2
-        enemy.attackTimer = CommonUtil.rnd(10)
+        enemy.attackTimer = CommonUtil.rnd(100)
+        enemy.isDead = false
         return enemy
     }
     
-    func makeWeapon(){
-        weaponNode = SKSpriteNode(imageNamed: "hatena")
-        weaponNode.position = position
-        weaponNode.zPosition = 3
+    func makeFire(){
+        fire = FireEmitterNode.makeFire()
+        fire.damage = str
     }
     
     
@@ -49,7 +49,7 @@ class EnemyNode: SKSpriteNode {
     
 
     func timerUp(){
-        attackTimer += CommonUtil.rnd(agi) + 1
+        attackTimer += CommonUtil.rnd(agi) + 10
     }
     
     func isAttack() -> Bool {

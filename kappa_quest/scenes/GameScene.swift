@@ -3,7 +3,9 @@ import SpriteKit
 import GameplayKit
 import AVFoundation
 
-class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
+class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
+    
+    var gameOverFlag = false
     
     // 音楽
     var _audioPlayer:AVAudioPlayer!
@@ -69,6 +71,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
         }
 
         self.lastUpdateTime = 0
+        
+        self.physicsWorld.contactDelegate = self
         
         // 音楽関係の処理
         //prepareBGM(fileName: Const.bgm_last_battle)
@@ -136,10 +140,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     func createKappa(){
         self.kappa = self.childNode(withName: "//kappa") as? KappaNode
         kappa?.setParameterByUserDefault()
-//        kappa?.setPhysic()
+        kappa?.setPhysic()
         setFirstPosition()
-        sword = self.childNode(withName: "//Sword") as? SwordNode
-        sword?.setSwordByKappa(kappa_x: (self.kappa?.position.x)!)
     }
     
     // 左からpos番目のx座標を返す
@@ -230,8 +232,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
         }
         map.isMoving = true
         kappa?.xScale = 1
-        sword?.xScale = 1
-        sword?.setSwordByKappa(kappa_x: (self.kappa?.position.x)!)
+        kappa?.walk()
         map.myPosition += 1
         
         kappa?.run(actionModel.moveRight!, completion: {() -> Void in
@@ -242,14 +243,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
             }
             self.map.isMoving = false
         })
-        sword?.run(actionModel.moveRight!)
     }
     
     // マップを右に移動
     func goNextMap(){
         clearMap()
         setFirstPosition()
-        sword?.setSwordByKappa(kappa_x: (self.kappa?.position.x)!)
         map.distance += 0.1
         DistanceLabel?.text = "\(map.distance)km"
         saveData()
@@ -263,8 +262,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
         }
         map.isMoving = true
         kappa?.xScale = -1
-        sword?.xScale = -1
-        sword?.setSwordByKappa(kappa_x: (self.kappa?.position.x)!)
+        kappa?.walk()
         
         map.myPosition -= 1
         kappa?.run(actionModel.moveLeft!, completion: {() -> Void in
@@ -274,16 +272,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
             } else {
                 self.updateButtonByPos()
             }
-
         })
-        sword?.run(actionModel.moveLeft!)
     }
 
     // マップを左に移動
     func goBackMap(){
         clearMap()
         setRightPosition()
-        sword?.setSwordByKappa(kappa_x: (self.kappa?.position.x)!)
+//        sword?.setSwordByKappa(kappa_x: (self.kappa?.position.x)!)
         map.distance -= 0.1
         DistanceLabel?.text = "\(map.distance)km"
         saveData()
@@ -314,6 +310,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
 
     // 攻撃
     func attack(pos: Int){
+        kappa?.attack()
         kappa?.run(actionModel.attack!, completion: {() -> Void in
             if self.enemyModel.enemies[pos].isDead {
                 return
@@ -331,7 +328,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
                 self.beatEnemy(pos: pos)
             }
         })
-        sword?.run(actionModel.swordSlash!)
+//        sword?.run(actionModel.swordSlash!)
+    }
+    
+    // 攻撃をされた
+    func attacked(attack:Int, type: String, point: CGPoint){
+        var damage = 1
+        if type == "magic" {
+            damage = attack - (kappa?.pie)!
+        } else {
+            damage = attack - (kappa?.def)!
+        }
+        if damage < 0 {
+            damage = 1
+        }
+        kappa?.hp -= damage
+        displayDamage(value: damage, point: point, color: UIColor.red, direction: "left")
+        updateStatus()
+        
+        if (kappa?.hp)! <= 0 {
+            gameOver()
+        }
     }
     
     func makeSpark(point : CGPoint){
@@ -350,7 +367,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
     }
     
     // ダメージを数字で表示
-    func displayDamage(value: Int, point: CGPoint, color: UIColor){
+    func displayDamage(value: Int, point: CGPoint, color: UIColor, direction : String = "right"){
         let location = CGPoint(x: point.x, y: point.y + 30.0)
         let label = SKLabelNode(fontNamed: Const.damageFont)
         label.text = "\(value)"
@@ -359,8 +376,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
         label.fontSize = 48
         label.zPosition = 90
         self.addChild(label)
-        
-        label.run(actionModel.displayDamage!)
+        if direction == "left" {
+            label.run(actionModel.displayDamaged!)
+        } else {
+            label.run(actionModel.displayDamage!)
+        }
     }
     
     // モンスター撃破処理
@@ -446,6 +466,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
         JobLVLabel?.text = "LV  \(jobModel.lv)"
     }
     
+    func gameOver(){
+        if gameOverFlag == false {
+            gameOverFlag = true
+            stopBGM()
+            goGameOver()
+        }
+    }
+    
+    
     // タップ数アップ
     func tapCountUp(){
         gameData.tapCount += 1
@@ -480,6 +509,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
         scene?.backScene = self.scene as! GameScene
         self.view!.presentScene(scene!, transition: .fade(withDuration: 0.5))
     }
+    
+    // ゲームオーバー画面へ
+    func goGameOver(){
+        let scene = GameOverScene(fileNamed: "GameOverScene")
+        scene?.size = self.scene!.size
+        scene?.scaleMode = SKSceneScaleMode.aspectFill
+        scene?.backScene = self.scene as! GameScene
+        self.view!.presentScene(scene!, transition: .fade(with: .white, duration: 10.0))
+    }
+    
 
     /***********************************************************************************/
     /********************************** touch ******************************************/
@@ -600,22 +639,57 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
             _audioPlayer.play()
         }
     }
-
+    
+    func stopBGM(){
+        if ( _audioPlayer.isPlaying ){
+            _audioPlayer.stop()
+        }
+    }
+    
+    /***********************************************************************************/
+    /********************************** 衝突判定 ****************************************/
+    /***********************************************************************************/
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        var firstBody, secondBody: SKPhysicsBody
+        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+            firstBody = contact.bodyA
+            secondBody = contact.bodyB
+        } else {
+            firstBody = contact.bodyB
+            secondBody = contact.bodyA
+        }
+        if firstBody.node == nil || secondBody.node == nil {
+            return
+        }
+        
+        // 衝突判定
+        if (firstBody.categoryBitMask & Const.kappaCategory != 0 ) {
+            if secondBody.categoryBitMask & Const.fireCategory != 0 {
+                if secondBody.node == nil {
+                    return
+                } else {
+                    let fire = secondBody.node as! FireEmitterNode
+                    attacked(attack: fire.damage, type: "magick", point: (firstBody.node?.position)!)
+                    makeSpark(point: (secondBody.node?.position)!)
+                    secondBody.node?.removeFromParent()
+                }
+            }
+        }
+    }
+    
     /***********************************************************************************/
     /********************************** update ******************************************/
     /***********************************************************************************/
-    
     override func update(_ currentTime: TimeInterval) {
+        if gameOverFlag {
+            return
+        }
+        
         if (self.lastUpdateTime == 0) {
             self.lastUpdateTime = currentTime
         }
 
-/*
-
-        for entity in self.entities {
-            entity.update(deltaTime: dt)
-        }
- */
         let dt = currentTime - self.lastUpdateTime
         self.lastUpdateTime = currentTime
         
@@ -628,13 +702,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate {
         }
         
         for enemy in enemyModel.enemies {
+            if enemy.isDead {
+                continue
+            }
             enemy.timerUp()
             
             if enemy.isAttack() {
                 enemy.run(actionModel.enemyJump!)
-                enemy.makeWeapon()
-                self.addChild(enemy.weaponNode)
-                enemy.weaponNode.run(actionModel.normalAttack!)
+                enemy.makeFire()
+                enemy.fire.position = enemy.position
+                self.addChild(enemy.fire)
+                enemy.fire.shot()
+                
                 enemy.timerReset()
             }
         }

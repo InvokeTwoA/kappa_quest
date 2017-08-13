@@ -15,10 +15,10 @@ class Map {
     var maxDistance = 0.0 // 最高移動距離
 
     func updatePositionData(){
-        let rndArray = ["free", "enemy"]
-
-        for num in 2...(Const.maxPosition-2) {
-            positionData[num] = rndArray[CommonUtil.rnd(rndArray.count)]
+//        let rndArray = ["free", "enemy"]
+        for num in 3...(Const.maxPosition-2) {
+//            positionData[num] = rndArray[CommonUtil.rnd(rndArray.count)]
+            positionData[num] = "enemy"
         }
         positionData[0] = "free"
         positionData[Const.maxPosition-1] = "free"

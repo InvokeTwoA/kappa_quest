@@ -8,6 +8,7 @@ class ActionModel {
     var moveRight       : SKAction?
     var moveLeft        : SKAction?
     var displayDamage   : SKAction?
+    var displayDamaged  : SKAction?
     var displayMessage  : SKAction?
     var fadeInOut       : SKAction?
     var fadeOutEternal  : SKAction?
@@ -44,7 +45,15 @@ class ActionModel {
         displayDamage = SKAction.sequence([
             SKAction.moveBy(x: 20, y:  70, duration: 0.1),
             SKAction.moveBy(x: 20, y: -40, duration: 0.1),
-            SKAction.fadeOut(withDuration: 0.5)
+            SKAction.fadeOut(withDuration: 0.5),
+            SKAction.removeFromParent()
+        ])
+        
+        displayDamaged = SKAction.sequence([
+            SKAction.moveBy(x: -20, y:  70, duration: 0.1),
+            SKAction.moveBy(x: -20, y: -40, duration: 0.1),
+            SKAction.fadeOut(withDuration: 0.5),
+            SKAction.removeFromParent()
         ])
         
         // 右上のメッセージダイアログ表示
@@ -71,7 +80,7 @@ class ActionModel {
         sparkFadeOut = SKAction.sequence([
             SKAction.fadeOut(withDuration: 0.25),
             SKAction.removeFromParent()
-            ])
+        ])
         
         
         // 剣を振るアクション
