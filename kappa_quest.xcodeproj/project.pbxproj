@@ -43,6 +43,7 @@
 		CED621E21F40405600C92480 /* FireEmitterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED621E11F40405600C92480 /* FireEmitterNode.swift */; };
 		CED621E61F40924D00C92480 /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CED621E51F40924D00C92480 /* GameOverScene.sks */; };
 		CED621E81F409B1C00C92480 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED621E71F409B1C00C92480 /* GameOverScene.swift */; };
+		CED621EA1F41EE6C00C92480 /* maps.plist in Resources */ = {isa = PBXBuildFile; fileRef = CED621E91F41EE6C00C92480 /* maps.plist */; };
 		CEDBE7931F1C5274007E72B9 /* GN-KillGothic-U-KanaNB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEEB83D41F1C464B0025E021 /* GN-KillGothic-U-KanaNB.ttf */; };
 		CEDBE7941F1C5278007E72B9 /* GN-KillGothic-U-KanaO.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEEB83D51F1C464B0025E021 /* GN-KillGothic-U-KanaO.ttf */; };
 		CEDBE7961F1CC469007E72B9 /* enemies.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEDBE7951F1CC469007E72B9 /* enemies.plist */; };
@@ -98,6 +99,7 @@
 		CED621E11F40405600C92480 /* FireEmitterNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FireEmitterNode.swift; path = emitters/FireEmitterNode.swift; sourceTree = "<group>"; };
 		CED621E51F40924D00C92480 /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameOverScene.sks; path = sks/GameOverScene.sks; sourceTree = "<group>"; };
 		CED621E71F409B1C00C92480 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameOverScene.swift; path = scenes/GameOverScene.swift; sourceTree = "<group>"; };
+		CED621E91F41EE6C00C92480 /* maps.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = maps.plist; path = resources/plists/maps.plist; sourceTree = "<group>"; };
 		CEDBE7951F1CC469007E72B9 /* enemies.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = enemies.plist; path = resources/plists/enemies.plist; sourceTree = "<group>"; };
 		CEDBE7981F1CECA9007E72B9 /* KappaNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KappaNode.swift; path = nodes/KappaNode.swift; sourceTree = "<group>"; };
 		CEEB83D11F1BCE200025E021 /* CommonUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommonUtil.swift; path = common/CommonUtil.swift; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				CEDBE7951F1CC469007E72B9 /* enemies.plist */,
+				CED621E91F41EE6C00C92480 /* maps.plist */,
 				CE049FD61F2E0EED0079DEDB /* jobs.plist */,
 			);
 			name = plists;
@@ -380,6 +383,7 @@
 				CEC2B68A1F177A3C0014B114 /* Main.storyboard in Resources */,
 				CE049FCE1F2C927B0079DEDB /* maoudamashii_lastboss02.mp3 in Resources */,
 				CEB904551F24EBA10061A919 /* ShopScene.sks in Resources */,
+				CED621EA1F41EE6C00C92480 /* maps.plist in Resources */,
 				CEC2B68C1F177A3C0014B114 /* Assets.xcassets in Resources */,
 				CE049FDE1F36238D0079DEDB /* maoudamashii_fantasy15.mp3 in Resources */,
 				CE524F801F20D5B900A6D14C /* jpn.strings in Resources */,

@@ -14,26 +14,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
     private var lastUpdateTime : TimeInterval = 0
     
     // Timer
-    private var actionTimer = 10  // 行動タイマー。 100 になるとリセット
     private var doubleTimer = 0.0 // 経過時間（小数点単位で厳密）
 
     // 各種モデル
     private var gameData : GameData = GameData()
-    private var map : Map = Map()
     private var enemyModel : EnemyModel = EnemyModel()
     private var actionModel : ActionModel = ActionModel()
+    var map : Map = Map()
     var jobModel : JobModel = JobModel()
 
     // ラベル定義
     private var LVLabel : SKLabelNode?
     private var MAXHPLabel : SKLabelNode?
     private var HPLabel : SKLabelNode?
-    private var StrLabel : SKLabelNode?
-    private var DefLabel : SKLabelNode?
-    private var AgiLabel : SKLabelNode?
-    private var IntLabel : SKLabelNode?
-    private var PieLabel : SKLabelNode?
-    private var LucLabel : SKLabelNode?
     private var HPUpLabel : SKLabelNode?
     private var StrUpLabel : SKLabelNode?
     private var DefUpLabel : SKLabelNode?
@@ -101,9 +94,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
         updateStatus()
     }
     
-
-    
-    
     func setInitData(){
         TapCountLabel?.text = "\(gameData.tapCount)"
     }
@@ -111,12 +101,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
     func setLabel(){
         LVLabel        = self.childNode(withName: "//LVLabel") as? SKLabelNode
         HPLabel        = self.childNode(withName: "//HPLabel") as? SKLabelNode
-        StrLabel       = self.childNode(withName: "//StrLabel") as? SKLabelNode
-        DefLabel       = self.childNode(withName: "//DefLabel") as? SKLabelNode
-        AgiLabel       = self.childNode(withName: "//AgiLabel") as? SKLabelNode
-        IntLabel       = self.childNode(withName: "//IntLabel") as? SKLabelNode
-        PieLabel       = self.childNode(withName: "//PieLabel") as? SKLabelNode
-        LucLabel       = self.childNode(withName: "//LucLabel") as? SKLabelNode
         HPUpLabel      = self.childNode(withName: "//HPUpLabel") as? SKLabelNode
         StrUpLabel     = self.childNode(withName: "//StrUpLabel") as? SKLabelNode
         DefUpLabel     = self.childNode(withName: "//DefUpLabel") as? SKLabelNode
@@ -205,6 +189,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
         self.addChild(lifeBar)
     }
  */
+    
+    
+    
     func saveData(){
         kappa?.saveParam()
         gameData.saveParam()
@@ -267,23 +254,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
         map.myPosition -= 1
         kappa?.run(actionModel.moveLeft!, completion: {() -> Void in
             self.map.isMoving = false
-            if self.map.myPosition == Const.minPosition {
-                self.goBackMap()
-            } else {
+//            if self.map.myPosition == Const.minPosition {
+//                self.goBackMap()
+//            } else {
                 self.updateButtonByPos()
-            }
+//            }
         })
-    }
-
-    // マップを左に移動
-    func goBackMap(){
-        clearMap()
-        setRightPosition()
-//        sword?.setSwordByKappa(kappa_x: (self.kappa?.position.x)!)
-        map.distance -= 0.1
-        DistanceLabel?.text = "\(map.distance)km"
-        saveData()
-        createMap()
     }
     
     // マップの情報を削除
@@ -297,6 +273,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
                 shop?.removeFromParent()
             }
         }
+        
+        if let fire = self.childNode(withName: "fire") {
+            fire.removeFromParent()
+        }
+        if let damage = self.childNode(withName: "damage_text") {
+            damage.removeFromParent()
+        }
+
     }
     
     // 現在位置によってボタン文言を変更
@@ -343,10 +327,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
             damage = 1
         }
         kappa?.hp -= damage
-        displayDamage(value: damage, point: point, color: UIColor.red, direction: "left")
+        if (kappa?.hp)! <= 0 {
+            kappa?.hp = 0
+        }
+        
+        displayDamage(value: damage, point: CGPoint(x:point.x-30, y:point.y+30), color: UIColor.red, direction: "left")
         updateStatus()
         
-        if (kappa?.hp)! <= 0 {
+        if (kappa?.hp)! == 0 {
             gameOver()
         }
     }
@@ -370,6 +358,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
     func displayDamage(value: Int, point: CGPoint, color: UIColor, direction : String = "right"){
         let location = CGPoint(x: point.x, y: point.y + 30.0)
         let label = SKLabelNode(fontNamed: Const.damageFont)
+        label.name = "damage_text"
         label.text = "\(value)"
         label.position = location
         label.fontColor = color
@@ -451,6 +440,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
     
     // ステータス更新
     func updateStatus(){
+        let StrLabel       = self.childNode(withName: "//StrLabel") as? SKLabelNode
+        let DefLabel       = self.childNode(withName: "//DefLabel") as? SKLabelNode
+        let AgiLabel       = self.childNode(withName: "//AgiLabel") as? SKLabelNode
+        let IntLabel       = self.childNode(withName: "//IntLabel") as? SKLabelNode
+        let PieLabel       = self.childNode(withName: "//PieLabel") as? SKLabelNode
+        let LucLabel       = self.childNode(withName: "//LucLabel") as? SKLabelNode
+
+        
         LVLabel?.text  = "LV  \(String(describing: kappa!.lv))"
         HPLabel?.text  = "HP  \(String(describing: kappa!.hp))"
         MAXHPLabel?.text = "HP  \(String(describing: kappa!.maxHp))"
@@ -464,7 +461,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
         
         JobNameLabel?.text = jobModel.displayName
         JobLVLabel?.text = "LV  \(jobModel.lv)"
+        
+        changeLifeBar()
     }
+    
+    func changeLifeBar(){
+        let life_bar_yellow = self.childNode(withName: "//LifeBarYellow") as? SKSpriteNode
+        let life_percentage = CGFloat((kappa?.hp)!)/CGFloat((kappa?.maxHp)!)
+        life_bar_yellow?.size.width = Const.lifeBarWidth*life_percentage
+    }
+    
     
     func gameOver(){
         if gameOverFlag == false {
@@ -538,7 +544,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
                 attack(pos: map.myPosition+1)
             }
         } else {
-            moveLeft()
+            if map.canMoveLeft() {
+                moveLeft()
+            }
         }
     }
     
@@ -695,7 +703,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
         
         doubleTimer += dt
         if doubleTimer > 1.0 {
-            actionTimer += 1
             doubleTimer = 0.0
         } else {
             return
@@ -716,10 +723,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
                 
                 enemy.timerReset()
             }
-        }
-        
-        if actionTimer > 10 {
-            actionTimer = 0
         }
     }
 

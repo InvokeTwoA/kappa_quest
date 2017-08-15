@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>0.1</key>
+	<dict>
+		<key>background</key>
+		<string>bg_forest</string>
+		<key>enemies</key>
+		<array>
+			<string>slime</string>
+			<string>slime</string>
+			<string>slime</string>
+			<string>slime</string>
+		</array>
+		<key>is_boss</key>
+		<false/>
+		<key>job</key>
+		<string>nil</string>
+	</dict>
+</dict>
+</plist>

@@ -17,6 +17,7 @@ class FireEmitterNode: SKEmitterNode {
 
         let particle = FireEmitterNode(fileNamed: "fire")!
         particle.zPosition = 5
+        particle.name = "fire"
         
 //        particle.xAcceleration = -30
 //        particle.yAcceleration = -40

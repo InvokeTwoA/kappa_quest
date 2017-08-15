@@ -35,6 +35,13 @@ class Map {
         return positionData[myPosition+1] == "free" || positionData[myPosition+1] == "shop"
     }
     
+    func canMoveLeft() -> Bool {
+        if myPosition <= 1 {
+            return false
+        }
+        return true
+    }
+    
     func isShop() -> Bool {
         return positionData[myPosition] == "shop"
     }
@@ -50,13 +57,18 @@ class Map {
         maxDistance     = Double(maxDistanceInt)/10.0
     }
     
+    // リセットデータ（主にゲームオーバー時）
+    func resetData(){
+        distance = 0.0
+        distanceInt = 0
+        updatePositionData()
+    }
+    
+    // データ保存
     func saveParam(){
         distanceInt = Int(distance*10)
         maxDistanceInt = Int(maxDistance*10)
         UserDefaults.standard.set(distanceInt,  forKey: "distance")
         UserDefaults.standard.set(distanceInt,  forKey: "maxDistance")
     }
-
-
-
 }

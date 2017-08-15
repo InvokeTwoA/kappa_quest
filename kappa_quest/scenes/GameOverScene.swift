@@ -38,12 +38,27 @@ class GameOverScene: SKScene {
     }
     
     func goBack(){
-        backScene.kappa?.hp = 1
-        backScene.gameOverFlag = false
-        backScene.playBGM()
-        
+        resetData()
         self.view!.presentScene(backScene, transition: .flipHorizontal(withDuration: 3.5))
     }
+    
+    
+    func resetData(){
+        backScene.kappa?.hp = (backScene.kappa?.maxHp)!
+        backScene.map.resetData()
+        backScene.gameOverFlag = false
+
+        backScene.clearMap()
+        backScene.createMap()
+        backScene.setFirstPosition()
+        backScene.saveData()
+        
+        _ = CommonUtil.setTimeout(delay: 3.5, block: { () -> Void in
+            self.backScene.playBGM()
+        })
+
+    }
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
