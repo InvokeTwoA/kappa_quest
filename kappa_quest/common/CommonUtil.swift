@@ -14,7 +14,8 @@ class CommonUtil {
     }
     
     // rnd()を２回繰り返す
-    // 低いきーの配列ほど出やすくなり、最後の方の配列は出にくくなる
+    // 低いキーの配列ほど出やすくなり、最後の方の配列は出にくくなる
+    // 期待値は max の 1/4 か？
     class func minimumRnd(_ max : Int) -> Int {
         if(max <= 0){
             return 0

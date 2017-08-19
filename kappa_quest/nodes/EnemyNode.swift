@@ -68,11 +68,9 @@ class EnemyNode: SKSpriteNode {
         let physic = SKPhysicsBody(rectangleOf: CGSize(width: Const.kappaSize, height: Const.kappaSize))
         physic.affectedByGravity = false
         physic.allowsRotation = true
-        //        physic.categoryBitMask = kappaCategory
-        //        physic.contactTestBitMask = goalCategory | coinCategory | worldCategory | wallCategory | enemyCategory | itemCategory | blockCategory | downWorldCategory
-        //        physic.collisionBitMask = worldCategory | wallCategory | horizonWorldCategory | downWorldCategory
-        //        physic.contactTestBitMask = worldCategory
-        //        physic.collisionBitMask = worldCategory
+        physic.categoryBitMask = Const.enemyCategory
+        physic.contactTestBitMask = Const.worldCategory
+        physic.collisionBitMask = Const.worldCategory
         //        physic.linearDamping = 0
         //        physic.friction = 0
         self.physicsBody = physic

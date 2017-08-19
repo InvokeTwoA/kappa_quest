@@ -29,7 +29,7 @@ class FireEmitterNode: SKEmitterNode {
     
     // 物理属性を適用
     func setPhysic(){
-        let physic = SKPhysicsBody(rectangleOf: CGSize(width: Const.kappaSize, height: Const.kappaSize))
+        let physic = SKPhysicsBody(rectangleOf: CGSize(width: Const.fireSize, height: Const.fireSize))
         physic.affectedByGravity = true
         physic.allowsRotation = true
         
@@ -44,9 +44,7 @@ class FireEmitterNode: SKEmitterNode {
     }
     
     func shot(){
-        
-        
-        physicsBody?.applyImpulse(CGVector(dx: -70, dy: 350))
+        let dx = CommonUtil.rnd(100) + 10
+        physicsBody?.applyImpulse(CGVector(dx: -dx, dy: 200))
     }
-
 }

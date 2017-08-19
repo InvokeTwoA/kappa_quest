@@ -24,18 +24,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
     var jobModel : JobModel = JobModel()
 
     // ラベル定義
-    private var LVLabel : SKLabelNode?
-    private var MAXHPLabel : SKLabelNode?
     private var HPLabel : SKLabelNode?
-    private var HPUpLabel : SKLabelNode?
-    private var StrUpLabel : SKLabelNode?
-    private var DefUpLabel : SKLabelNode?
-    private var AgiUpLabel : SKLabelNode?
-    private var IntUpLabel : SKLabelNode?
-    private var PieUpLabel : SKLabelNode?
-    private var LucUpLabel : SKLabelNode?
-    private var ExpLabel : SKLabelNode?
-    
+    private var ExpLabel : SKLabelNode?    
     private var JobLVLabel : SKLabelNode?
     private var JobNameLabel : SKLabelNode?
     private var DistanceLabel: SKLabelNode?
@@ -48,7 +38,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
     var kappa : KappaNode?   // かっぱ画像
     private var sword : SwordNode?   // 剣
     private var underground : SKShapeNode?   // 地面
-    private var MessageNode : SKShapeNode?   // メッセージノード
     
     private var isSceneDidLoaded = false
     
@@ -99,15 +88,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
     }
     
     func setLabel(){
-        LVLabel        = self.childNode(withName: "//LVLabel") as? SKLabelNode
         HPLabel        = self.childNode(withName: "//HPLabel") as? SKLabelNode
-        HPUpLabel      = self.childNode(withName: "//HPUpLabel") as? SKLabelNode
-        StrUpLabel     = self.childNode(withName: "//StrUpLabel") as? SKLabelNode
-        DefUpLabel     = self.childNode(withName: "//DefUpLabel") as? SKLabelNode
-        AgiUpLabel     = self.childNode(withName: "//AgiUpLabel") as? SKLabelNode
-        IntUpLabel     = self.childNode(withName: "//IntUpLabel") as? SKLabelNode
-        PieUpLabel     = self.childNode(withName: "//PieUpLabel") as? SKLabelNode
-        LucUpLabel     = self.childNode(withName: "//LucUpLabel") as? SKLabelNode
         ExpLabel       = self.childNode(withName: "//ExpLabel") as? SKLabelNode
 
         JobLVLabel     = self.childNode(withName: "//JobNameLabel") as? SKLabelNode
@@ -116,8 +97,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
         TapCountLabel  = self.childNode(withName: "//TapCountLabel") as? SKLabelNode
         ButtonLabel    = self.childNode(withName: "//ButtonLabel") as? SKLabelNode
         MessageLabel   = self.childNode(withName: "//MessageLabel") as? SKLabelNode
-        
-        MessageNode    = self.childNode(withName: "//MessageNode") as? SKShapeNode
     }
 
     // かっぱ画像にphysic属性を与える
@@ -401,6 +380,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
     func LvUp(){
         kappa?.LvUp(jobModel)
         showMessage("LVがあがった")
+        
+        let HPUpLabel      = self.childNode(withName: "//HPUpLabel") as? SKLabelNode
+        let StrUpLabel     = self.childNode(withName: "//StrUpLabel") as? SKLabelNode
+        let DefUpLabel     = self.childNode(withName: "//DefUpLabel") as? SKLabelNode
+        let AgiUpLabel     = self.childNode(withName: "//AgiUpLabel") as? SKLabelNode
+        let IntUpLabel     = self.childNode(withName: "//IntUpLabel") as? SKLabelNode
+        let PieUpLabel     = self.childNode(withName: "//PieUpLabel") as? SKLabelNode
+        let LucUpLabel     = self.childNode(withName: "//LucUpLabel") as? SKLabelNode
+
+        
         if jobModel.hp != 0 {
             HPUpLabel?.isHidden = false
             HPUpLabel?.text = "+\(jobModel.hp)"
@@ -440,6 +429,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
     
     // ステータス更新
     func updateStatus(){
+        let MAXHPLabel     = self.childNode(withName: "//MAXHPLabel") as? SKLabelNode
+        let LVLabel        = self.childNode(withName: "//LVLabel") as? SKLabelNode
         let StrLabel       = self.childNode(withName: "//StrLabel") as? SKLabelNode
         let DefLabel       = self.childNode(withName: "//DefLabel") as? SKLabelNode
         let AgiLabel       = self.childNode(withName: "//AgiLabel") as? SKLabelNode
@@ -489,6 +480,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
 
     // メッセージ表示
     func showMessage(_ text : String){
+        let MessageNode    = self.childNode(withName: "//MessageNode") as? SKShapeNode
         MessageLabel?.text = text
         MessageNode?.position.x += 100
         MessageNode?.run(actionModel.displayMessage!)
@@ -717,7 +709,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
             if enemy.isAttack() {
                 enemy.run(actionModel.enemyJump!)
                 enemy.makeFire()
-                enemy.fire.position = enemy.position
+                enemy.fire.position = CGPoint(x: enemy.position.x, y: enemy.position.y + 40 )
                 self.addChild(enemy.fire)
                 enemy.fire.shot()
                 
