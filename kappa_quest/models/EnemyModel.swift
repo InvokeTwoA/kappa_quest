@@ -11,13 +11,16 @@ class EnemyModel {
         enemiesData = NSDictionary(contentsOfFile: enemiesDataPath)!
     }
     
-    func getRnadomEnemy() -> EnemyNode {
-        let enem = ["hiyoko", "skelton", "miira", "angel", "maou"]
-        let enemy_name = enem[CommonUtil.minimumRnd(enem.count)]
+    func getRnadomEnemy(_ enemyList : [String], lv : Int) -> EnemyNode {
+        let enemy_name = enemyList[CommonUtil.rnd(enemyList.count)]
         
         let enemyNode = EnemyNode.makeEnemy(name: enemy_name)
-        enemyNode.setParameterByDictionary(dictionary: enemiesData.object(forKey: enemy_name) as! NSDictionary)
+        enemyNode.setParameterByDictionary(dictionary: enemiesData.object(forKey: enemy_name) as! NSDictionary, lv : lv)
         return enemyNode
+    }
+    
+    func resetEnemies(){
+        enemies = [EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode()]
     }
 
 }

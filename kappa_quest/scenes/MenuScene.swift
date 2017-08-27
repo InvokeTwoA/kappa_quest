@@ -11,7 +11,15 @@ class MenuScene: SKScene {
     }
 
     func goBack(){
-        self.view!.presentScene(backScene, transition: .fade(withDuration: 0.5))
+        self.view!.presentScene(backScene, transition: .fade(withDuration: Const.transitionInterval))
+    }
+    
+    func goOption(){
+        let scene = OptionScene(fileNamed: "OptionScene")
+        scene?.size = self.scene!.size
+        scene?.scaleMode = SKSceneScaleMode.aspectFill
+        scene?.backScene = self.scene as! MenuScene        
+        self.view!.presentScene(scene!, transition: .flipVertical(withDuration: Const.transitionInterval))
     }
     
     func resetAlert(){
@@ -34,7 +42,6 @@ class MenuScene: SKScene {
     
     func goTitle(){
     
-    
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -48,9 +55,10 @@ class MenuScene: SKScene {
             switch tapNode.name! {
             case "CloseNode", "CloseLabel":
                 goBack()
+            case "OptionNode", "OptionLabel":
+                goOption()
             case "ResetNode", "ResetLabel":
                 resetAlert()
-//                resetData()
 //                goTitle()
             default:
                 break

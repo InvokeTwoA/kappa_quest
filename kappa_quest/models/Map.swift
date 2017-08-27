@@ -5,7 +5,9 @@ class Map {
     var isMoving = false
     
     var positionData = Array(arrayLiteral: "free", "free", "free", "free", "enemy", "enemy", "free", "free")
-
+    var enemies : [String]!
+    
+    
     var myPosition = 1  // 自分のいる位置   0(左端) 1 2 3 4 5 6 7 8(右画面へ)
     
     var distanceInt = 0
@@ -14,15 +16,34 @@ class Map {
     var distance = 0.0  // 移動距離
     var maxDistance = 0.0 // 最高移動距離
 
+    var mapData = NSDictionary()
+    var background = "bg_green"
+    
+    func readDataByPlist(){
+        let mapDataPath = Bundle.main.path(forResource: "maps", ofType:"plist" )!
+        mapData = NSDictionary(contentsOfFile: mapDataPath)!
+    }
+    
+    func loadMapDataByDistance(){
+        if mapData["\(distance)"] == nil {
+            return
+        }
+        let map_info = mapData["\(distance)"] as! NSDictionary
+        enemies = map_info["enemies"] as! [String]
+        
+        background = map_info["background"] as! String
+    }
+    
     func updatePositionData(){
-//        let rndArray = ["free", "enemy"]
-        for num in 3...(Const.maxPosition-2) {
-//            positionData[num] = rndArray[CommonUtil.rnd(rndArray.count)]
-            positionData[num] = "enemy"
+        loadMapDataByDistance()
+        for num in 3...(Const.maxPosition-1) {
+            if enemies.count == 0 {
+                positionData[num] = "free"
+            } else {
+                positionData[num] = "enemy"
+            }
         }
         positionData[0] = "free"
-        positionData[Const.maxPosition-1] = "free"
-        
         if Int(distance*10) == 3 {
             positionData[4] = "shop"
         }
@@ -42,6 +63,14 @@ class Map {
         return true
     }
     
+    func goNextMap(){
+        distance += 0.1
+        if distance > maxDistance {
+            maxDistance = distance
+        }
+        saveParam()
+    }
+    
     func isShop() -> Bool {
         return positionData[myPosition] == "shop"
     }
@@ -55,12 +84,17 @@ class Map {
         maxDistanceInt  = UserDefaults.standard.integer(forKey: "maxDistance")
         distance        = Double(distance)/10.0
         maxDistance     = Double(maxDistanceInt)/10.0
+        
+        print("set parameter by user default")
+        print("distance = \(distance)")
+
     }
     
     // リセットデータ（主にゲームオーバー時）
     func resetData(){
         distance = 0.0
         distanceInt = 0
+        loadMapDataByDistance()
         updatePositionData()
     }
     

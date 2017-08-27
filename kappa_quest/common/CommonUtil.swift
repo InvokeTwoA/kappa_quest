@@ -13,6 +13,17 @@ class CommonUtil {
         return rand
     }
     
+    // 最低値1の値を返す
+    class func valueMin1(_ num : Int) -> Int {
+        var value : Int!
+        if num <= 0 {
+            value = 1
+        } else {
+            value = num
+        }
+        return value
+    }
+    
     // rnd()を２回繰り返す
     // 低いキーの配列ほど出やすくなり、最後の方の配列は出にくくなる
     // 期待値は max の 1/4 か？

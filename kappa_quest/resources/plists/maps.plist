@@ -2,20 +2,81 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>0.0</key>
+	<dict>
+		<key>background</key>
+		<string>bg_green</string>
+		<key>enemies</key>
+		<array/>
+		<key>is_boss</key>
+		<false/>
+		<key>job</key>
+		<string>nil</string>
+		<key>tutorial</key>
+		<string>nil</string>
+	</dict>
 	<key>0.1</key>
+	<dict>
+		<key>background</key>
+		<string>bg_green</string>
+		<key>enemies</key>
+		<array>
+			<string>hiyoko</string>
+		</array>
+		<key>is_boss</key>
+		<false/>
+		<key>job</key>
+		<string>nil</string>
+		<key>tutorial</key>
+		<string>nil</string>
+	</dict>
+	<key>0.2</key>
+	<dict>
+		<key>background</key>
+		<string>bg_lake</string>
+		<key>enemies</key>
+		<array>
+			<string>hiyoko</string>
+			<string>buffalo</string>
+		</array>
+		<key>is_boss</key>
+		<false/>
+		<key>job</key>
+		<string>nil</string>
+		<key>tutorial</key>
+		<string>nil</string>
+	</dict>
+	<key>0.6</key>
 	<dict>
 		<key>background</key>
 		<string>bg_forest</string>
 		<key>enemies</key>
 		<array>
-			<string>slime</string>
-			<string>slime</string>
-			<string>slime</string>
-			<string>slime</string>
+			<string>skelton</string>
+			<string>miira</string>
+			<string>tokage</string>
 		</array>
 		<key>is_boss</key>
 		<false/>
 		<key>job</key>
+		<string>nil</string>
+		<key>tutorial</key>
+		<string>nil</string>
+	</dict>
+	<key>1.0</key>
+	<dict>
+		<key>background</key>
+		<string>bg_makai</string>
+		<key>enemies</key>
+		<array>
+			<string>angel</string>
+			<string>maou</string>
+		</array>
+		<key>is_boss</key>
+		<false/>
+		<key>job</key>
+		<string>nil</string>
+		<key>tutorial</key>
 		<string>nil</string>
 	</dict>
 </dict>

@@ -56,7 +56,6 @@ class GameOverScene: SKScene {
         _ = CommonUtil.setTimeout(delay: 3.5, block: { () -> Void in
             self.backScene.playBGM()
         })
-
     }
     
     

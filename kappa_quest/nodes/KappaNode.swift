@@ -71,9 +71,8 @@ class KappaNode: SKSpriteNode {
         physic.allowsRotation = false
         physic.isDynamic = false
         physic.categoryBitMask = Const.kappaCategory
-        physic.contactTestBitMask = Const.fireCategory
+        physic.contactTestBitMask = Const.fireCategory | Const.enemyCategory
         physic.collisionBitMask = 0
-        //        physic.contactTestBitMask = worldCategory
         physic.linearDamping = 0
         physic.friction = 0
         self.physicsBody = physic
@@ -82,7 +81,7 @@ class KappaNode: SKSpriteNode {
     // カッパの華麗なる攻撃
     // 画像をランダムに変更
     func attack(){
-        let images = ["kappa_punch", "kappa_upper", "kappa_kick", "kappa_body", "kappa_punch_r", "kappa"]
+        let images = ["kappa_punch", "kappa_upper", "kappa_kick", "kappa_body", "kappa_punch_r", "kappa_flying"]
         let image = images[CommonUtil.rnd(images.count)]
         texture = SKTexture(imageNamed: image)
     }
@@ -91,5 +90,8 @@ class KappaNode: SKSpriteNode {
         texture = SKTexture(imageNamed: "kappa")
     }
     
+    func dead(){
+        texture = SKTexture(imageNamed: "kappa_dead")
+    }
     
 }

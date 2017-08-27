@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "forest@3x.jpg",
+      "filename" : "bg_forest@1x.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "forest@2x.jpg",
+      "filename" : "bg_forest@2x.jpg",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "forest@1x.jpg",
+      "filename" : "bg_forest@3x.jpg",
       "scale" : "3x"
     }
   ],
