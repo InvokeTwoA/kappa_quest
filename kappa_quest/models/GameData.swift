@@ -7,6 +7,7 @@ class GameData {
     var tapCount = 0
     var bgmFlag = true
     
+    
     // パラメーターを userDefault から読み取り
     func setParameterByUserDefault(){
         if UserDefaults.standard.object(forKey: "lv") == nil {
@@ -14,8 +15,6 @@ class GameData {
         }
         tapCount = UserDefaults.standard.integer(forKey: "tapCount")
         bgmFlag  = UserDefaults.standard.bool(forKey: "bgm")
-        
-        print("load bgm= \(bgmFlag)")
     }
     
     func saveParam(){
@@ -31,5 +30,9 @@ class GameData {
         }
         saveParam()
     }
-    
+
+    class func isExistData() -> Bool {
+        return UserDefaults.standard.object(forKey: "lv") != nil
+    }
+
 }

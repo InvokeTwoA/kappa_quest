@@ -105,6 +105,10 @@
                                 <rect key="frame" x="89" y="441" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="chibidora" translatesAutoresizingMaskIntoConstraints="NO" id="6dt-2Y-p4i">
+                                <rect key="frame" x="206" y="201" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -124,6 +128,7 @@
         <image name="archer" width="64" height="64"/>
         <image name="assassin" width="64" height="64"/>
         <image name="buffalo" width="64" height="64"/>
+        <image name="chibidora" width="64" height="64"/>
         <image name="dancer" width="64" height="64"/>
         <image name="dead_king" width="64" height="64"/>
         <image name="fighter" width="64" height="64"/>

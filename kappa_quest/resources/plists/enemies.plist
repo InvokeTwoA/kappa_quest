@@ -71,6 +71,29 @@
 		<key>type</key>
 		<string>animal</string>
 	</dict>
+	<key>chibidora</key>
+	<dict>
+		<key>name</key>
+		<string>チビドラ</string>
+		<key>hp</key>
+		<integer>2</integer>
+		<key>str</key>
+		<integer>2</integer>
+		<key>def</key>
+		<integer>2</integer>
+		<key>agi</key>
+		<integer>5</integer>
+		<key>int</key>
+		<integer>2</integer>
+		<key>pie</key>
+		<integer>1</integer>
+		<key>canFire</key>
+		<true/>
+		<key>exp</key>
+		<integer>3</integer>
+		<key>type</key>
+		<string>flying</string>
+	</dict>
 	<key>skelton</key>
 	<dict>
 		<key>name</key>

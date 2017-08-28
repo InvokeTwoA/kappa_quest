@@ -3,6 +3,7 @@ import SpriteKit
 
 class EnemyNode: SKSpriteNode {
 
+    var lv = 1
     var maxHp = 10
     var hp = 10
     var str = 1
@@ -40,7 +41,7 @@ class EnemyNode: SKSpriteNode {
         fire.damage = str
     }
     
-    func setParameterByDictionary(dictionary : NSDictionary, lv : Int){
+    func setParameterByDictionary(dictionary : NSDictionary, set_lv : Int){
         displayName = dictionary.object(forKey: "name") as! String
         maxHp   = dictionary.object(forKey: "hp") as! Int
         hp      = dictionary.object(forKey: "hp") as! Int
@@ -53,6 +54,7 @@ class EnemyNode: SKSpriteNode {
         canFire = dictionary.object(forKey: "canFire") as! Bool
         
         // LVの分だけ強さをかける
+        lv = set_lv
         maxHp *= lv
         hp *= lv
         str *= lv

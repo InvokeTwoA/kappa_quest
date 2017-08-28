@@ -18,9 +18,8 @@ class GameViewController: UIViewController {
         _bannerView.rootViewController = self
         _bannerView.load(GADRequest())
 
-        if let scene = GKScene(fileNamed: "GameScene") {
-            if let sceneNode = scene.rootNode as! GameScene? {
-                sceneNode.graphs = scene.graphs
+        if let scene = GKScene(fileNamed: "TitleScene") {
+            if let sceneNode = scene.rootNode as! TitleScene? {
                 sceneNode.scaleMode = .aspectFill
                 _skView.presentScene(sceneNode)
                 _skView.ignoresSiblingOrder = true

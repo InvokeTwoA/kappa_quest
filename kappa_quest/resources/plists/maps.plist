@@ -10,6 +10,12 @@
 		<array/>
 		<key>is_boss</key>
 		<false/>
+		<key>event</key>
+		<true/>
+		<key>event_text0</key>
+		<string>画面の右側をタップで右側に進むぞ。</string>
+		<key>event_text1</key>
+		<string>戻る時は画面の左側をタップしよう。</string>
 		<key>job</key>
 		<string>nil</string>
 		<key>tutorial</key>
@@ -22,9 +28,16 @@
 		<key>enemies</key>
 		<array>
 			<string>hiyoko</string>
+			<string>usagi</string>
 		</array>
 		<key>is_boss</key>
 		<false/>
+		<key>event</key>
+		<true/>
+		<key>event_text0</key>
+		<string>進む先に敵がいればカッパパンチ。</string>
+		<key>event_text1</key>
+		<string>立ちはだかる敵は容赦しない。</string>
 		<key>job</key>
 		<string>nil</string>
 		<key>tutorial</key>
@@ -37,16 +50,38 @@
 		<key>enemies</key>
 		<array>
 			<string>hiyoko</string>
+			<string>usagi</string>
 			<string>buffalo</string>
 		</array>
 		<key>is_boss</key>
+		<false/>
+		<key>event</key>
 		<false/>
 		<key>job</key>
 		<string>nil</string>
 		<key>tutorial</key>
 		<string>nil</string>
 	</dict>
-	<key>0.6</key>
+	<key>0.5</key>
+	<dict>
+		<key>background</key>
+		<string>bg_lake</string>
+		<key>enemies</key>
+		<array>
+			<string>usagi</string>
+			<string>buffalo</string>
+			<string>chibidora</string>
+		</array>
+		<key>is_boss</key>
+		<false/>
+		<key>event</key>
+		<false/>
+		<key>job</key>
+		<string>nil</string>
+		<key>tutorial</key>
+		<string>nil</string>
+	</dict>
+	<key>0.8</key>
 	<dict>
 		<key>background</key>
 		<string>bg_forest</string>
@@ -58,12 +93,14 @@
 		</array>
 		<key>is_boss</key>
 		<false/>
+		<key>event</key>
+		<false/>
 		<key>job</key>
 		<string>nil</string>
 		<key>tutorial</key>
 		<string>nil</string>
 	</dict>
-	<key>1.0</key>
+	<key>1.2</key>
 	<dict>
 		<key>background</key>
 		<string>bg_makai</string>
@@ -73,6 +110,8 @@
 			<string>maou</string>
 		</array>
 		<key>is_boss</key>
+		<false/>
+		<key>event</key>
 		<false/>
 		<key>job</key>
 		<string>nil</string>

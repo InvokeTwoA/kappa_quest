@@ -44,15 +44,7 @@ class GameOverScene: SKScene {
     
     
     func resetData(){
-        backScene.kappa?.hp = (backScene.kappa?.maxHp)!
-        backScene.map.resetData()
-        backScene.gameOverFlag = false
-
-        backScene.clearMap()
-        backScene.createMap()
-        backScene.setFirstPosition()
-        backScene.saveData()
-        
+        backScene.resetData()
         _ = CommonUtil.setTimeout(delay: 3.5, block: { () -> Void in
             self.backScene.playBGM()
         })

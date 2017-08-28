@@ -22,26 +22,11 @@ class MenuScene: SKScene {
         self.view!.presentScene(scene!, transition: .flipVertical(withDuration: Const.transitionInterval))
     }
     
-    func resetAlert(){
-        let alert = UIAlertController(
-            title: "データをリセットします。",
-            message: "冒険の記録は永遠に消えますが、よろしいですか？",
-            preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-            self.resetData()
-            self.goTitle()
-        }))
-        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel))
-        self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
-    }
-    
-    func resetData(){
-        let appDomain:String = Bundle.main.bundleIdentifier!
-        UserDefaults.standard.removePersistentDomain(forName: appDomain)
-    }
-    
     func goTitle(){
-    
+        let scene = TitleScene(fileNamed: "TitleScene")
+        scene?.size = self.scene!.size
+        scene?.scaleMode = SKSceneScaleMode.aspectFill
+        self.view!.presentScene(scene!, transition: .fade(withDuration: Const.transitionInterval))
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -58,8 +43,7 @@ class MenuScene: SKScene {
             case "OptionNode", "OptionLabel":
                 goOption()
             case "ResetNode", "ResetLabel":
-                resetAlert()
-//                goTitle()
+                goTitle()
             default:
                 break
             }

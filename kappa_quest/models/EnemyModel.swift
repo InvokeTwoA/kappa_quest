@@ -15,7 +15,7 @@ class EnemyModel {
         let enemy_name = enemyList[CommonUtil.rnd(enemyList.count)]
         
         let enemyNode = EnemyNode.makeEnemy(name: enemy_name)
-        enemyNode.setParameterByDictionary(dictionary: enemiesData.object(forKey: enemy_name) as! NSDictionary, lv : lv)
+        enemyNode.setParameterByDictionary(dictionary: enemiesData.object(forKey: enemy_name) as! NSDictionary, set_lv : lv)
         return enemyNode
     }
     

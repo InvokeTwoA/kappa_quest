@@ -4,22 +4,26 @@ import Foundation
 
 class ActionModel {
 
-    var attack          : SKAction?
-    var moveRight       : SKAction?
-    var moveLeft        : SKAction?
-    var moveBack        : SKAction?
-    var dead            : SKAction?
-    var displayDamage   : SKAction?
-    var displayDamaged  : SKAction?
-    var displayMessage  : SKAction?
-    var fadeInOut       : SKAction?
-    var fadeOutEternal  : SKAction?
-    var swordSlash      : SKAction?
-    var enemyJump       : SKAction?
-    var enemyMiniJump   : SKAction?
-    var enemyAttack     : SKAction?
-    var normalAttack    : SKAction?
-    var sparkFadeOut    : SKAction?
+    var attack            : SKAction?
+    var moveRight         : SKAction?
+    var moveLeft          : SKAction?
+    var moveBack          : SKAction?
+    var dead              : SKAction?
+    var displayDamage     : SKAction?
+    var displayDamaged    : SKAction?
+    var displayHeal       : SKAction?
+    var displayExp        : SKAction?
+    var displayMessage    : SKAction?
+    var displayBigMessage : SKAction?
+    var fadeInOut         : SKAction?
+    var fadeOutQuickly    : SKAction?
+    var fadeOutEternal    : SKAction?
+    var swordSlash        : SKAction?
+    var enemyJump         : SKAction?
+    var enemyMiniJump     : SKAction?
+    var enemyAttack       : SKAction?
+    var normalAttack      : SKAction?
+    var sparkFadeOut      : SKAction?
     
     func setActionData(sceneWidth : CGFloat){
         
@@ -58,19 +62,33 @@ class ActionModel {
             SKAction.moveBy(x: 0, y: -1*Const.jumpSpace * 30, duration: Const.moveSpeed*18),
         ])
         
-        
         // ダメージ表示
         displayDamage = SKAction.sequence([
             SKAction.moveBy(x: 20, y:  70, duration: 0.1),
             SKAction.moveBy(x: 20, y: -40, duration: 0.1),
-            SKAction.fadeOut(withDuration: 0.5),
+            SKAction.wait(forDuration: 0.5),
+            SKAction.fadeOut(withDuration: 0.1),
             SKAction.removeFromParent()
         ])
         
         displayDamaged = SKAction.sequence([
             SKAction.moveBy(x: -20, y:  70, duration: 0.1),
             SKAction.moveBy(x: -20, y: -40, duration: 0.1),
+            SKAction.wait(forDuration: 0.5),
+            SKAction.fadeOut(withDuration: 0.1),
+            SKAction.removeFromParent()
+        ])
+        
+        displayHeal = SKAction.sequence([
+            SKAction.moveBy(x: 0, y:  90, duration: 0.2),
             SKAction.fadeOut(withDuration: 0.5),
+            SKAction.removeFromParent()
+        ])
+        
+        displayExp = SKAction.sequence([
+            SKAction.moveBy(x: 0, y:  70, duration: 0.2),
+            SKAction.wait(forDuration: 0.5),
+            SKAction.fadeOut(withDuration: 0.1),
             SKAction.removeFromParent()
         ])
         
@@ -78,6 +96,12 @@ class ActionModel {
         displayMessage = SKAction.sequence([
             SKAction.fadeIn(withDuration: 0.1),
             SKAction.moveBy(x: -100, y:  0, duration: 0.1),
+            SKAction.fadeOut(withDuration: 4.5)
+        ])
+
+        displayBigMessage = SKAction.sequence([
+            SKAction.fadeIn(withDuration: 0.2),
+            SKAction.wait(forDuration: 2.0),
             SKAction.fadeOut(withDuration: 4.5)
         ])
         
@@ -93,6 +117,12 @@ class ActionModel {
             SKAction.fadeOut(withDuration: 4.5),
             SKAction.removeFromParent()
         ])
+
+        fadeOutQuickly = SKAction.sequence([
+            SKAction.fadeOut(withDuration: 1.5),
+            SKAction.removeFromParent()
+        ])
+
         
         // 火花など、一瞬だけ出てfadeOut
         sparkFadeOut = SKAction.sequence([

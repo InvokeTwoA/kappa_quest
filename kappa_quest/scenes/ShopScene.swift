@@ -13,13 +13,6 @@ class ShopScene: SKScene {
     private var jobImage : SKSpriteNode!
     private var graph : SKSpriteNode!
 
-    private var jobLvLabel0 : SKLabelNode?
-    private var jobLvLabel1 : SKLabelNode?
-    private var jobLvLabel2 : SKLabelNode?
-    private var jobLvLabel3 : SKLabelNode?
-    private var jobLvLabel4 : SKLabelNode?
-    private var jobLvLabel5 : SKLabelNode?
-    
     private var jobImage0 : SKSpriteNode?
     private var jobImage1 : SKSpriteNode?
     private var jobImage2 : SKSpriteNode?
@@ -27,44 +20,36 @@ class ShopScene: SKScene {
     private var jobImage4 : SKSpriteNode?
     private var jobImage5 : SKSpriteNode?
     
-    private var job0 : SKShapeNode?
-    private var job1 : SKShapeNode?
-    private var job2 : SKShapeNode?
-    private var job3 : SKShapeNode?
-    private var job4 : SKShapeNode?
-    private var job5 : SKShapeNode?
-    
     override func sceneDidLoad() {
         jobLvLabel      = self.childNode(withName: "//JobLvLabel") as? SKLabelNode
         jobNameLabel    = self.childNode(withName: "//JobNameLabel") as? SKLabelNode
         jobImage        = self.childNode(withName: "//JobImage") as? SKSpriteNode
         graph           = self.childNode(withName: "//graph") as? SKSpriteNode
         
-        jobLvLabel0     = self.childNode(withName: "//JobLv0") as? SKLabelNode
-        jobLvLabel1     = self.childNode(withName: "//JobLv1") as? SKLabelNode
-        jobLvLabel2     = self.childNode(withName: "//JobLv2") as? SKLabelNode
-        jobLvLabel3     = self.childNode(withName: "//JobLv3") as? SKLabelNode
-        jobLvLabel4     = self.childNode(withName: "//JobLv4") as? SKLabelNode
-        jobLvLabel5     = self.childNode(withName: "//JobLv5") as? SKLabelNode
-
         jobImage0       = self.childNode(withName: "//JobImage0") as? SKSpriteNode
-
-        job0            = self.childNode(withName: "//Job0") as? SKShapeNode
-        job1            = self.childNode(withName: "//Job1") as? SKShapeNode
-        job2            = self.childNode(withName: "//Job2") as? SKShapeNode
-        job3            = self.childNode(withName: "//Job3") as? SKShapeNode
-        job4            = self.childNode(withName: "//Job4") as? SKShapeNode
-        job5            = self.childNode(withName: "//Job5") as? SKShapeNode
+        
+        let skillText   = childNode(withName: "//skillText") as? SKLabelNode
+        skillText?.text = ""
     }
     
     override func didMove(to view: SKView) {
         setJobData()
+        let explainText = childNode(withName:  "//explainLabel") as? SKLabelNode
+        explainText?.text = "ジョブチェンジすることで成長率が変わります"
+
     }
     
     func setJobData(){
         if page == 0 {
             jobList = backScene.jobModel.jobNameList0
         }
+
+        let jobLvLabel0     = childNode(withName: "//JobLv0") as? SKLabelNode
+        let jobLvLabel1     = childNode(withName: "//JobLv1") as? SKLabelNode
+        let jobLvLabel2     = childNode(withName: "//JobLv2") as? SKLabelNode
+        let jobLvLabel3     = childNode(withName: "//JobLv3") as? SKLabelNode
+        let jobLvLabel4     = childNode(withName: "//JobLv4") as? SKLabelNode
+        let jobLvLabel5     = childNode(withName: "//JobLv5") as? SKLabelNode
 
         jobLvLabel0?.text = "LV \(JobModel.getLV(jobList[0]))"
         jobLvLabel1?.text = "LV \(JobModel.getLV(jobList[1]))"
@@ -82,6 +67,12 @@ class ShopScene: SKScene {
     }
     
     func setCurrentJobInfo(){
+        let explainText = childNode(withName:  "//explainLabel") as? SKLabelNode
+        let skillText   = childNode(withName:  "//skillLabel") as? SKLabelNode
+
+        explainText?.text = backScene.jobModel.explain
+        skillText?.text = backScene.jobModel.skill_text
+        
         jobLvLabel?.text = "LV  \(backScene.jobModel.lv)"
         jobNameLabel?.text = backScene.jobModel.displayName
         jobImage!.texture = SKTexture(imageNamed: backScene.jobModel.name)

@@ -3,21 +3,24 @@ import Foundation
 class Map {
 
     var isMoving = false
-    
-    var positionData = Array(arrayLiteral: "free", "free", "free", "free", "enemy", "enemy", "free", "free")
-    var enemies : [String]!
-    
-    
     var myPosition = 1  // 自分のいる位置   0(左端) 1 2 3 4 5 6 7 8(右画面へ)
     
+    // 敵情報
+    var positionData = Array(arrayLiteral: "free", "free", "free", "free", "enemy", "enemy", "free", "free")
+    var enemies : [String]!
+
+    // 距離情報
     var distanceInt = 0
     var maxDistanceInt = 0
-    
-    var distance = 0.0  // 移動距離
-    var maxDistance = 0.0 // 最高移動距離
+    var distance = 0.0
+    var maxDistance = 0.0
 
+    // 地図情報
     var mapData = NSDictionary()
     var background = "bg_green"
+    var isEvent : Bool = false
+    var text0 = ""
+    var text1 = ""
     
     func readDataByPlist(){
         let mapDataPath = Bundle.main.path(forResource: "maps", ofType:"plist" )!
@@ -29,9 +32,14 @@ class Map {
             return
         }
         let map_info = mapData["\(distance)"] as! NSDictionary
-        enemies = map_info["enemies"] as! [String]
+        enemies     = map_info["enemies"] as! [String]
+        background  = map_info["background"] as! String
+        isEvent     = map_info["event"] as! Bool
         
-        background = map_info["background"] as! String
+        if isEvent {
+            text0 = map_info["event_text0"] as! String
+            text1 = map_info["event_text1"] as! String
+        }
     }
     
     func updatePositionData(){
@@ -76,18 +84,15 @@ class Map {
     }
     
     // パラメーターを userDefault から読み取り
-    func setParameterByUserDefault(){
+    func loadParameterByUserDefault(){
         if UserDefaults.standard.object(forKey: "lv") == nil {
             return
         }
         distanceInt     = UserDefaults.standard.integer(forKey: "distance")
         maxDistanceInt  = UserDefaults.standard.integer(forKey: "maxDistance")
-        distance        = Double(distance)/10.0
-        maxDistance     = Double(maxDistanceInt)/10.0
         
-        print("set parameter by user default")
-        print("distance = \(distance)")
-
+        distance        = Double(distanceInt)/10.0
+        maxDistance     = Double(maxDistanceInt)/10.0
     }
     
     // リセットデータ（主にゲームオーバー時）

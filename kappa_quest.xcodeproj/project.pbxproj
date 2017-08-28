@@ -14,6 +14,10 @@
 		CE049FDE1F36238D0079DEDB /* maoudamashii_fantasy15.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CE049FDD1F36238D0079DEDB /* maoudamashii_fantasy15.mp3 */; };
 		CE31F9211F5156C200E868FB /* OptionScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE31F9201F5156C200E868FB /* OptionScene.sks */; };
 		CE31F9231F51582500E868FB /* OptionScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31F9221F51582500E868FB /* OptionScene.swift */; };
+		CE31F9271F53BCE700E868FB /* TitleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31F9261F53BCE700E868FB /* TitleScene.swift */; };
+		CE31F9291F53BD4200E868FB /* TitleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE31F9281F53BD4200E868FB /* TitleScene.sks */; };
+		CE31F92B1F5449CF00E868FB /* LetterScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE31F92A1F5449CF00E868FB /* LetterScene.sks */; };
+		CE31F92D1F544FD000E868FB /* LetterScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31F92C1F544FD000E868FB /* LetterScene.swift */; };
 		CE524F7E1F20AB8E00A6D14C /* SwordNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE524F7D1F20AB8E00A6D14C /* SwordNode.swift */; };
 		CE524F801F20D5B900A6D14C /* jpn.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE524F7F1F20D5B900A6D14C /* jpn.strings */; };
 		CE524F831F20D88800A6D14C /* eng.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE524F821F20D88800A6D14C /* eng.strings */; };
@@ -68,6 +72,10 @@
 		CE049FDD1F36238D0079DEDB /* maoudamashii_fantasy15.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = maoudamashii_fantasy15.mp3; path = resources/musics/maoudamashii_fantasy15.mp3; sourceTree = "<group>"; };
 		CE31F9201F5156C200E868FB /* OptionScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = OptionScene.sks; path = sks/OptionScene.sks; sourceTree = "<group>"; };
 		CE31F9221F51582500E868FB /* OptionScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionScene.swift; path = scenes/OptionScene.swift; sourceTree = "<group>"; };
+		CE31F9261F53BCE700E868FB /* TitleScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TitleScene.swift; path = scenes/TitleScene.swift; sourceTree = "<group>"; };
+		CE31F9281F53BD4200E868FB /* TitleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = TitleScene.sks; path = sks/TitleScene.sks; sourceTree = "<group>"; };
+		CE31F92A1F5449CF00E868FB /* LetterScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = LetterScene.sks; path = sks/LetterScene.sks; sourceTree = "<group>"; };
+		CE31F92C1F544FD000E868FB /* LetterScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LetterScene.swift; path = scenes/LetterScene.swift; sourceTree = "<group>"; };
 		CE524F7D1F20AB8E00A6D14C /* SwordNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwordNode.swift; path = nodes/SwordNode.swift; sourceTree = "<group>"; };
 		CE524F7F1F20D5B900A6D14C /* jpn.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = jpn.strings; path = resources/texts/jpn.strings; sourceTree = "<group>"; };
 		CE524F821F20D88800A6D14C /* eng.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = eng.strings; path = resources/texts/eng.strings; sourceTree = "<group>"; };
@@ -233,6 +241,8 @@
 		CEC2B6A01F1991BD0014B114 /* scenes */ = {
 			isa = PBXGroup;
 			children = (
+				CE31F9261F53BCE700E868FB /* TitleScene.swift */,
+				CE31F92C1F544FD000E868FB /* LetterScene.swift */,
 				CEC2B6841F177A3C0014B114 /* GameScene.swift */,
 				CE6BB8281F24D3040046DA65 /* MenuScene.swift */,
 				CEB904561F24EBBE0061A919 /* ShopScene.swift */,
@@ -257,8 +267,10 @@
 		CEC2B6A91F1B6ED30014B114 /* sks */ = {
 			isa = PBXGroup;
 			children = (
+				CE31F9281F53BD4200E868FB /* TitleScene.sks */,
 				CE6BB8261F24CAA30046DA65 /* GameScene.sks */,
 				CE6BB8241F24CA2E0046DA65 /* MenuScene.sks */,
+				CE31F92A1F5449CF00E868FB /* LetterScene.sks */,
 				CED621E51F40924D00C92480 /* GameOverScene.sks */,
 				CE31F9201F5156C200E868FB /* OptionScene.sks */,
 				CEB904541F24EBA10061A919 /* ShopScene.sks */,
@@ -373,8 +385,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE31F92B1F5449CF00E868FB /* LetterScene.sks in Resources */,
 				CEDBE7941F1C5278007E72B9 /* GN-KillGothic-U-KanaO.ttf in Resources */,
 				CED621D71F4035B600C92480 /* Assets.xcassets in Resources */,
+				CE31F9291F53BD4200E868FB /* TitleScene.sks in Resources */,
 				CE6BB8271F24CAA30046DA65 /* GameScene.sks in Resources */,
 				CEDBE7931F1C5274007E72B9 /* GN-KillGothic-U-KanaNB.ttf in Resources */,
 				CED621E61F40924D00C92480 /* GameOverScene.sks in Resources */,
@@ -467,6 +481,7 @@
 				CE524F7E1F20AB8E00A6D14C /* SwordNode.swift in Sources */,
 				CED621E21F40405600C92480 /* FireEmitterNode.swift in Sources */,
 				CEC2B6851F177A3C0014B114 /* GameScene.swift in Sources */,
+				CE31F92D1F544FD000E868FB /* LetterScene.swift in Sources */,
 				CEC2B6871F177A3C0014B114 /* GameViewController.swift in Sources */,
 				CED621E81F409B1C00C92480 /* GameOverScene.swift in Sources */,
 				CE6BB81F1F23C8860046DA65 /* Map.swift in Sources */,
@@ -478,6 +493,7 @@
 				CE6BB8211F23CA710046DA65 /* ShopNode.swift in Sources */,
 				CEC2B67F1F177A3C0014B114 /* AppDelegate.swift in Sources */,
 				CEEB83D21F1BCE200025E021 /* CommonUtil.swift in Sources */,
+				CE31F9271F53BCE700E868FB /* TitleScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

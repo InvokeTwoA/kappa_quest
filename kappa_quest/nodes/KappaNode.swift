@@ -5,14 +5,14 @@ class KappaNode: SKSpriteNode {
     
     var lv = 1
     var job_lv = 1
-    var maxHp = 15
-    var hp = 15
-    var str = 3
-    var def = 3
-    var agi = 3
-    var int = 3
-    var pie = 3
-    var luc = 3
+    var maxHp = 10
+    var hp = 10
+    var str = 1
+    var def = 1
+    var agi = 1
+    var int = 1
+    var pie = 1
+    var luc = 1
     var nextExp = 10
         
     // パラメーターを userDefault から読み取り

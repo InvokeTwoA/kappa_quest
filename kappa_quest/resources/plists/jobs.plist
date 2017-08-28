@@ -6,6 +6,10 @@
 	<dict>
 		<key>name</key>
 		<string>村人</string>
+		<key>explain</key>
+		<string>昼寝が得意。</string>
+		<key>skill</key>
+		<string>固有スキル：　なし</string>
 		<key>hp</key>
 		<integer>1</integer>
 		<key>str</key>
@@ -25,6 +29,10 @@
 	<dict>
 		<key>name</key>
 		<string>戦士</string>
+		<key>explain</key>
+		<string>攻めるのが大好き</string>
+		<key>skill</key>
+		<string>固有スキル：　物理ダメージアップ</string>
 		<key>hp</key>
 		<integer>1</integer>
 		<key>str</key>
@@ -44,6 +52,10 @@
 	<dict>
 		<key>name</key>
 		<string>騎士</string>
+		<key>explain</key>
+		<string>守るのが大好き</string>
+		<key>skill</key>
+		<string>固有スキル：　物理ダメージ半減</string>
 		<key>hp</key>
 		<integer>2</integer>
 		<key>str</key>
@@ -63,6 +75,10 @@
 	<dict>
 		<key>name</key>
 		<string>僧侶</string>
+		<key>explain</key>
+		<string>回復魔法の使い手</string>
+		<key>skill</key>
+		<string>固有スキル：　回復力２倍</string>
 		<key>hp</key>
 		<integer>1</integer>
 		<key>str</key>
@@ -82,6 +98,10 @@
 	<dict>
 		<key>name</key>
 		<string>魔法使い</string>
+		<key>explain</key>
+		<string>趣味：黒魔術</string>
+		<key>skill</key>
+		<string>固有スキル：　ダブルファイア</string>
 		<key>hp</key>
 		<integer>1</integer>
 		<key>str</key>
@@ -101,6 +121,10 @@
 	<dict>
 		<key>name</key>
 		<string>盗賊</string>
+		<key>explain</key>
+		<string>趣味：黒魔術</string>
+		<key>skill</key>
+		<string>固有スキル：　しのび足</string>
 		<key>hp</key>
 		<integer>1</integer>
 		<key>str</key>

@@ -16,7 +16,10 @@ class JobModel {
     var agi = 0
     var int = 0
     var pie = 0
-    var luc = 0    
+    var luc = 0
+    
+    var explain = ""
+    var skill_text = ""
 
     // 転職用のデータ
     var jobNameList0 = ["murabito", "fighter", "knight", "priest", "wizard", "thief"]
@@ -41,6 +44,9 @@ class JobModel {
         int             = data.object(forKey: "int") as! Int
         pie             = data.object(forKey: "pie") as! Int
         luc             = data.object(forKey: "luc") as! Int
+        
+        explain         = data.object(forKey: "explain") as! String
+        skill_text      = data.object(forKey: "skill") as! String
     }
     
     // 職業レベルを保存
