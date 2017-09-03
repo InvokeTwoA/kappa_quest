@@ -18,6 +18,12 @@
 		CE31F9291F53BD4200E868FB /* TitleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE31F9281F53BD4200E868FB /* TitleScene.sks */; };
 		CE31F92B1F5449CF00E868FB /* LetterScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE31F92A1F5449CF00E868FB /* LetterScene.sks */; };
 		CE31F92D1F544FD000E868FB /* LetterScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31F92C1F544FD000E868FB /* LetterScene.swift */; };
+		CE31F92F1F55B77B00E868FB /* BaseScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31F92E1F55B77B00E868FB /* BaseScene.swift */; };
+		CE31F9311F5A62CC00E868FB /* SkillModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31F9301F5A62CC00E868FB /* SkillModel.swift */; };
+		CE31F9331F5A673F00E868FB /* skills.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE31F9321F5A673F00E868FB /* skills.plist */; };
+		CE31F9361F5BF17900E868FB /* se_maoudamashii_battle08.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CE31F9341F5BF17900E868FB /* se_maoudamashii_battle08.mp3 */; };
+		CE31F9371F5BF17900E868FB /* se_maoudamashii_battle17.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CE31F9351F5BF17900E868FB /* se_maoudamashii_battle17.mp3 */; };
+		CE31F9391F5BFC4D00E868FB /* BattleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31F9381F5BFC4D00E868FB /* BattleModel.swift */; };
 		CE524F7E1F20AB8E00A6D14C /* SwordNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE524F7D1F20AB8E00A6D14C /* SwordNode.swift */; };
 		CE524F801F20D5B900A6D14C /* jpn.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE524F7F1F20D5B900A6D14C /* jpn.strings */; };
 		CE524F831F20D88800A6D14C /* eng.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE524F821F20D88800A6D14C /* eng.strings */; };
@@ -76,6 +82,12 @@
 		CE31F9281F53BD4200E868FB /* TitleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = TitleScene.sks; path = sks/TitleScene.sks; sourceTree = "<group>"; };
 		CE31F92A1F5449CF00E868FB /* LetterScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = LetterScene.sks; path = sks/LetterScene.sks; sourceTree = "<group>"; };
 		CE31F92C1F544FD000E868FB /* LetterScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LetterScene.swift; path = scenes/LetterScene.swift; sourceTree = "<group>"; };
+		CE31F92E1F55B77B00E868FB /* BaseScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseScene.swift; path = scenes/BaseScene.swift; sourceTree = "<group>"; };
+		CE31F9301F5A62CC00E868FB /* SkillModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SkillModel.swift; path = models/SkillModel.swift; sourceTree = "<group>"; };
+		CE31F9321F5A673F00E868FB /* skills.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = skills.plist; path = resources/plists/skills.plist; sourceTree = "<group>"; };
+		CE31F9341F5BF17900E868FB /* se_maoudamashii_battle08.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = se_maoudamashii_battle08.mp3; path = "../../../Desktop/ゲームブック/音楽/効果音/se_maoudamashii_battle08.mp3"; sourceTree = "<group>"; };
+		CE31F9351F5BF17900E868FB /* se_maoudamashii_battle17.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = se_maoudamashii_battle17.mp3; path = "../../../Desktop/ゲームブック/音楽/効果音/se_maoudamashii_battle17.mp3"; sourceTree = "<group>"; };
+		CE31F9381F5BFC4D00E868FB /* BattleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BattleModel.swift; path = models/BattleModel.swift; sourceTree = "<group>"; };
 		CE524F7D1F20AB8E00A6D14C /* SwordNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwordNode.swift; path = nodes/SwordNode.swift; sourceTree = "<group>"; };
 		CE524F7F1F20D5B900A6D14C /* jpn.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = jpn.strings; path = resources/texts/jpn.strings; sourceTree = "<group>"; };
 		CE524F821F20D88800A6D14C /* eng.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = eng.strings; path = resources/texts/eng.strings; sourceTree = "<group>"; };
@@ -154,6 +166,8 @@
 			children = (
 				CE049FDD1F36238D0079DEDB /* maoudamashii_fantasy15.mp3 */,
 				CE049FCD1F2C927B0079DEDB /* maoudamashii_lastboss02.mp3 */,
+				CE31F9341F5BF17900E868FB /* se_maoudamashii_battle08.mp3 */,
+				CE31F9351F5BF17900E868FB /* se_maoudamashii_battle17.mp3 */,
 			);
 			name = musics;
 			sourceTree = "<group>";
@@ -173,7 +187,9 @@
 				CE524F841F236EEC00A6D14C /* GameData.swift */,
 				CE6BB81E1F23C8860046DA65 /* Map.swift */,
 				CE6BB8221F24C2430046DA65 /* EnemyModel.swift */,
+				CE31F9381F5BFC4D00E868FB /* BattleModel.swift */,
 				CE049FD41F2D6C460079DEDB /* JobModel.swift */,
+				CE31F9301F5A62CC00E868FB /* SkillModel.swift */,
 				CE049FD81F3312EB0079DEDB /* ActionModel.swift */,
 			);
 			name = models;
@@ -241,6 +257,7 @@
 		CEC2B6A01F1991BD0014B114 /* scenes */ = {
 			isa = PBXGroup;
 			children = (
+				CE31F92E1F55B77B00E868FB /* BaseScene.swift */,
 				CE31F9261F53BCE700E868FB /* TitleScene.swift */,
 				CE31F92C1F544FD000E868FB /* LetterScene.swift */,
 				CEC2B6841F177A3C0014B114 /* GameScene.swift */,
@@ -318,6 +335,7 @@
 				CEDBE7951F1CC469007E72B9 /* enemies.plist */,
 				CED621E91F41EE6C00C92480 /* maps.plist */,
 				CE049FD61F2E0EED0079DEDB /* jobs.plist */,
+				CE31F9321F5A673F00E868FB /* skills.plist */,
 			);
 			name = plists;
 			sourceTree = "<group>";
@@ -405,9 +423,12 @@
 				CEB904551F24EBA10061A919 /* ShopScene.sks in Resources */,
 				CED621EA1F41EE6C00C92480 /* maps.plist in Resources */,
 				CEC2B68C1F177A3C0014B114 /* Assets.xcassets in Resources */,
+				CE31F9371F5BF17900E868FB /* se_maoudamashii_battle17.mp3 in Resources */,
 				CE049FDE1F36238D0079DEDB /* maoudamashii_fantasy15.mp3 in Resources */,
 				CE31F9211F5156C200E868FB /* OptionScene.sks in Resources */,
+				CE31F9361F5BF17900E868FB /* se_maoudamashii_battle08.mp3 in Resources */,
 				CE524F801F20D5B900A6D14C /* jpn.strings in Resources */,
+				CE31F9331F5A673F00E868FB /* skills.plist in Resources */,
 				CE524F831F20D88800A6D14C /* eng.strings in Resources */,
 				CEC2B68F1F177A3C0014B114 /* LaunchScreen.storyboard in Resources */,
 				CEDBE7961F1CC469007E72B9 /* enemies.plist in Resources */,
@@ -476,6 +497,7 @@
 				CE524F851F236EEC00A6D14C /* GameData.swift in Sources */,
 				CEC2B6A81F1AE6FA0014B114 /* TapNode.swift in Sources */,
 				CEB904571F24EBBE0061A919 /* ShopScene.swift in Sources */,
+				CE31F9391F5BFC4D00E868FB /* BattleModel.swift in Sources */,
 				CE6BB8291F24D3040046DA65 /* MenuScene.swift in Sources */,
 				CEC2B69F1F198F7F0014B114 /* Const.swift in Sources */,
 				CE524F7E1F20AB8E00A6D14C /* SwordNode.swift in Sources */,
@@ -489,7 +511,9 @@
 				CEDBE7991F1CECA9007E72B9 /* KappaNode.swift in Sources */,
 				CE049FD91F3312EB0079DEDB /* ActionModel.swift in Sources */,
 				CE6BB8231F24C2430046DA65 /* EnemyModel.swift in Sources */,
+				CE31F9311F5A62CC00E868FB /* SkillModel.swift in Sources */,
 				CE049FD51F2D6C460079DEDB /* JobModel.swift in Sources */,
+				CE31F92F1F55B77B00E868FB /* BaseScene.swift in Sources */,
 				CE6BB8211F23CA710046DA65 /* ShopNode.swift in Sources */,
 				CEC2B67F1F177A3C0014B114 /* AppDelegate.swift in Sources */,
 				CEEB83D21F1BCE200025E021 /* CommonUtil.swift in Sources */,

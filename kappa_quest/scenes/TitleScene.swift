@@ -2,7 +2,7 @@
 import SpriteKit
 import GameplayKit
 
-class TitleScene: SKScene {
+class TitleScene: BaseScene {
     
     override func sceneDidLoad() {
         setRandomImage()
@@ -85,6 +85,7 @@ class TitleScene: SKScene {
             let positionInScene = t.location(in: self)
             let tapNode = self.atPoint(positionInScene)
             if tapNode.name == nil {
+                setRandomImage()
                 return
             }
             

@@ -27,11 +27,12 @@ class Map {
         mapData = NSDictionary(contentsOfFile: mapDataPath)!
     }
     
-    func loadMapDataByDistance(){
-        if mapData["\(distance)"] == nil {
+    func loadMapDataByDistance(_ key : Double){
+        if mapData["\(key)"] == nil {
+            loadMapDataByDistance(key-0.1)
             return
         }
-        let map_info = mapData["\(distance)"] as! NSDictionary
+        let map_info = mapData["\(key)"] as! NSDictionary
         enemies     = map_info["enemies"] as! [String]
         background  = map_info["background"] as! String
         isEvent     = map_info["event"] as! Bool
@@ -43,7 +44,7 @@ class Map {
     }
     
     func updatePositionData(){
-        loadMapDataByDistance()
+        loadMapDataByDistance(distance)
         for num in 3...(Const.maxPosition-1) {
             if enemies.count == 0 {
                 positionData[num] = "free"
@@ -99,7 +100,7 @@ class Map {
     func resetData(){
         distance = 0.0
         distanceInt = 0
-        loadMapDataByDistance()
+        loadMapDataByDistance(distance)
         updatePositionData()
     }
     

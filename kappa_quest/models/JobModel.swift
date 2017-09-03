@@ -65,7 +65,41 @@ class JobModel {
         }
         setData(name)
     }
+    
+    class func allSkillExplain(_ skillModel : SkillModel) -> String {
+        var res = ""
+        
+        let murabito_lv = getLV("murabito")
+        if murabito_lv >= 1 {
+            res += "【昼寝  LV\(murabito_lv)】\n"
+            res += "アプリをスリープ中、１秒毎にHPが\(murabito_lv)回復する。\n"
+            res += "回復量は村人LVに等しい。\n\n"
+        }
+        if murabito_lv >= 5 {
+            res += "【ど根性かっぱ】\n"
+            res += "HPが2以上の時に攻撃を受けると、幸運%でHPが1残る\n\n"
+        }
+        
+        let priest_lv = getLV("priest")
+        if priest_lv >= 1 {
+            let text = skillModel.getExplain("kappa_heal")
+            var replaceString = text.replacingOccurrences(of: "(lv)", with: "\(priest_lv)")
+            replaceString = replaceString.replacingOccurrences(of: "(tap)", with: "\(Const.tapHealCount)")
+            res += replaceString
+/*
+            res += "【カッパヒール  LV\(priest_lv)】\n"
+            res += "\(Const.tapHealCount)タップごとにHPが\(priest_lv)回復する。\n"
+            res += "回復量は僧侶LVに等しい。\n\n"
+ */
+        }
 
+        
+        return res
+    }
+    
+    
+    
+    // 職業レベルを取得
     class func getLV(_ key: String) -> Int {
         if UserDefaults.standard.object(forKey: "\(key)_lv") == nil {
             return 0

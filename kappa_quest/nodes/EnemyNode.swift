@@ -14,6 +14,7 @@ class EnemyNode: SKSpriteNode {
     var exp = 1
     var displayName = "敵"
     var isDead = true
+    var range = 1.0     // 物理攻撃の距離
     var canFire = false
     
     var fire : FireEmitterNode!
@@ -51,6 +52,7 @@ class EnemyNode: SKSpriteNode {
         int     = dictionary.object(forKey: "int") as! Int
         pie     = dictionary.object(forKey: "pie") as! Int
         exp     = dictionary.object(forKey: "exp") as! Int
+        range   = Double(dictionary.object(forKey: "range") as! CGFloat)
         canFire = dictionary.object(forKey: "canFire") as! Bool
         
         // LVの分だけ強さをかける

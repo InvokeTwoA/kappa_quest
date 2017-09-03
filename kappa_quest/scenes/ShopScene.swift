@@ -1,7 +1,7 @@
 import SpriteKit
 import GameplayKit
 
-class ShopScene: SKScene {
+class ShopScene: BaseScene {
     
     var backScene : GameScene!
     var page = 0

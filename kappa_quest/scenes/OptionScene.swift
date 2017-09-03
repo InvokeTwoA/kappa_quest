@@ -2,7 +2,7 @@
 import SpriteKit
 import GameplayKit
 
-class OptionScene: SKScene {
+class OptionScene: BaseScene {
     
     var backScene : MenuScene!
     
@@ -24,13 +24,30 @@ class OptionScene: SKScene {
         updateText()
     }
     
+    func soundEffectChange(){
+        backScene.backScene.gameData.soundEffectChange()
+        updateText()
+    }
+    
     func updateText(){
         let BGMLabel     = childNode(withName: "//BGMLabel") as? SKLabelNode
-        
+        let BGMNode      = childNode(withName: "//BGMNode") as? SKSpriteNode
         if backScene.backScene.gameData.bgmFlag {
             BGMLabel?.text = "On"
+            BGMNode?.texture = SKTexture(imageNamed: "button_blue")
         } else {
             BGMLabel?.text = "Off"
+            BGMNode?.texture = SKTexture(imageNamed: "button_red")
+        }
+        
+        let soundEffectLabel     = childNode(withName: "//SoundEffectLabel") as? SKLabelNode
+        let soundEffectNode      = childNode(withName: "//SoundEffectNode") as? SKSpriteNode
+        if backScene.backScene.gameData.soundEffectFlag {
+            soundEffectLabel?.text = "On"
+            soundEffectNode?.texture = SKTexture(imageNamed: "button_blue")
+        } else {
+            soundEffectLabel?.text = "Off"
+            soundEffectNode?.texture = SKTexture(imageNamed: "button_red")
         }
     }
     
@@ -47,6 +64,8 @@ class OptionScene: SKScene {
                 goBack()
             case "BGMNode", "BGMLabel":
                 bgmChange()
+            case "SoundEffectNode", "SoundEffectLabel":
+                soundEffectChange()
             default:
                 break
             }

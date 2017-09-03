@@ -3,7 +3,7 @@ import SpriteKit
 import GameplayKit
 import AVFoundation
 
-class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
+class GameScene: BaseScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
 
     // 各種モデル
     private var enemyModel : EnemyModel = EnemyModel()
@@ -11,6 +11,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
     var gameData : GameData = GameData()
     var map : Map = Map()
     var jobModel : JobModel = JobModel()
+    var skillModel : SkillModel = SkillModel()
     
     // Node
     private var tapNode : TapNode?  // タップ時に発生するノード
@@ -43,6 +44,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
         enemyModel.readDataByPlist()
         jobModel.readDataByPlist()
         jobModel.loadParam()
+        skillModel.readDataByPlist()
         actionModel.setActionData(sceneWidth: self.size.width)
         createKappa()
         map.readDataByPlist()
@@ -57,6 +59,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
         
         // 音楽関係の処理
         prepareBGM(fileName: Const.bgm_fantasy)
+        prepareSoundEffect()
         playBGM()
         
         showMessage("冒険の始まりだ！", type: "start")
@@ -183,13 +186,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
             if self.enemyModel.enemies[pos].isDead {
                 return
             }
-            let damage = self.calculateDamage(str: (self.kappa?.str)!, def: self.enemyModel.enemies[pos].def)
+            
+            if BattleModel.isCritical(luc: Double((self.kappa?.pie)!)) {
+                print("critical")
+            } else {
+                print("not critical")
+            }
+            
+            
+            let damage = BattleModel.calculateDamage(str: (self.kappa?.str)!, def: self.enemyModel.enemies[pos].def)
             let point = CGPoint(x: self.enemyModel.enemies[pos].position.x, y: self.enemyModel.enemies[pos].position.y + 30)
             self.displayDamage(value: damage, point: point, color: UIColor.white)
             self.makeSpark(point: CGPoint(x: self.enemyModel.enemies[pos].position.x, y: self.enemyModel.enemies[pos].position.y))
             
-            self.enemyModel.enemies[pos].hp -= damage
+            self.playSoundEffect()
             
+            self.enemyModel.enemies[pos].hp -= damage
             self.changeEnemyLifeBar(pos, per: self.enemyModel.enemies[pos].hp_per())
             
             if self.enemyModel.enemies[pos].hp <= 0 {
@@ -202,9 +214,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
     func attacked(attack:Int, type: String, point: CGPoint){
         var damage = 1
         if type == "magic" {
-            damage = calculateDamage(str: attack, def: (kappa?.pie)!)
+            damage = BattleModel.calculateDamage(str: attack, def: (kappa?.pie)!)
         } else {
-            damage = calculateDamage(str: attack, def: (kappa?.def)!)
+            damage = BattleModel.calculateDamage(str: attack, def: (kappa?.def)!)
         }
 
         kappa?.hp -= damage
@@ -227,13 +239,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
         self.addChild(particle)
     }
     
-    func calculateDamage(str: Int, def: Int) -> Int {
-        var damage = str - CommonUtil.rnd(def)
-        if damage <= 0 {
-            damage = 1
-        }
-        return damage
-    }
     
     // ダメージを数字で表示
     func displayDamage(value: Int, point: CGPoint, color: UIColor, direction : String = "right"){
@@ -761,6 +766,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
                 } else {
                     goMenu()
                 }
+            } else if tapNode.name == "KappaInfoLabel" || tapNode.name == "KappaInfoNode" {
+                displayAlert("ステータス", message: JobModel.allSkillExplain(skillModel), okString: "閉じる")
             } else {
                 self.touchDown(atPoint: positionInScene)
             }
@@ -816,6 +823,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
         }
     }
     
+    var _audioSoundEffect : AVAudioPlayer!
+    func prepareSoundEffect(){
+        let bgm_path = NSURL(fileURLWithPath: Bundle.main.path(forResource: Const.sound_effect2, ofType: "mp3")!)
+        var audioError:NSError?
+        do {
+            _audioSoundEffect = try AVAudioPlayer(contentsOf: bgm_path as URL)
+        } catch let error as NSError {
+            audioError = error
+            _audioSoundEffect = nil
+        }
+        if let error = audioError {
+            print("Error \(error.localizedDescription)")
+        }
+        _audioSoundEffect.delegate = self
+        _audioSoundEffect.prepareToPlay()
+    }
+    
+    func playSoundEffect(){
+//        _audioSoundEffect.numberOfLoops = 1;
+        _audioSoundEffect.currentTime = 0
+//        if ( !_audioSoundEffect.isPlaying ){
+            _audioSoundEffect.play()
+//        }
+    }
+    
+    func stopSoundEffect(){
+        if ( _audioSoundEffect.isPlaying ){
+            _audioSoundEffect.stop()
+        }
+    }
+
+    
+    
     /***********************************************************************************/
     /********************************** 衝突判定 ****************************************/
     /***********************************************************************************/
@@ -861,7 +901,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
             displayMessage()
         }
 
-        
         if gameOverFlag {
             return
         }
@@ -887,7 +926,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, AVAudioPlayerDelegate  {
             enemy.timerUp()
             if enemy.isAttack() {
                 enemy.isAttacking = true
-                enemy.run(actionModel.enemyAttack!)
+                enemy.run(actionModel.enemyAttack(range: CGFloat(enemy.range)))
                 enemy.attackTimerReset()
                 _ = CommonUtil.setTimeout(delay: 2*Const.enemyJump, block: { () -> Void in
                     enemy.isAttacking = false

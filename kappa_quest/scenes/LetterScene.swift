@@ -2,7 +2,7 @@
 import SpriteKit
 import GameplayKit
 
-class LetterScene: SKScene {
+class LetterScene: BaseScene {
     
     override func sceneDidLoad() {
     }

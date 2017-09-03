@@ -3,7 +3,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameOverScene: SKScene {
+class GameOverScene: BaseScene {
     
     var backScene : GameScene!
     

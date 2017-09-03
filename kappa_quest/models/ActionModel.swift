@@ -3,6 +3,8 @@ import SpriteKit
 import Foundation
 
 class ActionModel {
+    
+    var moveSpace : CGFloat = 0.0
 
     var attack            : SKAction?
     var moveRight         : SKAction?
@@ -21,11 +23,11 @@ class ActionModel {
     var swordSlash        : SKAction?
     var enemyJump         : SKAction?
     var enemyMiniJump     : SKAction?
-    var enemyAttack       : SKAction?
     var normalAttack      : SKAction?
     var sparkFadeOut      : SKAction?
     
     func setActionData(sceneWidth : CGFloat){
+        moveSpace = sceneWidth/7.0/4.0
         
         // 攻撃アクション
         attack = SKAction.sequence([
@@ -34,7 +36,6 @@ class ActionModel {
         ])
         
         // 移動
-        let moveSpace = sceneWidth/7.0/4.0
         moveRight = SKAction.sequence([
             SKAction.moveBy(x: moveSpace, y:    Const.jumpSpace, duration: Const.moveSpeed),
             SKAction.moveBy(x: moveSpace, y: -1*Const.jumpSpace, duration: Const.moveSpeed),
@@ -64,8 +65,8 @@ class ActionModel {
         
         // ダメージ表示
         displayDamage = SKAction.sequence([
-            SKAction.moveBy(x: 20, y:  70, duration: 0.1),
-            SKAction.moveBy(x: 20, y: -40, duration: 0.1),
+            SKAction.moveBy(x: 0, y:  70, duration: 0.1),
+            SKAction.moveBy(x: 0, y: 70, duration: 0.5),
             SKAction.wait(forDuration: 0.5),
             SKAction.fadeOut(withDuration: 0.1),
             SKAction.removeFromParent()
@@ -150,12 +151,6 @@ class ActionModel {
         ])
 
         
-        // 敵攻撃
-        enemyAttack = SKAction.sequence([
-            SKAction.moveBy(x: -2*moveSpace, y:  0, duration: Const.enemyJump),
-            SKAction.moveBy(x:  2*moveSpace, y:  0, duration: Const.enemyJump),
-        ])
-        
         // ノーマルアタック
         let attackSpace = sceneWidth/7.0/2.0
         normalAttack = SKAction.sequence([
@@ -163,6 +158,15 @@ class ActionModel {
             SKAction.moveBy(x: -1*attackSpace, y: -1*Const.normalAttackY, duration: Const.normalAttackSpeed),
             SKAction.removeFromParent()
         ])
-        
     }
+    
+    func enemyAttack(range: CGFloat) -> SKAction {
+        let attack = SKAction.sequence([
+            SKAction.moveBy(x: -2*moveSpace*range, y:  0, duration: Const.enemyJump),
+            SKAction.moveBy(x:  2*moveSpace*range, y:  0, duration: Const.enemyJump),
+            ])
+    
+        return attack
+    }
+    
 }

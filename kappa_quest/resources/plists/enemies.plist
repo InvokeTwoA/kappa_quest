@@ -18,6 +18,8 @@
 		<integer>1</integer>
 		<key>pie</key>
 		<integer>1</integer>
+		<key>range</key>
+		<integer>1</integer>
 		<key>canFire</key>
 		<false/>
 		<key>exp</key>
@@ -41,6 +43,8 @@
 		<integer>1</integer>
 		<key>pie</key>
 		<integer>1</integer>
+		<key>range</key>
+		<integer>2</integer>
 		<key>canFire</key>
 		<false/>
 		<key>exp</key>
@@ -63,6 +67,8 @@
 		<key>int</key>
 		<integer>1</integer>
 		<key>pie</key>
+		<integer>1</integer>
+		<key>range</key>
 		<integer>1</integer>
 		<key>canFire</key>
 		<false/>
@@ -87,6 +93,8 @@
 		<integer>2</integer>
 		<key>pie</key>
 		<integer>1</integer>
+		<key>range</key>
+		<integer>1</integer>
 		<key>canFire</key>
 		<true/>
 		<key>exp</key>
@@ -110,6 +118,8 @@
 		<integer>3</integer>
 		<key>pie</key>
 		<integer>3</integer>
+		<key>range</key>
+		<integer>1</integer>
 		<key>canFire</key>
 		<false/>
 		<key>exp</key>
@@ -133,6 +143,8 @@
 		<integer>5</integer>
 		<key>pie</key>
 		<integer>5</integer>
+		<key>range</key>
+		<integer>1</integer>
 		<key>canFire</key>
 		<false/>
 		<key>exp</key>
@@ -156,6 +168,8 @@
 		<integer>4</integer>
 		<key>pie</key>
 		<integer>1</integer>
+		<key>range</key>
+		<integer>2</integer>
 		<key>canFire</key>
 		<false/>
 		<key>exp</key>
@@ -179,6 +193,8 @@
 		<integer>8</integer>
 		<key>pie</key>
 		<integer>10</integer>
+		<key>range</key>
+		<integer>2</integer>
 		<key>canFire</key>
 		<true/>
 		<key>exp</key>
@@ -202,6 +218,8 @@
 		<integer>10</integer>
 		<key>pie</key>
 		<integer>10</integer>
+		<key>range</key>
+		<integer>3</integer>
 		<key>canFire</key>
 		<true/>
 		<key>exp</key>
