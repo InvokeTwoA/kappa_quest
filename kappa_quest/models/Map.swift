@@ -8,6 +8,7 @@ class Map {
     // 敵情報
     var positionData = Array(arrayLiteral: "free", "free", "free", "free", "enemy", "enemy", "free", "free")
     var enemies : [String]!
+    var treasures = Array(arrayLiteral: "", "", "", "", "", "", "", "")
 
     // 距離情報
     var distanceInt = 0
@@ -16,14 +17,20 @@ class Map {
     var maxDistance = 0.0
 
     // 地図情報
+    var lv = 1
     var mapData = NSDictionary()
     var background = "bg_green"
     var isEvent : Bool = false
+    var isRandom : Bool = false
+    var isBoss : Bool = false
     var text0 = ""
     var text1 = ""
+    var boss_text0 = ""
+    var boss_text1 = ""
     
-    func readDataByPlist(){
-        let mapDataPath = Bundle.main.path(forResource: "maps", ofType:"plist" )!
+    func readDataByPlist(_ key : String){
+        let map_name = "map_\(key)"
+        let mapDataPath = Bundle.main.path(forResource: map_name, ofType:"plist" )!
         mapData = NSDictionary(contentsOfFile: mapDataPath)!
     }
     
@@ -36,10 +43,20 @@ class Map {
         enemies     = map_info["enemies"] as! [String]
         background  = map_info["background"] as! String
         isEvent     = map_info["event"] as! Bool
+        isBoss      = map_info["is_boss"] as! Bool
+        isRandom    = map_info["is_random"] as! Bool
         
         if isEvent {
             text0 = map_info["event_text0"] as! String
             text1 = map_info["event_text1"] as! String
+        }
+        
+        if map_info["lv"] != nil {
+            lv = map_info["lv"] as! Int
+        }
+        if isBoss {
+            boss_text0 = map_info["boss_word0"] as! String
+            boss_text1 = map_info["boss_word1"] as! String
         }
     }
     
@@ -53,16 +70,13 @@ class Map {
             }
         }
         positionData[0] = "free"
-        if Int(distance*10) == 3 {
-            positionData[4] = "shop"
-        }
     }
     
     func canMoveRight() -> Bool {
         if positionData.count < myPosition + 1 {
             return false
         }
-        return positionData[myPosition+1] == "free" || positionData[myPosition+1] == "shop"
+        return positionData[myPosition+1] == "free" || positionData[myPosition+1] == "treasure"
     }
     
     func canMoveLeft() -> Bool {
@@ -80,9 +94,21 @@ class Map {
         saveParam()
     }
     
-    func isShop() -> Bool {
-        return positionData[myPosition] == "shop"
+    func isTreasure() -> Bool {
+        return positionData[myPosition] == "treasure"
     }
+
+    
+    // 近くの敵の数を返す。敵がいなければ0を返す
+    func nearEnemyPosition() -> Int {
+        for (index, positionData) in positionData.enumerated() {
+            if positionData == "enemy" {
+                return index
+            }
+        }
+        return Const.maxPosition
+    }
+    
     
     // パラメーターを userDefault から読み取り
     func loadParameterByUserDefault(){
@@ -100,6 +126,7 @@ class Map {
     func resetData(){
         distance = 0.0
         distanceInt = 0
+        saveParam()
         loadMapDataByDistance(distance)
         updatePositionData()
     }

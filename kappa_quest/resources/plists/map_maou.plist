@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>0.0</key>
+	<dict>
+		<key>background</key>
+		<string>bg_makai</string>
+		<key>enemies</key>
+		<array/>
+		<key>is_boss</key>
+		<false/>
+		<key>event</key>
+		<true/>
+		<key>event_text0</key>
+		<string>決戦の時は近い……。</string>
+		<key>event_text1</key>
+		<string>悪夢を終わらせる時が来た。</string>
+		<key>job</key>
+		<string>nil</string>
+		<key>tutorial</key>
+		<string>nil</string>
+	</dict>
+	<key>0,1</key>
+	<dict>
+		<key>background</key>
+		<string>bg_makai</string>
+		<key>enemies</key>
+		<array>
+			<string>angel</string>
+			<string>maou</string>
+		</array>
+		<key>is_boss</key>
+		<false/>
+		<key>event</key>
+		<false/>
+		<key>job</key>
+		<string>nil</string>
+		<key>tutorial</key>
+		<string>nil</string>
+	</dict>
+</dict>
+</plist>

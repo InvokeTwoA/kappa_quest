@@ -19,6 +19,12 @@ class EnemyModel {
         return enemyNode
     }
     
+    func getEnemy(enemy_name: String, lv : Int) -> EnemyNode {
+        let enemyNode = EnemyNode.makeEnemy(name: enemy_name)
+        enemyNode.setParameterByDictionary(dictionary: enemiesData.object(forKey: enemy_name) as! NSDictionary, set_lv : lv)
+        return enemyNode    
+    }
+    
     func resetEnemies(){
         enemies = [EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode()]
     }

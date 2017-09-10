@@ -14,7 +14,12 @@ class KappaNode: SKSpriteNode {
     var pie = 1
     var luc = 1
     var nextExp = 10
-        
+    
+    var mode = ""
+    
+    // 根性フラグ
+    let konjoFlag = false
+    
     // パラメーターを userDefault から読み取り
     func setParameterByUserDefault(){
         if UserDefaults.standard.object(forKey: "lv") == nil {
@@ -45,6 +50,7 @@ class KappaNode: SKSpriteNode {
         pie += jobModel.pie
         luc += jobModel.luc
         setNextExp(jobModel)
+        
     }
     
     func setNextExp(_ jobModel : JobModel){

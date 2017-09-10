@@ -8,10 +8,11 @@ class LetterScene: BaseScene {
     }
     
     func goGame(){
-        let scene = GameScene(fileNamed: "GameScene")
-        scene?.size = self.scene!.size
-        scene?.scaleMode = SKSceneScaleMode.aspectFill
-        self.view!.presentScene(scene!, transition: .fade(withDuration: Const.transitionInterval))
+        let scene = GameScene(fileNamed: "GameScene")!
+        scene.size = self.scene!.size
+        scene.scaleMode = SKSceneScaleMode.aspectFill
+        scene.world_name = "tutorial"
+        self.view!.presentScene(scene, transition: .fade(withDuration: Const.transitionInterval))
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

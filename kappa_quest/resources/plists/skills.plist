@@ -3,8 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>kappa_heal</key>
-	<string>【カッパヒール  LV(lv)】
+	<string>[カッパヒール  LV(lv)]
 (tap)タップごとにHPが(lv)回復する。
-回復量は僧侶LVに等しい。</string>
+回復量は僧侶LVに等しい。  </string>
+	<key>konjo</key>
+	<string>[ど根性かっぱ]
+死ぬダメージを受けても稀にHP１で生き残る。 （HPが2以上の時に攻撃を受けて発動。幸運が高いほど発生確率は高まる）  </string>
 </dict>
 </plist>

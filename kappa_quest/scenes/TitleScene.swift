@@ -19,8 +19,13 @@ class TitleScene: BaseScene {
         let images = [
             "kappa",
             "hiyoko",
+            "usagi",
             "buffalo",
             "chibidora",
+            "ghost",
+            "wizard",
+            "arakure",
+            "thief",
             
             "knight",
             "fighter",
@@ -46,10 +51,7 @@ class TitleScene: BaseScene {
     
     func goGame(){
         if GameData.isExistData() {
-            let scene = GameScene(fileNamed: "GameScene")
-            scene?.size = self.scene!.size
-            scene?.scaleMode = SKSceneScaleMode.aspectFill
-            self.view!.presentScene(scene!, transition: .doorway(withDuration: Const.doorTransitionInterval))
+            goWorld()
         } else {
             let scene = LetterScene(fileNamed: "LetterScene")
             scene?.size = self.scene!.size

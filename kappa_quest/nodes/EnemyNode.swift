@@ -15,7 +15,9 @@ class EnemyNode: SKSpriteNode {
     var displayName = "敵"
     var isDead = true
     var range = 1.0     // 物理攻撃の距離
+    
     var canFire = false
+    var canFly = false   // 飛行
     
     var fire : FireEmitterNode!
 
@@ -24,6 +26,8 @@ class EnemyNode: SKSpriteNode {
     var attackTimer = 100 // この数値が100になったら攻撃する
     var fireTimer = 100   // この数値が100になったら炎攻撃をする
     var jumpTimer = 0     // この数値が 7 の倍数の時、小さくジャンプする
+    
+    var pos = 0
     
     class func makeEnemy(name : String) -> EnemyNode {
         let enemy = EnemyNode(imageNamed: name)

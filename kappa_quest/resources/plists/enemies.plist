@@ -52,6 +52,33 @@
 		<key>type</key>
 		<string>animal</string>
 	</dict>
+	<key>bat</key>
+	<dict>
+		<key>name</key>
+		<string>コウモリ</string>
+		<key>hp</key>
+		<integer>2</integer>
+		<key>str</key>
+		<integer>3</integer>
+		<key>def</key>
+		<integer>1</integer>
+		<key>agi</key>
+		<integer>4</integer>
+		<key>int</key>
+		<integer>1</integer>
+		<key>pie</key>
+		<integer>1</integer>
+		<key>range</key>
+		<integer>2</integer>
+		<key>canFire</key>
+		<false/>
+		<key>canFry</key>
+		<true/>
+		<key>exp</key>
+		<integer>2</integer>
+		<key>type</key>
+		<string>animal</string>
+	</dict>
 	<key>buffalo</key>
 	<dict>
 		<key>name</key>
@@ -101,6 +128,81 @@
 		<integer>3</integer>
 		<key>type</key>
 		<string>flying</string>
+	</dict>
+	<key>ghost</key>
+	<dict>
+		<key>name</key>
+		<string>ゴースト</string>
+		<key>hp</key>
+		<integer>3</integer>
+		<key>str</key>
+		<integer>1</integer>
+		<key>def</key>
+		<integer>999</integer>
+		<key>agi</key>
+		<integer>1</integer>
+		<key>int</key>
+		<integer>2</integer>
+		<key>pie</key>
+		<integer>1</integer>
+		<key>range</key>
+		<integer>1</integer>
+		<key>canFire</key>
+		<true/>
+		<key>exp</key>
+		<integer>3</integer>
+		<key>type</key>
+		<string>flying</string>
+	</dict>
+	<key>arakure</key>
+	<dict>
+		<key>name</key>
+		<string>荒くれ</string>
+		<key>hp</key>
+		<integer>7</integer>
+		<key>str</key>
+		<integer>3</integer>
+		<key>def</key>
+		<integer>4</integer>
+		<key>agi</key>
+		<integer>2</integer>
+		<key>int</key>
+		<integer>1</integer>
+		<key>pie</key>
+		<integer>2</integer>
+		<key>range</key>
+		<integer>1</integer>
+		<key>canFire</key>
+		<false/>
+		<key>exp</key>
+		<integer>4</integer>
+		<key>type</key>
+		<string>normal</string>
+	</dict>
+	<key>thief</key>
+	<dict>
+		<key>name</key>
+		<string>シーフ</string>
+		<key>hp</key>
+		<integer>5</integer>
+		<key>str</key>
+		<integer>3</integer>
+		<key>def</key>
+		<integer>2</integer>
+		<key>agi</key>
+		<integer>10</integer>
+		<key>int</key>
+		<integer>3</integer>
+		<key>pie</key>
+		<integer>3</integer>
+		<key>range</key>
+		<integer>3</integer>
+		<key>canFire</key>
+		<false/>
+		<key>exp</key>
+		<integer>5</integer>
+		<key>type</key>
+		<string>human</string>
 	</dict>
 	<key>skelton</key>
 	<dict>
@@ -176,6 +278,31 @@
 		<integer>6</integer>
 		<key>type</key>
 		<string>animal</string>
+	</dict>
+	<key>wizard</key>
+	<dict>
+		<key>name</key>
+		<string>魔法使い</string>
+		<key>hp</key>
+		<integer>5</integer>
+		<key>str</key>
+		<integer>4</integer>
+		<key>def</key>
+		<integer>4</integer>
+		<key>agi</key>
+		<integer>6</integer>
+		<key>int</key>
+		<integer>6</integer>
+		<key>pie</key>
+		<integer>1</integer>
+		<key>range</key>
+		<integer>2</integer>
+		<key>canFire</key>
+		<true/>
+		<key>exp</key>
+		<integer>10</integer>
+		<key>type</key>
+		<string>human</string>
 	</dict>
 	<key>angel</key>
 	<dict>

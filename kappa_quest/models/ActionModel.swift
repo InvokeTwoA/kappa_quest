@@ -4,35 +4,42 @@ import Foundation
 
 class ActionModel {
     
+    let HIGH_JUMP_SPACE : CGFloat = 60.0
+    let HIGH_JUMP_SPEED : TimeInterval = 0.1
+
+    
     var moveSpace : CGFloat = 0.0
 
-    var attack            : SKAction?
-    var moveRight         : SKAction?
-    var moveLeft          : SKAction?
-    var moveBack          : SKAction?
-    var dead              : SKAction?
-    var displayDamage     : SKAction?
-    var displayDamaged    : SKAction?
-    var displayHeal       : SKAction?
-    var displayExp        : SKAction?
-    var displayMessage    : SKAction?
-    var displayBigMessage : SKAction?
-    var fadeInOut         : SKAction?
-    var fadeOutQuickly    : SKAction?
-    var fadeOutEternal    : SKAction?
-    var swordSlash        : SKAction?
-    var enemyJump         : SKAction?
-    var enemyMiniJump     : SKAction?
-    var normalAttack      : SKAction?
-    var sparkFadeOut      : SKAction?
+    var attack            : SKAction!
+    var moveRight         : SKAction!
+    var moveLeft          : SKAction!
+    var speedMoveRight    : SKAction!
+    var speedMoveLeft     : SKAction!
+    var moveBack          : SKAction!
+    var moveBack2         : SKAction!
+    var dead              : SKAction!
+    var displayDamage     : SKAction!
+    var displayDamaged    : SKAction!
+    var displayHeal       : SKAction!
+    var displayExp        : SKAction!
+    var displayMessage    : SKAction!
+    var displayBigMessage : SKAction!
+    var fadeInOut         : SKAction!
+    var fadeOutQuickly    : SKAction!
+    var fadeOutEternal    : SKAction!
+    var enemyJump         : SKAction!
+    var enemyMiniJump     : SKAction!
+    var normalAttack      : SKAction!
+    var highJump          : SKAction!
+    var sparkFadeOut      : SKAction!
     
     func setActionData(sceneWidth : CGFloat){
         moveSpace = sceneWidth/7.0/4.0
         
         // 攻撃アクション
         attack = SKAction.sequence([
-            SKAction.moveBy(x: 20, y: 0, duration: 0.1),
-            SKAction.moveBy(x: -20, y: 0, duration: 0.1),
+            SKAction.moveBy(x: moveSpace*2, y: 0, duration: 0.1),
+            SKAction.moveBy(x: -1*moveSpace*2, y: 0, duration: 0.1),
         ])
         
         // 移動
@@ -42,12 +49,27 @@ class ActionModel {
             SKAction.moveBy(x: moveSpace, y:    Const.jumpSpace, duration: Const.moveSpeed),
             SKAction.moveBy(x: moveSpace, y: -1*Const.jumpSpace, duration: Const.moveSpeed),
         ])
+
         moveLeft = SKAction.sequence([
             SKAction.moveBy(x: -1*moveSpace, y:    Const.jumpSpace, duration: Const.moveSpeed),
             SKAction.moveBy(x: -1*moveSpace, y: -1*Const.jumpSpace, duration: Const.moveSpeed),
             SKAction.moveBy(x: -1*moveSpace, y:    Const.jumpSpace, duration: Const.moveSpeed),
             SKAction.moveBy(x: -1*moveSpace, y: -1*Const.jumpSpace, duration: Const.moveSpeed),
         ])
+        
+        speedMoveRight = SKAction.sequence([
+            SKAction.moveBy(x: moveSpace, y:    0, duration: Const.moveSpeed/2.0),
+            SKAction.moveBy(x: moveSpace, y:    0, duration: Const.moveSpeed/2.0),
+            SKAction.moveBy(x: moveSpace, y:    0, duration: Const.moveSpeed/2.0),
+            SKAction.moveBy(x: moveSpace, y:    0, duration: Const.moveSpeed/2.0),
+        ])
+        
+        speedMoveLeft = SKAction.sequence([
+            SKAction.moveBy(x: -1*moveSpace, y:    0, duration: Const.moveSpeed/2.0),
+            SKAction.moveBy(x: -1*moveSpace, y:    0, duration: Const.moveSpeed/2.0),
+            SKAction.moveBy(x: -1*moveSpace, y:    0, duration: Const.moveSpeed/2.0),
+            SKAction.moveBy(x: -1*moveSpace, y:    0, duration: Const.moveSpeed/2.0),
+            ])
         
         // 左に戻れない
         moveBack = SKAction.sequence([
@@ -56,6 +78,16 @@ class ActionModel {
             SKAction.moveBy(x: moveSpace, y:    Const.jumpSpace, duration: Const.moveSpeed),
             SKAction.moveBy(x: moveSpace, y: -1*Const.jumpSpace, duration: Const.moveSpeed),
         ])
+        
+        // 右に行けない
+        moveBack2 = SKAction.sequence([
+            SKAction.moveBy(x: moveSpace,       y:    Const.jumpSpace, duration: Const.moveSpeed),
+            SKAction.moveBy(x: moveSpace,       y: -1*Const.jumpSpace, duration: Const.moveSpeed),
+            SKAction.moveBy(x: -1*moveSpace,    y:    Const.jumpSpace, duration: Const.moveSpeed),
+            SKAction.moveBy(x: -1*moveSpace,    y: -1*Const.jumpSpace, duration: Const.moveSpeed),
+            ])
+
+        
         
         // 死亡時（真上に飛び上がってから落ちていく）
         dead = SKAction.sequence([
@@ -131,12 +163,6 @@ class ActionModel {
             SKAction.removeFromParent()
         ])
         
-        // 剣を振るアクション
-        let angle = CGFloat.pi/2.0
-        swordSlash = SKAction.sequence([
-            SKAction.rotate( byAngle: -1.0*angle, duration: Const.swordSpeed),
-            SKAction.rotate( byAngle:      angle, duration: Const.swordSpeed),
-        ])
 
         // 敵のジャンプ
         enemyJump = SKAction.sequence([
@@ -150,7 +176,6 @@ class ActionModel {
             SKAction.moveBy(x: 0, y: -1*Const.enemyJumpSpace/4, duration: Const.enemyJump),
         ])
 
-        
         // ノーマルアタック
         let attackSpace = sceneWidth/7.0/2.0
         normalAttack = SKAction.sequence([
@@ -158,13 +183,20 @@ class ActionModel {
             SKAction.moveBy(x: -1*attackSpace, y: -1*Const.normalAttackY, duration: Const.normalAttackSpeed),
             SKAction.removeFromParent()
         ])
+        
+        // 宝箱出現じ
+        highJump = SKAction.sequence([
+            SKAction.moveBy(x: 0, y:    HIGH_JUMP_SPACE, duration: HIGH_JUMP_SPEED),
+            SKAction.moveBy(x: 0, y: -1*HIGH_JUMP_SPACE, duration: HIGH_JUMP_SPEED)
+        ])
+
     }
     
     func enemyAttack(range: CGFloat) -> SKAction {
         let attack = SKAction.sequence([
             SKAction.moveBy(x: -2*moveSpace*range, y:  0, duration: Const.enemyJump),
             SKAction.moveBy(x:  2*moveSpace*range, y:  0, duration: Const.enemyJump),
-            ])
+        ])
     
         return attack
     }

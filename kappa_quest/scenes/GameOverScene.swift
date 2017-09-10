@@ -1,5 +1,4 @@
 // ゲームオーバー画面
-
 import SpriteKit
 import GameplayKit
 
@@ -12,11 +11,11 @@ class GameOverScene: BaseScene {
     private var hintLabel2 : SKLabelNode?
 
     override func sceneDidLoad() {
-        hintLabel0     = self.childNode(withName: "//hintLabel0") as? SKLabelNode
-        hintLabel1     = self.childNode(withName: "//hintLabel1") as? SKLabelNode
-        hintLabel2     = self.childNode(withName: "//hintLabel2") as? SKLabelNode
+        hintLabel0     = childNode(withName: "//hintLabel0") as? SKLabelNode
+        hintLabel1     = childNode(withName: "//hintLabel1") as? SKLabelNode
+        hintLabel2     = childNode(withName: "//hintLabel2") as? SKLabelNode
 
-        let hints = getRandomHint()
+        let hints  = getRandomHint()
         
         hintLabel0?.text = hints[0]
         hintLabel1?.text = hints[1]

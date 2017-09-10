@@ -14,4 +14,12 @@ class SparkEmitterNode: SKEmitterNode {
 //        particle.yAcceleration = 0
         return particle
     }
+    
+    class func makeBlueSpark() -> SKEmitterNode {
+        let path = Bundle.main.path(forResource: "blue_spark", ofType: "sks")
+        let particle = NSKeyedUnarchiver.unarchiveObject(withFile: path!) as! SKEmitterNode
+        particle.zPosition = 5
+        return particle
+    }
+    
 }

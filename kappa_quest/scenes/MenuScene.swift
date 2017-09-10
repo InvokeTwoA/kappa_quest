@@ -5,13 +5,37 @@ import GameplayKit
 
 class MenuScene: BaseScene {
 
+    var back = ""
     var backScene : GameScene!
 
     override func sceneDidLoad() {
     }
 
+    override func didMove(to view: SKView) {
+        if back == "world" {
+            let optionLabel     = childNode(withName: "//OptionLabel") as! SKLabelNode
+            let optionNode     = childNode(withName: "//OptionNode") as! SKSpriteNode
+            optionLabel.removeFromParent()
+            optionNode.removeFromParent()
+        }
+    }
+    
+    func showStatus(){
+        let skillModel = SkillModel()
+        skillModel.readDataByPlist()
+        let kappa = KappaNode()
+        kappa.setParameterByUserDefault()
+        let gameData = GameData()
+        gameData.setParameterByUserDefault()
+        displayAlert("ステータス", message: JobModel.allSkillExplain(skillModel, kappa: kappa, gameData: gameData), okString: "閉じる")
+    }
+    
     func goBack(){
-        self.view!.presentScene(backScene, transition: .fade(withDuration: Const.transitionInterval))
+        if back == "world" {
+            goWorld()
+        } else {
+            self.view!.presentScene(backScene!, transition: .fade(withDuration: Const.transitionInterval))
+        }
     }
     
     func goOption(){
@@ -38,6 +62,8 @@ class MenuScene: BaseScene {
             }
             
             switch tapNode.name! {
+            case "SkillNode", "SkillLabel":
+                showStatus()
             case "CloseNode", "CloseLabel":
                 goBack()
             case "OptionNode", "OptionLabel":

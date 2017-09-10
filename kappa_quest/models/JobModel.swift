@@ -66,18 +66,27 @@ class JobModel {
         setData(name)
     }
     
-    class func allSkillExplain(_ skillModel : SkillModel) -> String {
+    func getDisplayName(key : String) -> String {
+        let data = dictionary.object(forKey: key) as! NSDictionary
+        return data.object(forKey: "name") as! String
+    }
+
+    func getExplain(key : String) -> String {
+        let data = dictionary.object(forKey: key) as! NSDictionary
+        return data.object(forKey: "explain") as! String
+    }
+    
+    class func allSkillExplain(_ skillModel : SkillModel, kappa : KappaNode, gameData : GameData) -> String {
         var res = ""
+        res += "クリティカル発生率：　\(BattleModel.displayCriticalPer(luc: kappa.luc))% \n"
+        res += "クリティカルダメージ：　2.0 倍 \n"
+        res += "アイテム発見率：　\(BattleModel.displayTreasurePer(luc: kappa.luc))%\n\n"
         
-        let murabito_lv = getLV("murabito")
-        if murabito_lv >= 1 {
-            res += "【昼寝  LV\(murabito_lv)】\n"
-            res += "アプリをスリープ中、１秒毎にHPが\(murabito_lv)回復する。\n"
-            res += "回復量は村人LVに等しい。\n\n"
-        }
-        if murabito_lv >= 5 {
-            res += "【ど根性かっぱ】\n"
-            res += "HPが2以上の時に攻撃を受けると、幸運%でHPが1残る\n\n"
+        res += "【発動中のスキル】\n"
+        
+        if gameData.konjoFlag {
+            let text = skillModel.getExplain("konjo")
+            res += text
         }
         
         let priest_lv = getLV("priest")
@@ -86,18 +95,10 @@ class JobModel {
             var replaceString = text.replacingOccurrences(of: "(lv)", with: "\(priest_lv)")
             replaceString = replaceString.replacingOccurrences(of: "(tap)", with: "\(Const.tapHealCount)")
             res += replaceString
-/*
-            res += "【カッパヒール  LV\(priest_lv)】\n"
-            res += "\(Const.tapHealCount)タップごとにHPが\(priest_lv)回復する。\n"
-            res += "回復量は僧侶LVに等しい。\n\n"
- */
         }
-
         
         return res
     }
-    
-    
     
     // 職業レベルを取得
     class func getLV(_ key: String) -> Int {
@@ -107,6 +108,6 @@ class JobModel {
             return UserDefaults.standard.integer(forKey: "\(key)_lv")
         }
     }
-
+    
     
 }
