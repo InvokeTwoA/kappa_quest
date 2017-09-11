@@ -9,6 +9,7 @@ class Map {
     var positionData = Array(arrayLiteral: "free", "free", "free", "free", "enemy", "enemy", "free", "free")
     var enemies : [String]!
     var treasures = Array(arrayLiteral: "", "", "", "", "", "", "", "")
+    var treasureFlag = false
 
     // 距離情報
     var distanceInt = 0
@@ -27,6 +28,12 @@ class Map {
     var text1 = ""
     var boss_text0 = ""
     var boss_text1 = ""
+    
+    func initData(){
+        distance = 0.0
+        distanceInt = 0
+        saveParam()
+    }
     
     func readDataByPlist(_ key : String){
         let map_name = "map_\(key)"
@@ -88,6 +95,7 @@ class Map {
     
     func goNextMap(){
         distance += 0.1
+        treasureFlag = false
         if distance > maxDistance {
             maxDistance = distance
         }
@@ -130,6 +138,7 @@ class Map {
         loadMapDataByDistance(distance)
         updatePositionData()
     }
+    
     
     // データ保存
     func saveParam(){

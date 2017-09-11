@@ -24,6 +24,7 @@ class ActionModel {
     var displayExp        : SKAction!
     var displayMessage    : SKAction!
     var displayBigMessage : SKAction!
+    var moveButton        : SKAction!
     var fadeInOut         : SKAction!
     var fadeOutQuickly    : SKAction!
     var fadeOutEternal    : SKAction!
@@ -137,11 +138,17 @@ class ActionModel {
             SKAction.wait(forDuration: 2.0),
             SKAction.fadeOut(withDuration: 4.5)
         ])
-        
-        // 少しだけ表示して消える
+
+        moveButton = SKAction.sequence([
+            SKAction.moveBy(x: 0, y: -250 , duration: 0.2),
+            SKAction.wait(forDuration: 6.4),
+            SKAction.moveBy(x: 0, y:  250 , duration: 0.1)
+        ])
+
+        // 少しだけ表示して消える(レベルアップ文字表示の時など)
         fadeInOut = SKAction.sequence([
-            SKAction.fadeIn(withDuration: 0.1),
-            SKAction.fadeOut(withDuration: 4.5)
+            SKAction.fadeAlpha(to: 1.0, duration: 0.1),
+            SKAction.fadeAlpha(to: 0.01, duration: 4.5)
         ])
         
         // 一定時間後に完全消滅

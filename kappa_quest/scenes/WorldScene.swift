@@ -17,6 +17,9 @@ class WorldScene: BaseScene {
     }
 
     func goDungeon(_ key : String){
+        let map = Map()
+        map.initData()
+        
         let scene = GameScene(fileNamed: "GameScene")!
         scene.size = self.scene!.size
         scene.scaleMode = SKSceneScaleMode.aspectFill

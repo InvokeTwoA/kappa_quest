@@ -25,36 +25,4 @@ class TreasureNode: SKSpriteNode {
         ]
         return array[CommonUtil.rnd(array.count)]
     }
-    
-    class func explain0(_ key : String) -> String {
-        var explain = ""
-        switch key {
-        case "shoes":
-            explain = "疾風の靴"
-        case "head":
-            explain = "バンダナ"
-        case "exp":
-            explain = "経験の書"
-        case "":
-            explain = "宝箱は空っぽだ"
-        default:
-            break
-        }
-        return explain
-    }
-    
-    class func explain1(_ key : String) -> String {
-        var explain = ""
-        switch key {
-        case "shoes":
-            explain = "移動がとても早くなる。"
-        case "":
-            explain = ""
-        default:
-            break
-        }
-        return explain
-    }
-    
-    
 }

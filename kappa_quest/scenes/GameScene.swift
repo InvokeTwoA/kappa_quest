@@ -11,6 +11,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     private var specialAttackModel : SpecialAttackModel = SpecialAttackModel()
     private var skillModel : SkillModel = SkillModel()
     var map : Map = Map()
+    var equipModel : EquipModel = EquipModel()
     var jobModel : JobModel = JobModel()
 
     // Node
@@ -39,6 +40,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         jobModel.readDataByPlist()
         jobModel.loadParam()
         skillModel.readDataByPlist()
+        equipModel.readDataByPlist()
         actionModel.setActionData(sceneWidth: self.size.width)
         createKappa()
         setHealVal()
@@ -171,7 +173,11 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
 
             let treasure_key = map.treasures[map.myPosition]
             let point = CGPoint(x: getPositionX(map.myPosition), y: kappa_first_position_y + 100.0)
-            displayText(TreasureNode.explain0(treasure_key), position: point)
+            showBigMessage(text0: equipModel.getName(treasure_key), text1: equipModel.getExplain(treasure_key))
+            
+            if !ButtonNode.hasActions() {
+                ButtonNode.run(actionModel.moveButton)
+            }
         } else {
             ButtonNode.texture = SKTexture(imageNamed: "button_blue")
             ButtonLabel.text = "メニューを開く"
@@ -313,7 +319,8 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         map.positionData[pos] = "free"
         enemy.run(actionModel.displayExp!)
 
-        if BattleModel.isTreasure(luc: Double(kappa.luc)) {
+        if !map.treasureFlag && BattleModel.isTreasure(luc: Double(kappa.luc)) {
+            map.treasureFlag = true
             createTreasure(pos: pos)
             map.positionData[pos] = "treasure"
         }
@@ -357,37 +364,30 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         let LucUpLabel     = childNode(withName: "//LucUpLabel") as! SKLabelNode
 
         if jobModel.hp != 0 {
-            HPUpLabel.isHidden = false
             HPUpLabel.text = "+\(jobModel.hp)"
             HPUpLabel.run(actionModel.fadeInOut!)
         }
         if jobModel.str != 0 {
-            StrUpLabel.isHidden = false
             StrUpLabel.text = "+\(jobModel.str)"
             StrUpLabel.run(actionModel.fadeInOut!)
         }
         if jobModel.def != 0 {
-            DefUpLabel.isHidden = false
             DefUpLabel.text = "+\(jobModel.def)"
             DefUpLabel.run(actionModel.fadeInOut!)
         }
         if jobModel.str != 0 {
-            AgiUpLabel.isHidden = false
             AgiUpLabel.text = "+\(jobModel.agi)"
             AgiUpLabel.run(actionModel.fadeInOut!)
         }
         if jobModel.int != 0 {
-            IntUpLabel.isHidden = false
             IntUpLabel.text = "+\(jobModel.int)"
             IntUpLabel.run(actionModel.fadeInOut!)
         }
         if jobModel.pie != 0 {
-            PieUpLabel.isHidden = false
             PieUpLabel.text = "+\(jobModel.pie)"
             PieUpLabel.run(actionModel.fadeInOut!)
         }
         if jobModel.luc != 0 {
-            LucUpLabel.isHidden = false
             LucUpLabel.text = "+\(jobModel.luc)"
             LucUpLabel.run(actionModel.fadeInOut!)
         }
@@ -436,7 +436,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     /***********************************************************************************/
     /******************************* スキル判定     ************************************/
     /***********************************************************************************/
-    func isKonjo(_ pre_hp: Int){
+    func isKonjo(_ pre_hp: Int) -> Bool {
         return gameData.konjoFlag && pre_hp >= 2 && kappa.hp <= 0 && CommonUtil.rnd(100) < kappa.luc
       }
 
@@ -475,7 +475,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     /******************************** ライフバー  **************************************/
     /***********************************************************************************/
     func changeLifeBar(){
-        let life_bar_yellow = childNode(withName: "//LifeBarYellow") as@ SKSpriteNode
+        let life_bar_yellow = childNode(withName: "//LifeBarYellow") as! SKSpriteNode
         let life_percentage = CGFloat(kappa.hp)/CGFloat(kappa.maxHp)
         life_bar_yellow.size.width = Const.lifeBarWidth*life_percentage
     }
@@ -629,8 +629,10 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             "displayText"
         ]
         enumerateChildNodes(withName: "*") { node, _ in
-            if rm_nodes.contains(node.name) {
-                node.removeFromParent()
+            if node.name != nil {
+                if rm_nodes.contains(node.name!) {
+                    node.removeFromParent()
+                }
             }
         }
         enemyModel.resetEnemies()
@@ -686,7 +688,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
 
         // 装備情報
         let equipLabel  = childNode(withName: "//EquipLabel") as! SKLabelNode
-        equipLabel.text = gameData.equip_name
+        equipLabel.text = equipModel.getName(gameData.equip)
 
         // タップ情報
         let TapCountLabel  = childNode(withName: "//TapCountLabel") as! SKLabelNode

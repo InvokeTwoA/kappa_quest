@@ -15,7 +15,6 @@ class GameData {
     
     // other
     var equip = ""
-    var equip_name = "なし"
     
     
     // パラメーターを userDefault から読み取り
@@ -30,7 +29,6 @@ class GameData {
         
         if UserDefaults.standard.string(forKey: "equip") != nil {
             equip           = UserDefaults.standard.string(forKey: "equip")!
-            equip_name = getEquipName()
         }
     }
     
@@ -47,26 +45,9 @@ class GameData {
     // 装備品を手にいれた
     func setEquip(key : String){
         equip = key
-        equip_name = getEquipName()
         UserDefaults.standard.set(key,  forKey: "equip")
     }
     
-    func getEquipName() -> String {
-        var name = ""
-        switch equip {
-        case "shoes":
-            name = "疾風の靴"
-        case "head":
-            name = "バンダナ"
-        case "exp":
-            name = "経験の書"
-        default:
-            break;
-        }
-        return name
-    }
-    
-
     func bgmChange(){
         if bgmFlag {
             bgmFlag = false

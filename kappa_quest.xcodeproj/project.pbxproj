@@ -36,6 +36,8 @@
 		CE31F94D1F63CF8D00E868FB /* SpecialAttckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31F94C1F63CF8D00E868FB /* SpecialAttckModel.swift */; };
 		CE31F94F1F653B9000E868FB /* GameClearScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE31F94E1F653B9000E868FB /* GameClearScene.sks */; };
 		CE31F9511F653F0200E868FB /* GameClearScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31F9501F653F0200E868FB /* GameClearScene.swift */; };
+		CE31F9531F66C78500E868FB /* EquipModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31F9521F66C78500E868FB /* EquipModel.swift */; };
+		CE31F9551F66C97E00E868FB /* equips.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE31F9541F66C97E00E868FB /* equips.plist */; };
 		CE524F801F20D5B900A6D14C /* jpn.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE524F7F1F20D5B900A6D14C /* jpn.strings */; };
 		CE524F831F20D88800A6D14C /* eng.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE524F821F20D88800A6D14C /* eng.strings */; };
 		CE524F851F236EEC00A6D14C /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE524F841F236EEC00A6D14C /* GameData.swift */; };
@@ -111,6 +113,8 @@
 		CE31F94C1F63CF8D00E868FB /* SpecialAttckModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpecialAttckModel.swift; path = models/SpecialAttckModel.swift; sourceTree = "<group>"; };
 		CE31F94E1F653B9000E868FB /* GameClearScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameClearScene.sks; path = sks/GameClearScene.sks; sourceTree = "<group>"; };
 		CE31F9501F653F0200E868FB /* GameClearScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameClearScene.swift; path = sks/GameClearScene.swift; sourceTree = "<group>"; };
+		CE31F9521F66C78500E868FB /* EquipModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EquipModel.swift; path = models/EquipModel.swift; sourceTree = "<group>"; };
+		CE31F9541F66C97E00E868FB /* equips.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = equips.plist; path = resources/plists/equips.plist; sourceTree = "<group>"; };
 		CE524F7F1F20D5B900A6D14C /* jpn.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = jpn.strings; path = resources/texts/jpn.strings; sourceTree = "<group>"; };
 		CE524F821F20D88800A6D14C /* eng.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = eng.strings; path = resources/texts/eng.strings; sourceTree = "<group>"; };
 		CE524F841F236EEC00A6D14C /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameData.swift; path = models/GameData.swift; sourceTree = "<group>"; };
@@ -214,6 +218,7 @@
 				CE31F9381F5BFC4D00E868FB /* BattleModel.swift */,
 				CE049FD41F2D6C460079DEDB /* JobModel.swift */,
 				CE31F9301F5A62CC00E868FB /* SkillModel.swift */,
+				CE31F9521F66C78500E868FB /* EquipModel.swift */,
 				CE049FD81F3312EB0079DEDB /* ActionModel.swift */,
 			);
 			name = models;
@@ -369,6 +374,7 @@
 				CE31F9461F63BE5A00E868FB /* map_maou.plist */,
 				CE049FD61F2E0EED0079DEDB /* jobs.plist */,
 				CE31F9321F5A673F00E868FB /* skills.plist */,
+				CE31F9541F66C97E00E868FB /* equips.plist */,
 			);
 			name = plists;
 			sourceTree = "<group>";
@@ -449,6 +455,7 @@
 				CEEB83CF1F1BBD240025E021 /* PixelMplus12-Bold.ttf in Resources */,
 				CE049FD71F2E0EED0079DEDB /* jobs.plist in Resources */,
 				CED621D61F4035B600C92480 /* bokeh.sks in Resources */,
+				CE31F9551F66C97E00E868FB /* equips.plist in Resources */,
 				CED621DB1F40361200C92480 /* fire.sks in Resources */,
 				CEEB83D01F1BBD240025E021 /* PixelMplus12-Regular.ttf in Resources */,
 				CEC2B68A1F177A3C0014B114 /* Main.storyboard in Resources */,
@@ -551,6 +558,7 @@
 				CED621DF1F40380600C92480 /* SparkEmitterNode.swift in Sources */,
 				CEDBE7991F1CECA9007E72B9 /* KappaNode.swift in Sources */,
 				CE049FD91F3312EB0079DEDB /* ActionModel.swift in Sources */,
+				CE31F9531F66C78500E868FB /* EquipModel.swift in Sources */,
 				CE31F9511F653F0200E868FB /* GameClearScene.swift in Sources */,
 				CE6BB8231F24C2430046DA65 /* EnemyModel.swift in Sources */,
 				CE31F9311F5A62CC00E868FB /* SkillModel.swift in Sources */,
