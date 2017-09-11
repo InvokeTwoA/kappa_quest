@@ -2,7 +2,7 @@ import Foundation
 import SpriteKit
 
 class KappaNode: SKSpriteNode {
-    
+
     var lv = 1
     var job_lv = 1
     var maxHp = 10
@@ -14,18 +14,18 @@ class KappaNode: SKSpriteNode {
     var pie = 1
     var luc = 1
     var nextExp = 10
-    
+
     var mode = ""
-    
+
     // 根性フラグ
     let konjoFlag = false
-    
+
     // パラメーターを userDefault から読み取り
     func setParameterByUserDefault(){
         if UserDefaults.standard.object(forKey: "lv") == nil {
             return
         }
-        
+
         lv  = UserDefaults.standard.integer(forKey: "lv")
         hp  = UserDefaults.standard.integer(forKey: "hp")
         str = UserDefaults.standard.integer(forKey: "str")
@@ -36,7 +36,7 @@ class KappaNode: SKSpriteNode {
         luc = UserDefaults.standard.integer(forKey: "luc")
         nextExp = UserDefaults.standard.integer(forKey: "nextExp")
     }
-    
+
     // LVアップ
     func LvUp(_ jobModel : JobModel){
         lv += 1
@@ -50,13 +50,12 @@ class KappaNode: SKSpriteNode {
         pie += jobModel.pie
         luc += jobModel.luc
         setNextExp(jobModel)
-        
     }
-    
+
     func setNextExp(_ jobModel : JobModel){
         nextExp = lv + jobModel.lv*10
     }
-    
+
     func saveParam(){
         UserDefaults.standard.set(lv,  forKey: "lv")
         UserDefaults.standard.set(hp,  forKey: "hp")
@@ -68,8 +67,7 @@ class KappaNode: SKSpriteNode {
         UserDefaults.standard.set(luc, forKey: "luc")
         UserDefaults.standard.set(nextExp, forKey: "nextExp")
     }
-    
-    
+
     // 物理属性を適用
     func setPhysic(){
         let physic = SKPhysicsBody(rectangleOf: CGSize(width: Const.kappaSize, height: Const.kappaSize))
@@ -83,7 +81,7 @@ class KappaNode: SKSpriteNode {
         physic.friction = 0
         self.physicsBody = physic
     }
-    
+
     // カッパの華麗なる攻撃
     // 画像をランダムに変更
     func attack(){
@@ -91,13 +89,18 @@ class KappaNode: SKSpriteNode {
         let image = images[CommonUtil.rnd(images.count)]
         texture = SKTexture(imageNamed: image)
     }
-    
-    func walk(){
+
+    func walkRight(){
+        xScale = 1
         texture = SKTexture(imageNamed: "kappa")
     }
-    
+
+    func walkLeft(){
+        xScale = -1
+        texture = SKTexture(imageNamed: "kappa")
+    }
+
     func dead(){
         texture = SKTexture(imageNamed: "kappa_dead")
     }
-    
 }

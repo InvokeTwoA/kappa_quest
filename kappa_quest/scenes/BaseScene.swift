@@ -8,7 +8,6 @@ import AVFoundation
 class BaseScene: SKScene, AVAudioPlayerDelegate {
 
     var gameData : GameData = GameData()
-
     override func didMove(to view: SKView) {
         gameData.setParameterByUserDefault()
     }
@@ -24,8 +23,7 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
         alert.addAction(defaultAction)
         self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
     }
-    
-    
+
     func goWorld(){
         let scene = WorldScene(fileNamed: "WorldScene")
         scene?.size = self.scene!.size
@@ -33,12 +31,10 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
         self.view!.presentScene(scene!, transition: .doorway(withDuration: Const.doorTransitionInterval))
     }
 
-    
     /***********************************************************************************/
     /********************************** music ******************************************/
     /***********************************************************************************/
     var _audioPlayer:AVAudioPlayer!
-    
     func prepareBGM(fileName : String){
         let bgm_path = NSURL(fileURLWithPath: Bundle.main.path(forResource: fileName, ofType: "mp3")!)
         var audioError:NSError?
@@ -54,7 +50,7 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
         _audioPlayer.delegate = self
         _audioPlayer.prepareToPlay()
     }
-    
+
     func playBGM(){
         if !gameData.bgmFlag {
             return
@@ -64,13 +60,13 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
             _audioPlayer.play()
         }
     }
-    
+
     func stopBGM(){
         if ( _audioPlayer.isPlaying ){
             _audioPlayer.stop()
         }
     }
-    
+
     var _audioSoundEffect1 : AVAudioPlayer!
     var _audioSoundEffect2 : AVAudioPlayer!
     var _audioSoundEffect3 : AVAudioPlayer!
@@ -97,7 +93,7 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
         _audioSoundEffect2.prepareToPlay()
         _audioSoundEffect3.prepareToPlay()
     }
-    
+
     func playSoundEffect(type: Int){
         if !gameData.soundEffectFlag {
             return
