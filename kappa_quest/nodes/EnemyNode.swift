@@ -80,7 +80,6 @@ class EnemyNode: SKSpriteNode {
 
     // ボス敵はステータス強化される
     func bossPowerUp(){
-        lv += 2
         maxHp *= 10
         hp *= 10
         str += lv
@@ -89,6 +88,7 @@ class EnemyNode: SKSpriteNode {
         int += lv
         pie += lv
         exp *= 5
+        lv += 2
     }
 
     // HP の割合を返す  32% ならば　32

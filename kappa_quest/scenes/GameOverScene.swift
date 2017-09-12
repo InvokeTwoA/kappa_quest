@@ -60,6 +60,8 @@ class GameOverScene: BaseScene {
             switch tapNode.name! {
             case "ContinueNode", "ContinueLabel":
                 goBack()
+            case "WorldNode", "WorldLabel":
+                goWorld()
             default:
                 break
             }

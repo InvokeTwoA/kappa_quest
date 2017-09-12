@@ -368,8 +368,8 @@
 			children = (
 				CEDBE7951F1CC469007E72B9 /* enemies.plist */,
 				CED621E91F41EE6C00C92480 /* map_tutorial.plist */,
-				CE31F9441F62964F00E868FB /* map_thief.plist */,
 				CE31F94A1F63C72000E868FB /* map_priest.plist */,
+				CE31F9441F62964F00E868FB /* map_thief.plist */,
 				CE31F9481F63BFE000E868FB /* map_necro.plist */,
 				CE31F9461F63BE5A00E868FB /* map_maou.plist */,
 				CE049FD61F2E0EED0079DEDB /* jobs.plist */,

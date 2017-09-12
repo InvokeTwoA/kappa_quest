@@ -10,6 +10,7 @@ class Map {
     var enemies : [String]!
     var treasures = Array(arrayLiteral: "", "", "", "", "", "", "", "")
     var treasureFlag = false
+    var treasureExplainFlag = false
 
     // 距離情報
     var distanceInt = 0
@@ -47,12 +48,17 @@ class Map {
             return
         }
         let map_info = mapData["\(key)"] as! NSDictionary
-        enemies     = map_info["enemies"] as! [String]
-        background  = map_info["background"] as! String
+        if map_info["enemies"] != nil {
+            enemies = map_info["enemies"] as! [String]
+        }
+        if map_info["background"] != nil {
+            background  = map_info["background"] as! String
+        }
         isEvent     = map_info["event"] as! Bool
         isBoss      = map_info["is_boss"] as! Bool
-        isRandom    = map_info["is_random"] as! Bool
-        
+        if map_info["is_random"] != nil {        
+            isRandom    = map_info["is_random"] as! Bool
+        }
         if isEvent {
             text0 = map_info["event_text0"] as! String
             text1 = map_info["event_text1"] as! String

@@ -17,7 +17,8 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     // Node
     var kappa : KappaNode!   // かっぱ画像
     private var kappa_first_position_y : CGFloat!
-
+    private var big_message_first_position_y : CGFloat!
+    
     // その他変数
     var world_name = "defo"
     var gameOverFlag = false
@@ -83,7 +84,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         map.myPosition = 1
         kappa?.position.x = getPositionX(1)
         kappa?.position.y = kappa_first_position_y
-        kappa?.texture = SKTexture(imageNamed: "kappa")
+        kappa?.texture = SKTexture(imageNamed: "kappa")        
     }
 
     func saveData(){
@@ -173,10 +174,13 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
 
             let treasure_key = map.treasures[map.myPosition]
             let point = CGPoint(x: getPositionX(map.myPosition), y: kappa_first_position_y + 100.0)
-            showBigMessage(text0: equipModel.getName(treasure_key), text1: equipModel.getExplain(treasure_key))
-            
-            if !ButtonNode.hasActions() {
-                ButtonNode.run(actionModel.moveButton)
+            displayText(equipModel.getName(treasure_key), position: point)
+            if !map.treasureExplainFlag {
+                map.treasureExplainFlag = true
+                showBigMessage(text0: equipModel.getName(treasure_key), text1: equipModel.getExplain(treasure_key))
+                if !ButtonNode.hasActions() {
+                    ButtonNode.run(actionModel.moveButton)
+                }
             }
         } else {
             ButtonNode.texture = SKTexture(imageNamed: "button_blue")
@@ -319,7 +323,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         map.positionData[pos] = "free"
         enemy.run(actionModel.displayExp!)
 
-        if !map.treasureFlag && BattleModel.isTreasure(luc: Double(kappa.luc)) {
+        if !map.treasureFlag && !map.isBoss && BattleModel.isTreasure(luc: Double(kappa.luc)) {
             map.treasureFlag = true
             createTreasure(pos: pos)
             map.positionData[pos] = "treasure"
@@ -466,6 +470,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         setFirstPosition()
         saveData()
 
+        prepareBGM(fileName: Const.bgm_fantasy)
         resetMessage()
         updateStatus()
         updateDistance()
@@ -828,6 +833,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         let scene = GameClearScene(fileNamed: "GameClearScene")!
         scene.size = self.scene!.size
         scene.scaleMode = SKSceneScaleMode.aspectFill
+        scene.world = world_name
         self.view!.presentScene(scene, transition: .doorsCloseHorizontal(withDuration: Const.gameOverInterval))
     }
 

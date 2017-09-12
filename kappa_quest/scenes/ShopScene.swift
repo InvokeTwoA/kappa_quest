@@ -8,13 +8,13 @@ class ShopScene: BaseScene {
     
     var jobModel : JobModel = JobModel()
     
+    private var jobNameList0 = ["murabito", "wizard", "priest", "thief", "fighter", "knight"]
     private var jobList : [String]!
 
     // node
     private var jobLvLabel : SKLabelNode?
     private var jobNameLabel : SKLabelNode?
     private var jobImage : SKSpriteNode!
-    private var graph : SKSpriteNode!
 
     private var jobImage0 : SKSpriteNode?
     private var jobImage1 : SKSpriteNode?
@@ -29,9 +29,7 @@ class ShopScene: BaseScene {
 
         jobLvLabel      = childNode(withName: "//JobLvLabel") as? SKLabelNode
         jobNameLabel    = childNode(withName: "//JobNameLabel") as? SKLabelNode
-        jobImage        = childNode(withName: "//JobImage") as? SKSpriteNode
-        graph           = childNode(withName: "//graph") as? SKSpriteNode
-        
+        jobImage        = childNode(withName: "//JobImage") as? SKSpriteNode        
         jobImage0       = childNode(withName: "//JobImage0") as? SKSpriteNode
         
         let skillText   = childNode(withName: "//skillText") as? SKLabelNode
@@ -44,22 +42,12 @@ class ShopScene: BaseScene {
     
     func setJobData(){
         if page == 0 {
-            jobList = jobModel.jobNameList0
+            jobList = jobNameList0
         }
 
-        let jobLvLabel0     = childNode(withName: "//JobLv0") as? SKLabelNode
-        let jobLvLabel1     = childNode(withName: "//JobLv1") as? SKLabelNode
-        let jobLvLabel2     = childNode(withName: "//JobLv2") as? SKLabelNode
-        let jobLvLabel3     = childNode(withName: "//JobLv3") as? SKLabelNode
-        let jobLvLabel4     = childNode(withName: "//JobLv4") as? SKLabelNode
-        let jobLvLabel5     = childNode(withName: "//JobLv5") as? SKLabelNode
-
-        jobLvLabel0?.text = "LV \(JobModel.getLV(jobList[0]))"
-        jobLvLabel1?.text = "LV \(JobModel.getLV(jobList[1]))"
-        jobLvLabel2?.text = "LV \(JobModel.getLV(jobList[2]))"
-        jobLvLabel3?.text = "LV \(JobModel.getLV(jobList[3]))"
-        jobLvLabel4?.text = "LV \(JobModel.getLV(jobList[4]))"
-        jobLvLabel5?.text = "LV \(JobModel.getLV(jobList[5]))"
+        for i in 0...5 {
+            displayJobInfo(pos: i, job: jobList[i])
+        }
         
         for (index, key) in jobList.enumerated() {
             if key == jobModel.name {
@@ -69,11 +57,61 @@ class ShopScene: BaseScene {
         setCurrentJobInfo()
     }
     
+    func displayJobInfo(pos : Int, job : String){
+        
+        let jobLvLabel  = childNode(withName: "//JobLv\(pos)") as! SKLabelNode
+        let jobImageNode = childNode(withName: "//JobImage\(pos)") as! SKSpriteNode
+
+        switch job {
+        case "murabito":
+            setJobInfo(pos: pos, job: job)
+        case "wizard":
+            if GameData.isClear("tutorial") {
+                setJobInfo(pos: pos, job: job)
+            } else {
+                setHatenaImage(pos: pos)
+            }
+        case "priest":
+            if GameData.isClear("priest") {
+                jobLvLabel.text = "LV \(JobModel.getLV(job))"
+                jobImageNode.texture = SKTexture(imageNamed: job)
+            } else {
+                setHatenaImage(pos: pos)
+            }
+        case "thief":
+            if GameData.isClear("thief") {
+                jobLvLabel.text = "LV \(JobModel.getLV(job))"
+                jobImageNode.texture = SKTexture(imageNamed: job)
+            } else {
+                setHatenaImage(pos: pos)
+            }
+
+        default:
+            setHatenaImage(pos: pos)
+            break
+        }
+    }
+    
+    func setJobInfo(pos : Int, job : String){
+        let jobLvLabel  = childNode(withName: "//JobLv\(pos)") as! SKLabelNode
+        let jobImageNode = childNode(withName: "//JobImage\(pos)") as! SKSpriteNode
+        jobLvLabel.text = "LV \(JobModel.getLV(job))"
+        jobImageNode.texture = SKTexture(imageNamed: job)
+    }
+    
+    func setHatenaImage(pos : Int){
+        let jobLvLabel  = childNode(withName: "//JobLv\(pos)") as! SKLabelNode
+        let jobImageNode = childNode(withName: "//JobImage\(pos)") as! SKSpriteNode
+        jobLvLabel.text = ""
+        jobImageNode.texture = SKTexture(imageNamed: "hatena")
+
+    }
+    
+    
     func setCurrentJobInfo(){
         jobLvLabel?.text = "LV  \(jobModel.lv)"
         jobNameLabel?.text = jobModel.displayName
         jobImage!.texture = SKTexture(imageNamed: jobModel.name)
-        graph!.texture = SKTexture(imageNamed: "graph_\(jobModel.name)")
     }
     
     func goBack(){
@@ -89,6 +127,7 @@ class ShopScene: BaseScene {
             preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "転職する", style: .default, handler: { action in
             self.jobModel.setData(self.jobList[position])
+            self.jobModel.saveParam()
             self.setCurrentJobInfo()
             self.changeBoxColor(position)
             

@@ -11,17 +11,17 @@
 		<key>skill</key>
 		<string>固有スキル：　なし</string>
 		<key>hp</key>
-		<integer>1</integer>
+		<integer>3</integer>
 		<key>str</key>
 		<integer>1</integer>
 		<key>def</key>
-		<integer>1</integer>
+		<integer>0</integer>
 		<key>agi</key>
-		<integer>1</integer>
+		<integer>0</integer>
 		<key>int</key>
-		<integer>1</integer>
+		<integer>0</integer>
 		<key>pie</key>
-		<integer>1</integer>
+		<integer>0</integer>
 		<key>luc</key>
 		<integer>1</integer>
 	</dict>

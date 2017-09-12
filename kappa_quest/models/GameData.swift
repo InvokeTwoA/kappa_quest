@@ -70,5 +70,15 @@ class GameData {
     class func isExistData() -> Bool {
         return UserDefaults.standard.object(forKey: "lv") != nil
     }
+    
+    class func clearFlag(_ key : String){
+        UserDefaults.standard.set(true,  forKey: "stage_\(key)_clear")
+    }
+    
+    class func isClear(_ key : String) -> Bool {
+        return UserDefaults.standard.object(forKey: "stage_\(key)_clear") != nil
+    }
+    
+
 
 }

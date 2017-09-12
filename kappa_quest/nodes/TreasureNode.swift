@@ -5,6 +5,7 @@ class TreasureNode: SKSpriteNode {
     
     var item_name = "shoes"
     var pos = 0
+    var explainFlag = false
     
     class func makeTreasure() -> TreasureNode {
         let treasure = TreasureNode(imageNamed: "treasure")

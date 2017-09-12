@@ -20,10 +20,6 @@ class JobModel {
     
     var explain = ""
     var skill_text = ""
-
-    // 転職用のデータ
-    var jobNameList0 = ["murabito", "fighter", "knight", "priest", "wizard", "thief"]
-    var page = 0
     
     // plist からデータを読み込む
     func readDataByPlist(){

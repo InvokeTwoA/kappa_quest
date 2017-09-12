@@ -17,6 +17,11 @@ class MenuScene: BaseScene {
             let optionNode     = childNode(withName: "//OptionNode") as! SKSpriteNode
             optionLabel.removeFromParent()
             optionNode.removeFromParent()
+            
+            let worldLabel     = childNode(withName: "//WorldLabel") as! SKLabelNode
+            let worldNode     = childNode(withName: "//WorldNode") as! SKSpriteNode
+            worldLabel.removeFromParent()
+            worldNode.removeFromParent()
         }
     }
     
@@ -46,13 +51,6 @@ class MenuScene: BaseScene {
         self.view!.presentScene(scene!, transition: .flipVertical(withDuration: Const.transitionInterval))
     }
     
-    func goTitle(){
-        let scene = TitleScene(fileNamed: "TitleScene")
-        scene?.size = self.scene!.size
-        scene?.scaleMode = SKSceneScaleMode.aspectFill
-        self.view!.presentScene(scene!, transition: .fade(withDuration: Const.transitionInterval))
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
             let positionInScene = t.location(in: self)
@@ -70,6 +68,8 @@ class MenuScene: BaseScene {
                 goOption()
             case "ResetNode", "ResetLabel":
                 goTitle()
+            case "WorldNode", "WorldLabel":
+                goWorld()
             default:
                 break
             }

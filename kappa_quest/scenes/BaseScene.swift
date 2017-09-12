@@ -24,11 +24,18 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
         self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
     }
 
+    func goTitle(){
+        let scene = TitleScene(fileNamed: "TitleScene")!
+        scene.size = self.scene!.size
+        scene.scaleMode = SKSceneScaleMode.aspectFill
+        self.view!.presentScene(scene, transition: .fade(withDuration: Const.transitionInterval))
+    }
+    
     func goWorld(){
-        let scene = WorldScene(fileNamed: "WorldScene")
-        scene?.size = self.scene!.size
-        scene?.scaleMode = SKSceneScaleMode.aspectFill
-        self.view!.presentScene(scene!, transition: .doorway(withDuration: Const.doorTransitionInterval))
+        let scene = WorldScene(fileNamed: "WorldScene")!
+        scene.size = self.scene!.size
+        scene.scaleMode = SKSceneScaleMode.aspectFill
+        self.view!.presentScene(scene, transition: .doorway(withDuration: Const.doorTransitionInterval))
     }
 
     /***********************************************************************************/
