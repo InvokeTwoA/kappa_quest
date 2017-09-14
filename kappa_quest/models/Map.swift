@@ -111,7 +111,6 @@ class Map {
     func isTreasure() -> Bool {
         return positionData[myPosition] == "treasure"
     }
-
     
     // 近くの敵の数を返す。敵がいなければ0を返す
     func nearEnemyPosition() -> Int {
@@ -122,7 +121,6 @@ class Map {
         }
         return Const.maxPosition
     }
-    
     
     // パラメーターを userDefault から読み取り
     func loadParameterByUserDefault(){
@@ -144,7 +142,6 @@ class Map {
         loadMapDataByDistance(distance)
         updatePositionData()
     }
-    
     
     // データ保存
     func saveParam(){
