@@ -1,8 +1,10 @@
+// カッパの画像クラス
 import Foundation
 import SpriteKit
 
 class KappaNode: SKSpriteNode {
 
+    // ステータス
     var lv = 1
     var job_lv = 1
     var maxHp = 10
@@ -22,6 +24,7 @@ class KappaNode: SKSpriteNode {
 
     // パラメーターを userDefault から読み取り
     func setParameterByUserDefault(){
+        // FIXME guard
         if UserDefaults.standard.object(forKey: "lv") == nil {
             return
         }
@@ -98,6 +101,12 @@ class KappaNode: SKSpriteNode {
     func walkLeft(){
         xScale = -1
         texture = SKTexture(imageNamed: "kappa")
+    }
+
+    // カッパ昇竜拳
+    func upper(){
+        xScale = 1
+        texture = SKTexture(imageNamed: "kappa_upper")
     }
 
     func dead(){

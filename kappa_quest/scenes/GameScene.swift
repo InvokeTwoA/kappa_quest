@@ -18,7 +18,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     var kappa : KappaNode!   // かっぱ画像
     private var kappa_first_position_y : CGFloat!
     private var big_message_first_position_y : CGFloat!
-    
+
     // その他変数
     var world_name = "defo"
     var gameOverFlag = false
@@ -442,7 +442,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     /***********************************************************************************/
     func isKonjo(_ pre_hp: Int) -> Bool {
         return gameData.konjoFlag && pre_hp >= 2 && kappa.hp <= 0 && CommonUtil.rnd(100) < kappa.luc
-      }
+    }
 
     /***********************************************************************************/
     /******************************* ゲームオーバー ************************************/
@@ -863,10 +863,8 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
 
     // 昇竜拳
     func specialAttackUpper(){
+        kappa.upper()
         specialAttackModel.execUpper()
-
-        kappa.xScale = 1
-        kappa.texture = SKTexture(imageNamed: "kappa_upper")
         let upper = SKAction.sequence([
             SKAction.moveBy(x: 60, y: 250, duration: Const.headAttackSpeed/2),
             SKAction.moveBy(x: 0, y: -250, duration: Const.headAttackSpeed/2),

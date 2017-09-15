@@ -1,31 +1,33 @@
 import Foundation
 
 class SpecialAttackModel {
-    
+
     var is_attacking = false  // スペシャル攻撃を実行中かどうか
     var mode = ""             // 何の技か
-    
+
     func finishAttack(){
         mode = ""
         is_attacking = false
     }
-    
+
     // 必殺技可能な状態か
     func isSpecial() -> Bool {
         return (superHeadCount == 5 || superUpperCount == 5)
     }
-    
+
     // 必殺技可能な技名を返す
     func specialName() -> String {
         if superHeadCount == 5 {
             return "head"
         } else if superUpperCount == 5 {
             return "upper"
-        } else{
+        } else if superTornadoCount == 5 {
+            return "tornado"
+        } else {
             return ""
         }
     }
-    
+
     /***********************************************************************************/
     /****************************** head attack ****************************************/
     /***********************************************************************************/
@@ -45,7 +47,7 @@ class SpecialAttackModel {
             }
         }
     }
-    
+
     func displayHeadCount() -> String {
         switch superHeadCount {
         case 0:
@@ -64,13 +66,13 @@ class SpecialAttackModel {
             return ""
         }
     }
-    
+
     func execHead(){
         superHeadCount = 0
         is_attacking = true
         mode = "head"
-    }    
-    
+    }
+
     /***********************************************************************************/
     /***************************** upper attack ****************************************/
     /***********************************************************************************/
@@ -90,7 +92,7 @@ class SpecialAttackModel {
             }
         }
     }
-    
+
     func displayUpperCount() -> String {
         switch superUpperCount {
         case 0:
@@ -109,11 +111,55 @@ class SpecialAttackModel {
             return ""
         }
     }
-    
+
     func execUpper(){
         superUpperCount = 0
         is_attacking = true
         mode = "upper"
     }
-    
+
+    /***********************************************************************************/
+    /***************************** tornado attack **************************************/
+    /***********************************************************************************/
+    private var superTornadoCount = 0  // 竜巻旋風脚の管理変数
+    func countUpTornadoAttack(direction : String) {
+        if direction == "right" {
+            if superTornadoCount == 1 || superTornadoCount == 3 {
+                superTornadoCount += 1
+            } else {
+                superTornadoCount = 0
+            }
+        } else if direction == "left" {
+            if superTornadoCount == 0 || superTornadoCount == 2 || superTornadoCount == 4 {
+                superTornadoCount += 1
+            } else {
+                superTornadoCount = 0
+            }
+        }
+    }
+
+    func displayTornadoCount() -> String {
+        switch superTornadoCount {
+        case 0:
+            return "← → ← → ←"
+        case 1:
+            return "⬅︎ → ← → ←"
+        case 2:
+            return "⬅︎ ➡︎ ← → ←"
+        case 3:
+            return "⬅︎ ➡︎ ⬅︎ → ←"
+        case 4:
+            return "⬅︎ ➡︎ ⬅︎ ➡︎ ←"
+        case 5:
+            return "⬅︎ ➡︎ ⬅︎ ➡︎ ⬅︎"
+        default:
+            return ""
+        }
+    }
+
+    func execTornado(){
+        superTornadoCount = 0
+        is_attacking = true
+        mode = "tornado"
+    }
 }

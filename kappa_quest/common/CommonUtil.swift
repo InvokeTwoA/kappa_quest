@@ -12,7 +12,7 @@ class CommonUtil {
         let rand = Int(arc4random_uniform(UInt32(max)))
         return rand
     }
-    
+
     // 最低値1の値を返す
     class func valueMin1(_ num : Int) -> Int {
         var value : Int!
@@ -23,7 +23,7 @@ class CommonUtil {
         }
         return value
     }
-    
+
     // rnd()を２回繰り返す
     // 低いキーの配列ほど出やすくなり、最後の方の配列は出にくくなる
     // 期待値は max の 1/4 か？
@@ -33,7 +33,7 @@ class CommonUtil {
         }
         return rnd(rnd(max))
     }
- 
+
     class func setTimeout(delay:TimeInterval, block:@escaping ()->Void) -> Timer {
         return Timer.scheduledTimer(timeInterval: delay, target: BlockOperation(block: block), selector: #selector(Operation.main), userInfo: nil, repeats: false)
     }

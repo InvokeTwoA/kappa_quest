@@ -1,3 +1,4 @@
+// 敵の図形クラス
 import Foundation
 import SpriteKit
 
@@ -24,11 +25,6 @@ class EnemyNode: SKSpriteNode {
     var isDead = true
     var isAttacking = false
 
-    // タイマー
-    var attackTimer = 100 // この数値が100になったら攻撃する
-    var fireTimer = 100   // この数値が100になったら炎攻撃をする
-    var jumpTimer = 0     // この数値が 7 の倍数の時、小さくジャンプする
-
     // その他変数
     var pos = 0
     var fire : FireEmitterNode!
@@ -39,6 +35,7 @@ class EnemyNode: SKSpriteNode {
         enemy.anchorPoint = CGPoint(x: 0.5, y: 0)     // 中央下がアンカーポイント
         enemy.zPosition = 2
         enemy.attackTimer = CommonUtil.rnd(100)
+        enemy.fireTimer = CommonUtil.rnd(100)
         enemy.isDead = false
         enemy.setPhysic()
         enemy.name = "enemy"
@@ -80,8 +77,8 @@ class EnemyNode: SKSpriteNode {
 
     // ボス敵はステータス強化される
     func bossPowerUp(){
-        maxHp *= 10
-        hp *= 10
+        maxHp *= 7
+        hp *= 7
         str += lv
         def += lv
         agi += lv
@@ -100,6 +97,10 @@ class EnemyNode: SKSpriteNode {
     /***********************************************************************************/
     /******************************** タイマー処理  ************************************/
     /***********************************************************************************/
+    var attackTimer = 100 // この数値が100になったら攻撃する
+    var fireTimer = 100   // この数値が100になったら炎攻撃をする
+    var jumpTimer = 0     // この数値が 7 の倍数の時、小さくジャンプする
+
     func timerUp(){
         attackTimer += timerRnd()
         if canFire {
@@ -154,16 +155,16 @@ class EnemyNode: SKSpriteNode {
         physic.collisionBitMask = Const.worldCategory
         physic.linearDamping = 0
         physic.friction = 0
-        self.physicsBody = physic
+        physicsBody = physic
     }
 
     // 撃破時の物理属性を適用
     func setBeatPhysic(){
-        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        physicsBody?.allowsRotation = true
+        anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        physicsBody.allowsRotation = true
 
         let yVector = CommonUtil.rnd(150)
-        physicsBody?.applyImpulse(CGVector(dx: 250, dy: yVector))
-        physicsBody?.applyTorque(Const.beatRotatePower)
+        physicsBody.applyImpulse(CGVector(dx: 250, dy: yVector))
+        physicsBody.applyTorque(Const.beatRotatePower)
     }
 }
