@@ -6,8 +6,6 @@ class ShopScene: BaseScene {
     var backScene : WorldScene!
     var page = 0
     
-    var jobModel : JobModel = JobModel()
-    
     private var jobNameList0 = ["murabito", "wizard", "priest", "thief", "fighter", "knight"]
     private var jobList : [String]!
 

@@ -161,10 +161,10 @@ class EnemyNode: SKSpriteNode {
     // 撃破時の物理属性を適用
     func setBeatPhysic(){
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        physicsBody.allowsRotation = true
+        physicsBody?.allowsRotation = true
 
         let yVector = CommonUtil.rnd(150)
-        physicsBody.applyImpulse(CGVector(dx: 250, dy: yVector))
-        physicsBody.applyTorque(Const.beatRotatePower)
+        physicsBody?.applyImpulse(CGVector(dx: 250, dy: yVector))
+        physicsBody?.applyTorque(Const.beatRotatePower)
     }
 }

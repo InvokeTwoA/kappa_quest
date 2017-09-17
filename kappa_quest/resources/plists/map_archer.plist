@@ -5,9 +5,9 @@
 	<key>0.0</key>
 	<dict>
 		<key>background</key>
-		<string>bg_sabaku</string>
+		<string>bg_forest</string>
 		<key>lv</key>
-		<integer>3</integer>
+		<integer>4</integer>
 		<key>enemies</key>
 		<array/>
 		<key>is_boss</key>
@@ -17,18 +17,17 @@
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>
-		<string>まさに世紀末だ。</string>
+		<string>獣たちの殺気を感じる。</string>
 		<key>event_text1</key>
-		<string>この無法地帯で頼れるのは力のみ。</string>
+		<string></string>
 	</dict>
 	<key>0.1</key>
 	<dict>
-		<key>background</key>
-		<string>bg_sabaku</string>
 		<key>enemies</key>
 		<array>
 			<string>buffalo</string>
-			<string>arakure</string>
+			<string>usagi</string>
+			<string>tokage</string>
 			<string>chibidora</string>
 		</array>
 		<key>is_boss</key>
@@ -38,14 +37,10 @@
 		<key>event</key>
 		<false/>
 	</dict>
-	<key>0.7</key>
+	<key>0.5</key>
 	<dict>
-		<key>background</key>
-		<string>bg_sabaku</string>
 		<key>is_boss</key>
 		<false/>
-		<key>is_random</key>
-		<true/>
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>
@@ -55,14 +50,12 @@
 	</dict>
 	<key>0.8</key>
 	<dict>
-		<key>background</key>
-		<string>bg_sabaku</string>
 		<key>enemies</key>
 		<array>
-			<string>arakure</string>
-			<string>arakure</string>
-			<string>arakure</string>
-			<string>thief</string>
+			<string>buffalo</string>
+			<string>usagi</string>
+			<string>tokage</string>
+			<string>archer</string>
 		</array>
 		<key>is_boss</key>
 		<true/>
@@ -71,11 +64,11 @@
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>
-		<string>「ヘッヘッヘ。</string>
+		<string>「カッパごときに何ができる！？」</string>
 		<key>event_text1</key>
-		<string>　金を置いてきな」</string>
+		<string></string>
 		<key>boss_word0</key>
-		<string>「ヒェー。お許しをー」</string>
+		<string>「さすがカッパさん……」</string>
 		<key>boss_word1</key>
 		<string></string>
 	</dict>

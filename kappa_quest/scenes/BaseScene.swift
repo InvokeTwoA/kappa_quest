@@ -8,6 +8,9 @@ import AVFoundation
 class BaseScene: SKScene, AVAudioPlayerDelegate {
 
     var gameData : GameData = GameData()
+    var jobModel : JobModel = JobModel()
+
+    
     override func didMove(to view: SKView) {
         gameData.setParameterByUserDefault()
     }

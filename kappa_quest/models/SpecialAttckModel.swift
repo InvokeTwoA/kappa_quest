@@ -12,7 +12,7 @@ class SpecialAttackModel {
 
     // 必殺技可能な状態か
     func isSpecial() -> Bool {
-        return (superHeadCount == 5 || superUpperCount == 5)
+        return (superHeadCount == 5 || superUpperCount == 5 || superTornadoCount == 5)
     }
 
     // 必殺技可能な技名を返す
@@ -26,6 +26,13 @@ class SpecialAttackModel {
         } else {
             return ""
         }
+    }
+    
+    
+    func countUp(direction : String) {
+        countUpHeadAttack(direction: direction)
+        countUpUpperAttack(direction: direction)
+        countUpTornadoAttack(direction: direction)
     }
 
     /***********************************************************************************/
@@ -43,7 +50,7 @@ class SpecialAttackModel {
             if superHeadCount == 0 || superHeadCount == 1 || superHeadCount == 3 {
                 superHeadCount += 1
             } else {
-                superHeadCount = 0
+                superHeadCount = 1
             }
         }
     }
@@ -88,7 +95,7 @@ class SpecialAttackModel {
             if superUpperCount == 0 || superUpperCount == 2 || superUpperCount == 4 {
                 superUpperCount += 1
             } else {
-                superUpperCount = 0
+                superUpperCount = 1
             }
         }
     }
@@ -124,16 +131,16 @@ class SpecialAttackModel {
     private var superTornadoCount = 0  // 竜巻旋風脚の管理変数
     func countUpTornadoAttack(direction : String) {
         if direction == "right" {
-            if superTornadoCount == 1 || superTornadoCount == 3 {
+            if superTornadoCount == 1 || superTornadoCount == 2 || superTornadoCount == 3 {
                 superTornadoCount += 1
             } else {
                 superTornadoCount = 0
             }
         } else if direction == "left" {
-            if superTornadoCount == 0 || superTornadoCount == 2 || superTornadoCount == 4 {
+            if superTornadoCount == 0 || superTornadoCount == 4 {
                 superTornadoCount += 1
             } else {
-                superTornadoCount = 0
+                superTornadoCount = 1
             }
         }
     }
@@ -141,17 +148,17 @@ class SpecialAttackModel {
     func displayTornadoCount() -> String {
         switch superTornadoCount {
         case 0:
-            return "← → ← → ←"
+            return "← → → → ←"
         case 1:
-            return "⬅︎ → ← → ←"
+            return "⬅︎ → → → ←"
         case 2:
-            return "⬅︎ ➡︎ ← → ←"
+            return "⬅︎ ➡︎ → → ←"
         case 3:
-            return "⬅︎ ➡︎ ⬅︎ → ←"
+            return "⬅︎ ➡︎ ➡︎ → ←"
         case 4:
-            return "⬅︎ ➡︎ ⬅︎ ➡︎ ←"
+            return "⬅︎ ➡︎ ➡︎ ➡︎ ←"
         case 5:
-            return "⬅︎ ➡︎ ⬅︎ ➡︎ ⬅︎"
+            return "⬅︎ ➡︎ ➡︎ ➡︎ ⬅︎"
         default:
             return ""
         }

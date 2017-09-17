@@ -14,9 +14,7 @@ class Map {
 
     // 距離情報
     var distanceInt = 0
-    var maxDistanceInt = 0
     var distance = 0.0
-    var maxDistance = 0.0
 
     // 地図情報
     var lv = 1
@@ -102,9 +100,6 @@ class Map {
     func goNextMap(){
         distance += 0.1
         treasureFlag = false
-        if distance > maxDistance {
-            maxDistance = distance
-        }
         saveParam()
     }
     
@@ -128,10 +123,7 @@ class Map {
             return
         }
         distanceInt     = UserDefaults.standard.integer(forKey: "distance")
-        maxDistanceInt  = UserDefaults.standard.integer(forKey: "maxDistance")
-        
         distance        = Double(distanceInt)/10.0
-        maxDistance     = Double(maxDistanceInt)/10.0
     }
     
     // リセットデータ（主にゲームオーバー時）
@@ -146,8 +138,6 @@ class Map {
     // データ保存
     func saveParam(){
         distanceInt = Int(distance*10)
-        maxDistanceInt = Int(maxDistance*10)
         UserDefaults.standard.set(distanceInt,  forKey: "distance")
-        UserDefaults.standard.set(distanceInt,  forKey: "maxDistance")
     }
 }

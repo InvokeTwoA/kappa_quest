@@ -229,6 +229,31 @@
 		<key>type</key>
 		<string>human</string>
 	</dict>
+	<key>archer</key>
+	<dict>
+		<key>name</key>
+		<string>弓使い</string>
+		<key>hp</key>
+		<integer>10</integer>
+		<key>str</key>
+		<integer>5</integer>
+		<key>def</key>
+		<integer>5</integer>
+		<key>agi</key>
+		<integer>5</integer>
+		<key>int</key>
+		<integer>5</integer>
+		<key>pie</key>
+		<integer>5</integer>
+		<key>range</key>
+		<integer>2</integer>
+		<key>canFire</key>
+		<true/>
+		<key>exp</key>
+		<integer>5</integer>
+		<key>type</key>
+		<string>human</string>
+	</dict>
 	<key>skelton</key>
 	<dict>
 		<key>name</key>

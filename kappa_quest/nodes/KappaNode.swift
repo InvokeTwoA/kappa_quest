@@ -19,8 +19,9 @@ class KappaNode: SKSpriteNode {
 
     var mode = ""
 
-    // 根性フラグ
-    let konjoFlag = false
+    // フラグ
+    var konjoFlag = false
+    var isTornado = false
 
     // パラメーターを userDefault から読み取り
     func setParameterByUserDefault(){
@@ -54,6 +55,10 @@ class KappaNode: SKSpriteNode {
         luc += jobModel.luc
         setNextExp(jobModel)
     }
+    
+    func heal(){
+        hp = maxHp
+    }
 
     func setNextExp(_ jobModel : JobModel){
         nextExp = lv + jobModel.lv*10
@@ -84,13 +89,14 @@ class KappaNode: SKSpriteNode {
         physic.friction = 0
         self.physicsBody = physic
     }
-
+    
     // カッパの華麗なる攻撃
     // 画像をランダムに変更
     func attack(){
         let images = ["kappa_punch", "kappa_upper", "kappa_kick", "kappa_body", "kappa_punch_r", "kappa_flying"]
         let image = images[CommonUtil.rnd(images.count)]
         texture = SKTexture(imageNamed: image)
+        setPhysic()
     }
 
     func walkRight(){
@@ -102,6 +108,13 @@ class KappaNode: SKSpriteNode {
         xScale = -1
         texture = SKTexture(imageNamed: "kappa")
     }
+    
+    // カッパ頭突き
+    func head(){
+        xScale = 1
+        zRotation = CGFloat(-90.0  / 180.0 * .pi)
+    }
+    
 
     // カッパ昇竜拳
     func upper(){
@@ -109,7 +122,14 @@ class KappaNode: SKSpriteNode {
         texture = SKTexture(imageNamed: "kappa_upper")
     }
 
+    // カッパ竜巻旋風脚
+    func tornado(){
+        texture = SKTexture(imageNamed: "kappa_kick")
+        isTornado = true
+    }
+
     func dead(){
         texture = SKTexture(imageNamed: "kappa_dead")
     }
+    
 }

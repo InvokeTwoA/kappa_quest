@@ -7,7 +7,7 @@ class JobModel {
     
     var name = "murabito"
     var displayName = "村人"
-    var lv = 0
+    var lv = 1
     
     // その職業の成長率
     var hp = 0
@@ -54,7 +54,7 @@ class JobModel {
     func loadParam(){
         if UserDefaults.standard.object(forKey: "job") == nil {
             name = "murabito"
-            lv = 0
+            lv = 1
         } else {
             name = UserDefaults.standard.string(forKey: "job")!
             lv  = UserDefaults.standard.integer(forKey: "\(name)_lv")
