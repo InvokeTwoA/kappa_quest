@@ -42,7 +42,7 @@
 		<key>event_text1</key>
 		<string></string>
 	</dict>
-	<key>0.8</key>
+	<key>0.6</key>
 	<dict>
 		<key>enemies</key>
 		<array>
@@ -65,6 +65,8 @@
 		<string>「さすがカッパさん……」</string>
 		<key>boss_word1</key>
 		<string></string>
+		<key>clear_word</key>
+		<string>森の動物がフレンズになった！</string>
 	</dict>
 </dict>
 </plist>

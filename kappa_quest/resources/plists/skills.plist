@@ -12,6 +12,10 @@
 	<string>[カッパヒール  LV(lv)]
 (tap)タップごとにHPが(lv)回復する。
 回復量は僧侶LVに等しい。  </string>
+	<key>necro</key>
+	<string>[生命奪取 LV(lv)]
+敵撃破時にHPが(lv)回復する。
+回復量はネクロマンサーLVに等しい。  </string>
 	<key>konjo</key>
 	<string>[ど根性かっぱ]
 死ぬダメージを受けても稀にHP１で生き残る。 （HPが2以上の時に攻撃を受けて発動。幸運が高いほど発生確率は高まる）  </string>

@@ -13,8 +13,11 @@ class WorldScene: BaseScene {
         "necro",
         "maou"
     ]
+    
+    private let worldModel : WorldModel = WorldModel()
 
     override func sceneDidLoad() {
+        worldModel.readDataByPlist()
         gameData.setParameterByUserDefault()
     }
     
@@ -23,18 +26,36 @@ class WorldScene: BaseScene {
             let node = childNode(withName: "//tutorial2")
             node?.removeFromParent()
         }
-        if !GameData.isClear("tutoria2") {
+        if !GameData.isClear("tutorial2") {
             let node1 = childNode(withName: "//thief")
             let node2 = childNode(withName: "//priest")
             let node3 = childNode(withName: "//archer")
-
             node1?.removeFromParent()
             node2?.removeFromParent()
             node3?.removeFromParent()
         }
-        
-        
+        if !GameData.isClear("priest") && !GameData.isClear("thief") && !GameData.isClear("archer") {
+            let node = childNode(withName: "//necro")
+            node?.removeFromParent()
+        }
+        if !GameData.isClear("necro") {
+            let node = childNode(withName: "//maou")
+            node?.removeFromParent()
+        }
     }
+    
+    func explainDungeon(_ key: String){
+        let alert = UIAlertController(
+            title: worldModel.getName(key),
+            message: worldModel.getExplain(key),
+            preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "準備はできている！", style: .default, handler: { action in
+            self.goDungeon(key)
+        }))
+        alert.addAction(UIAlertAction(title: "……今は引き返す", style: .cancel))
+        self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
+    }
+    
     
     func goDungeon(_ key : String){
         let map = Map()
@@ -84,7 +105,7 @@ class WorldScene: BaseScene {
                 return
             }
             if map_nodes.contains(tapNode.name!) {
-                goDungeon(tapNode.name!)
+                explainDungeon(tapNode.name!)
             } else if tapNode.name! == "ShopLabel" || tapNode.name == "ShopNode" {
                 goShop()
             } else if tapNode.name! == "MenuLabel" || tapNode.name == "MenuNode" {

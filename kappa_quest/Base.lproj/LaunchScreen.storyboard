@@ -43,7 +43,7 @@
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="angel" translatesAutoresizingMaskIntoConstraints="NO" id="B90-ja-vGL">
-                                <rect key="frame" x="286" y="204" width="64" height="64"/>
+                                <rect key="frame" x="291" y="110" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="buffalo" translatesAutoresizingMaskIntoConstraints="NO" id="5sl-wD-Yar">
@@ -110,10 +110,10 @@
                                 <rect key="frame" x="206" y="201" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NOW LOADING" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hi1-xl-GSE">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NOW LOADING" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hi1-xl-GSE">
                                 <rect key="frame" x="7" y="42" width="362" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="PixelMplus12-Regular" family="PixelMplus12" pointSize="64"/>
+                                <fontDescription key="fontDescription" name="PixelMplus12-Regular" family="PixelMplus12" pointSize="39"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -127,6 +127,10 @@
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="arakure" translatesAutoresizingMaskIntoConstraints="NO" id="cwD-5f-oak">
                                 <rect key="frame" x="0.0" y="441" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="necro" translatesAutoresizingMaskIntoConstraints="NO" id="Mo9-fj-4v5">
+                                <rect key="frame" x="287" y="201" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                         </subviews>
@@ -155,6 +159,7 @@
         <image name="maou" width="64" height="64"/>
         <image name="miira" width="64" height="64"/>
         <image name="miyuki" width="64" height="64"/>
+        <image name="necro" width="64" height="64"/>
         <image name="priest" width="64" height="64"/>
         <image name="samurai" width="64" height="64"/>
         <image name="skelton" width="64" height="64"/>

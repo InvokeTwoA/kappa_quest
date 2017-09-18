@@ -20,7 +20,7 @@ class GameClearScene: BaseScene {
         clear2Label.text = clearWord
 
         switch world {
-        case "tutorial", "tutorial2", "thief", "priest":
+        case "tutorial", "tutorial2", "thief", "priest", "necro":
             GameData.clearCountUp(world)
             break
         default:

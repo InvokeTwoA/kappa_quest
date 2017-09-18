@@ -18,6 +18,7 @@ class Map {
 
     // 地図情報
     var lv = 1
+    var world = ""
     var mapData = NSDictionary()
     var background = "bg_green"
     var isEvent : Bool = false
@@ -35,8 +36,8 @@ class Map {
         saveParam()
     }
     
-    func readDataByPlist(_ key : String){
-        let map_name = "map_\(key)"
+    func readDataByPlist(){
+        let map_name = "map_\(world)"
         let mapDataPath = Bundle.main.path(forResource: map_name, ofType:"plist" )!
         mapData = NSDictionary(contentsOfFile: mapDataPath)!
     }
@@ -62,6 +63,8 @@ class Map {
             boss_text1 = map_info["boss_word1"] as! String
             
             clear_word = map_info["clear_word"] as! String
+        } else {
+            isBoss = false
         }
         if map_info["is_random"] != nil {
             isRandom    = map_info["is_random"] as! Bool
@@ -104,7 +107,12 @@ class Map {
     
     func goNextMap(){
         distance += 0.1
-        treasureFlag = false
+        if world == "tutorial" || world == "tutorial2" {
+            treasureFlag = true
+        } else {
+            treasureFlag = false
+        }
+
         saveParam()
     }
     

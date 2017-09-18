@@ -44,6 +44,12 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         actionModel.setActionData(sceneWidth: self.size.width)
         createKappa()
         setHealVal()
+        skillJudge()
+        
+        let longLabel = childNode(withName: "//longMessageLabel") as! SKLabelNode
+        let longNode = childNode(withName: "//longMessageNode") as! SKSpriteNode
+        longLabel.isHidden = true
+        longNode.isHidden = true
 
         // 音楽関係の処理
         prepareBGM(fileName: Const.bgm_fantasy)
@@ -62,7 +68,8 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         if isSceneDidMoved {
             return
         }
-        map.readDataByPlist(world_name)
+        map.world = world_name
+        map.readDataByPlist()
         map.loadParameterByUserDefault()
         createMap()
 
@@ -352,6 +359,12 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                 self.stageClear()
             })
         }
+        
+        if necro_heal > 0 {
+            kappa.hp += necro_heal
+            displayDamage(value: heal_val, point: kappa.position, color: .green, direction: "up")
+            updateStatus()
+        }
     }
 
     func getExp(_ get_exp: Int, point: CGPoint){
@@ -458,11 +471,14 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     /***********************************************************************************/
     /******************************* スキル判定     ************************************/
     /***********************************************************************************/
-    
+    var necro_heal = 0
     func skillJudge(){
         if gameData.konjoFlag {
             skillModel.konjoFlag = true
         }
+        
+        let necro_lv = JobModel.getLV("necro")
+        necro_heal = necro_lv
     }
     
 
@@ -508,6 +524,27 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         life_bar_yellow.size.width = Const.lifeBarWidth*life_percentage
     }
 
+    /***********************************************************************************/
+    /******************************** ターゲットマークを描画  ******************************/
+    /***********************************************************************************/
+    func createThunder(pos : Int, damage: Int){
+        let target = SKSpriteNode(imageNamed: "target")
+        target.position.x = getPositionX(pos)
+        target.position.y = kappa_first_position_y
+        target.anchorPoint = CGPoint(x: 0.5, y: 0)     // 中央下がアンカーポイント
+        target.zPosition = 99
+        addChild(target)
+        
+        target.run(SKAction.fadeOut(withDuration: 1.5), completion: {() -> Void in
+            let thunder = ThunderEmitterNode.makeThunder()
+            thunder.position.x = self.getPositionX(pos)
+            thunder.position.y = 1000
+            thunder.damage = damage
+            self.addChild(thunder)
+        })
+    }
+
+    
     /***********************************************************************************/
     /******************************** 宝を描画  ****************************************/
     /***********************************************************************************/
@@ -1043,7 +1080,14 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                 attacked(attack: fire.damage, type: "magick", point: (firstBody.node?.position)!)
                 makeSpark(point: (secondBody.node?.position)!)
                 secondBody.node?.removeFromParent()
-                
+
+                // 雷との衝突判定
+            } else if secondBody.categoryBitMask & Const.thunderCategory != 0 {
+                let thunder = secondBody.node as! ThunderEmitterNode
+                attacked(attack: thunder.damage, type: "magick", point: (firstBody.node?.position)!)
+                makeSpark(point: (secondBody.node?.position)!)
+                secondBody.node?.removeFromParent()
+
                 // 敵との衝突判定
             } else if secondBody.categoryBitMask & Const.enemyCategory != 0 {
                 let enemy = secondBody.node as! EnemyNode
@@ -1072,7 +1116,6 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                 }
             }
         }
-        
     }
     
     func isFirstBodyKappa(_ firstBody : SKPhysicsBody) -> Bool {
@@ -1131,9 +1174,29 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                 self.addChild(enemy.fire)
                 enemy.fire.shot()
                 enemy.fireTimerReset()
+            } else if enemy.isThunder() {
+                createThunder(pos: enemy.pos - 1, damage: enemy.int)
+                createThunder(pos: enemy.pos - 2, damage: enemy.int)
+                createThunder(pos: enemy.pos - 3, damage: enemy.int)
+                enemy.thunderTimerReset()
+            } else if enemy.isArrow() {
+                if CommonUtil.rnd(2) == 0 {
+                    createThunder(pos: 2, damage: enemy.int)
+                    createThunder(pos: 4, damage: enemy.int)
+                } else {
+                    createThunder(pos: 1, damage: enemy.int)
+                    createThunder(pos: 3, damage: enemy.int)
+                    createThunder(pos: 5, damage: enemy.int)
+                }
+                enemy.arrowTimerReset()
             } else if enemy.jumpTimer%4 == 0 {
                 enemy.run(actionModel.enemyMiniJump!)
                 enemy.jumpTimerReset()
+            }
+            
+            if enemy.heal != 0 {
+                enemy.healHP(enemy.heal)
+                changeEnemyLifeBar(enemy.pos, per: enemy.hp_per())
             }
         }
 

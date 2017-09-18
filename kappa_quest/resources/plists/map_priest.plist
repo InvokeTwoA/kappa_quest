@@ -72,6 +72,8 @@
 		<string>「神さま……」</string>
 		<key>boss_word1</key>
 		<string></string>
+		<key>clear_word</key>
+		<string>彼らは信じるべき神を間違えた。</string>
 	</dict>
 </dict>
 </plist>

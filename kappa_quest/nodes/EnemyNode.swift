@@ -15,11 +15,14 @@ class EnemyNode: SKSpriteNode {
     var int = 1
     var exp = 1
     var displayName = "敵"
+    var heal = 0
     var range = 1.0     // 物理攻撃の距離
 
     // 特殊能力
     var canFire = false
     var canFly = false   // 飛行
+    var canThunder = false
+    var canArrow  = false
 
     // 各種フラグ
     var isDead = true
@@ -34,8 +37,10 @@ class EnemyNode: SKSpriteNode {
         enemy.size = CGSize(width: Const.enemySize, height: Const.enemySize)
         enemy.anchorPoint = CGPoint(x: 0.5, y: 0)     // 中央下がアンカーポイント
         enemy.zPosition = 2
-        enemy.attackTimer = CommonUtil.rnd(100)
-        enemy.fireTimer = CommonUtil.rnd(100)
+        enemy.attackTimer   = CommonUtil.rnd(100)
+        enemy.fireTimer     = CommonUtil.rnd(100)
+        enemy.thunderTimer  = CommonUtil.rnd(100)
+        enemy.arrowTimer    = CommonUtil.rnd(100)
         enemy.isDead = false
         enemy.setPhysic()
         enemy.name = "enemy"
@@ -63,6 +68,16 @@ class EnemyNode: SKSpriteNode {
         range   = Double(dictionary.object(forKey: "range") as! CGFloat)
         canFire = dictionary.object(forKey: "canFire") as! Bool
 
+        if dictionary["canThunder"] != nil {
+            canThunder = dictionary.object(forKey: "canThunder") as! Bool
+        }
+        if dictionary["canArrow"] != nil {
+            canArrow = dictionary.object(forKey: "canArrow") as! Bool
+        }
+        if dictionary["heal"] != nil {
+            heal = dictionary.object(forKey: "heal") as! Int
+        }
+        
         // LVの分だけ強さをかける
         lv = set_lv
         maxHp *= lv
@@ -74,6 +89,14 @@ class EnemyNode: SKSpriteNode {
         pie *= lv
         exp += lv
     }
+    
+    func healHP(_ heal : Int){
+        hp += heal
+        if hp > maxHp {
+            hp = maxHp
+        }
+    }
+    
 
     // ボス敵はステータス強化される
     func bossPowerUp(){
@@ -103,6 +126,8 @@ class EnemyNode: SKSpriteNode {
     /***********************************************************************************/
     var attackTimer = 100 // この数値が100になったら攻撃する
     var fireTimer = 100   // この数値が100になったら炎攻撃をする
+    var thunderTimer = 100
+    var arrowTimer = 100
     var jumpTimer = 0     // この数値が 7 の倍数の時、小さくジャンプする
 
     func timerUp(){
@@ -110,6 +135,13 @@ class EnemyNode: SKSpriteNode {
         if canFire {
             fireTimer += timerRnd()
         }
+        if canThunder {
+            thunderTimer += timerRnd()
+        }
+        if canArrow {
+            arrowTimer += timerRnd()
+        }
+        
         jumpTimer += CommonUtil.rnd(3)
     }
 
@@ -129,6 +161,15 @@ class EnemyNode: SKSpriteNode {
         return canFire && fireTimer > 100
     }
 
+    func isThunder() -> Bool {
+        return canThunder && thunderTimer > 100
+    }
+
+    func isArrow() -> Bool {
+        return canArrow && arrowTimer > 100
+    }
+
+    
     func attackTimerReset(){
         if attackTimer >= 100 {
             attackTimer -= 100
@@ -147,8 +188,20 @@ class EnemyNode: SKSpriteNode {
         }
     }
 
+    func thunderTimerReset(){
+        if thunderTimer >= 100 {
+            thunderTimer = 0
+        }
+    }
+
+    func arrowTimerReset(){
+        if arrowTimer >= 100 {
+            arrowTimer = 0
+        }
+    }
+
     /***********************************************************************************/
-    /******************************** 物理属性      ************************************/
+    /******************************** 物理属性      **************************************/
     /***********************************************************************************/
     func setPhysic(){
         let physic = SKPhysicsBody(rectangleOf: CGSize(width: Const.kappaSize, height: Const.kappaSize))

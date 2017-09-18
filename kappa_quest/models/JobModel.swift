@@ -92,6 +92,13 @@ class JobModel {
             replaceString = replaceString.replacingOccurrences(of: "(tap)", with: "\(Const.tapHealCount)")
             res += replaceString
         }
+        let necro_lv = getLV("necro")
+        if necro_lv >= 1 {
+            let text = skillModel.getExplain("necro")
+            res += text.replacingOccurrences(of: "(lv)", with: "\(necro_lv)")
+        }
+        
+        
         
         return res
     }

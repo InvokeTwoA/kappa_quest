@@ -6,7 +6,10 @@ class ShopScene: BaseScene {
     var backScene : WorldScene!
     var page = 0
     
-    private var jobNameList0 = ["murabito", "wizard", "priest", "thief", "fighter", "knight"]
+    private var jobNameList0 = ["murabito", "wizard", "knight", "priest", "thief", "fighter"]
+    private var jobNameList1 = ["necro", "", "", "", "", ""]
+    private var enableJob : [Bool] = [true,false,false,false,false,false,false]
+    
     private var jobList : [String]!
 
     // node
@@ -41,6 +44,8 @@ class ShopScene: BaseScene {
     func setJobData(){
         if page == 0 {
             jobList = jobNameList0
+        } else if page == 1 {
+            jobList = jobNameList1
         }
 
         for i in 0...5 {
@@ -66,24 +71,27 @@ class ShopScene: BaseScene {
         case "wizard":
             if GameData.isClear("tutorial") {
                 setJobInfo(pos: pos, job: job)
+                enableJob[pos] = true
             } else {
                 setHatenaImage(pos: pos)
+                enableJob[pos] = false
             }
-        case "priest":
-            if GameData.isClear("priest") {
+        case "knight":
+            if GameData.isClear("tutorial2") {
                 jobLvLabel.text = "LV \(JobModel.getLV(job))"
                 jobImageNode.texture = SKTexture(imageNamed: job)
+                enableJob[pos] = true
             } else {
                 setHatenaImage(pos: pos)
+                enableJob[pos] = false
             }
-        case "thief":
-            if GameData.isClear("thief") {
-                jobLvLabel.text = "LV \(JobModel.getLV(job))"
-                jobImageNode.texture = SKTexture(imageNamed: job)
+        case "priest", "thief", "archer", "necro":
+            if GameData.isClear(job) {
+                enableJob[pos] = true
             } else {
                 setHatenaImage(pos: pos)
+                enableJob[pos] = false
             }
-
         default:
             setHatenaImage(pos: pos)
             break
@@ -116,8 +124,24 @@ class ShopScene: BaseScene {
         self.view!.presentScene(backScene, transition: .doorway(withDuration: 2.0))
     }
     
+    func goNextPage(){
+        page += 1
+    
+        let nextLabel  = childNode(withName: "//nextLabel") as? SKLabelNode
+        let nextNode = childNode(withName: "//nextNode") as? SKSpriteNode
+        nextLabel?.isHidden = true
+        nextNode?.isHidden = true
+        
+        setJobData()
+        changeBoxColor(7)
+    }
+    
     func changeJob(_ position: Int) {
         let selected_job = jobList[position]
+        if selected_job == "" || !enableJob[position] {
+            return
+        }
+        
         
         let alert = UIAlertController(
             title: jobModel.getDisplayName(key: selected_job),
@@ -128,7 +152,6 @@ class ShopScene: BaseScene {
             self.jobModel.saveParam()
             self.setCurrentJobInfo()
             self.changeBoxColor(position)
-            
             let kappa = KappaNode()
             kappa.setNextExp(self.jobModel)
         }))
@@ -142,9 +165,13 @@ class ShopScene: BaseScene {
             box?.fillColor = .white
         }
         
-        let box = self.childNode(withName: "//Job\(position)") as? SKShapeNode
-        box?.fillColor = .green
+        if position != 7 {
+            let box = self.childNode(withName: "//Job\(position)") as? SKShapeNode
+            box?.fillColor = .green
+        }
     }
+
+
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
@@ -158,6 +185,8 @@ class ShopScene: BaseScene {
             switch tapNode.name! {
             case "CloseNode", "CloseLabel":
                 goBack()
+            case "nextNode", "nextLabel":
+                goNextPage()
             case "Job0", "JobLv0", "JobImage0":
                 changeJob(0)
             case "Job1", "JobLv1", "JobImage1":

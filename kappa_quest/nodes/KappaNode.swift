@@ -86,7 +86,7 @@ class KappaNode: SKSpriteNode {
         physic.allowsRotation = false
         physic.isDynamic = false
         physic.categoryBitMask = Const.kappaCategory
-        physic.contactTestBitMask = Const.fireCategory | Const.enemyCategory
+        physic.contactTestBitMask = Const.fireCategory | Const.enemyCategory | Const.thunderCategory
         physic.collisionBitMask = 0
         physic.linearDamping = 0
         physic.friction = 0

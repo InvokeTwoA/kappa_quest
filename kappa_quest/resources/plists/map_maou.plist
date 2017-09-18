@@ -6,6 +6,8 @@
 	<dict>
 		<key>background</key>
 		<string>bg_makai</string>
+		<key>lv</key>
+		<integer>10</integer>
 		<key>enemies</key>
 		<array/>
 		<key>event</key>
@@ -13,21 +15,31 @@
 		<key>event_text0</key>
 		<string>決戦の時は近い……。</string>
 		<key>event_text1</key>
-		<string>悪夢を終わらせる時が来た。</string>
+		<string>悪夢を終わらせる時が来た！</string>
 	</dict>
 	<key>0.1</key>
 	<dict>
 		<key>enemies</key>
 		<array>
 			<string>angel</string>
-			<string>maou</string>
+			<string>zombi</string>
+			<string>dark_kappa</string>
 		</array>
 		<key>is_random</key>
 		<true/>
 		<key>event</key>
 		<false/>
 	</dict>
-	<key>0.8</key>
+	<key>0.4</key>
+	<dict>
+		<key>event</key>
+		<true/>
+		<key>event_text0</key>
+		<string>この先に……魔王がいる。</string>
+		<key>event_text1</key>
+		<string></string>
+	</dict>
+	<key>0.5</key>
 	<dict>
 		<key>enemies</key>
 		<array>
@@ -47,9 +59,9 @@
 		<key>event_text1</key>
 		<string></string>
 		<key>boss_word0</key>
-		<string>「……お見事」</string>
+		<string>「……お前こそが真の</string>
 		<key>boss_word1</key>
-		<string></string>
+		<string>カッパだ」</string>
 	</dict>
 </dict>
 </plist>
