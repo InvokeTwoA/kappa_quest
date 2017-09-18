@@ -48,7 +48,9 @@
 		CE6BB8271F24CAA30046DA65 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE6BB8261F24CAA30046DA65 /* GameScene.sks */; };
 		CE6BB8291F24D3040046DA65 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6BB8281F24D3040046DA65 /* MenuScene.swift */; };
 		CE8D51391F6D8E9B004F8D0B /* map_archer.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE8D51381F6D8E9B004F8D0B /* map_archer.plist */; };
-		CE8D513C1F6E46DF004F8D0B /* JobTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8D513B1F6E46DF004F8D0B /* JobTableViewController.swift */; };
+		CE8D513C1F6E46DF004F8D0B /* JobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8D513B1F6E46DF004F8D0B /* JobViewController.swift */; };
+		CE8D513E1F6FB3F4004F8D0B /* map_tutorial2.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE8D513D1F6FB3F4004F8D0B /* map_tutorial2.plist */; };
+		CE8D51401F6FCA05004F8D0B /* bgm_maoudamashii_piano_ahurera.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CE8D513F1F6FCA05004F8D0B /* bgm_maoudamashii_piano_ahurera.mp3 */; };
 		CEB904551F24EBA10061A919 /* ShopScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CEB904541F24EBA10061A919 /* ShopScene.sks */; };
 		CEB904571F24EBBE0061A919 /* ShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB904561F24EBBE0061A919 /* ShopScene.swift */; };
 		CEC2B67F1F177A3C0014B114 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC2B67E1F177A3C0014B114 /* AppDelegate.swift */; };
@@ -127,7 +129,9 @@
 		CE6BB8261F24CAA30046DA65 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameScene.sks; path = sks/GameScene.sks; sourceTree = "<group>"; };
 		CE6BB8281F24D3040046DA65 /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuScene.swift; path = scenes/MenuScene.swift; sourceTree = "<group>"; };
 		CE8D51381F6D8E9B004F8D0B /* map_archer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_archer.plist; path = resources/plists/map_archer.plist; sourceTree = "<group>"; };
-		CE8D513B1F6E46DF004F8D0B /* JobTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JobTableViewController.swift; path = controllers/JobTableViewController.swift; sourceTree = "<group>"; };
+		CE8D513B1F6E46DF004F8D0B /* JobViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JobViewController.swift; path = controllers/JobViewController.swift; sourceTree = "<group>"; };
+		CE8D513D1F6FB3F4004F8D0B /* map_tutorial2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_tutorial2.plist; path = resources/plists/map_tutorial2.plist; sourceTree = "<group>"; };
+		CE8D513F1F6FCA05004F8D0B /* bgm_maoudamashii_piano_ahurera.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bgm_maoudamashii_piano_ahurera.mp3; path = "../../../Desktop/ゲームブック/音楽/bgm_maoudamashii_piano_ahurera.mp3"; sourceTree = "<group>"; };
 		CEB904541F24EBA10061A919 /* ShopScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = ShopScene.sks; path = sks/ShopScene.sks; sourceTree = "<group>"; };
 		CEB904561F24EBBE0061A919 /* ShopScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShopScene.swift; path = scenes/ShopScene.swift; sourceTree = "<group>"; };
 		CEC2B67B1F177A3C0014B114 /* kappa_quest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kappa_quest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,6 +200,7 @@
 			children = (
 				CE049FDD1F36238D0079DEDB /* maoudamashii_fantasy15.mp3 */,
 				CE049FCD1F2C927B0079DEDB /* maoudamashii_lastboss02.mp3 */,
+				CE8D513F1F6FCA05004F8D0B /* bgm_maoudamashii_piano_ahurera.mp3 */,
 				CE31F9341F5BF17900E868FB /* se_maoudamashii_battle08.mp3 */,
 				CE31F93C1F5C077900E868FB /* se_maoudamashii_battle09.mp3 */,
 				CE31F9351F5BF17900E868FB /* se_maoudamashii_battle17.mp3 */,
@@ -232,7 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				CEC2B6861F177A3C0014B114 /* GameViewController.swift */,
-				CE8D513B1F6E46DF004F8D0B /* JobTableViewController.swift */,
+				CE8D513B1F6E46DF004F8D0B /* JobViewController.swift */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -381,6 +386,7 @@
 			children = (
 				CEDBE7951F1CC469007E72B9 /* enemies.plist */,
 				CED621E91F41EE6C00C92480 /* map_tutorial.plist */,
+				CE8D513D1F6FB3F4004F8D0B /* map_tutorial2.plist */,
 				CE31F94A1F63C72000E868FB /* map_priest.plist */,
 				CE31F9441F62964F00E868FB /* map_thief.plist */,
 				CE8D51381F6D8E9B004F8D0B /* map_archer.plist */,
@@ -473,6 +479,7 @@
 				CED621DB1F40361200C92480 /* fire.sks in Resources */,
 				CEEB83D01F1BBD240025E021 /* PixelMplus12-Regular.ttf in Resources */,
 				CEC2B68A1F177A3C0014B114 /* Main.storyboard in Resources */,
+				CE8D51401F6FCA05004F8D0B /* bgm_maoudamashii_piano_ahurera.mp3 in Resources */,
 				CE31F9491F63BFE000E868FB /* map_necro.plist in Resources */,
 				CE049FCE1F2C927B0079DEDB /* maoudamashii_lastboss02.mp3 in Resources */,
 				CEB904551F24EBA10061A919 /* ShopScene.sks in Resources */,
@@ -486,6 +493,7 @@
 				CE31F9211F5156C200E868FB /* OptionScene.sks in Resources */,
 				CE31F9411F626CF600E868FB /* WorldScene.sks in Resources */,
 				CE31F9361F5BF17900E868FB /* se_maoudamashii_battle08.mp3 in Resources */,
+				CE8D513E1F6FB3F4004F8D0B /* map_tutorial2.plist in Resources */,
 				CE524F801F20D5B900A6D14C /* jpn.strings in Resources */,
 				CE31F94B1F63C72000E868FB /* map_priest.plist in Resources */,
 				CE31F9331F5A673F00E868FB /* skills.plist in Resources */,
@@ -584,7 +592,7 @@
 				CEEB83D21F1BCE200025E021 /* CommonUtil.swift in Sources */,
 				CE31F94D1F63CF8D00E868FB /* SpecialAttckModel.swift in Sources */,
 				CE31F9431F626F4D00E868FB /* WorldScene.swift in Sources */,
-				CE8D513C1F6E46DF004F8D0B /* JobTableViewController.swift in Sources */,
+				CE8D513C1F6E46DF004F8D0B /* JobViewController.swift in Sources */,
 				CE31F9271F53BCE700E868FB /* TitleScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

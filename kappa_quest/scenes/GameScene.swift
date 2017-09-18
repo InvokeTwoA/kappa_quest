@@ -49,18 +49,25 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         prepareBGM(fileName: Const.bgm_fantasy)
         prepareSoundEffect()
         playBGM()
-
+        
         showMessage("冒険の始まりだ！", type: "start")
     }
 
     // 画面が読み込まれた時に呼ばれる
+    private var isSceneDidMoved = false
     override func didMove(to view: SKView) {
+        updateStatus()
+        updateDistance()
+
+        if isSceneDidMoved {
+            return
+        }
         map.readDataByPlist(world_name)
         map.loadParameterByUserDefault()
         createMap()
+
+        isSceneDidMoved = true
         gameData.setParameterByUserDefault()
-        updateStatus()
-        updateDistance()
     }
 
     // かっぱ画像にphysic属性を与える
@@ -108,6 +115,8 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         var action : SKAction!
         if gameData.equip == "shoes" {
             action = actionModel.speedMoveRight
+        } else if gameData.equip == "float" {
+            action = actionModel.floatMoveRight
         } else {
             action = actionModel.moveRight
         }
@@ -158,6 +167,8 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         var action : SKAction!
         if gameData.equip == "shoes" {
             action = actionModel.speedMoveLeft
+        } else if gameData.equip == "float" {
+            action = actionModel.floatMoveLeft
         } else {
             action = actionModel.moveLeft
         }
@@ -239,12 +250,14 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         }
         playSoundEffect(type: 1)
 
-        let pre_hp = kappa.hp
         kappa.hp -= damage
-
-        if isKonjo(pre_hp) {
-            kappa.hp = 1
+        if kappa.hp <= 0 && skillModel.konjoFlag && !kappa.konjoEndFlag {
+            kappa.hp = kappa.luc
+            if kappa.hp > kappa.maxHp {
+                kappa.hp = kappa.maxHp
+            }
             showMessage("カッパのど根性！", type: "skill")
+            kappa.konjoEndFlag = true
         }
         if kappa.hp <= 0 {
             kappa.hp = 0
@@ -405,6 +418,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             heal_val = jobModel.lv
         }
         getSkill()
+        saveData()
     }
 
     func getSkill(){
@@ -444,9 +458,14 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     /***********************************************************************************/
     /******************************* スキル判定     ************************************/
     /***********************************************************************************/
-    func isKonjo(_ pre_hp: Int) -> Bool {
-        return gameData.konjoFlag && pre_hp >= 2 && kappa.hp <= 0 && CommonUtil.rnd(100) < kappa.luc
+    
+    func skillJudge(){
+        if gameData.konjoFlag {
+            skillModel.konjoFlag = true
+        }
     }
+    
+
 
     /***********************************************************************************/
     /******************************* ゲームオーバー ************************************/
@@ -835,6 +854,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         scene.size = self.scene!.size
         scene.scaleMode = SKSceneScaleMode.aspectFill
         scene.world = world_name
+        scene.clearWord = map.clear_word
         self.view!.presentScene(scene, transition: .doorsCloseHorizontal(withDuration: Const.gameOverInterval))
     }
 
@@ -933,7 +953,6 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                 execSpecialAttack()
                 return
             }
-
             if map.canMoveRight() {
                 moveRight()
             } else {
@@ -950,7 +969,6 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                 execSpecialAttack()
                 return
             }
-
             if map.canMoveLeft() {
                 moveLeft()
             } else {
@@ -960,16 +978,8 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         updateSpecialLabel()
     }
 
-    // 押し続け地得る時の処理
-    func touchMoved(toPoint pos : CGPoint) {
-    }
-
-    func touchUp(atPoint pos : CGPoint) {
-    }
-
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         tapCountUp()
-
         if gameOverFlag || specialAttackModel.is_attacking {
             return
         }
@@ -979,30 +989,35 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         for t in touches {
             let positionInScene = t.location(in: self)
             let tapNode = self.atPoint(positionInScene)
-            if tapNode.name == "ButtonNode" || tapNode.name == "ButtonLabel" {
+            if tapNode.name == nil {
+                self.touchDown(atPoint: positionInScene)
+                return
+            }
+            switch tapNode.name! {
+            case "ButtonNode", "ButtonLabel":
                 if map.isTreasure() {
                     getTreasure(pos : map.myPosition)
                 } else {
                     goMenu()
                 }
-            } else if tapNode.name == "KappaInfoLabel" || tapNode.name == "KappaInfoNode" {
+            case "KappaInfoLabel", "KappaInfoNode":
                 displayAlert("ステータス", message: JobModel.allSkillExplain(skillModel, kappa: kappa!, gameData: gameData), okString: "閉じる")
-            } else {
+            case "EquipLabel", "EquipNode":
+                print("equip label")
+                break
+            default:
                 self.touchDown(atPoint: positionInScene)
             }
         }
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
     }
 
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
     }
 
     /***********************************************************************************/

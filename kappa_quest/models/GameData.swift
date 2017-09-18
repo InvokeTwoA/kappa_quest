@@ -71,8 +71,12 @@ class GameData {
         return UserDefaults.standard.object(forKey: "lv") != nil
     }
     
-    class func clearFlag(_ key : String){
-        UserDefaults.standard.set(true,  forKey: "stage_\(key)_clear")
+    class func clearCountUp(_ key : String){
+        var clear_count = UserDefaults.standard.integer(forKey: "stage_\(key)_clear")
+        if clear_count == nil {
+            clear_count = 0
+        }
+        UserDefaults.standard.set(clear_count+1,  forKey: "stage_\(key)_clear")
     }
     
     class func isClear(_ key : String) -> Bool {

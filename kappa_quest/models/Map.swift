@@ -27,6 +27,7 @@ class Map {
     var text1 = ""
     var boss_text0 = ""
     var boss_text1 = ""
+    var clear_word = ""
     
     func initData(){
         distance = 0.0
@@ -45,6 +46,7 @@ class Map {
             loadMapDataByDistance(key-0.1)
             return
         }
+        
         let map_info = mapData["\(key)"] as! NSDictionary
         if map_info["enemies"] != nil {
             enemies = map_info["enemies"] as! [String]
@@ -53,8 +55,15 @@ class Map {
             background  = map_info["background"] as! String
         }
         isEvent     = map_info["event"] as! Bool
-        isBoss      = map_info["is_boss"] as! Bool
-        if map_info["is_random"] != nil {        
+
+        if map_info["is_boss"] != nil {
+            isBoss    = map_info["is_boss"] as! Bool
+            boss_text0 = map_info["boss_word0"] as! String
+            boss_text1 = map_info["boss_word1"] as! String
+            
+            clear_word = map_info["clear_word"] as! String
+        }
+        if map_info["is_random"] != nil {
             isRandom    = map_info["is_random"] as! Bool
         }
         if isEvent {
@@ -64,10 +73,6 @@ class Map {
         
         if map_info["lv"] != nil {
             lv = map_info["lv"] as! Int
-        }
-        if isBoss {
-            boss_text0 = map_info["boss_word0"] as! String
-            boss_text1 = map_info["boss_word1"] as! String
         }
     }
     
@@ -131,6 +136,7 @@ class Map {
         distance = 0.0
         distanceInt = 0
         saveParam()
+        
         loadMapDataByDistance(distance)
         updatePositionData()
     }

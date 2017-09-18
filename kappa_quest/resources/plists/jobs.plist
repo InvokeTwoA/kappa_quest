@@ -7,7 +7,7 @@
 		<key>name</key>
 		<string>村人</string>
 		<key>explain</key>
-		<string>戦闘には向かない村人。 成長率も低いので早く転職した方が良い。  [成長率] HP:  3 筋力: 1 体力: 0 敏捷: 0 知恵: 0 精神: 0 幸運: 1  【習得スキル】 [LV5 :  ど根性カッパ] HPが2以上の時に攻撃を受けても、一度だけ復活する。 復活後のHPは幸運の値と一緒になる。 </string>
+		<string>戦闘には向かない村人。 成長率も低いので早く転職した方が良い。  [成長率] HP:  3 筋力: 1 体力: 0 敏捷: 0 知恵: 1 精神: 0 幸運: 1  【習得スキル】 [LV5 :  ど根性カッパ] HPが2以上の時に攻撃を受けても、一度だけ復活する。 復活後のHPは幸運の値と一緒になる。 </string>
 		<key>skill</key>
 		<string>固有スキル：　なし</string>
 		<key>hp</key>
@@ -19,7 +19,7 @@
 		<key>agi</key>
 		<integer>0</integer>
 		<key>int</key>
-		<integer>0</integer>
+		<integer>1</integer>
 		<key>pie</key>
 		<integer>0</integer>
 		<key>luc</key>

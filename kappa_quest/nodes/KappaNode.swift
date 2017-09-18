@@ -20,7 +20,7 @@ class KappaNode: SKSpriteNode {
     var mode = ""
 
     // フラグ
-    var konjoFlag = false
+    var konjoEndFlag = false
     var isTornado = false
 
     // パラメーターを userDefault から読み取り
@@ -30,15 +30,18 @@ class KappaNode: SKSpriteNode {
             return
         }
 
-        lv  = UserDefaults.standard.integer(forKey: "lv")
-        hp  = UserDefaults.standard.integer(forKey: "hp")
-        str = UserDefaults.standard.integer(forKey: "str")
-        def = UserDefaults.standard.integer(forKey: "def")
-        agi = UserDefaults.standard.integer(forKey: "agi")
-        int = UserDefaults.standard.integer(forKey: "int")
-        pie = UserDefaults.standard.integer(forKey: "pie")
-        luc = UserDefaults.standard.integer(forKey: "luc")
+        lv      = UserDefaults.standard.integer(forKey: "lv")
+        maxHp   = UserDefaults.standard.integer(forKey: "hp")
+        str     = UserDefaults.standard.integer(forKey: "str")
+        def     = UserDefaults.standard.integer(forKey: "def")
+        agi     = UserDefaults.standard.integer(forKey: "agi")
+        int     = UserDefaults.standard.integer(forKey: "int")
+        pie     = UserDefaults.standard.integer(forKey: "pie")
+        luc     = UserDefaults.standard.integer(forKey: "luc")
         nextExp = UserDefaults.standard.integer(forKey: "nextExp")
+        
+        hp  = maxHp
+
     }
 
     // LVアップ
@@ -66,7 +69,7 @@ class KappaNode: SKSpriteNode {
 
     func saveParam(){
         UserDefaults.standard.set(lv,  forKey: "lv")
-        UserDefaults.standard.set(hp,  forKey: "hp")
+        UserDefaults.standard.set(maxHp,  forKey: "hp")
         UserDefaults.standard.set(str, forKey: "str")
         UserDefaults.standard.set(def, forKey: "def")
         UserDefaults.standard.set(agi, forKey: "agi")

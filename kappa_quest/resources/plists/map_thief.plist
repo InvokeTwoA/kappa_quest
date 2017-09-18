@@ -7,11 +7,9 @@
 		<key>background</key>
 		<string>bg_sabaku</string>
 		<key>lv</key>
-		<integer>3</integer>
+		<integer>4</integer>
 		<key>enemies</key>
 		<array/>
-		<key>is_boss</key>
-		<false/>
 		<key>is_random</key>
 		<true/>
 		<key>event</key>
@@ -31,8 +29,6 @@
 			<string>arakure</string>
 			<string>chibidora</string>
 		</array>
-		<key>is_boss</key>
-		<false/>
 		<key>is_random</key>
 		<true/>
 		<key>event</key>
@@ -42,8 +38,6 @@
 	<dict>
 		<key>background</key>
 		<string>bg_sabaku</string>
-		<key>is_boss</key>
-		<false/>
 		<key>is_random</key>
 		<true/>
 		<key>event</key>

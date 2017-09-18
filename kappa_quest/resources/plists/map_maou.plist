@@ -8,8 +8,6 @@
 		<string>bg_makai</string>
 		<key>enemies</key>
 		<array/>
-		<key>is_boss</key>
-		<false/>
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>
@@ -26,8 +24,6 @@
 		</array>
 		<key>is_random</key>
 		<true/>
-		<key>is_boss</key>
-		<false/>
 		<key>event</key>
 		<false/>
 	</dict>

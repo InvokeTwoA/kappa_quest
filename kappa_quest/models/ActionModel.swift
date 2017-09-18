@@ -15,6 +15,8 @@ class ActionModel {
     var moveLeft          : SKAction!
     var speedMoveRight    : SKAction!
     var speedMoveLeft     : SKAction!
+    var floatMoveRight    : SKAction!
+    var floatMoveLeft     : SKAction!
     var moveBack          : SKAction!
     var moveBack2         : SKAction!
     var dead              : SKAction!
@@ -71,6 +73,17 @@ class ActionModel {
             SKAction.moveBy(x: -1*moveSpace, y:    0, duration: Const.moveSpeed/2.0),
             SKAction.moveBy(x: -1*moveSpace, y:    0, duration: Const.moveSpeed/2.0),
             ])
+
+        floatMoveRight = SKAction.sequence([
+            SKAction.moveBy(x: 2*moveSpace, y:    10*Const.jumpSpace, duration: Const.moveSpeed*3),
+            SKAction.moveBy(x: 2*moveSpace, y:   -10*Const.jumpSpace, duration: Const.moveSpeed*3),
+            ])
+        
+        floatMoveLeft = SKAction.sequence([
+            SKAction.moveBy(x: -2*moveSpace, y:    10*Const.jumpSpace, duration: Const.moveSpeed*3),
+            SKAction.moveBy(x: -2*moveSpace, y:   -10*Const.jumpSpace, duration: Const.moveSpeed*3),
+            ])
+        
         
         // 左に戻れない
         moveBack = SKAction.sequence([

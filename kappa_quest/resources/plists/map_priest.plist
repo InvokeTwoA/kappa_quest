@@ -9,9 +9,7 @@
 		<key>enemies</key>
 		<array/>
 		<key>lv</key>
-		<integer>2</integer>
-		<key>is_boss</key>
-		<false/>
+		<integer>3</integer>
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>
@@ -31,8 +29,6 @@
 			<string>usagi</string>
 			<string>hiyoko</string>
 		</array>
-		<key>is_boss</key>
-		<false/>
 		<key>is_random</key>
 		<true/>
 		<key>event</key>
@@ -40,8 +36,6 @@
 	</dict>
 	<key>0.5</key>
 	<dict>
-		<key>is_boss</key>
-		<false/>
 		<key>enemies</key>
 		<array>
 			<string>ghost</string>

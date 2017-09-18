@@ -7,11 +7,9 @@
 		<key>background</key>
 		<string>bg_forest</string>
 		<key>lv</key>
-		<integer>4</integer>
+		<integer>5</integer>
 		<key>enemies</key>
 		<array/>
-		<key>is_boss</key>
-		<false/>
 		<key>is_random</key>
 		<true/>
 		<key>event</key>
@@ -30,8 +28,6 @@
 			<string>tokage</string>
 			<string>chibidora</string>
 		</array>
-		<key>is_boss</key>
-		<false/>
 		<key>is_random</key>
 		<true/>
 		<key>event</key>
@@ -39,8 +35,6 @@
 	</dict>
 	<key>0.5</key>
 	<dict>
-		<key>is_boss</key>
-		<false/>
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>

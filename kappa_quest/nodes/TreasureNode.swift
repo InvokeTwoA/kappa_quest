@@ -13,17 +13,9 @@ class TreasureNode: SKSpriteNode {
         treasure.anchorPoint = CGPoint(x: 0.5, y: 0)     // 中央下がアンカーポイント
         treasure.zPosition = 2
         treasure.name = "treasure"
-        treasure.item_name = getRandomTreasure()
+        treasure.item_name = EquipModel.getRandom()
         
         return treasure
     }
     
-    class func getRandomTreasure() -> String {
-        let array = [
-            "shoes",
-            "head",
-            "exp"
-        ]
-        return array[CommonUtil.rnd(array.count)]
-    }
 }

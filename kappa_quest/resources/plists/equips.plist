@@ -19,9 +19,16 @@
 	<key>head</key>
 	<dict>
 		<key>name</key>
-		<string>htmlヘッダー</string>
+		<string>H・ヘッダー</string>
 		<key>explain</key>
 		<string>通常攻撃が変化。 スキル[頭突き魂]</string>
+	</dict>
+	<key>float</key>
+	<dict>
+		<key>name</key>
+		<string>フロート靴</string>
+		<key>explain</key>
+		<string>通常移動が高くなる。 特定の攻撃を避けるのに有効。  スキル[フロート移動]</string>
 	</dict>
 </dict>
 </plist>

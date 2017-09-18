@@ -86,6 +86,10 @@ class EnemyNode: SKSpriteNode {
         pie += lv
         exp *= 5
         lv += 2
+        
+        size = CGSize(width: Const.bossSize, height: Const.bossSize)
+
+//        anchorPoint = CGPoint(x: 1.0, y: 0)     // 左下がアンカーポイント
     }
 
     // HP の割合を返す  32% ならば　32

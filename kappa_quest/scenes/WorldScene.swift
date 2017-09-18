@@ -5,8 +5,9 @@ import GameplayKit
 class WorldScene: BaseScene {
 
     let map_nodes = [
-        "thief",
         "tutorial",
+        "tutorial2",
+        "thief",
         "archer",
         "priest",
         "necro",
@@ -14,8 +15,27 @@ class WorldScene: BaseScene {
     ]
 
     override func sceneDidLoad() {
+        gameData.setParameterByUserDefault()
     }
+    
+    override func didMove(to view: SKView) {
+        if !GameData.isClear("tutorial") {
+            let node = childNode(withName: "//tutorial2")
+            node?.removeFromParent()
+        }
+        if !GameData.isClear("tutoria2") {
+            let node1 = childNode(withName: "//thief")
+            let node2 = childNode(withName: "//priest")
+            let node3 = childNode(withName: "//archer")
 
+            node1?.removeFromParent()
+            node2?.removeFromParent()
+            node3?.removeFromParent()
+        }
+        
+        
+    }
+    
     func goDungeon(_ key : String){
         let map = Map()
         map.initData()

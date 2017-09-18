@@ -18,4 +18,5 @@ class SkillModel {
     }
     
     
+    var konjoFlag = false
 }

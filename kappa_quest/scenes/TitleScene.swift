@@ -12,6 +12,13 @@ class TitleScene: BaseScene {
             resetNode?.removeFromParent()
             resetLabel?.removeFromParent()
         }
+        
+        prepareBGM(fileName: Const.bgm_ahurera)
+        playBGM()
+    }
+    
+    override func willMove(from view: SKView) {
+        stopBGM()
     }
     
     // ランダムなキャラアイコンをTOPに表示
@@ -26,8 +33,12 @@ class TitleScene: BaseScene {
             "wizard",
             "arakure",
             "thief",
-            
             "knight",
+            
+            
+            "miira",
+            "skelton",
+            "zombi",
             "fighter",
             "dancer",
             "dark_kappa",

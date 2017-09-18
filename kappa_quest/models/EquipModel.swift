@@ -30,4 +30,14 @@ class EquipModel {
         let explain = data.object(forKey: "explain") as! String
         return explain
     }
+    
+    class func getRandom() -> String {
+        let array = [
+            "shoes",
+            "head",
+            "exp",
+            "float"
+        ]
+        return array[CommonUtil.rnd(array.count)]
+    }
 }

@@ -6,9 +6,13 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="PixelMplus12-Regular.ttf">
+            <string>PixelMplus12-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
@@ -22,9 +26,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="D0Q-B1-jbW">
-                                <rect key="frame" x="43" y="70" width="289" height="50"/>
-                            </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="kappa" translatesAutoresizingMaskIntoConstraints="NO" id="QDf-I6-r65">
                                 <rect key="frame" x="93" y="286" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -66,7 +67,7 @@
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="usagi" translatesAutoresizingMaskIntoConstraints="NO" id="heF-3U-pkw">
-                                <rect key="frame" x="295" y="594" width="64" height="64"/>
+                                <rect key="frame" x="87" y="366" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="dancer" translatesAutoresizingMaskIntoConstraints="NO" id="Y4H-KH-KcM">
@@ -86,11 +87,11 @@
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="priest" translatesAutoresizingMaskIntoConstraints="NO" id="2jL-6F-XOk">
-                                <rect key="frame" x="4" y="447" width="64" height="64"/>
+                                <rect key="frame" x="93" y="208" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="fighter" translatesAutoresizingMaskIntoConstraints="NO" id="7wv-38-mvG">
-                                <rect key="frame" x="291" y="443" width="64" height="64"/>
+                                <rect key="frame" x="293" y="447" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="assassin" translatesAutoresizingMaskIntoConstraints="NO" id="OMb-7W-bQM">
@@ -109,22 +110,37 @@
                                 <rect key="frame" x="206" y="201" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NOW LOADING" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hi1-xl-GSE">
+                                <rect key="frame" x="7" y="42" width="362" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="PixelMplus12-Regular" family="PixelMplus12" pointSize="64"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="zombi" translatesAutoresizingMaskIntoConstraints="NO" id="Wfm-1R-GY6">
+                                <rect key="frame" x="295" y="594" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="ghost" translatesAutoresizingMaskIntoConstraints="NO" id="ffz-CT-Fpw">
+                                <rect key="frame" x="4" y="208" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="arakure" translatesAutoresizingMaskIntoConstraints="NO" id="cwD-5f-oak">
+                                <rect key="frame" x="0.0" y="441" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="D0Q-B1-jbW" secondAttribute="trailing" constant="27" id="7lT-re-j62"/>
-                            <constraint firstItem="D0Q-B1-jbW" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="50" id="bEM-qc-6a9"/>
-                            <constraint firstItem="D0Q-B1-jbW" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="27" id="vwF-1H-nF7"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
     <resources>
         <image name="angel" width="64" height="64"/>
+        <image name="arakure" width="64" height="64"/>
         <image name="archer" width="64" height="64"/>
         <image name="assassin" width="64" height="64"/>
         <image name="buffalo" width="64" height="64"/>
@@ -132,10 +148,10 @@
         <image name="dancer" width="64" height="64"/>
         <image name="dead_king" width="64" height="64"/>
         <image name="fighter" width="64" height="64"/>
+        <image name="ghost" width="64" height="64"/>
         <image name="hiyoko" width="64" height="64"/>
         <image name="kappa" width="64" height="64"/>
         <image name="knight" width="64" height="64"/>
-        <image name="logo" width="289" height="50"/>
         <image name="maou" width="64" height="64"/>
         <image name="miira" width="64" height="64"/>
         <image name="miyuki" width="64" height="64"/>
@@ -146,5 +162,6 @@
         <image name="tokage" width="64" height="64"/>
         <image name="usagi" width="64" height="64"/>
         <image name="wizard" width="64" height="64"/>
+        <image name="zombi" width="64" height="64"/>
     </resources>
 </document>

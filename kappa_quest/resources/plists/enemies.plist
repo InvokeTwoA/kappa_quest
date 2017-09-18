@@ -279,6 +279,31 @@
 		<key>type</key>
 		<string>undead</string>
 	</dict>
+	<key>zombi</key>
+	<dict>
+		<key>name</key>
+		<string>ゾンビ</string>
+		<key>hp</key>
+		<integer>7</integer>
+		<key>str</key>
+		<integer>3</integer>
+		<key>def</key>
+		<integer>3</integer>
+		<key>agi</key>
+		<integer>2</integer>
+		<key>int</key>
+		<integer>4</integer>
+		<key>pie</key>
+		<integer>2</integer>
+		<key>range</key>
+		<integer>1</integer>
+		<key>canFire</key>
+		<false/>
+		<key>exp</key>
+		<integer>4</integer>
+		<key>type</key>
+		<string>undead</string>
+	</dict>
 	<key>miira</key>
 	<dict>
 		<key>name</key>
@@ -336,7 +361,7 @@
 		<key>hp</key>
 		<integer>5</integer>
 		<key>str</key>
-		<integer>4</integer>
+		<integer>2</integer>
 		<key>def</key>
 		<integer>4</integer>
 		<key>agi</key>
@@ -349,6 +374,31 @@
 		<integer>2</integer>
 		<key>canFire</key>
 		<true/>
+		<key>exp</key>
+		<integer>10</integer>
+		<key>type</key>
+		<string>human</string>
+	</dict>
+	<key>knight</key>
+	<dict>
+		<key>name</key>
+		<string>騎士</string>
+		<key>hp</key>
+		<integer>8</integer>
+		<key>str</key>
+		<integer>4</integer>
+		<key>def</key>
+		<integer>10</integer>
+		<key>agi</key>
+		<integer>1</integer>
+		<key>int</key>
+		<integer>1</integer>
+		<key>pie</key>
+		<integer>0</integer>
+		<key>range</key>
+		<integer>1</integer>
+		<key>canFire</key>
+		<false/>
 		<key>exp</key>
 		<integer>10</integer>
 		<key>type</key>
