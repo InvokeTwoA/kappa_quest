@@ -31,8 +31,10 @@ class ActionModel {
     var fadeOutQuickly    : SKAction!
     var fadeOutEternal    : SKAction!
     var enemyJump         : SKAction!
+    var enemyHighJump     : SKAction!
     var enemyMiniJump     : SKAction!
     var normalAttack      : SKAction!
+    var underAttack       : SKAction!
     var highJump          : SKAction!
     var sparkFadeOut      : SKAction!
     
@@ -101,7 +103,13 @@ class ActionModel {
             SKAction.moveBy(x: -1*moveSpace,    y: -1*Const.jumpSpace, duration: Const.moveSpeed),
             ])
 
-        
+        // ノーマルアタック
+        let attackSpace = sceneWidth/7.0/2.0
+        normalAttack = SKAction.sequence([
+            SKAction.moveBy(x: -1*attackSpace, y:    Const.normalAttackY, duration: Const.normalAttackSpeed),
+            SKAction.moveBy(x: -1*attackSpace, y: -1*Const.normalAttackY, duration: Const.normalAttackSpeed),
+            SKAction.removeFromParent()
+            ])
         
         // 死亡時（真上に飛び上がってから落ちていく）
         dead = SKAction.sequence([
@@ -195,14 +203,18 @@ class ActionModel {
             SKAction.moveBy(x: 0, y:    Const.enemyJumpSpace/4, duration: Const.enemyJump),
             SKAction.moveBy(x: 0, y: -1*Const.enemyJumpSpace/4, duration: Const.enemyJump),
         ])
-
-        // ノーマルアタック
-        let attackSpace = sceneWidth/7.0/2.0
-        normalAttack = SKAction.sequence([
-            SKAction.moveBy(x: -1*attackSpace, y:    Const.normalAttackY, duration: Const.normalAttackSpeed),
-            SKAction.moveBy(x: -1*attackSpace, y: -1*Const.normalAttackY, duration: Const.normalAttackSpeed),
-            SKAction.removeFromParent()
+        
+        // 敵のミニジャンプ
+        enemyHighJump = SKAction.sequence([
+            SKAction.moveBy(x: 0, y:    Const.enemyJumpSpace, duration: Const.enemyJump*3),
+            SKAction.moveBy(x: 0, y: -1*Const.enemyJumpSpace, duration: Const.enemyJump*3),
         ])
+        
+        // 下方向にノーマルアタック
+        underAttack = SKAction.sequence([
+            SKAction.moveBy(x: 0, y: -1*Const.enemyFlyHeight, duration: Const.enemyJump*2),
+            SKAction.moveBy(x: 0, y:    Const.enemyFlyHeight, duration: Const.enemyJump*2),
+            ])
         
         // 宝箱出現じ
         highJump = SKAction.sequence([

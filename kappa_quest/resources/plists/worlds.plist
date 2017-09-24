@@ -6,50 +6,156 @@
 	<dict>
 		<key>name</key>
 		<string>修行の地</string>
+		<key>lv</key>
+		<integer>1</integer>
 		<key>explain</key>
-		<string>一子相伝の拳法、河童神拳。 この究極の憲法を身につけようとカッパは修行に明け暮れていた。  まずはこのステージで基本操作を覚えるのだ！  「タップ連打こそが、このゲームのコツ」  危険レベル：１</string>
+		<string>一子相伝の拳法、河童神拳。 この究極の憲法を身につけようとカッパは修行に明け暮れていた。  まずはこのステージで基本操作を覚えるのだ！  「タップ連打こそが、このゲームのコツ」</string>
+		<key>clear_item</key>
+		<string>新職業: 剣士</string>
+		<key>enemies</key>
+		<array>
+			<string>hiyoko</string>
+			<string>usagi</string>
+			<string>chibidora</string>
+		</array>
+		<key>boss</key>
+		<string>wizard</string>
 	</dict>
 	<key>tutorial2</key>
 	<dict>
 		<key>name</key>
 		<string>修行の地２</string>
+		<key>lv</key>
+		<integer>2</integer>
 		<key>explain</key>
 		<string>河童神拳の奥義を会得するべく、 カッパは最後の修行を行う事になった。  「ターゲットマークが着いた場所は数秒後に恐ろしい攻撃が来る。全力で避けろ」  危険レベル：２</string>
+		<key>clear_item</key>
+		<string>新職業: 剣士</string>
+		<key>enemies</key>
+		<array/>
+		<key>boss</key>
+		<string></string>
 	</dict>
 	<key>priest</key>
 	<dict>
 		<key>name</key>
 		<string>シープラス教会跡</string>
+		<key>lv</key>
+		<integer>3</integer>
 		<key>explain</key>
-		<string>教会は朽ち果て嘗ての信仰は失われてしまった。  今では邪神を崇拝する怪しい集団が出入りしている。 河童神拳で一網打尽にするのだ。  「回復能力を持つ敵は連打で一気に押し切るべし」  危険レベル３</string>
+		<string>教会は朽ち果て嘗ての信仰は失われてしまった。  今では邪神を崇拝する怪しい集団が出入りしている。 河童神拳で一網打尽にするのだ。  「回復能力を持つ敵は連打で一気に押し切るべし」</string>
+		<key>clear_item</key>
+		<string>新職業: 僧侶</string>
+		<key>enemies</key>
+		<array/>
+		<key>boss</key>
+		<string></string>
 	</dict>
 	<key>thief</key>
 	<dict>
 		<key>name</key>
 		<string>ジャバ砂漠</string>
+		<key>lv</key>
+		<integer>4</integer>
 		<key>explain</key>
-		<string>砂漠は無法地帯と化している。 もはや信じられるのは己の力のみ。  「射程距離の長い敵にはいつも以上に距離を取って回避するべし」  危険レベル：４</string>
+		<string>砂漠は無法地帯と化している。 もはや信じられるのは己の力のみ。  「射程距離の長い敵にはいつも以上に距離を取って回避するべし」</string>
+		<key>clear_item</key>
+		<string>新職業: 盗賊</string>
+		<key>enemies</key>
+		<array/>
+		<key>boss</key>
+		<string></string>
 	</dict>
 	<key>archer</key>
 	<dict>
 		<key>name</key>
 		<string>レイルズの森</string>
+		<key>lv</key>
+		<integer>5</integer>
 		<key>explain</key>
-		<string>森の獣たちは魔王の影響により凶暴化している。 その癒される姿に見惚れている場合ではない。  「転職はしているだろうか？」  「様々な職業に転職した方が強くなるだろう」  危険レベル：５</string>
+		<string>森の獣たちは魔王の影響により凶暴化している。 その癒される姿に見惚れている場合ではない。  「転職はしているだろうか？」  「様々な職業に転職した方が強くなるだろう」</string>
+		<key>clear_item</key>
+		<string>新職業: 狩人</string>
+		<key>enemies</key>
+		<array/>
+		<key>boss</key>
+		<string></string>
+	</dict>
+	<key>fighter</key>
+	<dict>
+		<key>name</key>
+		<string>コボル平原</string>
+		<key>lv</key>
+		<integer>7</integer>
+		<key>explain</key>
+		<string>圧政を強いる帝国軍を打ち破るには、 まず帝国領に入るためコボル平原を抜ける必要がある。  しかしコボル平原には訓練を受けた帝国兵が待ち構えていた……。</string>
+		<key>clear_item</key>
+		<string>新職業:  勇者</string>
+		<key>enemies</key>
+		<array/>
+		<key>boss</key>
+		<string></string>
+	</dict>
+	<key>dancer</key>
+	<dict>
+		<key>name</key>
+		<string>冷たい谷</string>
+		<key>lv</key>
+		<integer>6</integer>
+		<key>explain</key>
+		<string>ごく稀にしか見つからない冷たい谷。
+ここでは呪いにより敵のあらゆる攻撃が致命傷となる。  厳しい戦いとなるが、負けるなカッパ！　頑張れカッパ！</string>
+		<key>clear_item</key>
+		<string>新職業: 踊り子</string>
+		<key>enemies</key>
+		<array/>
+		<key>boss</key>
+		<string></string>
+	</dict>
+	<key>ninja</key>
+	<dict>
+		<key>name</key>
+		<string>古の大地なでしこ</string>
+		<key>lv</key>
+		<integer>8</integer>
+		<key>explain</key>
+		<string>忍者の隠れ里。 魔王を倒すためには彼らの持つ独自の戦闘技術が必要となるだろう。</string>
+		<key>clear_item</key>
+		<string>新職業: 忍者</string>
+		<key>enemies</key>
+		<array/>
+		<key>boss</key>
+		<string></string>
 	</dict>
 	<key>necro</key>
 	<dict>
 		<key>name</key>
 		<string>パイソン墓地</string>
+		<key>lv</key>
+		<integer>6</integer>
 		<key>explain</key>
 		<string>何者かの禁術により死者たちが歩き回っている。 これ以上アンデッドの勢力を拡大させぬよう、早期に斬滅したい。  「たとえ宝箱から装備品を手に入れても、死は全てを奪い去っていく」  危険レベル：６</string>
+		<key>clear_item</key>
+		<string>新職業: ネクロマンサー</string>
+		<key>enemies</key>
+		<array/>
+		<key>boss</key>
+		<string></string>
 	</dict>
 	<key>maou</key>
 	<dict>
 		<key>name</key>
 		<string>魔王城スィフト</string>
+		<key>lv</key>
+		<integer>10</integer>
 		<key>explain</key>
 		<string>魔王スィフトの居城。 この城に挑み、生きて帰った者は居ない。  「もはやアドバイスは何も無い。世界の平和は君にかかっている！」  危険レベル：？？？？</string>
+		<key>clear_item</key>
+		<string>新職業: 狩人</string>
+		<key>enemies</key>
+		<array/>
+		<key>boss</key>
+		<string></string>
 	</dict>
 </dict>
 </plist>

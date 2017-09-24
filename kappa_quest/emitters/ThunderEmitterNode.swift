@@ -24,8 +24,8 @@ class ThunderEmitterNode: SKEmitterNode {
         let physic = SKPhysicsBody(rectangleOf: CGSize(width: Const.fireSize, height: Const.fireSize))
         physic.affectedByGravity = true
         physic.allowsRotation = true
-        
         physic.categoryBitMask = Const.thunderCategory
+        physic.contactTestBitMask = Const.worldCategory
         physic.collisionBitMask = 0
         self.physicsBody = physic
     }    

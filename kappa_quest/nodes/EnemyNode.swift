@@ -13,17 +13,18 @@ class EnemyNode: SKSpriteNode {
     var agi = 1
     var pie = 1
     var int = 1
-    var exp = 1
     var displayName = "敵"
     var heal = 0
     var range = 1.0     // 物理攻撃の距離
+    var diff_agi = 0
 
     // 特殊能力
     var canFire = false
     var canFly = false   // 飛行
     var canThunder = false
     var canArrow  = false
-
+    var isGhost = false
+    
     // 各種フラグ
     var isDead = true
     var isAttacking = false
@@ -42,7 +43,6 @@ class EnemyNode: SKSpriteNode {
         enemy.thunderTimer  = CommonUtil.rnd(100)
         enemy.arrowTimer    = CommonUtil.rnd(100)
         enemy.isDead = false
-        enemy.setPhysic()
         enemy.name = "enemy"
         return enemy
     }
@@ -64,10 +64,14 @@ class EnemyNode: SKSpriteNode {
         agi     = dictionary.object(forKey: "agi") as! Int
         int     = dictionary.object(forKey: "int") as! Int
         pie     = dictionary.object(forKey: "pie") as! Int
-        exp     = dictionary.object(forKey: "exp") as! Int
         range   = Double(dictionary.object(forKey: "range") as! CGFloat)
-        canFire = dictionary.object(forKey: "canFire") as! Bool
 
+        if dictionary["canFire"] != nil {
+            canFire = dictionary.object(forKey: "canFire") as! Bool
+        }
+        if dictionary["canFly"] != nil {
+            canFly = dictionary.object(forKey: "canFly") as! Bool
+        }
         if dictionary["canThunder"] != nil {
             canThunder = dictionary.object(forKey: "canThunder") as! Bool
         }
@@ -76,6 +80,9 @@ class EnemyNode: SKSpriteNode {
         }
         if dictionary["heal"] != nil {
             heal = dictionary.object(forKey: "heal") as! Int
+        }
+        if dictionary["isGhost"] != nil {
+            isGhost = dictionary.object(forKey: "isGhost") as! Bool
         }
         
         // LVの分だけ強さをかける
@@ -87,7 +94,6 @@ class EnemyNode: SKSpriteNode {
         agi *= lv
         int *= lv
         pie *= lv
-        exp += lv
     }
     
     func healHP(_ heal : Int){
@@ -107,7 +113,6 @@ class EnemyNode: SKSpriteNode {
         agi += lv
         int += lv
         pie += lv
-        exp *= 5
         lv += 2
         
         size = CGSize(width: Const.bossSize, height: Const.bossSize)
@@ -146,7 +151,7 @@ class EnemyNode: SKSpriteNode {
     }
 
     func timerRnd() -> Int {
-        var rnd = CommonUtil.rnd(agi) + 10
+        var rnd = CommonUtil.rnd(diff_agi) + 10
         if rnd >= 50 {
             rnd = 50
         }
@@ -199,29 +204,73 @@ class EnemyNode: SKSpriteNode {
             arrowTimer = 0
         }
     }
+    
+    /***********************************************************************************/
+    /******************************** アクション    **************************************/
+    /***********************************************************************************/
+    
+    func normalAttack(_ actionModel : ActionModel){
+        isAttacking = true
+        var timer : TimeInterval
+        if isGhost {
+            run(actionModel.underAttack)
+            timer = 4*Const.enemyJump
+        } else {
+            run(actionModel.enemyAttack(range: CGFloat(range)))
+            timer = 2*Const.enemyJump
+        }
+        _ = CommonUtil.setTimeout(delay: timer, block: { () -> Void in
+            self.isAttacking = false
+        })
+
+        attackTimerReset()
+    }
 
     /***********************************************************************************/
     /******************************** 物理属性      **************************************/
     /***********************************************************************************/
     func setPhysic(){
         let physic = SKPhysicsBody(rectangleOf: CGSize(width: Const.kappaSize, height: Const.kappaSize))
-        physic.affectedByGravity = false
-        physic.allowsRotation = false
+        if canFly {
+            physic.affectedByGravity = true
+        } else {
+            physic.affectedByGravity = false
+        }
+        physic.allowsRotation = true
         physic.categoryBitMask = Const.enemyCategory
-        physic.contactTestBitMask = Const.worldCategory
-        physic.collisionBitMask = Const.worldCategory
-        physic.linearDamping = 0
-        physic.friction = 0
+        if canFly {
+            physic.contactTestBitMask = Const.worldCategory
+            physic.collisionBitMask = Const.worldCategory
+            physic.linearDamping = 0.0
+            physic.friction = 0.0
+            physic.restitution = 1.0
+        } else {
+            physic.contactTestBitMask = 0
+            physic.collisionBitMask = 0
+        }
         physicsBody = physic
     }
 
     // 撃破時の物理属性を適用
+    let ROTATE_POWER : CGFloat = 50.0 // 吹き飛ばしの回転力
     func setBeatPhysic(){
         anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        physicsBody?.allowsRotation = true
-
         let yVector = CommonUtil.rnd(150)
+        physicsBody?.angularDamping = 0.0
+        physicsBody?.applyTorque(ROTATE_POWER)
         physicsBody?.applyImpulse(CGVector(dx: 250, dy: yVector))
-        physicsBody?.applyTorque(Const.beatRotatePower)
     }
+    
+    func ghostMove(){
+        physicsBody?.contactTestBitMask = Const.worldCategory
+        physicsBody?.collisionBitMask = Const.worldCategory
+        physicsBody?.linearDamping = 0.0
+        physicsBody?.friction = 0.0
+        physicsBody?.restitution = 1.0
+        
+        let dx = 30 + CommonUtil.rnd(40)
+        let dy = 30 + CommonUtil.rnd(40)
+        physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))
+    }
+    
 }

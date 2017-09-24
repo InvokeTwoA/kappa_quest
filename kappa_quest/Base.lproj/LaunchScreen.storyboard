@@ -133,6 +133,10 @@
                                 <rect key="frame" x="287" y="201" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="ninja" translatesAutoresizingMaskIntoConstraints="NO" id="5WU-Mx-vHj">
+                                <rect key="frame" x="6" y="123" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -160,6 +164,7 @@
         <image name="miira" width="64" height="64"/>
         <image name="miyuki" width="64" height="64"/>
         <image name="necro" width="64" height="64"/>
+        <image name="ninja" width="64" height="64"/>
         <image name="priest" width="64" height="64"/>
         <image name="samurai" width="64" height="64"/>
         <image name="skelton" width="64" height="64"/>

@@ -28,4 +28,12 @@ class EnemyModel {
     func resetEnemies(){
         enemies = [EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode()]
     }
+    
+    class func getData(_ key : String) -> NSDictionary {
+        let enemiesDataPath = Bundle.main.path(forResource: "enemies", ofType:"plist" )!
+        let enemiesData = NSDictionary(contentsOfFile: enemiesDataPath)!
+        let data = enemiesData.object(forKey: key) as! NSDictionary
+        return data
+    }
+
 }

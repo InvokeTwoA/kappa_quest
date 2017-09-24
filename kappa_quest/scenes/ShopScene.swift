@@ -1,45 +1,35 @@
 import SpriteKit
 import GameplayKit
 
-class ShopScene: BaseScene {
+class ShopScene: BaseScene, JobDelegate {
     
     var backScene : WorldScene!
     var page = 0
     
     private var jobNameList0 = ["murabito", "wizard", "knight", "priest", "thief", "fighter"]
-    private var jobNameList1 = ["necro", "", "", "", "", ""]
+    private var jobNameList1 = ["necro", "odoriko", "ninja", "", "", ""]
     private var enableJob : [Bool] = [true,false,false,false,false,false,false]
     
     private var jobList : [String]!
 
-    // node
-    private var jobLvLabel : SKLabelNode?
-    private var jobNameLabel : SKLabelNode?
-    private var jobImage : SKSpriteNode!
-
-    private var jobImage0 : SKSpriteNode?
-    private var jobImage1 : SKSpriteNode?
-    private var jobImage2 : SKSpriteNode?
-    private var jobImage3 : SKSpriteNode?
-    private var jobImage4 : SKSpriteNode?
-    private var jobImage5 : SKSpriteNode?
-    
     override func sceneDidLoad() {
-        jobModel.readDataByPlist()
-        jobModel.loadParam()
-
-        jobLvLabel      = childNode(withName: "//JobLvLabel") as? SKLabelNode
-        jobNameLabel    = childNode(withName: "//JobNameLabel") as? SKLabelNode
-        jobImage        = childNode(withName: "//JobImage") as? SKSpriteNode        
-        jobImage0       = childNode(withName: "//JobImage0") as? SKSpriteNode
-        
-        let skillText   = childNode(withName: "//skillText") as? SKLabelNode
-        skillText?.text = ""
     }
     
     override func didMove(to view: SKView) {
+        setPageData()
+    }
+    
+    // delegate method
+    func jobDidChanged() {
+        setPageData()
+    }
+    
+    func setPageData(){
+        jobModel.readDataByPlist()
+        jobModel.loadParam()
         setJobData()
     }
+    
     
     func setJobData(){
         if page == 0 {
@@ -61,6 +51,8 @@ class ShopScene: BaseScene {
     }
     
     func displayJobInfo(pos : Int, job : String){
+        print(pos)
+        print(job)
         
         let jobLvLabel  = childNode(withName: "//JobLv\(pos)") as! SKLabelNode
         let jobImageNode = childNode(withName: "//JobImage\(pos)") as! SKSpriteNode
@@ -85,9 +77,10 @@ class ShopScene: BaseScene {
                 setHatenaImage(pos: pos)
                 enableJob[pos] = false
             }
-        case "priest", "thief", "archer", "necro":
+        case "priest", "thief", "archer", "necro", "fighter":
             if GameData.isClear(job) {
                 enableJob[pos] = true
+                setJobInfo(pos: pos, job: job)
             } else {
                 setHatenaImage(pos: pos)
                 enableJob[pos] = false
@@ -110,14 +103,16 @@ class ShopScene: BaseScene {
         let jobImageNode = childNode(withName: "//JobImage\(pos)") as! SKSpriteNode
         jobLvLabel.text = ""
         jobImageNode.texture = SKTexture(imageNamed: "hatena")
-
     }
     
-    
     func setCurrentJobInfo(){
-        jobLvLabel?.text = "LV  \(jobModel.lv)"
-        jobNameLabel?.text = jobModel.displayName
-        jobImage!.texture = SKTexture(imageNamed: jobModel.name)
+        let jobLvLabel      = childNode(withName: "//JobLvLabel") as! SKLabelNode
+        let jobNameLabel    = childNode(withName: "//JobNameLabel") as! SKLabelNode
+        let jobImage        = childNode(withName: "//JobImage") as! SKSpriteNode
+
+        jobLvLabel.text = "LV  \(jobModel.lv)"
+        jobNameLabel.text = jobModel.displayName
+        jobImage.texture = SKTexture(imageNamed: jobModel.name)
     }
     
     func goBack(){
@@ -142,21 +137,12 @@ class ShopScene: BaseScene {
             return
         }
         
-        
-        let alert = UIAlertController(
-            title: jobModel.getDisplayName(key: selected_job),
-            message: jobModel.getExplain(key: selected_job),
-            preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "転職する", style: .default, handler: { action in
-            self.jobModel.setData(self.jobList[position])
-            self.jobModel.saveParam()
-            self.setCurrentJobInfo()
-            self.changeBoxColor(position)
-            let kappa = KappaNode()
-            kappa.setNextExp(self.jobModel)
-        }))
-        alert.addAction(UIAlertAction(title: "やめる", style: .cancel))
-        self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "Job", bundle: nil)
+        let jobViewController = storyboard.instantiateViewController(withIdentifier: "JobViewController") as! JobViewController
+        jobViewController.job = selected_job
+        jobViewController.from = "shop"
+        jobViewController.delegate = self
+        self.view?.window?.rootViewController?.present(jobViewController, animated: true, completion: nil)
     }
     
     func changeBoxColor(_ position: Int) {
@@ -170,8 +156,6 @@ class ShopScene: BaseScene {
             box?.fillColor = .green
         }
     }
-
-
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {

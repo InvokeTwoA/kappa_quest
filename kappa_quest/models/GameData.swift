@@ -64,7 +64,6 @@ class GameData {
             soundEffectFlag = true
         }
         saveParam()
-    
     }
 
     class func isExistData() -> Bool {
@@ -83,6 +82,18 @@ class GameData {
         return UserDefaults.standard.object(forKey: "stage_\(key)_clear") != nil
     }
     
+    
+    class func notChangeJob(){
+        UserDefaults.standard.set(false,  forKey: "change_job")
+    }
+    
+    class func jobChangeDone(){
+        UserDefaults.standard.set(true,  forKey: "change_job")
+    }
 
-
+    class func isChangeJob() -> Bool {
+        return UserDefaults.standard.bool(forKey: "change_job")
+    }
+    
+    
 }

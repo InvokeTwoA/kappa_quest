@@ -86,16 +86,16 @@ class SpecialAttackModel {
     private var superUpperCount = 0  // 昇竜拳の管理変数
     func countUpUpperAttack(direction : String) {
         if direction == "right" {
-            if superUpperCount == 1 || superUpperCount == 3 {
-                superUpperCount += 1
-            } else {
-                superUpperCount = 0
-            }
-        } else if direction == "left" {
-            if superUpperCount == 0 || superUpperCount == 2 || superUpperCount == 4 {
+            if superUpperCount == 0 || superUpperCount == 1 || superUpperCount == 3 {
                 superUpperCount += 1
             } else {
                 superUpperCount = 1
+            }
+        } else if direction == "left" {
+            if superUpperCount == 2 || superUpperCount == 4 {
+                superUpperCount += 1
+            } else {
+                superUpperCount = 0
             }
         }
     }
@@ -103,17 +103,17 @@ class SpecialAttackModel {
     func displayUpperCount() -> String {
         switch superUpperCount {
         case 0:
-            return "← → ← → ←"
+            return "→ → ← → ←"
         case 1:
-            return "⬅︎ → ← → ←"
+            return "➡︎ → ← → ←"
         case 2:
-            return "⬅︎ ➡︎ ← → ←"
+            return "➡︎ ➡︎ ← → ←"
         case 3:
-            return "⬅︎ ➡︎ ⬅︎ → ←"
+            return "➡︎ ➡︎ ⬅︎ → ←"
         case 4:
-            return "⬅︎ ➡︎ ⬅︎ ➡︎ ←"
+            return "➡︎ ➡︎ ⬅︎ ➡︎ ←"
         case 5:
-            return "⬅︎ ➡︎ ⬅︎ ➡︎ ⬅︎"
+            return "➡︎ ➡︎ ⬅︎ ➡︎ ⬅︎"
         default:
             return ""
         }

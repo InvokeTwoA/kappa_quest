@@ -19,7 +19,8 @@ class JobModel {
     var luc = 0
     
     var explain = ""
-    var skill_text = ""
+    var own_skill = ""
+    var general_skill = ""
     
     // plist からデータを読み込む
     func readDataByPlist(){
@@ -42,7 +43,8 @@ class JobModel {
         luc             = data.object(forKey: "luc") as! Int
         
         explain         = data.object(forKey: "explain") as! String
-        skill_text      = data.object(forKey: "skill") as! String
+        own_skill       = data.object(forKey: "own_skill") as! String
+        general_skill   = data.object(forKey: "general_skill") as! String
     }
     
     // 職業レベルを保存

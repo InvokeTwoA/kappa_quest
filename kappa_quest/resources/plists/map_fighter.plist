@@ -6,28 +6,25 @@
 	<dict>
 		<key>background</key>
 		<string>bg_haikyo</string>
+		<key>lv</key>
+		<integer>7</integer>
 		<key>enemies</key>
 		<array/>
-		<key>lv</key>
-		<integer>3</integer>
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>
-		<string>教会も今はもう無い。</string>
+		<string>帝国の圧政から、世を救うのだー！</string>
 		<key>event_text1</key>
 		<string></string>
-		<key>job</key>
-		<string>nil</string>
-		<key>tutorial</key>
-		<string>nil</string>
 	</dict>
 	<key>0.1</key>
 	<dict>
 		<key>enemies</key>
 		<array>
-			<string>ghost</string>
-			<string>usagi</string>
-			<string>hiyoko</string>
+			<string>knight</string>
+			<string>thief</string>
+			<string>wizard</string>
+			<string>priest</string>
 		</array>
 		<key>is_random</key>
 		<true/>
@@ -36,12 +33,6 @@
 	</dict>
 	<key>0.5</key>
 	<dict>
-		<key>enemies</key>
-		<array>
-			<string>ghost</string>
-			<string>usagi</string>
-			<string>hiyoko</string>
-		</array>
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>
@@ -53,10 +44,10 @@
 	<dict>
 		<key>enemies</key>
 		<array>
-			<string></string>
-			<string></string>
+			<string>knight</string>
+			<string>thief</string>
 			<string>wizard</string>
-			<string>priest</string>
+			<string>fighter</string>
 		</array>
 		<key>is_boss</key>
 		<true/>
@@ -65,15 +56,15 @@
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>
-		<string>「死こそが救い……</string>
+		<string>「 今宵の必殺剣はよく切れる……」</string>
 		<key>event_text1</key>
-		<string>　共に天国へと行きましょう」</string>
+		<string></string>
 		<key>boss_word0</key>
-		<string>「神さま……」</string>
+		<string>「つ、強すぎる……ぐふっ」</string>
 		<key>boss_word1</key>
 		<string></string>
 		<key>clear_word</key>
-		<string>彼らは信じるべき神を間違えた。</string>
+		<string>この先に帝王がいる……</string>
 	</dict>
 </dict>
 </plist>

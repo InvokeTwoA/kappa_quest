@@ -63,47 +63,43 @@
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="37.331334332833585"/>
         </scene>
-        <!--Job View Controller-->
-        <scene sceneID="zYa-JA-FpE">
+        <!--List View Controller-->
+        <scene sceneID="Pvp-Mf-tXq">
             <objects>
-                <viewController id="GuJ-yQ-cEp" customClass="JobViewController" customModule="kappa_quest" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="ListViewController" storyboardIdentifier="ListViewController" id="5t1-bV-M2m" customClass="ListViewController" customModule="kappa_quest" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Wna-Xl-gEA"/>
-                        <viewControllerLayoutGuide type="bottom" id="ruY-7w-HMb"/>
+                        <viewControllerLayoutGuide type="top" id="Pz2-bC-eEI"/>
+                        <viewControllerLayoutGuide type="bottom" id="1bJ-Wg-080"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="0eg-EZ-iGU">
+                    <view key="view" contentMode="scaleToFill" id="Aur-29-vaO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="88s-uS-aBP">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uJp-9D-8l2">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableCell" id="7Qz-N4-oXj">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="tableCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableCell" id="6N0-sZ-gsA">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Qz-N4-oXj" id="nUI-OV-gXe">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6N0-sZ-gsA" id="WVD-5s-79a">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="GuJ-yQ-cEp" id="xbH-FF-8Tw"/>
-                                    <outlet property="delegate" destination="GuJ-yQ-cEp" id="ROc-nj-Dpf"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="_tableView" destination="88s-uS-aBP" id="KQa-Fj-K3Q"/>
+                        <outlet property="_tableView" destination="uJp-9D-8l2" id="cS3-33-GIi"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CJ2-nq-uho" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fko-9O-bW0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="789.60000000000002" y="37.331334332833585"/>
+            <point key="canvasLocation" x="1188" y="45"/>
         </scene>
     </scenes>
 </document>

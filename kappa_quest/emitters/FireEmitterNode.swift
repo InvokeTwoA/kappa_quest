@@ -28,6 +28,7 @@ class FireEmitterNode: SKEmitterNode {
         physic.allowsRotation = true
 
         physic.categoryBitMask = Const.fireCategory
+        physic.contactTestBitMask = Const.worldCategory
         physic.collisionBitMask = 0
         //        physic.linearDamping = 0
         //        physic.friction = 0
@@ -37,5 +38,6 @@ class FireEmitterNode: SKEmitterNode {
     func shot(){
         let dx = CommonUtil.rnd(100) + 10
         physicsBody?.applyImpulse(CGVector(dx: -dx, dy: 200))
+        physicsBody?.applyTorque(5.0)
     }
 }

@@ -5,9 +5,9 @@
 	<key>hiyoko</key>
 	<dict>
 		<key>name</key>
-		<string>デビルヒヨコ</string>
+		<string>新米ヒヨコ</string>
 		<key>hp</key>
-		<integer>1</integer>
+		<integer>3</integer>
 		<key>str</key>
 		<integer>1</integer>
 		<key>def</key>
@@ -20,19 +20,20 @@
 		<integer>1</integer>
 		<key>range</key>
 		<integer>1</integer>
-		<key>canFire</key>
-		<false/>
 		<key>exp</key>
 		<integer>1</integer>
 		<key>type</key>
 		<string>animal</string>
+		<key>explain</key>
+		<string>最弱モンスター。
+しかし自分に大いなる才能が眠っていると密かに思っている。  冒険者に基本操作を教えるためだけに生まれたような尊い存在。</string>
 	</dict>
 	<key>usagi</key>
 	<dict>
 		<key>name</key>
-		<string>デビルヒヨコ</string>
+		<string>デビルうさぎ</string>
 		<key>hp</key>
-		<integer>2</integer>
+		<integer>3</integer>
 		<key>str</key>
 		<integer>2</integer>
 		<key>def</key>
@@ -45,19 +46,19 @@
 		<integer>1</integer>
 		<key>range</key>
 		<integer>2</integer>
-		<key>canFire</key>
-		<false/>
 		<key>exp</key>
 		<integer>2</integer>
 		<key>type</key>
 		<string>animal</string>
+		<key>explain</key>
+		<string>新米ヒヨコを見て自分は最下位では無いと安心しているモンスター。  新米ヒヨコより僅かに射程が長いのが自慢。</string>
 	</dict>
 	<key>bat</key>
 	<dict>
 		<key>name</key>
 		<string>コウモリ</string>
 		<key>hp</key>
-		<integer>2</integer>
+		<integer>3</integer>
 		<key>str</key>
 		<integer>3</integer>
 		<key>def</key>
@@ -70,14 +71,14 @@
 		<integer>1</integer>
 		<key>range</key>
 		<integer>2</integer>
-		<key>canFire</key>
-		<false/>
-		<key>canFry</key>
+		<key>canFly</key>
 		<true/>
 		<key>exp</key>
 		<integer>2</integer>
 		<key>type</key>
 		<string>animal</string>
+		<key>explain</key>
+		<string>空を飛べる敵</string>
 	</dict>
 	<key>buffalo</key>
 	<dict>
@@ -132,7 +133,7 @@
 	<key>ghost</key>
 	<dict>
 		<key>name</key>
-		<string>ゴースト</string>
+		<string>プロトコル・ゴースト</string>
 		<key>hp</key>
 		<integer>3</integer>
 		<key>str</key>
@@ -147,12 +148,12 @@
 		<integer>1</integer>
 		<key>range</key>
 		<integer>1</integer>
-		<key>canFire</key>
+		<key>isGhost</key>
 		<true/>
-		<key>exp</key>
-		<integer>3</integer>
 		<key>type</key>
-		<string>flying</string>
+		<string>undead</string>
+		<key>explain</key>
+		<string>過労死した魔王軍の亡霊。 社畜なので死して尚、勇者を倒そうとサービス残業している。  空中にいるため通常攻撃は届かない。 彼らに永遠の有給を与えるためには必殺技で倒すしかないだろう。</string>
 	</dict>
 	<key>arakure</key>
 	<dict>
@@ -172,10 +173,6 @@
 		<integer>2</integer>
 		<key>range</key>
 		<integer>1</integer>
-		<key>canFire</key>
-		<false/>
-		<key>exp</key>
-		<integer>4</integer>
 		<key>type</key>
 		<string>normal</string>
 	</dict>
@@ -188,7 +185,7 @@
 		<key>str</key>
 		<integer>3</integer>
 		<key>def</key>
-		<integer>2</integer>
+		<integer>4</integer>
 		<key>agi</key>
 		<integer>10</integer>
 		<key>int</key>
@@ -196,7 +193,7 @@
 		<key>pie</key>
 		<integer>3</integer>
 		<key>range</key>
-		<integer>3</integer>
+		<integer>5</integer>
 		<key>canFire</key>
 		<false/>
 		<key>exp</key>
@@ -390,7 +387,7 @@
 	<key>knight</key>
 	<dict>
 		<key>name</key>
-		<string>騎士</string>
+		<string>最後の騎士</string>
 		<key>hp</key>
 		<integer>20</integer>
 		<key>str</key>
@@ -405,14 +402,127 @@
 		<integer>0</integer>
 		<key>range</key>
 		<integer>1</integer>
-		<key>canFire</key>
-		<false/>
 		<key>canThunder</key>
 		<true/>
-		<key>exp</key>
-		<integer>10</integer>
 		<key>type</key>
 		<string>human</string>
+		<key>explain</key>
+		<string>カッパの兄弟子に当たる騎士。 普段は冷たいが、仮面の下では常に泣いている情熱的な人。
+
+この世界には通常攻撃ではダメージを与えられない敵がいることを、自らの強靭な肉体を持って教えようとする。 大した魔法力もないのに遠距離魔法を使いその特性を示すあたりに優しさが見受けられる。</string>
+	</dict>
+	<key>dancer</key>
+	<dict>
+		<key>name</key>
+		<string>冷たい谷の踊り手</string>
+		<key>hp</key>
+		<integer>44</integer>
+		<key>str</key>
+		<integer>10</integer>
+		<key>def</key>
+		<integer>1</integer>
+		<key>agi</key>
+		<integer>99</integer>
+		<key>int</key>
+		<integer>3</integer>
+		<key>pie</key>
+		<integer>0</integer>
+		<key>range</key>
+		<integer>1</integer>
+		<key>canArrow</key>
+		<true/>
+		<key>canFire</key>
+		<true/>
+		<key>type</key>
+		<string>human</string>
+		<key>explain</key>
+		<string>冷たい谷で踊り続ける女。 赤い靴の呪いで、死後もずっと踊り続けている。
+
+踊り子のジョブは経験値効率を爆発的に上げたり、回復力を上げたりと非常に強力。 多くの冒険者が踊り子のいる冷たい谷を探したが、1/6の確率でしか見つけることができなかったという。</string>
+	</dict>
+	<key>fighter</key>
+	<dict>
+		<key>name</key>
+		<string>剣士レイルズ</string>
+		<key>hp</key>
+		<integer>30</integer>
+		<key>str</key>
+		<integer>7</integer>
+		<key>def</key>
+		<integer>18</integer>
+		<key>agi</key>
+		<integer>1</integer>
+		<key>int</key>
+		<integer>6</integer>
+		<key>pie</key>
+		<integer>999</integer>
+		<key>range</key>
+		<integer>3</integer>
+		<key>canArrow</key>
+		<true/>
+		<key>canFire</key>
+		<true/>
+		<key>heal</key>
+		<integer>4</integer>
+		<key>type</key>
+		<string>human</string>
+		<key>explain</key>
+		<string>偉大なる剣士ルビー・オン・レイルズ。 聖なる加護を得た鎧はあらゆる必殺攻撃をほぼ無効化する。  強力な近距離攻撃と、広範囲な遠距離魔法を扱う隙のない強敵。 しかも自動回復の能力まで持っている。  余談だが作者は Ruby On Rails を扱う仕事を普段はしている。</string>
+	</dict>
+	<key>samurai</key>
+	<dict>
+		<key>name</key>
+		<string>ラスト侍</string>
+		<key>hp</key>
+		<integer>15</integer>
+		<key>str</key>
+		<integer>12</integer>
+		<key>def</key>
+		<integer>9</integer>
+		<key>agi</key>
+		<integer>5</integer>
+		<key>int</key>
+		<integer>6</integer>
+		<key>pie</key>
+		<integer>4</integer>
+		<key>range</key>
+		<integer>1</integer>
+		<key>heal</key>
+		<integer>5</integer>
+		<key>type</key>
+		<string>human</string>
+		<key>explain</key>
+		<string>剣の腕を磨く事に生涯を捧げている。
+遥か西の大地で修行を積んでいるという噂があるが、真偽は不明である（意味深）。  特殊攻撃こそ使わないが、目の前の敵に強力な一撃を放ってくる。 カウンター攻撃が弱点。</string>
+	</dict>
+	<key>ninja</key>
+	<dict>
+		<key>name</key>
+		<string>忍者えんじに丸</string>
+		<key>hp</key>
+		<integer>45</integer>
+		<key>str</key>
+		<integer>25</integer>
+		<key>def</key>
+		<integer>5</integer>
+		<key>agi</key>
+		<integer>23</integer>
+		<key>int</key>
+		<integer>7</integer>
+		<key>pie</key>
+		<integer>4</integer>
+		<key>range</key>
+		<integer>3</integer>
+		<key>canArrow</key>
+		<true/>
+		<key>heal</key>
+		<integer>4</integer>
+		<key>type</key>
+		<string>human</string>
+		<key>explain</key>
+		<string>忍術を極めた男。 彼に触れたと思っても、残念ながらそれは残像である。
+
+カウンター攻撃に弱いので、頑張れば低レベルでも倒せる。</string>
 	</dict>
 	<key>necro</key>
 	<dict>

@@ -2,20 +2,27 @@
 import SpriteKit
 import GameplayKit
 
-class WorldScene: BaseScene {
+class WorldScene: BaseScene, DungeonDelegate {
 
-    let map_nodes = [
+    private let map_nodes = [
         "tutorial",
         "tutorial2",
+        "priest",
         "thief",
         "archer",
-        "priest",
+        "dancer",
+        "ninja",
+        "fighter",
         "necro",
         "maou"
     ]
-    
     private let worldModel : WorldModel = WorldModel()
 
+    // delegate method
+    func didEnteredDungeon(key : String) {
+        goDungeon(key)
+    }
+    
     override func sceneDidLoad() {
         worldModel.readDataByPlist()
         gameData.setParameterByUserDefault()
@@ -33,6 +40,15 @@ class WorldScene: BaseScene {
             node1?.removeFromParent()
             node2?.removeFromParent()
             node3?.removeFromParent()
+            
+            if CommonUtil.rnd(6) != 0 {
+                let node4 = childNode(withName: "//dancer")
+                node4?.removeFromParent()
+            }
+        }
+        if !GameData.isClear("priest") {
+            let node = childNode(withName: "//fighter")
+            node?.removeFromParent()
         }
         if !GameData.isClear("priest") && !GameData.isClear("thief") && !GameData.isClear("archer") {
             let node = childNode(withName: "//necro")
@@ -45,15 +61,11 @@ class WorldScene: BaseScene {
     }
     
     func explainDungeon(_ key: String){
-        let alert = UIAlertController(
-            title: worldModel.getName(key),
-            message: worldModel.getExplain(key),
-            preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "準備はできている！", style: .default, handler: { action in
-            self.goDungeon(key)
-        }))
-        alert.addAction(UIAlertAction(title: "……今は引き返す", style: .cancel))
-        self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "Dungeon", bundle: nil)
+        let nextViewController = storyboard.instantiateViewController(withIdentifier: "DungeonViewController") as! DungeonViewController
+        nextViewController.world = key
+        nextViewController.delegate = self
+        self.view?.window?.rootViewController?.present(nextViewController, animated: true, completion: nil)
     }
     
     
@@ -117,9 +129,15 @@ class WorldScene: BaseScene {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
             let endPosition =  t.location(in: self)
+            /*
             let vector = CGVector(
                 dx: endPosition.x - beganPosition.x,
                 dy: endPosition.y - beganPosition.y
+            )
+ */
+            let vector = CGVector(
+                dx: endPosition.x - beganPosition.x,
+                dy: 0
             )
             moveObject(vector)
             beganPosition = endPosition

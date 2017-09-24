@@ -7,9 +7,11 @@
 		<key>name</key>
 		<string>村人</string>
 		<key>explain</key>
-		<string>戦闘には向かない村人。 成長率も低いので早く転職した方が良い。  [成長率] HP:  3 筋力: 1 体力: 0 敏捷: 0 知恵: 1 精神: 0 幸運: 1  【習得スキル】 [LV5 :  ど根性カッパ] HPが2以上の時に攻撃を受けても、一度だけ復活する。 復活後のHPは幸運の値と一緒になる。 </string>
-		<key>skill</key>
-		<string>固有スキル：　なし</string>
+		<string>戦闘には向かない村人。 成長率も低いので早く転職した方が良い。</string>
+		<key>own_skill</key>
+		<string>なし</string>
+		<key>general_skill</key>
+		<string>[LV5 :  ど根性カッパ] HPが2以上の時に攻撃を受けても、一度だけ復活する。 復活後のHPは幸運の値と一緒になる。</string>
 		<key>hp</key>
 		<integer>3</integer>
 		<key>str</key>
@@ -31,8 +33,10 @@
 		<string>戦士</string>
 		<key>explain</key>
 		<string>攻めるのが大好き</string>
-		<key>skill</key>
-		<string>固有スキル：　物理ダメージアップ</string>
+		<key>own_skill</key>
+		<string>なし</string>
+		<key>general_skill</key>
+		<string>[LV5 :  ど根性カッパ] HPが2以上の時に攻撃を受けても、一度だけ復活する。 復活後のHPは幸運の値と一緒になる。</string>
 		<key>hp</key>
 		<integer>1</integer>
 		<key>str</key>
@@ -53,9 +57,11 @@
 		<key>name</key>
 		<string>騎士</string>
 		<key>explain</key>
-		<string>守る事に重きを置いた戦士。 鉄壁の防御力を誇る。  [成長率] HP:  5 筋力: 2 体力: 3 敏捷: 0 知恵: 1 精神: 2 幸運: 0  【習得スキル】 未設定 </string>
-		<key>skill</key>
-		<string>固有スキル：　物理ダメージ半減</string>
+		<string>守る事に重きを置いた戦士。 鉄壁の防御力を誇る。</string>
+		<key>own_skill</key>
+		<string>物理ダメージ軽減</string>
+		<key>general_skill</key>
+		<string></string>
 		<key>hp</key>
 		<integer>5</integer>
 		<key>str</key>
@@ -76,11 +82,13 @@
 		<key>name</key>
 		<string>僧侶</string>
 		<key>explain</key>
-		<string>敬虔な僧侶。 神秘の力でHPを回復する事ができる。  [成長率] HP:  1 筋力: 0 体力: 0 敏捷: 1 知恵: 1 精神: 2 幸運: 2  【習得スキル】 [カッパヒール  LV(lv)]
-(tap)タップごとにHPが(lv)回復する。
-回復量は僧侶LVに等しい。 </string>
-		<key>skill</key>
-		<string>固有スキル：　回復力２倍</string>
+		<string>敬虔な僧侶。 神秘の力でHPを回復する事ができる。</string>
+		<key>own_skill</key>
+		<string>回復力２倍</string>
+		<key>general_skill</key>
+		<string>[カッパヒール]
+20タップごとにHPが回復する。
+回復量は僧侶LVに等しい。</string>
 		<key>hp</key>
 		<integer>1</integer>
 		<key>str</key>
@@ -101,9 +109,11 @@
 		<key>name</key>
 		<string>魔法使い</string>
 		<key>explain</key>
-		<string>趣味：黒魔術。 魔力を高め必殺技の威力を極める事を人生の目的としている。  [成長率] HP:  3 筋力: 1 体力: 1 敏捷: 0 知恵: 3 精神: 2 幸運: 1  【習得スキル】 未設定 </string>
-		<key>skill</key>
-		<string>固有スキル：　ダブルファイア</string>
+		<string>趣味：黒魔術。 魔力を高め必殺技の威力を極める事を人生の目的としている。</string>
+		<key>own_skill</key>
+		<string>なし</string>
+		<key>general_skill</key>
+		<string>なし</string>
 		<key>hp</key>
 		<integer>3</integer>
 		<key>str</key>
@@ -124,9 +134,11 @@
 		<key>name</key>
 		<string>盗賊</string>
 		<key>explain</key>
-		<string>盗みで生計を立てる者。 生きるために磨かれた独自の技術を持つ。  [成長率] HP:  3 筋力: 2 体力: 2 敏捷: 3 知恵: 0 精神: 0 幸運: 2  【固有スキル】 [縮地] 通常移動が高速になる。</string>
-		<key>skill</key>
-		<string>固有スキル：　しのび足</string>
+		<string>盗みで生計を立てる者。 生きるために磨かれた独自の技術を持つ。</string>
+		<key>own_skill</key>
+		<string>[縮地] 通常移動が高速になる。</string>
+		<key>general_skill</key>
+		<string>なし</string>
 		<key>hp</key>
 		<integer>3</integer>
 		<key>str</key>
@@ -147,9 +159,11 @@
 		<key>name</key>
 		<string>ネクロマンサー</string>
 		<key>explain</key>
-		<string>死者を操る禁術に魅入られし者。 呪いによる独特なスキルを扱う。  [成長率] HP:  2 筋力: 1 体力: 1 敏捷: 1 知恵: 4 精神: 2 幸運: 0  【習得スキル】 [生命奪取] 敵を撃破時に、ネクロマンサーLVだけHPを回復する。</string>
-		<key>skill</key>
-		<string>固有スキル：　ダブルファイア</string>
+		<string>死者を操る禁術に魅入られし者。 呪いによる独特なスキルを扱う。</string>
+		<key>own_skill</key>
+		<string></string>
+		<key>general_skill</key>
+		<string>[生命奪取] 敵を撃破時に、ネクロマンサーLVだけHPを回復する。</string>
 		<key>hp</key>
 		<integer>3</integer>
 		<key>str</key>

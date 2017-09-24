@@ -43,12 +43,25 @@ class MenuScene: BaseScene {
         }
     }
     
+    func goSpecial(){
+        let storyboard = UIStoryboard(name: "Job", bundle: nil)
+        let jobViewController = storyboard.instantiateViewController(withIdentifier: "JobViewController") as! JobViewController
+        self.view?.window?.rootViewController?.present(jobViewController, animated: true, completion: nil)
+    }
+    
     func goOption(){
         let scene = OptionScene(fileNamed: "OptionScene")
         scene?.size = self.scene!.size
         scene?.scaleMode = SKSceneScaleMode.aspectFill
         scene?.backScene = self.scene as! MenuScene        
         self.view!.presentScene(scene!, transition: .flipVertical(withDuration: Const.transitionInterval))
+    }
+    
+    func goLibrary(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let listViewController = storyboard.instantiateViewController(withIdentifier: "ListViewController") as! ListViewController
+        listViewController.type = "enemies"
+        self.view?.window?.rootViewController?.present(listViewController, animated: true, completion: nil)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -62,6 +75,10 @@ class MenuScene: BaseScene {
             switch tapNode.name! {
             case "SkillNode", "SkillLabel":
                 showStatus()
+            case "SpecialNode", "SpecialLabel":
+                goSpecial()
+            case "LibraryNode", "LibraryLabel":
+                goLibrary()
             case "CloseNode", "CloseLabel":
                 goBack()
             case "OptionNode", "OptionLabel":

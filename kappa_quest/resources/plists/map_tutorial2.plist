@@ -71,7 +71,7 @@
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>
-		<string>左　右　左　右　左　でカッパ昇熊拳</string>
+		<string>右　右　左　右　左　でカッパ昇熊拳</string>
 		<key>event_text1</key>
 		<string>対空の強烈な一撃を放てる。</string>
 	</dict>
@@ -79,20 +79,21 @@
 	<dict>
 		<key>enemies</key>
 		<array>
+			<string>usagi</string>
 			<string>hiyoko</string>
-			<string>hiyoko</string>
-			<string>ghost</string>
+			<string>chibidora</string>
 			<string>ghost</string>
 		</array>
 		<key>event</key>
 		<false/>
+		<key>is_random</key>
+		<true/>
 	</dict>
 	<key>0.5</key>
 	<dict>
 		<key>enemies</key>
 		<array>
 			<string>ghost</string>
-			<string>buffalo</string>
 			<string>usagi</string>
 			<string>chibidora</string>
 			<string>usagi</string>
@@ -110,8 +111,8 @@
 	<dict>
 		<key>enemies</key>
 		<array>
-			<string>buffalo</string>
-			<string>usagi</string>
+			<string>ghost</string>
+			<string>ghost</string>
 			<string>ghost</string>
 			<string>knight</string>
 		</array>

@@ -19,13 +19,8 @@ class GameClearScene: BaseScene {
         clearLabel.text = randomWord()
         clear2Label.text = clearWord
 
-        switch world {
-        case "tutorial", "tutorial2", "thief", "priest", "necro":
-            GameData.clearCountUp(world)
-            break
-        default:
-            break
-        }
+        // クリアフラグを立てる
+        GameData.clearCountUp(world)
     }
     
     func randomWord() -> String {
@@ -37,6 +32,7 @@ class GameClearScene: BaseScene {
             "余裕のよっちゃん！",
             "そして、次の戦いが始まるのです",
             "敗北が知りたい",
+            "",
         ]
         return array[CommonUtil.rnd(array.count)]
     }

@@ -33,8 +33,9 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         }
 
         self.lastUpdateTime = 0
-        self.physicsWorld.contactDelegate = self
-
+        
+        setWorld()
+        
         // データをセット
         enemyModel.readDataByPlist()
         jobModel.readDataByPlist()
@@ -57,6 +58,15 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         playBGM()
         
         showMessage("冒険の始まりだ！", type: "start")
+    }
+    
+    func setWorld(){
+        self.physicsWorld.contactDelegate = self
+        let underground = childNode(withName: "//underground") as! SKSpriteNode
+        underground.physicsBody = SKPhysicsBody(rectangleOf: underground.size)
+        underground.physicsBody?.categoryBitMask = Const.worldCategory
+        underground.physicsBody?.affectedByGravity = false
+        underground.physicsBody?.isDynamic = false
     }
 
     // 画面が読み込まれた時に呼ばれる
@@ -228,11 +238,17 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
 
         if BattleModel.isCritical(luc: Double(kappa.pie)) {
             //makeSpark(point: CGPoint(x: enemyModel.enemies[pos].position.x, y: enemyModel.enemies[pos].position.y), isCtirical: true)
-            makeSpark(point: CGPoint(x: enemy.position.x, y: enemyModel.enemies[pos].position.y), isCtirical: true)
+            for _ in 0...2 {
+                makeSpark(point: CGPoint(x: enemy.position.x, y: enemyModel.enemies[pos].position.y), isCtirical: true, random: 100)
+            }
             damage = BattleModel.calculateCriticalDamage(str: str, def: def)
             playSoundEffect(type: 2)
         } else {
-            makeSpark(point: CGPoint(x: enemy.position.x, y: enemyModel.enemies[pos].position.y))
+            for _ in 0...2 {
+                makeSpark(point: CGPoint(x: enemy.position.x, y: enemyModel.enemies[pos].position.y), random: 100)
+            }
+            
+            
             damage = BattleModel.calculateDamage(str: str, def: def)
             playSoundEffect(type: 3)
         }
@@ -277,12 +293,14 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         }
     }
 
-    func makeSpark(point : CGPoint, isCtirical : Bool = false){
+    func makeSpark(point : CGPoint, isCtirical : Bool = false, random : Int = 0){
         var particle = SparkEmitterNode.makeSpark()
         if isCtirical {
             particle = SparkEmitterNode.makeBlueSpark()
         }
-        particle.position = point
+        let point_x =  point.x + CGFloat(CommonUtil.rnd(random) - random/2)
+        let point_y =  point.y + CGFloat(CommonUtil.rnd(random) - random/2)
+        particle.position = CGPoint(x: point_x, y: point_y)
         particle.run(actionModel.sparkFadeOut!)
         self.addChild(particle)
     }
@@ -340,7 +358,8 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         let enemy = enemyModel.enemies[pos]
         enemy.hp = 0
         enemy.isDead = true
-        getExp(enemyModel.enemies[pos].exp, point: enemy.position)
+        let exp = enemy.lv + CommonUtil.minimumRnd(CommonUtil.minimumRnd(kappa.luc))
+        getExp(exp, point: enemy.position)
 
         removeEnemyLifeBar(pos)
         enemy.setBeatPhysic()
@@ -588,7 +607,11 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         } else {
             let num = pos-3
             if map.enemies.count > num {
-                enemy = enemyModel.getEnemy(enemy_name: map.enemies[num], lv: map.lv)
+                if map.enemies[num] != "" {
+                    enemy = enemyModel.getEnemy(enemy_name: map.enemies[num], lv: map.lv)
+                } else {
+                    return false
+                }
             } else {
                 return false
             }
@@ -600,12 +623,25 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
 
         enemy.pos = pos
         enemy.position.x = getPositionX(pos)
-        enemy.position.y = kappa_first_position_y
+        if enemy.canFly || enemy.isGhost{
+            enemy.position.y = kappa_first_position_y + Const.enemyFlyHeight
+        } else {
+            enemy.position.y = kappa_first_position_y
+        }
+        enemy.setPhysic()
+        if enemy.isGhost {
+            map.positionData[pos] = "free"
+            enemy.ghostMove()
+        }
         addChild(enemy)
-
         createEnemyLv(enemy.lv, position: CGPoint(x: enemy.position.x, y: enemy.position.y + Const.enemySize + 20))
         createEnemyLifeBar(pos: pos, x: (enemy.position.x - Const.enemySize/2), y: enemy.position.y - 30)
-        enemyModel.enemies[pos] = enemy
+        enemyModel.enemies[pos] = enemy        
+        enemy.diff_agi = CommonUtil.valueMin1(enemy.agi - kappa.agi)
+        
+        if world_name == "dancer" {
+            enemy.str = 999999999
+        }
         return true
     }
 
@@ -895,6 +931,14 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         self.view!.presentScene(scene, transition: .doorsCloseHorizontal(withDuration: Const.gameOverInterval))
     }
 
+    func showJob(){
+        let storyboard = UIStoryboard(name: "Job", bundle: nil)
+        let jobViewController = storyboard.instantiateViewController(withIdentifier: "JobViewController") as! JobViewController
+        jobViewController.job = jobModel.name
+        jobViewController.from = "battle"
+        self.view?.window?.rootViewController?.present(jobViewController, animated: true, completion: nil)
+    }
+    
     /***********************************************************************************/
     /********************************** specialAttack **********************************/
     /***********************************************************************************/
@@ -924,8 +968,8 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         kappa.upper()
         specialAttackModel.execUpper()
         let upper = SKAction.sequence([
-            SKAction.moveBy(x: 60, y: 250, duration: Const.headAttackSpeed/2),
-            SKAction.moveBy(x: 0, y: -250, duration: Const.headAttackSpeed/2),
+            SKAction.moveBy(x: 60,  y:      Const.enemyFlyHeight, duration: Const.headAttackSpeed/2),
+            SKAction.moveBy(x: 0,   y: -1 * Const.enemyFlyHeight, duration: Const.headAttackSpeed/2),
             SKAction.moveBy(x: -60, y: 0,  duration: Const.headAttackSpeed/2),
         ])
 
@@ -1037,6 +1081,8 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                 } else {
                     goMenu()
                 }
+            case "JobNode", "JobLabel":
+                showJob()
             case "KappaInfoLabel", "KappaInfoNode":
                 displayAlert("ステータス", message: JobModel.allSkillExplain(skillModel, kappa: kappa!, gameData: gameData), okString: "閉じる")
             case "EquipLabel", "EquipNode":
@@ -1115,6 +1161,11 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                     attackCalculate(str: kappa.str, type: "physic", enemy: enemy)
                 }
             }
+        } else if isMagickNode(firstBody) {
+            if secondBody.categoryBitMask & Const.worldCategory != 0 {
+                makeSpark(point: (firstBody.node?.position)!)
+                firstBody.node?.removeFromParent()
+            }
         }
     }
     
@@ -1122,7 +1173,10 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         return (firstBody.categoryBitMask & Const.kappaCategory != 0) || (firstBody.categoryBitMask & Const.kappa2Category != 0)
     }
     
-
+    func isMagickNode(_ firstBody : SKPhysicsBody) -> Bool {
+        return  (firstBody.categoryBitMask & Const.fireCategory != 0) || (firstBody.categoryBitMask & Const.thunderCategory != 0)
+    }
+    
     /***********************************************************************************/
     /********************************* update ******************************************/
     /***********************************************************************************/
@@ -1161,12 +1215,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             }
             enemy.timerUp()
             if enemy.isAttack() {
-                enemy.isAttacking = true
-                enemy.run(actionModel.enemyAttack(range: CGFloat(enemy.range)))
-                enemy.attackTimerReset()
-                _ = CommonUtil.setTimeout(delay: 2*Const.enemyJump, block: { () -> Void in
-                    enemy.isAttacking = false
-                })
+                enemy.normalAttack(actionModel)
             } else if enemy.isFire() {
                 enemy.run(actionModel.enemyJump!)
                 enemy.makeFire()
@@ -1189,7 +1238,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                     createThunder(pos: 5, damage: enemy.int)
                 }
                 enemy.arrowTimerReset()
-            } else if enemy.jumpTimer%4 == 0 {
+            } else if enemy.jumpTimer%4 == 0 && !enemy.canFly {
                 enemy.run(actionModel.enemyMiniJump!)
                 enemy.jumpTimerReset()
             }

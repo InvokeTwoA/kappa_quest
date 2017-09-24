@@ -6,28 +6,24 @@
 	<dict>
 		<key>background</key>
 		<string>bg_haikyo</string>
+		<key>lv</key>
+		<integer>6</integer>
 		<key>enemies</key>
 		<array/>
-		<key>lv</key>
-		<integer>3</integer>
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>
-		<string>教会も今はもう無い。</string>
+		<string>吐息が白い。</string>
 		<key>event_text1</key>
-		<string></string>
-		<key>job</key>
-		<string>nil</string>
-		<key>tutorial</key>
-		<string>nil</string>
+		<string>凍りついた空気に震えが止まらない。</string>
 	</dict>
 	<key>0.1</key>
 	<dict>
 		<key>enemies</key>
 		<array>
-			<string>ghost</string>
 			<string>usagi</string>
-			<string>hiyoko</string>
+			<string>chibidora</string>
+			<string>ghost</string>
 		</array>
 		<key>is_random</key>
 		<true/>
@@ -36,12 +32,6 @@
 	</dict>
 	<key>0.5</key>
 	<dict>
-		<key>enemies</key>
-		<array>
-			<string>ghost</string>
-			<string>usagi</string>
-			<string>hiyoko</string>
-		</array>
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>
@@ -55,8 +45,8 @@
 		<array>
 			<string></string>
 			<string></string>
-			<string>wizard</string>
-			<string>priest</string>
+			<string></string>
+			<string>dancer</string>
 		</array>
 		<key>is_boss</key>
 		<true/>
@@ -65,15 +55,15 @@
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>
-		<string>「死こそが救い……</string>
+		<string>「踊りましょう。バラ色の頬が青ざめて</string>
 		<key>event_text1</key>
-		<string>　共に天国へと行きましょう」</string>
+		<string>　雪のように冷たくなるまで」</string>
 		<key>boss_word0</key>
-		<string>「神さま……」</string>
+		<string>「もう踊れない……」</string>
 		<key>boss_word1</key>
 		<string></string>
 		<key>clear_word</key>
-		<string>彼らは信じるべき神を間違えた。</string>
+		<string>この先に帝王がいる……</string>
 	</dict>
 </dict>
 </plist>
