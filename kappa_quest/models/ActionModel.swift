@@ -3,11 +3,10 @@ import SpriteKit
 import Foundation
 
 class ActionModel {
-    
+
     let HIGH_JUMP_SPACE : CGFloat = 60.0
     let HIGH_JUMP_SPEED : TimeInterval = 0.1
 
-    
     var moveSpace : CGFloat = 0.0
 
     var attack            : SKAction!
@@ -37,16 +36,16 @@ class ActionModel {
     var underAttack       : SKAction!
     var highJump          : SKAction!
     var sparkFadeOut      : SKAction!
-    
+
     func setActionData(sceneWidth : CGFloat){
         moveSpace = sceneWidth/7.0/4.0
-        
+
         // 攻撃アクション
         attack = SKAction.sequence([
             SKAction.moveBy(x: moveSpace*2, y: 0, duration: 0.1),
             SKAction.moveBy(x: -1*moveSpace*2, y: 0, duration: 0.1),
         ])
-        
+
         // 移動
         moveRight = SKAction.sequence([
             SKAction.moveBy(x: moveSpace, y:    Const.jumpSpace, duration: Const.moveSpeed),
@@ -61,14 +60,14 @@ class ActionModel {
             SKAction.moveBy(x: -1*moveSpace, y:    Const.jumpSpace, duration: Const.moveSpeed),
             SKAction.moveBy(x: -1*moveSpace, y: -1*Const.jumpSpace, duration: Const.moveSpeed),
         ])
-        
+
         speedMoveRight = SKAction.sequence([
             SKAction.moveBy(x: moveSpace, y:    0, duration: Const.moveSpeed/2.0),
             SKAction.moveBy(x: moveSpace, y:    0, duration: Const.moveSpeed/2.0),
             SKAction.moveBy(x: moveSpace, y:    0, duration: Const.moveSpeed/2.0),
             SKAction.moveBy(x: moveSpace, y:    0, duration: Const.moveSpeed/2.0),
         ])
-        
+
         speedMoveLeft = SKAction.sequence([
             SKAction.moveBy(x: -1*moveSpace, y:    0, duration: Const.moveSpeed/2.0),
             SKAction.moveBy(x: -1*moveSpace, y:    0, duration: Const.moveSpeed/2.0),
@@ -80,13 +79,12 @@ class ActionModel {
             SKAction.moveBy(x: 2*moveSpace, y:    10*Const.jumpSpace, duration: Const.moveSpeed*3),
             SKAction.moveBy(x: 2*moveSpace, y:   -10*Const.jumpSpace, duration: Const.moveSpeed*3),
             ])
-        
+
         floatMoveLeft = SKAction.sequence([
             SKAction.moveBy(x: -2*moveSpace, y:    10*Const.jumpSpace, duration: Const.moveSpeed*3),
             SKAction.moveBy(x: -2*moveSpace, y:   -10*Const.jumpSpace, duration: Const.moveSpeed*3),
             ])
-        
-        
+
         // 左に戻れない
         moveBack = SKAction.sequence([
             SKAction.moveBy(x: -1*moveSpace, y:    Const.jumpSpace, duration: Const.moveSpeed),
@@ -94,7 +92,7 @@ class ActionModel {
             SKAction.moveBy(x: moveSpace, y:    Const.jumpSpace, duration: Const.moveSpeed),
             SKAction.moveBy(x: moveSpace, y: -1*Const.jumpSpace, duration: Const.moveSpeed),
         ])
-        
+
         // 右に行けない
         moveBack2 = SKAction.sequence([
             SKAction.moveBy(x: moveSpace,       y:    Const.jumpSpace, duration: Const.moveSpeed),
@@ -110,13 +108,13 @@ class ActionModel {
             SKAction.moveBy(x: -1*attackSpace, y: -1*Const.normalAttackY, duration: Const.normalAttackSpeed),
             SKAction.removeFromParent()
             ])
-        
+
         // 死亡時（真上に飛び上がってから落ちていく）
         dead = SKAction.sequence([
             SKAction.moveBy(x: 0, y:    Const.jumpSpace * 5, duration: Const.moveSpeed*3),
             SKAction.moveBy(x: 0, y: -1*Const.jumpSpace * 30, duration: Const.moveSpeed*18),
         ])
-        
+
         // ダメージ表示
         displayDamage = SKAction.sequence([
             SKAction.moveBy(x: 0, y:  70, duration: 0.1),
@@ -125,7 +123,7 @@ class ActionModel {
             SKAction.fadeOut(withDuration: 0.1),
             SKAction.removeFromParent()
         ])
-        
+
         displayDamaged = SKAction.sequence([
             SKAction.moveBy(x: -20, y:  70, duration: 0.1),
             SKAction.moveBy(x: -20, y: -40, duration: 0.1),
@@ -133,20 +131,20 @@ class ActionModel {
             SKAction.fadeOut(withDuration: 0.1),
             SKAction.removeFromParent()
         ])
-        
+
         displayHeal = SKAction.sequence([
             SKAction.moveBy(x: 0, y:  90, duration: 0.2),
             SKAction.fadeOut(withDuration: 0.5),
             SKAction.removeFromParent()
         ])
-        
+
         displayExp = SKAction.sequence([
             SKAction.moveBy(x: 0, y:  70, duration: 0.2),
             SKAction.wait(forDuration: 0.5),
             SKAction.fadeOut(withDuration: 0.1),
             SKAction.removeFromParent()
         ])
-        
+
         // 右上のメッセージダイアログ表示
         displayMessage = SKAction.sequence([
             SKAction.fadeIn(withDuration: 0.1),
@@ -171,7 +169,7 @@ class ActionModel {
             SKAction.fadeAlpha(to: 1.0, duration: 0.1),
             SKAction.fadeAlpha(to: 0.01, duration: 4.5)
         ])
-        
+
         // 一定時間後に完全消滅
         // 少しだけ表示して消える
         fadeOutEternal = SKAction.sequence([
@@ -184,53 +182,49 @@ class ActionModel {
             SKAction.removeFromParent()
         ])
 
-        
         // 火花など、一瞬だけ出てfadeOut
         sparkFadeOut = SKAction.sequence([
             SKAction.fadeOut(withDuration: 0.25),
             SKAction.removeFromParent()
         ])
-        
 
         // 敵のジャンプ
         enemyJump = SKAction.sequence([
             SKAction.moveBy(x: 0, y:    Const.enemyJumpSpace, duration: Const.enemyJump),
             SKAction.moveBy(x: 0, y: -1*Const.enemyJumpSpace, duration: Const.enemyJump),
         ])
-        
+
         // 敵のミニジャンプ
         enemyMiniJump = SKAction.sequence([
             SKAction.moveBy(x: 0, y:    Const.enemyJumpSpace/4, duration: Const.enemyJump),
             SKAction.moveBy(x: 0, y: -1*Const.enemyJumpSpace/4, duration: Const.enemyJump),
         ])
-        
+
         // 敵のミニジャンプ
         enemyHighJump = SKAction.sequence([
             SKAction.moveBy(x: 0, y:    Const.enemyJumpSpace, duration: Const.enemyJump*3),
             SKAction.moveBy(x: 0, y: -1*Const.enemyJumpSpace, duration: Const.enemyJump*3),
         ])
-        
+
         // 下方向にノーマルアタック
         underAttack = SKAction.sequence([
             SKAction.moveBy(x: 0, y: -1*Const.enemyFlyHeight, duration: Const.enemyJump*2),
             SKAction.moveBy(x: 0, y:    Const.enemyFlyHeight, duration: Const.enemyJump*2),
             ])
-        
+
         // 宝箱出現じ
         highJump = SKAction.sequence([
             SKAction.moveBy(x: 0, y:    HIGH_JUMP_SPACE, duration: HIGH_JUMP_SPEED),
             SKAction.moveBy(x: 0, y: -1*HIGH_JUMP_SPACE, duration: HIGH_JUMP_SPEED)
         ])
-
     }
-    
+
     func enemyAttack(range: CGFloat) -> SKAction {
         let attack = SKAction.sequence([
             SKAction.moveBy(x: -2*moveSpace*range, y:  0, duration: Const.enemyJump),
             SKAction.moveBy(x:  2*moveSpace*range, y:  0, duration: Const.enemyJump),
         ])
-    
         return attack
     }
-    
 }
+

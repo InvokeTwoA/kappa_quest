@@ -46,7 +46,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         createKappa()
         setHealVal()
         skillJudge()
-        
+
         let longLabel = childNode(withName: "//longMessageLabel") as! SKLabelNode
         let longNode = childNode(withName: "//longMessageNode") as! SKSpriteNode
         longLabel.isHidden = true
@@ -56,17 +56,14 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         prepareBGM(fileName: Const.bgm_fantasy)
         prepareSoundEffect()
         playBGM()
-        
         showMessage("冒険の始まりだ！", type: "start")
     }
-    
+
     func setWorld(){
         self.physicsWorld.contactDelegate = self
         let underground = childNode(withName: "//underground") as! SKSpriteNode
         underground.physicsBody = SKPhysicsBody(rectangleOf: underground.size)
-        underground.physicsBody?.categoryBitMask = Const.worldCategory
-        underground.physicsBody?.affectedByGravity = false
-        underground.physicsBody?.isDynamic = false
+        WorldNode.setWorldPhysic(underground.physicsBody)
     }
 
     // 画面が読み込まれた時に呼ばれる
@@ -110,7 +107,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         map.myPosition = 1
         kappa?.position.x = getPositionX(1)
         kappa?.position.y = kappa_first_position_y
-        kappa?.texture = SKTexture(imageNamed: "kappa")        
+        kappa?.texture = SKTexture(imageNamed: "kappa")
     }
 
     func saveData(){
@@ -150,18 +147,13 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     // 次のマップに移動
     // ボス撃破時はもう次のマップへは進めない
     func goNextMap(){
-        if map.isBoss {
-            map.myPosition -= 1
-            kappa.run(actionModel.moveBack2)
-        } else {
-            clearMap()
-            resetMessage()
-            setFirstPosition()
-            map.goNextMap()
-            saveData()
-            createMap()
-            updateDistance()
-        }
+        clearMap()
+        resetMessage()
+        setFirstPosition()
+        map.goNextMap()
+        saveData()
+        createMap()
+        updateDistance()
     }
 
     func stageClear(){
@@ -1036,12 +1028,14 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             }
             if map.canMoveRight() {
                 moveRight()
-            } else {
+            } else if map.isRightEnemy() {
                 if gameData.equip == "head" {
                     specialAttackHead()
                 } else {
                     attack(pos: map.myPosition+1)
                 }
+            } else {
+                kappa.run(actionModel.moveBack2)
             }
         } else {
             specialAttackModel.countUp(direction: "left")
@@ -1201,7 +1195,6 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                 kappa.xScale *= -1
             }
         }
-        
         doubleTimer += dt
         if doubleTimer > 1.0 {
             doubleTimer = 0.0
@@ -1217,12 +1210,9 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             if enemy.isAttack() {
                 enemy.normalAttack(actionModel)
             } else if enemy.isFire() {
-                enemy.run(actionModel.enemyJump!)
-                enemy.makeFire()
+                enemy.fireAttack(actionModel)
                 enemy.fire.position = CGPoint(x: enemy.position.x, y: enemy.position.y + 40 )
                 self.addChild(enemy.fire)
-                enemy.fire.shot()
-                enemy.fireTimerReset()
             } else if enemy.isThunder() {
                 createThunder(pos: enemy.pos - 1, damage: enemy.int)
                 createThunder(pos: enemy.pos - 2, damage: enemy.int)
@@ -1242,12 +1232,10 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                 enemy.run(actionModel.enemyMiniJump!)
                 enemy.jumpTimerReset()
             }
-            
             if enemy.heal != 0 {
                 enemy.healHP(enemy.heal)
                 changeEnemyLifeBar(enemy.pos, per: enemy.hp_per())
             }
         }
-
     }
 }

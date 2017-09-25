@@ -90,21 +90,28 @@ class Map {
         }
         positionData[0] = "free"
     }
-    
+
     func canMoveRight() -> Bool {
         if positionData.count < myPosition + 1 {
             return false
         }
+        if map.isBoss && Const.maxPosition == myPosition + 1 {
+            return false
+        }
         return positionData[myPosition+1] == "free" || positionData[myPosition+1] == "treasure"
     }
-    
+
+    func isRightEnemy() -> Bool {
+        return positionData[myPosition+1] == "enemy"
+    }
+
     func canMoveLeft() -> Bool {
         if myPosition <= 1 {
             return false
         }
         return true
     }
-    
+
     func goNextMap(){
         distance += 0.1
         if world == "tutorial" || world == "tutorial2" {

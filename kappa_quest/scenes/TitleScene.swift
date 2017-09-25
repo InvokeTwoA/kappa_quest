@@ -3,7 +3,6 @@ import SpriteKit
 import GameplayKit
 
 class TitleScene: BaseScene {
-    
     override func sceneDidLoad() {
         setRandomImage()
         if !GameData.isExistData() {
@@ -12,15 +11,14 @@ class TitleScene: BaseScene {
             resetNode?.removeFromParent()
             resetLabel?.removeFromParent()
         }
-        
         prepareBGM(fileName: Const.bgm_ahurera)
         playBGM()
     }
-    
+
     override func willMove(from view: SKView) {
         stopBGM()
     }
-    
+
     // ランダムなキャラアイコンをTOPに表示
     func setRandomImage(){
         let images = [
@@ -34,16 +32,16 @@ class TitleScene: BaseScene {
             "arakure",
             "thief",
             "knight",
+            "ninja",
+            "dancer",
+            "fighter",
             
             
             "miira",
             "skelton",
             "zombi",
-            "fighter",
-            "dancer",
             "dark_kappa",
             "angel",
-            "skelton",
             "maou",
         ]
         

@@ -52,8 +52,7 @@ class DungeonViewController : BaseTableViewController {
         listViewController.world = world
         self.view?.window?.rootViewController?.present(listViewController, animated: true, completion: nil)
     }
-    
-        
+
     // row count
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var rows = 0
@@ -67,7 +66,7 @@ class DungeonViewController : BaseTableViewController {
         }
         return rows
     }
-    
+
     // cell に関するデータソースメソッド
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for:indexPath) as UITableViewCell
@@ -83,13 +82,6 @@ class DungeonViewController : BaseTableViewController {
             cell.textLabel?.text = worldModel.clear_item
         case ENEMY_INFO:
             cell.textLabel?.text = "危険レベル:  \(worldModel.lv)"
-            /*
-            let enemy_key = worldModel.enemies[indexPath.row]
-            let data = EnemyModel.getData(enemy_key)
-            cell.textLabel?.text = data["name"] as? String
-            cell.imageView?.image = UIImage(named: enemy_key)
-            cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
- */
         case YOUR_CHOICE :
             cell.textLabel?.numberOfLines = 0
             if indexPath.row == GO_DUNGEON {
@@ -102,7 +94,7 @@ class DungeonViewController : BaseTableViewController {
         }
         return cell
     }
-    
+
     // タップ時の処理
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {

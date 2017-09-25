@@ -24,7 +24,7 @@ class EnemyNode: SKSpriteNode {
     var canThunder = false
     var canArrow  = false
     var isGhost = false
-    
+
     // 各種フラグ
     var isDead = true
     var isAttacking = false
@@ -84,7 +84,7 @@ class EnemyNode: SKSpriteNode {
         if dictionary["isGhost"] != nil {
             isGhost = dictionary.object(forKey: "isGhost") as! Bool
         }
-        
+
         // LVの分だけ強さをかける
         lv = set_lv
         maxHp *= lv
@@ -174,7 +174,6 @@ class EnemyNode: SKSpriteNode {
         return canArrow && arrowTimer > 100
     }
 
-    
     func attackTimerReset(){
         if attackTimer >= 100 {
             attackTimer -= 100
@@ -204,11 +203,10 @@ class EnemyNode: SKSpriteNode {
             arrowTimer = 0
         }
     }
-    
+
     /***********************************************************************************/
     /******************************** アクション    **************************************/
     /***********************************************************************************/
-    
     func normalAttack(_ actionModel : ActionModel){
         isAttacking = true
         var timer : TimeInterval
@@ -222,12 +220,18 @@ class EnemyNode: SKSpriteNode {
         _ = CommonUtil.setTimeout(delay: timer, block: { () -> Void in
             self.isAttacking = false
         })
-
         attackTimerReset()
     }
 
+    func fireAttack(_ actionModel : ActionModel){
+        run(actionModel.enemyJump!)
+        makeFire()
+        fire.shot()
+        fireTimerReset()
+    }
+
     /***********************************************************************************/
-    /******************************** 物理属性      **************************************/
+    /******************************** 物理属性      ************************************/
     /***********************************************************************************/
     func setPhysic(){
         let physic = SKPhysicsBody(rectangleOf: CGSize(width: Const.kappaSize, height: Const.kappaSize))
@@ -260,17 +264,17 @@ class EnemyNode: SKSpriteNode {
         physicsBody?.applyTorque(ROTATE_POWER)
         physicsBody?.applyImpulse(CGVector(dx: 250, dy: yVector))
     }
-    
+
     func ghostMove(){
         physicsBody?.contactTestBitMask = Const.worldCategory
         physicsBody?.collisionBitMask = Const.worldCategory
         physicsBody?.linearDamping = 0.0
         physicsBody?.friction = 0.0
         physicsBody?.restitution = 1.0
-        
+
         let dx = 30 + CommonUtil.rnd(40)
         let dy = 30 + CommonUtil.rnd(40)
         physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))
     }
-    
+
 }

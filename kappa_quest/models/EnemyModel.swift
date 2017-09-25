@@ -28,12 +28,32 @@ class EnemyModel {
     func resetEnemies(){
         enemies = [EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode()]
     }
-    
+
     class func getData(_ key : String) -> NSDictionary {
         let enemiesDataPath = Bundle.main.path(forResource: "enemies", ofType:"plist" )!
         let enemiesData = NSDictionary(contentsOfFile: enemiesDataPath)!
         let data = enemiesData.object(forKey: key) as! NSDictionary
         return data
+    }
+
+    class func displayStatus(_ key : String) -> String{
+        let dictionary = getData(key)
+        hp      = dictionary.object(forKey: "hp") as! Int
+        str     = dictionary.object(forKey: "str") as! Int
+        def     = dictionary.object(forKey: "def") as! Int
+        agi     = dictionary.object(forKey: "agi") as! Int
+        int     = dictionary.object(forKey: "int") as! Int
+        pie     = dictionary.object(forKey: "pie") as! Int
+        range   = Double(dictionary.object(forKey: "range") as! CGFloat)
+
+        var text =  "HP : \(hp)\n"
+        var text += "物理攻撃力 : \(str)\n"
+        var text += "物理防御力 : \(def)\n"
+        var text += "特殊攻撃力 : \(int)\n"
+        var text += "特殊防御力 : \(pie)\n"
+        var text += "行動の速度 : \(agi)\n"
+        var text += "攻撃の射程 : \(range)"
+        return text
     }
 
 }
