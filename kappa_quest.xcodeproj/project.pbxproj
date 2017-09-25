@@ -41,6 +41,7 @@
 		CE524F801F20D5B900A6D14C /* jpn.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE524F7F1F20D5B900A6D14C /* jpn.strings */; };
 		CE524F831F20D88800A6D14C /* eng.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE524F821F20D88800A6D14C /* eng.strings */; };
 		CE524F851F236EEC00A6D14C /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE524F841F236EEC00A6D14C /* GameData.swift */; };
+		CE5884E01F793A2B00ABAC1C /* WorldNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5884DF1F793A2B00ABAC1C /* WorldNode.swift */; };
 		CE6BB81F1F23C8860046DA65 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6BB81E1F23C8860046DA65 /* Map.swift */; };
 		CE6BB8211F23CA710046DA65 /* ShopNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6BB8201F23CA710046DA65 /* ShopNode.swift */; };
 		CE6BB8231F24C2430046DA65 /* EnemyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6BB8221F24C2430046DA65 /* EnemyModel.swift */; };
@@ -134,6 +135,7 @@
 		CE524F7F1F20D5B900A6D14C /* jpn.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = jpn.strings; path = resources/texts/jpn.strings; sourceTree = "<group>"; };
 		CE524F821F20D88800A6D14C /* eng.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = eng.strings; path = resources/texts/eng.strings; sourceTree = "<group>"; };
 		CE524F841F236EEC00A6D14C /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameData.swift; path = models/GameData.swift; sourceTree = "<group>"; };
+		CE5884DF1F793A2B00ABAC1C /* WorldNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorldNode.swift; path = nodes/WorldNode.swift; sourceTree = "<group>"; };
 		CE6BB81E1F23C8860046DA65 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Map.swift; path = models/Map.swift; sourceTree = "<group>"; };
 		CE6BB8201F23CA710046DA65 /* ShopNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShopNode.swift; path = nodes/ShopNode.swift; sourceTree = "<group>"; };
 		CE6BB8221F24C2430046DA65 /* EnemyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnemyModel.swift; path = models/EnemyModel.swift; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 				CE31F93E1F5D9B3100E868FB /* TreasureNode.swift */,
 				CEC2B6A71F1AE6FA0014B114 /* TapNode.swift */,
 				CE6BB8201F23CA710046DA65 /* ShopNode.swift */,
+				CE5884DF1F793A2B00ABAC1C /* WorldNode.swift */,
 			);
 			name = nodes;
 			sourceTree = "<group>";
@@ -646,6 +649,7 @@
 				CE6BB8211F23CA710046DA65 /* ShopNode.swift in Sources */,
 				CEC2B67F1F177A3C0014B114 /* AppDelegate.swift in Sources */,
 				CEEB83D21F1BCE200025E021 /* CommonUtil.swift in Sources */,
+				CE5884E01F793A2B00ABAC1C /* WorldNode.swift in Sources */,
 				CE31F94D1F63CF8D00E868FB /* SpecialAttckModel.swift in Sources */,
 				CE31F9431F626F4D00E868FB /* WorldScene.swift in Sources */,
 				CE8D513C1F6E46DF004F8D0B /* JobViewController.swift in Sources */,

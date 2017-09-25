@@ -95,7 +95,8 @@ class Map {
         if positionData.count < myPosition + 1 {
             return false
         }
-        if map.isBoss && Const.maxPosition == myPosition + 1 {
+    
+        if isBoss && Const.maxPosition == myPosition + 1 {
             return false
         }
         return positionData[myPosition+1] == "free" || positionData[myPosition+1] == "treasure"

@@ -44,9 +44,9 @@
 		<key>enemies</key>
 		<array>
 			<string>hiyoko</string>
+			<string>hiyoko</string>
 			<string>usagi</string>
 			<string>usagi</string>
-			<string>buffalo</string>
 		</array>
 		<key>is_random</key>
 		<false/>
@@ -79,9 +79,9 @@
 	<dict>
 		<key>enemies</key>
 		<array>
+			<string>hiyoko</string>
 			<string>usagi</string>
 			<string>chibidora</string>
-			<string>bat</string>
 		</array>
 		<key>is_random</key>
 		<true/>
@@ -97,7 +97,6 @@
 		<key>enemies</key>
 		<array>
 			<string>usagi</string>
-			<string>bat</string>
 			<string>chibidora</string>
 		</array>
 		<key>is_random</key>
@@ -121,8 +120,8 @@
 		<key>enemies</key>
 		<array>
 			<string>usagi</string>
-			<string>bat</string>
-			<string>bat</string>
+			<string>usagi</string>
+			<string>chibidora</string>
 			<string>wizard</string>
 		</array>
 		<key>is_boss</key>

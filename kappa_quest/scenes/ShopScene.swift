@@ -3,13 +3,10 @@ import GameplayKit
 
 class ShopScene: BaseScene, JobDelegate {
     
-    var backScene : WorldScene!
-    var page = 0
-    
+    private var page = 0
     private var jobNameList0 = ["murabito", "wizard", "knight", "priest", "thief", "fighter"]
     private var jobNameList1 = ["necro", "odoriko", "ninja", "", "", ""]
     private var enableJob : [Bool] = [true,false,false,false,false,false,false]
-    
     private var jobList : [String]!
 
     override func sceneDidLoad() {
@@ -28,8 +25,8 @@ class ShopScene: BaseScene, JobDelegate {
         jobModel.readDataByPlist()
         jobModel.loadParam()
         setJobData()
+        updatePageButton()
     }
-    
     
     func setJobData(){
         if page == 0 {
@@ -115,20 +112,37 @@ class ShopScene: BaseScene, JobDelegate {
         jobImage.texture = SKTexture(imageNamed: jobModel.name)
     }
     
-    func goBack(){
-        self.view!.presentScene(backScene, transition: .doorway(withDuration: 2.0))
-    }
-    
     func goNextPage(){
         page += 1
+        updatePageButton()
+        changeBoxColor(7)
+        setJobData()
+    }
+
+    func goBackPage(){
+        page -= 1
+        updatePageButton()
+        changeBoxColor(7)
+        setJobData()
+    }
     
+    func updatePageButton(){
         let nextLabel  = childNode(withName: "//nextLabel") as? SKLabelNode
         let nextNode = childNode(withName: "//nextNode") as? SKSpriteNode
-        nextLabel?.isHidden = true
-        nextNode?.isHidden = true
+        let backLabel  = childNode(withName: "//backLabel") as? SKLabelNode
+        let backNode = childNode(withName: "//backNode") as? SKSpriteNode
         
-        setJobData()
-        changeBoxColor(7)
+        if page == 1 {
+            nextLabel?.isHidden = true
+            nextNode?.isHidden = true
+            backLabel?.isHidden = false
+            backNode?.isHidden = false
+        } else if page == 0 {
+            nextLabel?.isHidden = false
+            nextNode?.isHidden = false
+            backLabel?.isHidden = true
+            backNode?.isHidden = true
+        }
     }
     
     func changeJob(_ position: Int) {
@@ -168,9 +182,11 @@ class ShopScene: BaseScene, JobDelegate {
             
             switch tapNode.name! {
             case "CloseNode", "CloseLabel":
-                goBack()
+                goWorld()
             case "nextNode", "nextLabel":
                 goNextPage()
+            case "backNode", "backLabel":
+                goBackPage()
             case "Job0", "JobLv0", "JobImage0":
                 changeJob(0)
             case "Job1", "JobLv1", "JobImage1":

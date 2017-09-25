@@ -4,14 +4,14 @@ import SpriteKit
 
 class WorldNode: SKSpriteNode {
 
-    class func setWorldPhysic(physicBody : SKPhysicsBody) {
+    class func setWorldPhysic(_ physicBody : SKPhysicsBody) {
         physicBody.categoryBitMask = Const.worldCategory
         physicBody.affectedByGravity = false
         physicBody.isDynamic = false
     }
 
     // 重力を持つ事で要素は沈んでいく
-    class func setWorldEnd(physicBody : SKPhysicsBody){
+    class func setWorldEnd(_ physicBody : SKPhysicsBody){
         physicBody.categoryBitMask = Const.worldCategory
         physicBody.affectedByGravity = true
         physicBody.isDynamic = true

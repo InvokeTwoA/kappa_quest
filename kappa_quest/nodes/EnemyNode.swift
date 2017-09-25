@@ -223,12 +223,6 @@ class EnemyNode: SKSpriteNode {
         attackTimerReset()
     }
 
-    func fireAttack(_ actionModel : ActionModel){
-        run(actionModel.enemyJump!)
-        makeFire()
-        fire.shot()
-        fireTimerReset()
-    }
 
     /***********************************************************************************/
     /******************************** 物理属性      ************************************/

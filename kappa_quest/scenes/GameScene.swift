@@ -63,7 +63,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self
         let underground = childNode(withName: "//underground") as! SKSpriteNode
         underground.physicsBody = SKPhysicsBody(rectangleOf: underground.size)
-        WorldNode.setWorldPhysic(underground.physicsBody)
+        WorldNode.setWorldPhysic(underground.physicsBody!)
     }
 
     // 画面が読み込まれた時に呼ばれる
@@ -681,6 +681,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     /***********************************************************************************/
 
     // マップ作成
+    var bossStopFlag = false
     func createMap(){
         map.updatePositionData()
 
@@ -703,12 +704,17 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             stopBGM()
             prepareBGM(fileName: Const.bgm_last_battle)
             playBGM()
+            bossStopFlag = true
         }
     }
 
     func changeBackGround(){
         let background = self.childNode(withName: "//BackgroundNode") as! SKSpriteNode
-        background.texture = SKTexture(imageNamed: map.background)
+        if map.background == "nil" {
+            background.isHidden = true
+        } else {
+            background.texture = SKTexture(imageNamed: map.background)
+        }
     }
 
     // マップの情報を削除
@@ -858,6 +864,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         bigMessages.remove(at: 0)
         bigMessageNode.run(actionModel.displayBigMessage!, completion: {() -> Void in
             self.isShowingBigMessage = false
+            self.bossStopFlag = false
         })
     }
 
@@ -1016,7 +1023,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     /********************************** touch ******************************************/
     /***********************************************************************************/
     func touchDown(atPoint pos : CGPoint) {
-        if gameOverFlag || specialAttackModel.is_attacking {
+        if gameOverFlag || specialAttackModel.is_attacking || bossStopFlag {
             return
         }
         if pos.x >= 0 {
@@ -1055,7 +1062,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         tapCountUp()
-        if gameOverFlag || specialAttackModel.is_attacking {
+        if gameOverFlag || specialAttackModel.is_attacking || bossStopFlag {
             return
         }
         if map.myPosition+1 > Const.maxPosition {
@@ -1147,7 +1154,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                     case "upper":
                         attackCalculate(str: kappa.str + kappa.int, type: "magick", enemy: enemy)
                     case "tornado":
-                        attackCalculate(str: kappa.str + kappa.int + enemy.str, type: "magick", enemy: enemy)
+                        attackCalculate(str: kappa.agi + kappa.int + enemy.str, type: "magick", enemy: enemy)
                     default:
                         break
                     }
@@ -1179,7 +1186,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
 
     override func update(_ currentTime: TimeInterval) {
         execMessages()
-        if gameOverFlag {
+        if gameOverFlag || bossStopFlag {
             return
         }
 
@@ -1210,9 +1217,12 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             if enemy.isAttack() {
                 enemy.normalAttack(actionModel)
             } else if enemy.isFire() {
-                enemy.fireAttack(actionModel)
+                enemy.run(actionModel.enemyJump!)
+                enemy.makeFire()
                 enemy.fire.position = CGPoint(x: enemy.position.x, y: enemy.position.y + 40 )
                 self.addChild(enemy.fire)
+                enemy.fire.shot()
+                enemy.fireTimerReset()
             } else if enemy.isThunder() {
                 createThunder(pos: enemy.pos - 1, damage: enemy.int)
                 createThunder(pos: enemy.pos - 2, damage: enemy.int)

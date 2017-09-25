@@ -83,7 +83,6 @@ class WorldScene: BaseScene, DungeonDelegate {
     // 店へ行く
     func goShop(){
         let scene = ShopScene(fileNamed: "ShopScene")!
-        scene.backScene = self.scene as! WorldScene
         scene.size = self.scene!.size
         scene.scaleMode = SKSceneScaleMode.aspectFill
         self.view!.presentScene(scene, transition: .doorway(withDuration: Const.doorTransitionInterval))

@@ -38,21 +38,21 @@ class EnemyModel {
 
     class func displayStatus(_ key : String) -> String{
         let dictionary = getData(key)
-        hp      = dictionary.object(forKey: "hp") as! Int
-        str     = dictionary.object(forKey: "str") as! Int
-        def     = dictionary.object(forKey: "def") as! Int
-        agi     = dictionary.object(forKey: "agi") as! Int
-        int     = dictionary.object(forKey: "int") as! Int
-        pie     = dictionary.object(forKey: "pie") as! Int
-        range   = Double(dictionary.object(forKey: "range") as! CGFloat)
+        let hp      = dictionary.object(forKey: "hp") as! Int
+        let str     = dictionary.object(forKey: "str") as! Int
+        let def     = dictionary.object(forKey: "def") as! Int
+        let agi     = dictionary.object(forKey: "agi") as! Int
+        let int     = dictionary.object(forKey: "int") as! Int
+        let pie     = dictionary.object(forKey: "pie") as! Int
+        let range   = dictionary.object(forKey: "range") as! Double
 
-        var text =  "HP : \(hp)\n"
-        var text += "物理攻撃力 : \(str)\n"
-        var text += "物理防御力 : \(def)\n"
-        var text += "特殊攻撃力 : \(int)\n"
-        var text += "特殊防御力 : \(pie)\n"
-        var text += "行動の速度 : \(agi)\n"
-        var text += "攻撃の射程 : \(range)"
+        var text  =  "HP : \(hp)\n"
+        text += "物理攻撃力 : \(str)\n"
+        text += "物理防御力 : \(def)\n"
+        text += "特殊攻撃力 : \(int)\n"
+        text += "特殊防御力 : \(pie)\n"
+        text += "行動の速度 : \(agi)\n"
+        text += "攻撃の射程 : \(range)"
         return text
     }
 

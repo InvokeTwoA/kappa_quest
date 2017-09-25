@@ -7,7 +7,7 @@ class TitleScene: BaseScene {
         setRandomImage()
         if !GameData.isExistData() {
             let resetNode = childNode(withName: "//ResetNode") as? SKSpriteNode
-            let resetLabel = childNode(withName: "//ResetLabel") as? SKSpriteNode
+            let resetLabel = childNode(withName: "//ResetLabel") as? SKLabelNode
             resetNode?.removeFromParent()
             resetLabel?.removeFromParent()
         }
@@ -40,7 +40,6 @@ class TitleScene: BaseScene {
             "miira",
             "skelton",
             "zombi",
-            "dark_kappa",
             "angel",
             "maou",
         ]
@@ -59,6 +58,11 @@ class TitleScene: BaseScene {
     }
     
     func goGame(){
+        /*
+        let resetNode = childNode(withName: "//ResetNode") as! SKSpriteNode
+        resetNode.physicsBody = SKPhysicsBody(rectangleOf: resetNode.size)
+        WorldNode.setWorldEnd(resetNode.physicsBody!)
+ */        
         if GameData.isExistData() {
             goWorld()
         } else {
