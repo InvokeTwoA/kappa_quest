@@ -6,7 +6,7 @@ class ShopScene: BaseScene, JobDelegate {
     private var page = 0
     private var jobNameList0 = ["murabito", "wizard", "knight", "priest", "thief", "arakure"]
     private var jobNameList1 = ["archer", "necro", "ninja", "samurai", "gundam", "fighter"]
-    private var jobNameList1 = ["king", "odoriko", "usagi", "sister", "assassin", "dark_knight"]
+    private var jobNameList2 = ["king", "odoriko", "usagi", "sister", "assassin", "dark_knight"]
     private var enableJob : [Bool] = [true,false,false,false,false,false,false]
     private var jobList : [String]!
 
@@ -34,6 +34,8 @@ class ShopScene: BaseScene, JobDelegate {
             jobList = jobNameList0
         } else if page == 1 {
             jobList = jobNameList1
+        } else if page == 2 {
+            jobList = jobNameList2
         }
 
         for i in 0...5 {

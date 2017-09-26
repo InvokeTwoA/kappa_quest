@@ -260,6 +260,23 @@
 			name = models;
 			sourceTree = "<group>";
 		};
+		CE5884E11F7AAC5600ABAC1C /* map */ = {
+			isa = PBXGroup;
+			children = (
+				CED621E91F41EE6C00C92480 /* map_tutorial.plist */,
+				CE8D513D1F6FB3F4004F8D0B /* map_tutorial2.plist */,
+				CE31F94A1F63C72000E868FB /* map_priest.plist */,
+				CE31F9441F62964F00E868FB /* map_thief.plist */,
+				CE8D51381F6D8E9B004F8D0B /* map_archer.plist */,
+				CED377921F74EEC00068768B /* map_dancer.plist */,
+				CED377941F77F7480068768B /* map_fighter.plist */,
+				CED377961F77FF590068768B /* map_ninja.plist */,
+				CE31F9481F63BFE000E868FB /* map_necro.plist */,
+				CE31F9461F63BE5A00E868FB /* map_maou.plist */,
+			);
+			name = map;
+			sourceTree = "<group>";
+		};
 		CE8D513A1F6E4646004F8D0B /* controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -428,16 +445,7 @@
 			isa = PBXGroup;
 			children = (
 				CEDBE7951F1CC469007E72B9 /* enemies.plist */,
-				CED621E91F41EE6C00C92480 /* map_tutorial.plist */,
-				CE8D513D1F6FB3F4004F8D0B /* map_tutorial2.plist */,
-				CE31F94A1F63C72000E868FB /* map_priest.plist */,
-				CE31F9441F62964F00E868FB /* map_thief.plist */,
-				CE8D51381F6D8E9B004F8D0B /* map_archer.plist */,
-				CED377921F74EEC00068768B /* map_dancer.plist */,
-				CED377941F77F7480068768B /* map_fighter.plist */,
-				CED377961F77FF590068768B /* map_ninja.plist */,
-				CE31F9481F63BFE000E868FB /* map_necro.plist */,
-				CE31F9461F63BE5A00E868FB /* map_maou.plist */,
+				CE5884E11F7AAC5600ABAC1C /* map */,
 				CED377811F7002850068768B /* worlds.plist */,
 				CE049FD61F2E0EED0079DEDB /* jobs.plist */,
 				CE31F9321F5A673F00E868FB /* skills.plist */,

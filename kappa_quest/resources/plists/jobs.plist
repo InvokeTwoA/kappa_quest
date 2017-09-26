@@ -27,31 +27,6 @@
 		<key>luc</key>
 		<integer>0</integer>
 	</dict>
-	<key>fighter</key>
-	<dict>
-		<key>name</key>
-		<string>戦士</string>
-		<key>explain</key>
-		<string>攻めるのが大好き</string>
-		<key>own_skill</key>
-		<string>なし</string>
-		<key>general_skill</key>
-		<string>[LV5 :  ど根性カッパ] HPが2以上の時に攻撃を受けても、一度だけ復活する。 復活後のHPは幸運の値と一緒になる。</string>
-		<key>hp</key>
-		<integer>1</integer>
-		<key>str</key>
-		<integer>2</integer>
-		<key>def</key>
-		<integer>1</integer>
-		<key>agi</key>
-		<integer>2</integer>
-		<key>int</key>
-		<integer>0</integer>
-		<key>pie</key>
-		<integer>0</integer>
-		<key>luc</key>
-		<integer>1</integer>
-	</dict>
 	<key>knight</key>
 	<dict>
 		<key>name</key>
@@ -178,6 +153,106 @@
 		<integer>2</integer>
 		<key>luc</key>
 		<integer>1</integer>
+	</dict>
+	<key>dancer</key>
+	<dict>
+		<key>name</key>
+		<string>踊り子</string>
+		<key>explain</key>
+		<string></string>
+		<key>own_skill</key>
+		<string></string>
+		<key>general_skill</key>
+		<string></string>
+		<key>hp</key>
+		<integer>3</integer>
+		<key>str</key>
+		<integer>1</integer>
+		<key>def</key>
+		<integer>0</integer>
+		<key>agi</key>
+		<integer>3</integer>
+		<key>int</key>
+		<integer>1</integer>
+		<key>pie</key>
+		<integer>1</integer>
+		<key>luc</key>
+		<integer>1</integer>
+	</dict>
+	<key>fighter</key>
+	<dict>
+		<key>name</key>
+		<string>勇者</string>
+		<key>explain</key>
+		<string>攻めるのが大好き</string>
+		<key>own_skill</key>
+		<string>なし</string>
+		<key>general_skill</key>
+		<string></string>
+		<key>hp</key>
+		<integer>5</integer>
+		<key>str</key>
+		<integer>2</integer>
+		<key>def</key>
+		<integer>2</integer>
+		<key>agi</key>
+		<integer>2</integer>
+		<key>int</key>
+		<integer>2</integer>
+		<key>pie</key>
+		<integer>2</integer>
+		<key>luc</key>
+		<integer>2</integer>
+	</dict>
+	<key>ninja</key>
+	<dict>
+		<key>name</key>
+		<string>ネクロマンサー</string>
+		<key>explain</key>
+		<string>死者を操る禁術に魅入られし者。 呪いによる独特なスキルを扱う。</string>
+		<key>own_skill</key>
+		<string></string>
+		<key>general_skill</key>
+		<string>[生命奪取] 敵を撃破時に、ネクロマンサーLVだけHPを回復する。</string>
+		<key>hp</key>
+		<integer>4</integer>
+		<key>str</key>
+		<integer>3</integer>
+		<key>def</key>
+		<integer>1</integer>
+		<key>agi</key>
+		<integer>4</integer>
+		<key>int</key>
+		<integer>3</integer>
+		<key>pie</key>
+		<integer>0</integer>
+		<key>luc</key>
+		<integer>0</integer>
+	</dict>
+	<key>dark_knight</key>
+	<dict>
+		<key>name</key>
+		<string>暗黒騎士</string>
+		<key>explain</key>
+		<string></string>
+		<key>own_skill</key>
+		<string></string>
+		<key>general_skill</key>
+		<string></string>
+		<key>hp</key>
+		<integer>0</integer>
+		<key>str</key>
+		<integer>5</integer>
+		<key>def</key>
+		<integer>0</integer>
+		<key>agi</key>
+		<integer>5</integer>
+		<key>int</key>
+		<integer>5</integer>
+		<key>pie</key>
+		<integer>0</integer>
+		<key>luc</key>
+		<integer>5</integer>
 	</dict>
 </dict>
 </plist>

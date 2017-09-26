@@ -81,16 +81,16 @@
 		<key>boss</key>
 		<string></string>
 	</dict>
-	<key>fighter</key>
+	<key>necro</key>
 	<dict>
 		<key>name</key>
-		<string>コボル平原</string>
+		<string>パイソン墓地</string>
 		<key>lv</key>
-		<integer>7</integer>
+		<integer>6</integer>
 		<key>explain</key>
-		<string>圧政を強いる帝国軍を打ち破るには、 まず帝国領に入るためコボル平原を抜ける必要がある。  しかしコボル平原には訓練を受けた帝国兵が待ち構えていた……。</string>
+		<string>何者かの禁術により死者たちが歩き回っている。 これ以上アンデッドの勢力を拡大させぬよう、早期に斬滅したい。  「たとえ宝箱から装備品を手に入れても、死は全てを奪い去っていく」  危険レベル：６</string>
 		<key>clear_item</key>
-		<string>新職業:  勇者</string>
+		<string>新職業: ネクロマンサー</string>
 		<key>enemies</key>
 		<array/>
 		<key>boss</key>
@@ -112,6 +112,21 @@
 		<key>boss</key>
 		<string></string>
 	</dict>
+	<key>fighter</key>
+	<dict>
+		<key>name</key>
+		<string>コボル平原</string>
+		<key>lv</key>
+		<integer>7</integer>
+		<key>explain</key>
+		<string>圧政を強いる帝国軍を打ち破るには、 まず帝国領に入るためコボル平原を抜ける必要がある。  しかしコボル平原には訓練を受けた帝国兵が待ち構えていた……。</string>
+		<key>clear_item</key>
+		<string>新職業:  勇者</string>
+		<key>enemies</key>
+		<array/>
+		<key>boss</key>
+		<string></string>
+	</dict>
 	<key>ninja</key>
 	<dict>
 		<key>name</key>
@@ -122,21 +137,6 @@
 		<string>忍者の隠れ里。 魔王を倒すためには彼らの持つ独自の戦闘技術が必要となるだろう。</string>
 		<key>clear_item</key>
 		<string>新職業: 忍者</string>
-		<key>enemies</key>
-		<array/>
-		<key>boss</key>
-		<string></string>
-	</dict>
-	<key>necro</key>
-	<dict>
-		<key>name</key>
-		<string>パイソン墓地</string>
-		<key>lv</key>
-		<integer>6</integer>
-		<key>explain</key>
-		<string>何者かの禁術により死者たちが歩き回っている。 これ以上アンデッドの勢力を拡大させぬよう、早期に斬滅したい。  「たとえ宝箱から装備品を手に入れても、死は全てを奪い去っていく」  危険レベル：６</string>
-		<key>clear_item</key>
-		<string>新職業: ネクロマンサー</string>
 		<key>enemies</key>
 		<array/>
 		<key>boss</key>
