@@ -25,7 +25,7 @@
 		<key>pie</key>
 		<integer>0</integer>
 		<key>luc</key>
-		<integer>1</integer>
+		<integer>0</integer>
 	</dict>
 	<key>fighter</key>
 	<dict>
@@ -63,19 +63,19 @@
 		<key>general_skill</key>
 		<string></string>
 		<key>hp</key>
-		<integer>5</integer>
+		<integer>4</integer>
 		<key>str</key>
 		<integer>2</integer>
 		<key>def</key>
-		<integer>3</integer>
-		<key>agi</key>
-		<integer>0</integer>
-		<key>int</key>
-		<integer>1</integer>
-		<key>pie</key>
 		<integer>2</integer>
-		<key>luc</key>
+		<key>agi</key>
+		<integer>1</integer>
+		<key>int</key>
 		<integer>0</integer>
+		<key>pie</key>
+		<integer>1</integer>
+		<key>luc</key>
+		<integer>1</integer>
 	</dict>
 	<key>priest</key>
 	<dict>
@@ -102,7 +102,7 @@
 		<key>pie</key>
 		<integer>2</integer>
 		<key>luc</key>
-		<integer>2</integer>
+		<integer>0</integer>
 	</dict>
 	<key>wizard</key>
 	<dict>
@@ -123,11 +123,11 @@
 		<key>agi</key>
 		<integer>0</integer>
 		<key>int</key>
-		<integer>3</integer>
-		<key>pie</key>
 		<integer>2</integer>
-		<key>luc</key>
+		<key>pie</key>
 		<integer>1</integer>
+		<key>luc</key>
+		<integer>0</integer>
 	</dict>
 	<key>thief</key>
 	<dict>
@@ -144,15 +144,15 @@
 		<key>str</key>
 		<integer>2</integer>
 		<key>def</key>
-		<integer>2</integer>
+		<integer>1</integer>
 		<key>agi</key>
 		<integer>3</integer>
 		<key>int</key>
-		<integer>0</integer>
+		<integer>1</integer>
 		<key>pie</key>
 		<integer>0</integer>
 		<key>luc</key>
-		<integer>2</integer>
+		<integer>3</integer>
 	</dict>
 	<key>necro</key>
 	<dict>
@@ -165,7 +165,7 @@
 		<key>general_skill</key>
 		<string>[生命奪取] 敵を撃破時に、ネクロマンサーLVだけHPを回復する。</string>
 		<key>hp</key>
-		<integer>3</integer>
+		<integer>4</integer>
 		<key>str</key>
 		<integer>1</integer>
 		<key>def</key>
