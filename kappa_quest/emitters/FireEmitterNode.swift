@@ -25,13 +25,11 @@ class FireEmitterNode: SKEmitterNode {
     func setPhysic(){
         let physic = SKPhysicsBody(rectangleOf: CGSize(width: Const.fireSize, height: Const.fireSize))
         physic.affectedByGravity = true
-        physic.allowsRotation = true
+        //physic.allowsRotation = true
 
         physic.categoryBitMask = Const.fireCategory
         physic.contactTestBitMask = Const.worldCategory
         physic.collisionBitMask = 0
-        //        physic.linearDamping = 0
-        //        physic.friction = 0
         self.physicsBody = physic
     }
 
@@ -40,4 +38,31 @@ class FireEmitterNode: SKEmitterNode {
         physicsBody?.applyImpulse(CGVector(dx: -dx, dy: 200))
         physicsBody?.applyTorque(5.0)
     }
+
+    class func makeKappaFire() -> FireEmitterNode {
+        let particle = FireEmitterNode(fileNamed: "fire")!
+        particle.zPosition = 5
+        particle.name = "fire"
+        particle.setKappaFirePhysic()
+        return particle
+    }
+
+    // 物理属性を適用
+    func setKappaFirePhysic(){
+        let physic = SKPhysicsBody(rectangleOf: CGSize(width: Const.fireSize, height: Const.fireSize))
+        physic.affectedByGravity = false
+        physic.allowsRotation = true
+
+        // FIX
+        physic.categoryBitMask = Const.kappaFireCategory
+        physic.contactTestBitMask = Const.enemyCategory
+        physic.collisionBitMask = 0
+        self.physicsBody = physic
+    }
+
+    func hado(){
+        physicsBody?.applyImpulse(CGVector(dx: 320, dy: 0))
+        physicsBody?.applyTorque(5.0)
+    }
 }
+

@@ -3,26 +3,26 @@ import SpriteKit
 import GameplayKit
 
 class GameClearScene: BaseScene {
-    
+
     var world = ""
     var clearWord = ""
     var maxDamage = 0
     var totalDamage = 0
-    
+
     override func sceneDidLoad() {
     }
-    
+
     override func didMove(to view: SKView) {
         let clearLabel      = childNode(withName: "//clearWord")  as! SKLabelNode
         let clear2Label      = childNode(withName: "//clearWord2")  as! SKLabelNode
-        
+
         clearLabel.text = randomWord()
         clear2Label.text = clearWord
 
         // クリアフラグを立てる
         GameData.clearCountUp(world)
     }
-    
+
     func randomWord() -> String {
         let array = [
             "もうここに用はない！",
@@ -36,7 +36,6 @@ class GameClearScene: BaseScene {
         ]
         return array[CommonUtil.rnd(array.count)]
     }
-    
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {

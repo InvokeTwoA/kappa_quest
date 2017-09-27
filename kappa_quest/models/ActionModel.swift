@@ -111,8 +111,8 @@ class ActionModel {
 
         // 死亡時（真上に飛び上がってから落ちていく）
         dead = SKAction.sequence([
-            SKAction.moveBy(x: 0, y:    Const.jumpSpace * 5, duration: Const.moveSpeed*3),
-            SKAction.moveBy(x: 0, y: -1*Const.jumpSpace * 30, duration: Const.moveSpeed*18),
+            SKAction.moveBy(x: 0, y:  5*Const.jumpSpace, duration: Const.moveSpeed*3),
+            SKAction.moveBy(x: 0, y:-35*Const.jumpSpace, duration: Const.moveSpeed*18),
         ])
 
         // ダメージ表示

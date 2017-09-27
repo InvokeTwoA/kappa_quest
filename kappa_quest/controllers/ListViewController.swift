@@ -9,7 +9,25 @@ class ListViewController : BaseTableViewController {
     private var enemy_array = [
         "hiyoko",
         "usagi",
-        "buffalo"
+        "chibidora",
+        "wizard",
+        "ghost",
+        "knight",
+        "arakure",
+        "thief",
+        "priest",
+        "buffalo",
+        "archer",
+        "dancer",
+        "skelton",
+        "zombi",
+        "miira",
+        "necro",
+        "fighter",
+        "samurai",
+        "ninja",
+        "tokage",
+        "angel",
     ]
 
     private let library_section = ["名称", "説明", "能力(LV1の状態)", "特性", "戻る"]

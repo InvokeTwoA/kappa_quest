@@ -20,7 +20,6 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
 
     // その他変数
     var world_name = "defo"
-    var gameOverFlag = false
 
     // Scene load 時に呼ばれる
     private var isSceneDidLoaded = false
@@ -217,6 +216,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         kappa.run(actionModel.attack!)
     }
 
+    private var maxDamage = 0 // 最高ダメージ
     func attackCalculate(str : Int, type : String, enemy : EnemyNode){
         var damage = 0
         var def = 0
@@ -228,7 +228,6 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         }
 
         if BattleModel.isCritical(luc: Double(kappa.pie)) {
-            //makeSpark(point: CGPoint(x: enemyModel.enemies[pos].position.x, y: enemyModel.enemies[pos].position.y), isCtirical: true)
             for _ in 0...2 {
                 makeSpark(point: CGPoint(x: enemy.position.x, y: enemyModel.enemies[pos].position.y), isCtirical: true, random: 100)
             }
@@ -238,11 +237,14 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             for _ in 0...2 {
                 makeSpark(point: CGPoint(x: enemy.position.x, y: enemyModel.enemies[pos].position.y), random: 100)
             }
-            
-            
+
             damage = BattleModel.calculateDamage(str: str, def: def)
             playSoundEffect(type: 3)
         }
+
+        if damage > maxDamage {
+            maxDamage = damage
+          }
 
         let point = CGPoint(x: enemy.position.x, y: enemy.position.y + 30)
         displayDamage(value: damage, point: point, color: UIColor.white)
@@ -369,7 +371,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                 self.stageClear()
             })
         }
-        
+
         if necro_heal > 0 {
             kappa.hp += necro_heal
             displayDamage(value: heal_val, point: kappa.position, color: .green, direction: "up")
@@ -486,16 +488,15 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         if gameData.konjoFlag {
             skillModel.konjoFlag = true
         }
-        
+
         let necro_lv = JobModel.getLV("necro")
         necro_heal = necro_lv
     }
-    
-
 
     /***********************************************************************************/
     /******************************* ゲームオーバー ************************************/
     /***********************************************************************************/
+    private var gameOverFlag = false
     func gameOver(){
         if gameOverFlag == false {
             kappa.dead()
@@ -926,6 +927,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         scene.scaleMode = SKSceneScaleMode.aspectFill
         scene.world = world_name
         scene.clearWord = map.clear_word
+        scene.maxDamage maxDamage
         self.view!.presentScene(scene, transition: .doorsCloseHorizontal(withDuration: Const.gameOverInterval))
     }
 
@@ -995,8 +997,10 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         kappa.hado()
         specialAttackModel.execHado()
 
-        // FIXME 波動拳をだす
-
+        let fire = FireEmitterNode.makeKappaFire()
+        fire.position = CGPoint(x: kappa.position.x, y: kappa.position.y + 20)
+        self.addChild(fire)
+        fire.hado()
         specialAttackModel.finishAttack()
     }
 
@@ -1192,6 +1196,15 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             if secondBody.categoryBitMask & Const.worldCategory != 0 {
                 makeSpark(point: (firstBody.node?.position)!)
                 firstBody.node?.removeFromParent()
+            }
+        } else if firstBody.categoryBitMask & Const.kappaFireCategory {
+            if secondBody.categoryBitMask & Const.enemyCategory != 0 {
+                let enemy = secondBody.node as! EnemyNode
+                if enemy.isDead {
+                    return
+                }
+                makeSpark(point: (secondBody.node?.position)!)
+                attackCalculate(str: kappa.int, type: "magick", enemy: enemy)
             }
         }
     }
