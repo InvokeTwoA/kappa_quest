@@ -33,9 +33,8 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         }
 
         self.lastUpdateTime = 0
-        
         setWorld()
-        
+
         // データをセット
         enemyModel.readDataByPlist()
         jobModel.readDataByPlist()
@@ -937,16 +936,14 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         jobViewController.from = "battle"
         self.view?.window?.rootViewController?.present(jobViewController, animated: true, completion: nil)
     }
-    
+
     /***********************************************************************************/
     /********************************** specialAttack **********************************/
     /***********************************************************************************/
     // スーパー頭突き
     func specialAttackHead(){
-        specialAttackModel.execHead()
-
         kappa.head()
-        
+        specialAttackModel.execHead()
 
         let pos = map.nearEnemyPosition()
         let normalAttack = SKAction.sequence([
@@ -976,33 +973,43 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             self.specialAttackModel.finishAttack()
         })
     }
-    
+
     // 竜巻旋風脚
     func specialAttackTornado(){
         kappa.tornado()
         specialAttackModel.execTornado()
-        
+
         let upper = SKAction.sequence([
             SKAction.moveBy(x: 0, y:  45, duration: Const.headAttackSpeed/2),
             SKAction.wait(forDuration: 1.5),
             SKAction.moveBy(x: 0, y: -45, duration: Const.headAttackSpeed/2),
         ])
-        
         kappa.run(upper, completion: {() -> Void in
             self.kappa.isTornado = false
             self.specialAttackModel.finishAttack()
         })
     }
 
-    
+    // 波動砲
+    func specialAttackHado(){
+        kappa.hado()
+        specialAttackModel.execHado()
+
+        // FIXME 波動拳をだす
+
+        specialAttackModel.finishAttack()
+    }
+
     func updateSpecialLabel(){
         let headLabel       = childNode(withName: "//SpecialHeadLabel") as! SKLabelNode
         let upperLabel      = childNode(withName: "//SpecialUpperLabel") as! SKLabelNode
         let tornadoLabel    = childNode(withName: "//SpecialTornadoLabel") as! SKLabelNode
-        
+        let hadoLabel       = childNode(withName: "//SpecialHadoLabel") as! SKLabelNode
+
         headLabel.text      = specialAttackModel.displayHeadCount()
         upperLabel.text     = specialAttackModel.displayUpperCount()
         tornadoLabel.text   = specialAttackModel.displayTornadoCount()
+        hadoabel.text       = specialAttackModel.displayHadoCount()
     }
 
     func execSpecialAttack(){
@@ -1014,6 +1021,8 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             specialAttackUpper()
         case "tornado":
             specialAttackTornado()
+        case "hado":
+            specialAttackHado()
         default:
             break
         }
@@ -1023,9 +1032,18 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     /********************************** touch ******************************************/
     /***********************************************************************************/
     func touchDown(atPoint pos : CGPoint) {
-        if gameOverFlag || specialAttackModel.is_attacking || bossStopFlag {
+        if specialAttackModel.is_attacking {
+            if specialAttackModel.mode != "tornado" {
+                return
+            } else {
+                specialAttackModel.finishAyyack()
+                kappa.isTornado = false
+            }
+        }
+        if gameOverFlag || bossStopFlag {
             return
         }
+
         if pos.x >= 0 {
             specialAttackModel.countUp(direction: "right")
             if specialAttackModel.isSpecial() {
@@ -1062,7 +1080,15 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         tapCountUp()
-        if gameOverFlag || specialAttackModel.is_attacking || bossStopFlag {
+        if specialAttackModel.is_attacking {
+            if specialAttackModel.mode != "tornado" {
+                return
+            } else {
+                specialAttackModel.finishAyyack()
+                kappa.isTornado = false
+            }
+        }
+        if gameOverFlag || bossStopFlag {
             return
         }
         if map.myPosition+1 > Const.maxPosition {
@@ -1169,15 +1195,15 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             }
         }
     }
-    
+
     func isFirstBodyKappa(_ firstBody : SKPhysicsBody) -> Bool {
         return (firstBody.categoryBitMask & Const.kappaCategory != 0) || (firstBody.categoryBitMask & Const.kappa2Category != 0)
     }
-    
+
     func isMagickNode(_ firstBody : SKPhysicsBody) -> Bool {
         return  (firstBody.categoryBitMask & Const.fireCategory != 0) || (firstBody.categoryBitMask & Const.thunderCategory != 0)
     }
-    
+
     /***********************************************************************************/
     /********************************* update ******************************************/
     /***********************************************************************************/

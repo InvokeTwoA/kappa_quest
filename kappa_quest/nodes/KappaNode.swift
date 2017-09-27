@@ -39,9 +39,8 @@ class KappaNode: SKSpriteNode {
         pie     = UserDefaults.standard.integer(forKey: "pie")
         luc     = UserDefaults.standard.integer(forKey: "luc")
         nextExp = UserDefaults.standard.integer(forKey: "nextExp")
-        
-        hp  = maxHp
 
+        hp  = maxHp
     }
 
     // LVアップ
@@ -58,7 +57,7 @@ class KappaNode: SKSpriteNode {
         luc += jobModel.luc
         setNextExp(jobModel)
     }
-    
+
     func heal(){
         hp = maxHp
     }
@@ -92,7 +91,7 @@ class KappaNode: SKSpriteNode {
         physic.friction = 0
         self.physicsBody = physic
     }
-    
+
     // カッパの華麗なる攻撃
     // 画像をランダムに変更
     func attack(){
@@ -111,13 +110,12 @@ class KappaNode: SKSpriteNode {
         xScale = -1
         texture = SKTexture(imageNamed: "kappa")
     }
-    
+
     // カッパ頭突き
     func head(){
         xScale = 1
         zRotation = CGFloat(-90.0  / 180.0 * .pi)
     }
-    
 
     // カッパ昇竜拳
     func upper(){
@@ -131,8 +129,13 @@ class KappaNode: SKSpriteNode {
         isTornado = true
     }
 
+    // カッパ波動砲
+    func hado(){
+        texture = SKTexture(imageNamed: "kappa_punch")
+    }
+
     func dead(){
         texture = SKTexture(imageNamed: "kappa_dead")
     }
-    
+
 }
