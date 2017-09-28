@@ -42,6 +42,7 @@
 		CE524F831F20D88800A6D14C /* eng.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE524F821F20D88800A6D14C /* eng.strings */; };
 		CE524F851F236EEC00A6D14C /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE524F841F236EEC00A6D14C /* GameData.swift */; };
 		CE5884E01F793A2B00ABAC1C /* WorldNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5884DF1F793A2B00ABAC1C /* WorldNode.swift */; };
+		CE5884E31F7CF70100ABAC1C /* map_tutorial0.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE5884E21F7CF70100ABAC1C /* map_tutorial0.plist */; };
 		CE6BB81F1F23C8860046DA65 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6BB81E1F23C8860046DA65 /* Map.swift */; };
 		CE6BB8211F23CA710046DA65 /* ShopNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6BB8201F23CA710046DA65 /* ShopNode.swift */; };
 		CE6BB8231F24C2430046DA65 /* EnemyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6BB8221F24C2430046DA65 /* EnemyModel.swift */; };
@@ -78,7 +79,7 @@
 		CED377971F77FF590068768B /* map_ninja.plist in Resources */ = {isa = PBXBuildFile; fileRef = CED377961F77FF590068768B /* map_ninja.plist */; };
 		CED621D61F4035B600C92480 /* bokeh.sks in Resources */ = {isa = PBXBuildFile; fileRef = CED621D41F4035B600C92480 /* bokeh.sks */; };
 		CED621D71F4035B600C92480 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CED621D51F4035B600C92480 /* Assets.xcassets */; };
-		CED621D91F4035F000C92480 /* firefly.sks in Resources */ = {isa = PBXBuildFile; fileRef = CED621D81F4035F000C92480 /* firefly.sks */; };
+		CED621D91F4035F000C92480 /* energy.sks in Resources */ = {isa = PBXBuildFile; fileRef = CED621D81F4035F000C92480 /* energy.sks */; };
 		CED621DB1F40361200C92480 /* fire.sks in Resources */ = {isa = PBXBuildFile; fileRef = CED621DA1F40361200C92480 /* fire.sks */; };
 		CED621DD1F40363300C92480 /* spark.sks in Resources */ = {isa = PBXBuildFile; fileRef = CED621DC1F40363300C92480 /* spark.sks */; };
 		CED621DF1F40380600C92480 /* SparkEmitterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED621DE1F40380600C92480 /* SparkEmitterNode.swift */; };
@@ -136,6 +137,7 @@
 		CE524F821F20D88800A6D14C /* eng.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = eng.strings; path = resources/texts/eng.strings; sourceTree = "<group>"; };
 		CE524F841F236EEC00A6D14C /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameData.swift; path = models/GameData.swift; sourceTree = "<group>"; };
 		CE5884DF1F793A2B00ABAC1C /* WorldNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorldNode.swift; path = nodes/WorldNode.swift; sourceTree = "<group>"; };
+		CE5884E21F7CF70100ABAC1C /* map_tutorial0.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_tutorial0.plist; path = resources/plists/map_tutorial0.plist; sourceTree = "<group>"; };
 		CE6BB81E1F23C8860046DA65 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Map.swift; path = models/Map.swift; sourceTree = "<group>"; };
 		CE6BB8201F23CA710046DA65 /* ShopNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShopNode.swift; path = nodes/ShopNode.swift; sourceTree = "<group>"; };
 		CE6BB8221F24C2430046DA65 /* EnemyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnemyModel.swift; path = models/EnemyModel.swift; sourceTree = "<group>"; };
@@ -176,7 +178,7 @@
 		CED377961F77FF590068768B /* map_ninja.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_ninja.plist; path = resources/plists/map_ninja.plist; sourceTree = "<group>"; };
 		CED621D41F4035B600C92480 /* bokeh.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = bokeh.sks; path = resources/particles/bokeh.sks; sourceTree = "<group>"; };
 		CED621D51F4035B600C92480 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = resources/particles/Assets.xcassets; sourceTree = "<group>"; };
-		CED621D81F4035F000C92480 /* firefly.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = firefly.sks; path = resources/particles/firefly.sks; sourceTree = "<group>"; };
+		CED621D81F4035F000C92480 /* energy.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = energy.sks; path = resources/particles/energy.sks; sourceTree = "<group>"; };
 		CED621DA1F40361200C92480 /* fire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = fire.sks; path = resources/particles/fire.sks; sourceTree = "<group>"; };
 		CED621DC1F40363300C92480 /* spark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = spark.sks; path = resources/particles/spark.sks; sourceTree = "<group>"; };
 		CED621DE1F40380600C92480 /* SparkEmitterNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SparkEmitterNode.swift; path = emitters/SparkEmitterNode.swift; sourceTree = "<group>"; };
@@ -263,6 +265,7 @@
 		CE5884E11F7AAC5600ABAC1C /* map */ = {
 			isa = PBXGroup;
 			children = (
+				CE5884E21F7CF70100ABAC1C /* map_tutorial0.plist */,
 				CED621E91F41EE6C00C92480 /* map_tutorial.plist */,
 				CE8D513D1F6FB3F4004F8D0B /* map_tutorial2.plist */,
 				CE31F94A1F63C72000E868FB /* map_priest.plist */,
@@ -426,7 +429,7 @@
 				CED621DC1F40363300C92480 /* spark.sks */,
 				CED3777D1F6FF4530068768B /* thunder.sks */,
 				CED621D51F4035B600C92480 /* Assets.xcassets */,
-				CED621D81F4035F000C92480 /* firefly.sks */,
+				CED621D81F4035F000C92480 /* energy.sks */,
 			);
 			name = particles;
 			sourceTree = "<group>";
@@ -517,6 +520,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE5884E31F7CF70100ABAC1C /* map_tutorial0.plist in Resources */,
 				CE31F92B1F5449CF00E868FB /* LetterScene.sks in Resources */,
 				CEDBE7941F1C5278007E72B9 /* GN-KillGothic-U-KanaO.ttf in Resources */,
 				CED621D71F4035B600C92480 /* Assets.xcassets in Resources */,
@@ -527,7 +531,7 @@
 				CEDBE7931F1C5274007E72B9 /* GN-KillGothic-U-KanaNB.ttf in Resources */,
 				CED377821F7002850068768B /* worlds.plist in Resources */,
 				CED621E61F40924D00C92480 /* GameOverScene.sks in Resources */,
-				CED621D91F4035F000C92480 /* firefly.sks in Resources */,
+				CED621D91F4035F000C92480 /* energy.sks in Resources */,
 				CED621DD1F40363300C92480 /* spark.sks in Resources */,
 				CED377871F72C2EE0068768B /* Job.storyboard in Resources */,
 				CEEB83D61F1C46760025E021 /* GN-KillGothic-U-KanaNA.ttf in Resources */,

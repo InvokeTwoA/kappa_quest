@@ -16,6 +16,7 @@ class KappaNode: SKSpriteNode {
     var pie = 1
     var luc = 1
     var nextExp = 10
+    var exp = 0
 
     var mode = ""
 
@@ -131,6 +132,7 @@ class KappaNode: SKSpriteNode {
 
     // カッパ波動砲
     func hado(){
+        xScale = 1
         texture = SKTexture(imageNamed: "kappa_punch")
     }
 

@@ -42,9 +42,9 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         equipModel.readDataByPlist()
         actionModel.setActionData(sceneWidth: self.size.width)
         createKappa()
-        setHealVal()
         skillJudge()
-
+        changeExpBar()
+        
         let longLabel = childNode(withName: "//longMessageLabel") as! SKLabelNode
         let longNode = childNode(withName: "//longMessageNode") as! SKSpriteNode
         longLabel.isHidden = true
@@ -297,6 +297,15 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         particle.run(actionModel.sparkFadeOut!)
         self.addChild(particle)
     }
+    
+    func heal(_ heal_val : Int){
+        if heal_val <= 0 {
+            return
+        }
+        kappa.hp += heal_val
+        displayDamage(value: heal_val, point: kappa.position, color: .green, direction: "up")
+        updateStatus()
+    }
 
     // ダメージを数字で表示
     func displayDamage(value: Int, point: CGPoint, color: UIColor, direction : String = "right"){
@@ -371,12 +380,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                 self.stageClear()
             })
         }
-
-        if necro_heal > 0 {
-            kappa.hp += necro_heal
-            displayDamage(value: heal_val, point: kappa.position, color: .green, direction: "up")
-            updateStatus()
-        }
+        heal(necro_heal)
     }
 
     func getExp(_ get_exp: Int, point: CGPoint){
@@ -386,15 +390,20 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         }
         displayExp(value: get_exp, point: CGPoint(x: point.x, y: point.y + Const.enemySize))
         updateExp(exp)
+        changeExpBar()
     }
 
     // 経験値更新
     func updateExp(_ getExp : Int){
-        kappa.nextExp -= getExp
-        if kappa.nextExp <= 0 {
+        kappa.exp += getExp
+        if kappa.nextExp <= kappa.exp {
             LvUp()
         }
         updateStatus()
+
+        let ExpLabel       = childNode(withName: "//ExpLabel")    as! SKLabelNode
+        let exp = kappa.nextExp - kappa.exp
+        ExpLabel.text = "次のレベルまで　　\(String(describing: exp))"
     }
 
     func LvUp(){
@@ -439,11 +448,12 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         }
 
         // スキル判定
-        if jobModel.name == "priest" {
-            heal_val = jobModel.lv
-        }
+        skillJudge()
+
         getSkill()
         saveData()
+        
+        heal(lv_up_heal)
     }
 
     func getSkill(){
@@ -461,36 +471,23 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         gameData.tapCount += 1
         TapCountLabel.text = "\(gameData.tapCount)"
         if gameData.tapCount%Const.tapHealCount == 0 {
-            healAbility()
+            heal(heal_val)
         }
-    }
-
-    var heal_val = 0 // 回復量。毎回UserDefaultから読み込まないように変数で保持
-    func healAbility(){
-        if heal_val == 0 {
-            return
-        } else {
-            kappa.hp += heal_val
-            displayDamage(value: heal_val, point: kappa.position, color: .green, direction: "up")
-            updateStatus()
-        }
-    }
-
-    func setHealVal(){
-        heal_val = JobModel.getLV("priest")
     }
 
     /***********************************************************************************/
     /******************************* スキル判定     ************************************/
     /***********************************************************************************/
+    var heal_val = 0
     var necro_heal = 0
+    var lv_up_heal = 0
     func skillJudge(){
         if gameData.konjoFlag {
             skillModel.konjoFlag = true
         }
-
-        let necro_lv = JobModel.getLV("necro")
-        necro_heal = necro_lv
+        heal_val = JobModel.getLV("priest")
+        necro_heal = JobModel.getLV("necro")
+        lv_up_heal = JobModel.getLV("knight")
     }
 
     /***********************************************************************************/
@@ -533,6 +530,15 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         let life_bar_yellow = childNode(withName: "//LifeBarYellow") as! SKSpriteNode
         let life_percentage = CGFloat(kappa.hp)/CGFloat(kappa.maxHp)
         life_bar_yellow.size.width = Const.lifeBarWidth*life_percentage
+    }
+    
+    func changeExpBar(){
+        let ExpBar     = childNode(withName: "//ExpBar") as! SKSpriteNode
+        var exp_percentage = CGFloat(kappa.exp)/CGFloat(kappa.nextExp)
+        if exp_percentage > 1.0 {
+            exp_percentage = 1.0
+        }
+        ExpBar.size.width = Const.expBarWidth*exp_percentage
     }
 
     /***********************************************************************************/
@@ -927,7 +933,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         scene.scaleMode = SKSceneScaleMode.aspectFill
         scene.world = world_name
         scene.clearWord = map.clear_word
-        scene.maxDamage maxDamage
+        scene.maxDamage = maxDamage
         self.view!.presentScene(scene, transition: .doorsCloseHorizontal(withDuration: Const.gameOverInterval))
     }
 
@@ -998,7 +1004,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         specialAttackModel.execHado()
 
         let fire = FireEmitterNode.makeKappaFire()
-        fire.position = CGPoint(x: kappa.position.x, y: kappa.position.y + 20)
+        fire.position = CGPoint(x: kappa.position.x - 30, y: kappa.position.y + 20)
         self.addChild(fire)
         fire.hado()
         specialAttackModel.finishAttack()
@@ -1040,7 +1046,9 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             if specialAttackModel.mode != "tornado" {
                 return
             } else {
-                specialAttackModel.finishAyyack()
+                specialAttackModel.finishAttack()
+                kappa.removeAllActions()
+                kappa.position.y = kappa_first_position_y
                 kappa.isTornado = false
             }
         }
@@ -1088,7 +1096,9 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             if specialAttackModel.mode != "tornado" {
                 return
             } else {
-                specialAttackModel.finishAyyack()
+                specialAttackModel.finishAttack()
+                kappa.removeAllActions()
+                kappa.position.y = kappa_first_position_y
                 kappa.isTornado = false
             }
         }
@@ -1197,7 +1207,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                 makeSpark(point: (firstBody.node?.position)!)
                 firstBody.node?.removeFromParent()
             }
-        } else if firstBody.categoryBitMask & Const.kappaFireCategory {
+        } else if firstBody.categoryBitMask & Const.kappaFireCategory != 0 {
             if secondBody.categoryBitMask & Const.enemyCategory != 0 {
                 let enemy = secondBody.node as! EnemyNode
                 if enemy.isDead {
@@ -1205,6 +1215,9 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                 }
                 makeSpark(point: (secondBody.node?.position)!)
                 attackCalculate(str: kappa.int, type: "magick", enemy: enemy)
+                
+                // LV アップすれば貫通
+                firstBody.node?.removeFromParent()
             }
         }
     }

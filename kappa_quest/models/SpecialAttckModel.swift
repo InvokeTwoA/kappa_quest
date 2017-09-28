@@ -178,21 +178,39 @@ class SpecialAttackModel {
     private var superHadoCount = 0  // 波動の管理変数
     func countUpHadoAttack(direction : String) {
         if direction == "right" {
-            if superHadoCount == 0 ||  superHadoCount == 1 ||  superHadoCount == 2 || superHadoCount == 4 {
-                superHadoCount += 1
-            } else {
-                superHadoCount = 1
-            }
-        } else if direction == "left" {
-            if superHadoCount == 3 {
+            if superHadoCount == 2 ||  superHadoCount == 3 {
                 superHadoCount += 1
             } else {
                 superHadoCount = 0
+            }
+        } else if direction == "left" {
+            if superHadoCount == 0 || superHadoCount == 1 || superHadoCount == 4 {
+                superHadoCount += 1
+            } else {
+                superHadoCount = 1
             }
         }
     }
 
     func displayHadoCount() -> String {
+        switch superHadoCount {
+        case 0:
+            return "← ← → → ←"
+        case 1:
+            return "⬅︎ ← → → ←"
+        case 2:
+            return "⬅︎ ⬅︎ → → ←"
+        case 3:
+            return "⬅︎ ⬅︎ ➡︎ → ←"
+        case 4:
+            return "⬅︎ ⬅︎ ➡︎ ➡︎ ←"
+        case 5:
+            return "⬅︎ ⬅︎ ➡︎ ➡︎ ⬅︎"
+        default:
+            return ""
+        }
+
+        /*
         switch superHadoCount {
         case 0:
             return "→ → → ← →"
@@ -209,6 +227,7 @@ class SpecialAttackModel {
         default:
             return ""
         }
+ */
     }
 
     func execHado(){

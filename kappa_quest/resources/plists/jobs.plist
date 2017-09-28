@@ -188,7 +188,7 @@
 		<key>own_skill</key>
 		<string>なし</string>
 		<key>general_skill</key>
-		<string></string>
+		<string>[LVアップヒール] LVアップ時にHPが回復する。 回復量は騎士LVに等しい。</string>
 		<key>hp</key>
 		<integer>5</integer>
 		<key>str</key>

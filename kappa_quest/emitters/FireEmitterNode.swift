@@ -40,7 +40,7 @@ class FireEmitterNode: SKEmitterNode {
     }
 
     class func makeKappaFire() -> FireEmitterNode {
-        let particle = FireEmitterNode(fileNamed: "fire")!
+        let particle = FireEmitterNode(fileNamed: "energy")!
         particle.zPosition = 5
         particle.name = "fire"
         particle.setKappaFirePhysic()
@@ -51,7 +51,7 @@ class FireEmitterNode: SKEmitterNode {
     func setKappaFirePhysic(){
         let physic = SKPhysicsBody(rectangleOf: CGSize(width: Const.fireSize, height: Const.fireSize))
         physic.affectedByGravity = false
-        physic.allowsRotation = true
+        physic.allowsRotation = false
 
         // FIX
         physic.categoryBitMask = Const.kappaFireCategory
