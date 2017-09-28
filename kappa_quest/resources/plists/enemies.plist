@@ -364,7 +364,9 @@
 		<key>name</key>
 		<string>最後の騎士</string>
 		<key>hp</key>
-		<integer>10</integer>
+		<integer>6</integer>
+		<key>New item</key>
+		<string></string>
 		<key>str</key>
 		<integer>4</integer>
 		<key>def</key>

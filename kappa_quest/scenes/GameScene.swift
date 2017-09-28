@@ -1013,7 +1013,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         headLabel.text      = specialAttackModel.displayHeadCount()
         upperLabel.text     = specialAttackModel.displayUpperCount()
         tornadoLabel.text   = specialAttackModel.displayTornadoCount()
-        hadoabel.text       = specialAttackModel.displayHadoCount()
+        hadoLabel.text      = specialAttackModel.displayHadoCount()
     }
 
     func execSpecialAttack(){
