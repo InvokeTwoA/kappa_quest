@@ -5,7 +5,6 @@ import GameplayKit
 class GameClearScene: BaseScene {
 
     var world = ""
-    var clearWord = ""
     var maxDamage = 0
     var totalDamage = 0
 
@@ -17,7 +16,7 @@ class GameClearScene: BaseScene {
         let clear2Label      = childNode(withName: "//clearWord2")  as! SKLabelNode
 
         clearLabel.text = randomWord()
-        clear2Label.text = clearWord
+        clear2Label.text = "勝利メッセージ"
 
         // クリアフラグを立てる
         GameData.clearCountUp(world)

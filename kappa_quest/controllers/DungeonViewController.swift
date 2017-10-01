@@ -31,6 +31,7 @@ class DungeonViewController : BaseTableViewController {
     private let BACK_DUNGEON = 1
     
     override func viewDidLoad() {
+        print("world=\(world)")
         super.viewDidLoad()
         worldModel.readDataByPlist()
         worldModel.setData(world)
@@ -45,7 +46,6 @@ class DungeonViewController : BaseTableViewController {
     }
     
     func goLibrary(){
-        print("go library")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let listViewController = storyboard.instantiateViewController(withIdentifier: "ListViewController") as! ListViewController
         listViewController.type = "enemies"

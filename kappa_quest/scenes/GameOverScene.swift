@@ -6,20 +6,27 @@ class GameOverScene: BaseScene {
     
     var backScene : GameScene!
     
-    private var hintLabel0 : SKLabelNode?
-    private var hintLabel1 : SKLabelNode?
-    private var hintLabel2 : SKLabelNode?
+    private var hintLabel0 : SKLabelNode!
+    private var hintLabel1 : SKLabelNode!
+    private var hintLabel2 : SKLabelNode!
 
     override func sceneDidLoad() {
-        hintLabel0     = childNode(withName: "//hintLabel0") as? SKLabelNode
-        hintLabel1     = childNode(withName: "//hintLabel1") as? SKLabelNode
-        hintLabel2     = childNode(withName: "//hintLabel2") as? SKLabelNode
+        hintLabel0     = childNode(withName: "//hintLabel0") as! SKLabelNode
+        hintLabel1     = childNode(withName: "//hintLabel1") as! SKLabelNode
+        hintLabel2     = childNode(withName: "//hintLabel2") as! SKLabelNode
 
-        let hints  = getRandomHint()
+        let worldLabel = childNode(withName: "//WorldLabel") as! SKLabelNode
+        let worldNode  = childNode(withName: "//WorldNode")  as! SKSpriteNode
+
+        if !GameData.isClear("tutorial") {
+            worldLabel.isHidden = true
+            worldNode.isHidden = true
+        }
         
-        hintLabel0?.text = hints[0]
-        hintLabel1?.text = hints[1]
-        hintLabel2?.text = hints[2]
+        let hints  = getRandomHint()
+        hintLabel0.text = hints[0]
+        hintLabel1.text = hints[1]
+        hintLabel2.text = hints[2]
     }
     
     func getRandomHint() -> [String] {
@@ -37,6 +44,7 @@ class GameOverScene: BaseScene {
     }
     
     func goBack(){
+        gameData.changeNicknameByDeath()
         resetData()
         self.view!.presentScene(backScene, transition: .flipHorizontal(withDuration: 3.5))
     }
@@ -61,6 +69,7 @@ class GameOverScene: BaseScene {
             case "ContinueNode", "ContinueLabel":
                 goBack()
             case "WorldNode", "WorldLabel":
+                gameData.changeNicknameByDeath()
                 goWorld()
             default:
                 break

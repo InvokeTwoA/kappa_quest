@@ -25,6 +25,7 @@ class ActionModel {
     var displayExp        : SKAction!
     var displayMessage    : SKAction!
     var displayBigMessage : SKAction!
+    var longMessage       : SKAction!
     var moveButton        : SKAction!
     var fadeInOut         : SKAction!
     var fadeOutQuickly    : SKAction!
@@ -158,6 +159,12 @@ class ActionModel {
             SKAction.fadeOut(withDuration: 4.5)
         ])
 
+        longMessage  = SKAction.sequence([
+            SKAction.fadeIn(withDuration: 1.0),
+            SKAction.wait(forDuration: 0.5),
+            SKAction.fadeOut(withDuration: 1.0)
+            ])
+        
         moveButton = SKAction.sequence([
             SKAction.moveBy(x: 0, y: -250 , duration: 0.2),
             SKAction.wait(forDuration: 6.4),

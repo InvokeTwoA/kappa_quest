@@ -77,8 +77,7 @@ class JobModel {
     class func allSkillExplain(_ skillModel : SkillModel, kappa : KappaNode, gameData : GameData) -> String {
         var res = ""
         res += "クリティカル発生率：　\(BattleModel.displayCriticalPer(luc: kappa.luc))% \n"
-        res += "クリティカルダメージ：　2.0 倍 \n"
-        res += "アイテム発見率：　\(BattleModel.displayTreasurePer(luc: kappa.luc))%\n\n"
+        res += "クリティカルダメージ：　2.0 倍 \n\n"
         
         res += "【発動中のスキル】\n"
         
@@ -87,6 +86,11 @@ class JobModel {
             res += text
         }
         
+        let knight_lv = getLV("knight")
+        if knight_lv >= 1 {
+            let text = skillModel.getExplain("knight")
+            res += text.replacingOccurrences(of: "(lv)", with: "\(knight_lv)")
+        }
         let priest_lv = getLV("priest")
         if priest_lv >= 1 {
             let text = skillModel.getExplain("kappa_heal")
@@ -94,12 +98,16 @@ class JobModel {
             replaceString = replaceString.replacingOccurrences(of: "(tap)", with: "\(Const.tapHealCount)")
             res += replaceString
         }
+        let thief_lv = getLV("thief")
+        if thief_lv >= 1 {
+            let text = skillModel.getExplain("thief")
+            res += text.replacingOccurrences(of: "(lv)", with: "\(thief_lv)")
+        }
         let necro_lv = getLV("necro")
         if necro_lv >= 1 {
             let text = skillModel.getExplain("necro")
             res += text.replacingOccurrences(of: "(lv)", with: "\(necro_lv)")
         }
-        
         
         
         return res
@@ -112,6 +120,10 @@ class JobModel {
         } else {
             return UserDefaults.standard.integer(forKey: "\(key)_lv")
         }
+    }
+    
+    class func setInitLv(){
+        UserDefaults.standard.set(1,  forKey: "murabito_lv")
     }
     
     

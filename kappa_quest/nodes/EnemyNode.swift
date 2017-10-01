@@ -58,14 +58,14 @@ class EnemyNode: SKSpriteNode {
     func setParameterByDictionary(dictionary : NSDictionary, set_lv : Int){
         displayName = dictionary.object(forKey: "name") as! String
         maxHp   = dictionary.object(forKey: "hp") as! Int
-        hp      = dictionary.object(forKey: "hp") as! Int
         str     = dictionary.object(forKey: "str") as! Int
         def     = dictionary.object(forKey: "def") as! Int
         agi     = dictionary.object(forKey: "agi") as! Int
         int     = dictionary.object(forKey: "int") as! Int
         pie     = dictionary.object(forKey: "pie") as! Int
         range   = Double(dictionary.object(forKey: "range") as! CGFloat)
-
+        hp      = maxHp
+        
         if dictionary["canFire"] != nil {
             canFire = dictionary.object(forKey: "canFire") as! Bool
         }
@@ -84,16 +84,6 @@ class EnemyNode: SKSpriteNode {
         if dictionary["isGhost"] != nil {
             isGhost = dictionary.object(forKey: "isGhost") as! Bool
         }
-
-        // LVの分だけ強さをかける
-        lv = set_lv
-        maxHp *= lv
-        hp *= lv
-        str *= lv
-        def *= lv
-        agi *= lv
-        int *= lv
-        pie *= lv
     }
     
     func healHP(_ heal : Int){
@@ -106,14 +96,14 @@ class EnemyNode: SKSpriteNode {
 
     // ボス敵はステータス強化される
     func bossPowerUp(){
-        maxHp *= 7
-        hp *= 7
-        str += lv
-        def += lv
-        agi += lv
-        int += lv
-        pie += lv
-        lv += 2
+        maxHp *= 5
+        hp = maxHp
+        str += 1
+        def += 1
+        agi += 1
+        int += 1
+        pie += 1
+        lv += 1
         
         size = CGSize(width: Const.bossSize, height: Const.bossSize)
 

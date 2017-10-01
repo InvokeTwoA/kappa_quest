@@ -5,7 +5,7 @@
 	<key>0.0</key>
 	<dict>
 		<key>background</key>
-		<string>bg_green</string>
+		<string>bg_lake</string>
 		<key>lv</key>
 		<integer>2</integer>
 		<key>enemies</key>
@@ -21,8 +21,6 @@
 	</dict>
 	<key>0.1</key>
 	<dict>
-		<key>background</key>
-		<string>bg_forest</string>
 		<key>enemies</key>
 		<array>
 			<string>hiyoko</string>
@@ -35,9 +33,9 @@
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>
-		<string>通常攻撃があまり効かない敵がいる。</string>
+		<string>左　左　右　右　左　でカッパ波動砲</string>
 		<key>event_text1</key>
-		<string>そんな時は必殺技を使おう。</string>
+		<string>遠距離攻撃だ！</string>
 	</dict>
 	<key>0.2</key>
 	<dict>
@@ -53,17 +51,16 @@
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>
-		<string>左　右　左　左　右　と画面をタップ。</string>
+		<string>左　右　右　いm技　左　でカッパ旋風蹴。</string>
 		<key>event_text1</key>
-		<string>スーパー頭突きが発動するぞ。</string>
+		<string>強力なカウンター攻撃だ！</string>
 	</dict>
 	<key>0.3</key>
 	<dict>
 		<key>enemies</key>
 		<array>
 			<string>hiyoko</string>
-			<string>hiyoko</string>
-			<string>ghost</string>
+			<string>usagi</string>
 			<string>ghost</string>
 		</array>
 		<key>is_random</key>
@@ -71,43 +68,20 @@
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>
-		<string>右　右　左　右　左　でカッパ昇熊拳</string>
+		<string>チュートリアルは以上で終了だ。</string>
 		<key>event_text1</key>
-		<string>対空の強烈な一撃を放てる。</string>
+		<string>後は酒場でじょうほう収集をすると良い。</string>
 	</dict>
 	<key>0.4</key>
 	<dict>
-		<key>enemies</key>
-		<array>
-			<string>usagi</string>
-			<string>hiyoko</string>
-			<string>chibidora</string>
-			<string>ghost</string>
-		</array>
-		<key>event</key>
-		<false/>
-		<key>is_random</key>
-		<true/>
-	</dict>
-	<key>0.5</key>
-	<dict>
-		<key>enemies</key>
-		<array>
-			<string>ghost</string>
-			<string>usagi</string>
-			<string>chibidora</string>
-			<string>usagi</string>
-		</array>
-		<key>is_random</key>
-		<true/>
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>
-		<string>この先に強力な敵の気配を感じる。</string>
+		<string>……この先で、最後の試練が待っている。</string>
 		<key>event_text1</key>
-		<string></string>
+		<string>君の胸騒ぎは最高潮に達している！</string>
 	</dict>
-	<key>0.6</key>
+	<key>0.5</key>
 	<dict>
 		<key>enemies</key>
 		<array>
@@ -121,17 +95,9 @@
 		<key>is_random</key>
 		<false/>
 		<key>event</key>
-		<true/>
-		<key>event_text0</key>
-		<string>「さて、最後の修行を始めよう。</string>
-		<key>event_text1</key>
-		<string>生き残った方がカッパ神拳の後継者だ」</string>
-		<key>boss_word0</key>
-		<string>「見事だ……</string>
-		<key>boss_word1</key>
-		<string>　その力で世界を救ってくれ」</string>
-		<key>clear_word</key>
-		<string>師匠の教えは決して忘れはしない。</string>
+		<false/>
+		<key>boss_name</key>
+		<string>砕けぬ騎士　シー・シャープ</string>
 	</dict>
 </dict>
 </plist>

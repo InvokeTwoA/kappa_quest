@@ -24,16 +24,13 @@ class Map {
     var isEvent : Bool = false
     var isRandom : Bool = false
     var isBoss : Bool = false
+    var boss_name = ""
     var text0 = ""
     var text1 = ""
-    var boss_text0 = ""
-    var boss_text1 = ""
-    var clear_word = ""
     
     func initData(){
         distance = 0.0
         distanceInt = 0
-        saveParam()
     }
     
     func readDataByPlist(){
@@ -59,12 +56,7 @@ class Map {
 
         if map_info["is_boss"] != nil {
             isBoss    = map_info["is_boss"] as! Bool
-            boss_text0 = map_info["boss_word0"] as! String
-            boss_text1 = map_info["boss_word1"] as! String
-            
-            clear_word = map_info["clear_word"] as! String
-        } else {
-            isBoss = false
+            boss_name = map_info["boss_name"] as! String            
         }
         if map_info["is_random"] != nil {
             isRandom    = map_info["is_random"] as! Bool
@@ -120,8 +112,6 @@ class Map {
         } else {
             treasureFlag = false
         }
-
-        saveParam()
     }
     
     func isTreasure() -> Bool {
@@ -137,29 +127,13 @@ class Map {
         }
         return Const.maxPosition
     }
-    
-    // パラメーターを userDefault から読み取り
-    func loadParameterByUserDefault(){
-        if UserDefaults.standard.object(forKey: "lv") == nil {
-            return
-        }
-        distanceInt     = UserDefaults.standard.integer(forKey: "distance")
-        distance        = Double(distanceInt)/10.0
-    }
-    
+        
     // リセットデータ（主にゲームオーバー時）
     func resetData(){
         distance = 0.0
         distanceInt = 0
-        saveParam()
         
         loadMapDataByDistance(distance)
         updatePositionData()
-    }
-    
-    // データ保存
-    func saveParam(){
-        distanceInt = Int(distance*10)
-        UserDefaults.standard.set(distanceInt,  forKey: "distance")
     }
 }

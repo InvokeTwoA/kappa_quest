@@ -25,6 +25,8 @@ class TitleScene: BaseScene {
             "kappa",
             "hiyoko",
             "usagi",
+            "megane",
+            "master",
             "buffalo",
             "chibidora",
             "ghost",
@@ -35,7 +37,6 @@ class TitleScene: BaseScene {
             "ninja",
             "dancer",
             "fighter",
-            
             
             "miira",
             "skelton",
@@ -63,13 +64,26 @@ class TitleScene: BaseScene {
         resetNode.physicsBody = SKPhysicsBody(rectangleOf: resetNode.size)
         WorldNode.setWorldEnd(resetNode.physicsBody!)
  */        
-        if GameData.isExistData() {
+        if GameData.isClear("tutorial") {
             goWorld()
         } else {
+            KappaNode.setInitLv()
+            JobModel.setInitLv()
+            gameData.saveParam()
+            let kappaNode = KappaNode()
+            kappaNode.saveParam()
+            
+            let scene = GameScene(fileNamed: "GameScene")!
+            scene.size = self.scene!.size
+            scene.scaleMode = SKSceneScaleMode.aspectFill
+            scene.world_name = "tutorial"
+            self.view!.presentScene(scene, transition: .fade(withDuration: Const.transitionInterval))
+            /*
             let scene = LetterScene(fileNamed: "LetterScene")
             scene?.size = self.scene!.size
             scene?.scaleMode = SKSceneScaleMode.aspectFill
             self.view!.presentScene(scene!, transition: .doorway(withDuration: Const.doorTransitionInterval))
+ */
         }
     }
     

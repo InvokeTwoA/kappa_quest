@@ -5,8 +5,8 @@ import GameplayKit
 class WorldScene: BaseScene, DungeonDelegate {
 
     private let map_nodes = [
-        "tutorial",
-        "tutorial2",
+        "wizard",
+        "knight",
         "priest",
         "thief",
         "archer",
@@ -29,11 +29,11 @@ class WorldScene: BaseScene, DungeonDelegate {
     }
     
     override func didMove(to view: SKView) {
-        if !GameData.isClear("tutorial") {
-            let node = childNode(withName: "//tutorial2")
+        if !GameData.isClear("wizard") {
+            let node = childNode(withName: "//knight")
             node?.removeFromParent()
         }
-        if !GameData.isClear("tutorial2") {
+        if !GameData.isClear("knight") {
             let node1 = childNode(withName: "//thief")
             let node2 = childNode(withName: "//priest")
             let node3 = childNode(withName: "//archer")
@@ -87,6 +87,15 @@ class WorldScene: BaseScene, DungeonDelegate {
         scene.scaleMode = SKSceneScaleMode.aspectFill
         self.view!.presentScene(scene, transition: .doorway(withDuration: Const.doorTransitionInterval))
     }
+    
+    // 酒場へ行く
+    func goBar(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let listViewController = storyboard.instantiateViewController(withIdentifier: "ListViewController") as! ListViewController
+        listViewController.type = "bar"
+        self.view?.window?.rootViewController?.present(listViewController, animated: true, completion: nil)
+    }
+
 
     // メニュー画面へ遷移
     func goMenu(){
@@ -119,6 +128,8 @@ class WorldScene: BaseScene, DungeonDelegate {
                 explainDungeon(tapNode.name!)
             } else if tapNode.name! == "ShopLabel" || tapNode.name == "ShopNode" {
                 goShop()
+            } else if tapNode.name! == "BarLabel" || tapNode.name == "BarNode" {
+                goBar()
             } else if tapNode.name! == "MenuLabel" || tapNode.name == "MenuNode" {
                 goMenu()
             }
@@ -128,12 +139,6 @@ class WorldScene: BaseScene, DungeonDelegate {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
             let endPosition =  t.location(in: self)
-            /*
-            let vector = CGVector(
-                dx: endPosition.x - beganPosition.x,
-                dy: endPosition.y - beganPosition.y
-            )
- */
             let vector = CGVector(
                 dx: endPosition.x - beganPosition.x,
                 dy: 0

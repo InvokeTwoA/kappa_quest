@@ -36,7 +36,8 @@
 		<key>own_skill</key>
 		<string>物理ダメージ軽減</string>
 		<key>general_skill</key>
-		<string></string>
+		<string>[機械学習(lv)]
+LVアップするたびにHPが(lv)回復。 回復量は騎士LVに等しい。 </string>
 		<key>hp</key>
 		<integer>4</integer>
 		<key>str</key>
@@ -113,7 +114,9 @@
 		<key>own_skill</key>
 		<string>[縮地] 通常移動が高速になる。</string>
 		<key>general_skill</key>
-		<string>なし</string>
+		<string>[moveヒール]
+マップを移動するたびにHPが回復する。
+回復量は盗賊LVに等しい。</string>
 		<key>hp</key>
 		<integer>3</integer>
 		<key>str</key>
@@ -128,6 +131,31 @@
 		<integer>0</integer>
 		<key>luc</key>
 		<integer>3</integer>
+	</dict>
+	<key>archer</key>
+	<dict>
+		<key>name</key>
+		<string>狩人</string>
+		<key>explain</key>
+		<string>狩を生業とする者。 弓を扱えば右に出る者はいない。</string>
+		<key>own_skill</key>
+		<string></string>
+		<key>general_skill</key>
+		<string>なし</string>
+		<key>hp</key>
+		<integer>4</integer>
+		<key>str</key>
+		<integer>1</integer>
+		<key>def</key>
+		<integer>1</integer>
+		<key>agi</key>
+		<integer>2</integer>
+		<key>int</key>
+		<integer>2</integer>
+		<key>pie</key>
+		<integer>2</integer>
+		<key>luc</key>
+		<integer>1</integer>
 	</dict>
 	<key>necro</key>
 	<dict>

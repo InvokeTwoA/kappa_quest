@@ -18,6 +18,15 @@ class ThunderEmitterNode: SKEmitterNode {
         particle.setPhysic()
         return particle
     }
+
+    class func makeArrow() -> ThunderEmitterNode {
+        let particle = ThunderEmitterNode(fileNamed: "arrow")!
+        particle.zPosition = 5
+        particle.name = "arrow"
+        particle.setPhysic()
+        return particle
+    }
+
     
     // 物理属性を適用
     func setPhysic(){

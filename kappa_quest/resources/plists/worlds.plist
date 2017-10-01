@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>tutorial</key>
+	<key>wizard</key>
 	<dict>
 		<key>name</key>
 		<string>修行の地</string>
@@ -11,7 +11,7 @@
 		<key>explain</key>
 		<string>一子相伝の拳法、河童神拳。 この究極の憲法を身につけようとカッパは修行に明け暮れていた。  まずはこのステージで基本操作を覚えるのだ！  「タップ連打こそが、このゲームのコツ」</string>
 		<key>clear_item</key>
-		<string>新職業: 剣士</string>
+		<string>新職業: 魔法使い</string>
 		<key>enemies</key>
 		<array>
 			<string>hiyoko</string>
@@ -21,7 +21,7 @@
 		<key>boss</key>
 		<string>wizard</string>
 	</dict>
-	<key>tutorial2</key>
+	<key>knight</key>
 	<dict>
 		<key>name</key>
 		<string>修行の地２</string>
@@ -30,7 +30,7 @@
 		<key>explain</key>
 		<string>河童神拳の奥義を会得するべく、 カッパは最後の修行を行う事になった。  「ターゲットマークが着いた場所は数秒後に恐ろしい攻撃が来る。全力で避けろ」  危険レベル：２</string>
 		<key>clear_item</key>
-		<string>新職業: 剣士</string>
+		<string>新職業: 騎士</string>
 		<key>enemies</key>
 		<array/>
 		<key>boss</key>

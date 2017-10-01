@@ -36,7 +36,7 @@ class FireEmitterNode: SKEmitterNode {
     func shot(){
         let dx = CommonUtil.rnd(100) + 10
         physicsBody?.applyImpulse(CGVector(dx: -dx, dy: 200))
-        physicsBody?.applyTorque(5.0)
+//        physicsBody?.applyTorque(5.0)
     }
 
     class func makeKappaFire() -> FireEmitterNode {

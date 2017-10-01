@@ -1,34 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-	<key>shoes</key>
-	<dict>
-		<key>name</key>
-		<string>パールの靴</string>
-		<key>explain</key>
-		<string>素早く動ける靴。 スキル[縮地]</string>
-	</dict>
-	<key>exp</key>
-	<dict>
-		<key>name</key>
-		<string>学習機械</string>
-		<key>explain</key>
-		<string>取得経験値が２倍。 スキル[機械学習]</string>
-	</dict>
-	<key>head</key>
-	<dict>
-		<key>name</key>
-		<string>H・ヘッダー</string>
-		<key>explain</key>
-		<string>通常攻撃が変化。 スキル[頭突き魂]</string>
-	</dict>
-	<key>float</key>
-	<dict>
-		<key>name</key>
-		<string>フロート靴</string>
-		<key>explain</key>
-		<string>通常移動が高くなる。 特定の攻撃を避けるのに有効。  スキル[フロート移動]</string>
-	</dict>
-</dict>
-</plist>

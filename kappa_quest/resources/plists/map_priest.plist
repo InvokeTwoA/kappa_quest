@@ -62,8 +62,10 @@
 		<true/>
 		<key>is_random</key>
 		<false/>
+		<key>boss_name</key>
+		<string>絶望した僧侶　スカラー</string>
 		<key>event</key>
-		<true/>
+		<false/>
 		<key>event_text0</key>
 		<string>「死こそが救い……</string>
 		<key>event_text1</key>

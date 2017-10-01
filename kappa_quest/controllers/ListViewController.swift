@@ -6,6 +6,12 @@ class ListViewController : BaseTableViewController {
 
     @IBOutlet weak var _tableView: UITableView!
 
+    var type = ""
+    var world = ""
+    private var enemy_data : NSDictionary!
+    private var worldModel = WorldModel()
+
+    // モンスター図鑑（一覧）
     private var enemy_array = [
         "hiyoko",
         "usagi",
@@ -30,19 +36,22 @@ class ListViewController : BaseTableViewController {
         "angel",
     ]
 
+    // モンスター図鑑（詳細）
+    var enemy_name = ""
     private let library_section = ["名称", "説明", "能力(LV1の状態)", "特性", "戻る"]
     private let LIBRARY_ENEMY_NAME = 0
     private let LIBRARY_ENEMY_EXPLAIN = 1
     private let LIBRARY_ENEMY_STATUS  = 2
     private let LIBRARY_ENEMY_BACK    = 3
 
-    var type = ""
-    var enemy_name = ""
-    var world = ""
-    var enemy_data : NSDictionary!
-
-    var worldModel = WorldModel()
-
+    // 酒場
+    private let barModel = BarModel()
+    private let bar_section = ["マスターの言葉(タップで内容変更)", "常連たち(タップで内容変更)", "あなたの行動"]
+    private var bar_people = ["megane"]
+    private let BAR_MASTER = 0
+    private let BAR_PEOPLE = 1
+    private let BAR_BACK = 2
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setData()
@@ -61,6 +70,10 @@ class ListViewController : BaseTableViewController {
         case "library":
             setSections(library_section)
             enemy_data = EnemyModel.getData(enemy_name)
+        case "bar":
+            setSections(bar_section)
+            barModel.readDataByPlist()
+            setBarPeople()
         default:
             break
         }
@@ -71,6 +84,19 @@ class ListViewController : BaseTableViewController {
         super.viewWillAppear(true)
         _tableView.reloadData()
     }
+    
+    func setBarPeople(){
+        let array : [String] = [
+            "wizard",
+            "knight"
+        ]
+        for name in array {
+            if GameData.isClear(name) {
+                bar_people.append(name)
+            }
+        }
+    }
+    
 
     // row count
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -83,6 +109,8 @@ class ListViewController : BaseTableViewController {
             }
         case "library":
             return 1
+        case "bar":
+            return bar_people.count
         default:
             return 0
         }
@@ -127,7 +155,26 @@ class ListViewController : BaseTableViewController {
             default:
                 break
             }
+        case "bar":
+            switch indexPath.section {
+            case BAR_MASTER:
+                let list = barModel.getList("master")
+                cell.textLabel?.text = list[CommonUtil.rnd(list.count)]
+                cell.imageView?.isHidden = false
+                cell.imageView?.image = UIImage(named: "master")
+            case BAR_PEOPLE:
+                let people = bar_people[indexPath.row]
+                let list = barModel.getList(people)
+                cell.textLabel?.text = list[CommonUtil.rnd(list.count)]
+                cell.imageView?.isHidden = false
+                cell.imageView?.image = UIImage(named: people)
+            case BAR_BACK:
+                cell.textLabel?.text = "もう帰る"
+                cell.imageView?.isHidden = true
             default:
+                break
+            }
+        default:
             break
         }
         return cell
@@ -148,6 +195,12 @@ class ListViewController : BaseTableViewController {
         case "library":
             if indexPath.section == LIBRARY_ENEMY_BACK {
                 dismiss(animated: false, completion: nil)
+            }
+        case "bar":
+            if indexPath.section == BAR_BACK {
+                dismiss(animated: false, completion: nil)
+            } else {
+                _tableView.reloadData()
             }
         default:
             break

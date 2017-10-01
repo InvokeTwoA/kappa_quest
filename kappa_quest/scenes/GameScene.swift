@@ -11,7 +11,6 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     private var specialAttackModel : SpecialAttackModel = SpecialAttackModel()
     private var skillModel : SkillModel = SkillModel()
     var map : Map = Map()
-    var equipModel : EquipModel = EquipModel()
 
     // Node
     var kappa : KappaNode!   // かっぱ画像
@@ -19,7 +18,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     private var big_message_first_position_y : CGFloat!
 
     // その他変数
-    var world_name = "defo"
+    var world_name = "tutorial"
 
     // Scene load 時に呼ばれる
     private var isSceneDidLoaded = false
@@ -39,17 +38,14 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         jobModel.readDataByPlist()
         jobModel.loadParam()
         skillModel.readDataByPlist()
-        equipModel.readDataByPlist()
         actionModel.setActionData(sceneWidth: self.size.width)
         createKappa()
         skillJudge()
+        displayExpLabel()
         changeExpBar()
+        updateName()
+        hideLongMessage()
         
-        let longLabel = childNode(withName: "//longMessageLabel") as! SKLabelNode
-        let longNode = childNode(withName: "//longMessageNode") as! SKSpriteNode
-        longLabel.isHidden = true
-        longNode.isHidden = true
-
         // 音楽関係の処理
         prepareBGM(fileName: Const.bgm_fantasy)
         prepareSoundEffect()
@@ -66,16 +62,20 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
 
     // 画面が読み込まれた時に呼ばれる
     private var isSceneDidMoved = false
+    private var isBossTalkEnd = false
     override func didMove(to view: SKView) {
         updateStatus()
         updateDistance()
 
+        if isBossTalkEnd {
+            stopBGM()
+            goClear()
+        }
         if isSceneDidMoved {
             return
         }
         map.world = world_name
         map.readDataByPlist()
-        map.loadParameterByUserDefault()
         createMap()
 
         isSceneDidMoved = true
@@ -86,6 +86,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     func createKappa(){
         kappa = childNode(withName: "//kappa") as! KappaNode
         kappa.setParameterByUserDefault()
+        kappa.setNextExp(jobModel)
         kappa.setPhysic()
         kappa_first_position_y = kappa.position.y
         setFirstPosition()
@@ -112,7 +113,6 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         kappa?.saveParam()
         gameData.saveParam()
         jobModel.saveParam()
-        map.saveParam()
     }
 
     // 右へ移動
@@ -125,10 +125,8 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         kappa.walkRight()
 
         var action : SKAction!
-        if gameData.equip == "shoes" {
+        if jobModel.name == "thief" || jobModel.name == "ninja" {
             action = actionModel.speedMoveRight
-        } else if gameData.equip == "float" {
-            action = actionModel.floatMoveRight
         } else {
             action = actionModel.moveRight
         }
@@ -152,14 +150,16 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         saveData()
         createMap()
         updateDistance()
+        
+        heal(map_heal)
     }
 
     func stageClear(){
-        stopBGM()
         map.resetData()
         kappa.heal()
         saveData()
-        goClear()
+        isBossTalkEnd = true
+        goCutin("\(world_name)_end")
     }
 
     // 左へ移動
@@ -172,10 +172,8 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         kappa.walkLeft()
 
         var action : SKAction!
-        if gameData.equip == "shoes" {
+        if jobModel.name == "thief" || jobModel.name == "ninja" {
             action = actionModel.speedMoveLeft
-        } else if gameData.equip == "float" {
-            action = actionModel.floatMoveLeft
         } else {
             action = actionModel.moveLeft
         }
@@ -189,11 +187,10 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     func updateButtonByPos(){
         let ButtonNode  = childNode(withName: "//ButtonNode") as! SKSpriteNode
         let ButtonLabel = childNode(withName: "//ButtonLabel") as! SKLabelNode
-
+        /*
         if map.isTreasure() {
             ButtonNode.texture = SKTexture(imageNamed: "button_red")
             ButtonLabel.text = "装備する"
-
             let treasure_key = map.treasures[map.myPosition]
             let point = CGPoint(x: getPositionX(map.myPosition), y: kappa_first_position_y + 100.0)
             displayText(equipModel.getName(treasure_key), position: point)
@@ -205,9 +202,10 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                 }
             }
         } else {
-            ButtonNode.texture = SKTexture(imageNamed: "button_blue")
-            ButtonLabel.text = "メニューを開く"
         }
+         */
+        ButtonNode.texture = SKTexture(imageNamed: "button_blue")
+        ButtonLabel.text = "メニューを開く"
     }
 
     // 攻撃
@@ -356,6 +354,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     }
 
     // モンスター撃破処理
+    private var beat_boss_flag = false
     func beatEnemy(pos: Int){
         let enemy = enemyModel.enemies[pos]
         enemy.hp = 0
@@ -368,14 +367,8 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         map.positionData[pos] = "free"
         enemy.run(actionModel.displayExp!)
 
-        if !map.treasureFlag && !map.isBoss && BattleModel.isTreasure(luc: Double(kappa.luc)) {
-            map.treasureFlag = true
-            createTreasure(pos: pos)
-            map.positionData[pos] = "treasure"
-        }
-
         if map.isBoss && pos == Const.maxPosition - 1 {
-            showBigMessage(text0 : map.boss_text0, text1: map.boss_text1)
+            beat_boss_flag = true
             _ = CommonUtil.setTimeout(delay: 6.0, block: { () -> Void in
                 self.stageClear()
             })
@@ -384,12 +377,9 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     }
 
     func getExp(_ get_exp: Int, point: CGPoint){
-        var exp = get_exp
-        if gameData.equip == "exp" {
-            exp *= 2
-        }
         displayExp(value: get_exp, point: CGPoint(x: point.x, y: point.y + Const.enemySize))
-        updateExp(exp)
+        updateExp(get_exp)
+        displayExpLabel()
         changeExpBar()
     }
 
@@ -399,8 +389,13 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         if kappa.nextExp <= kappa.exp {
             LvUp()
         }
+        displayExpLabel()
         updateStatus()
-
+    }
+    
+    // 経験値を表示
+    func displayExpLabel(){
+        
         let ExpLabel       = childNode(withName: "//ExpLabel")    as! SKLabelNode
         let exp = kappa.nextExp - kappa.exp
         ExpLabel.text = "次のレベルまで　　\(String(describing: exp))"
@@ -454,6 +449,9 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         saveData()
         
         heal(lv_up_heal)
+        
+        gameData.changeNicknameByLV(lv: jobModel.lv)
+        updateName()
     }
 
     func getSkill(){
@@ -481,6 +479,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     var heal_val = 0
     var necro_heal = 0
     var lv_up_heal = 0
+    var map_heal = 0
     func skillJudge(){
         if gameData.konjoFlag {
             skillModel.konjoFlag = true
@@ -488,6 +487,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         heal_val = JobModel.getLV("priest")
         necro_heal = JobModel.getLV("necro")
         lv_up_heal = JobModel.getLV("knight")
+        map_heal = JobModel.getLV("thief")
     }
 
     /***********************************************************************************/
@@ -495,7 +495,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     /***********************************************************************************/
     private var gameOverFlag = false
     func gameOver(){
-        if gameOverFlag == false {
+        if !gameOverFlag || !beat_boss_flag {
             kappa.dead()
             kappa.run(actionModel.dead!)
 
@@ -561,36 +561,24 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         })
     }
 
+    func createArrow(pos : Int, damage: Int){
+        let target = SKSpriteNode(imageNamed: "target")
+        target.position.x = getPositionX(pos)
+        target.position.y = kappa_first_position_y
+        target.anchorPoint = CGPoint(x: 0.5, y: 0)     // 中央下がアンカーポイント
+        target.zPosition = 99
+        addChild(target)
+        
+        target.run(SKAction.fadeOut(withDuration: 1.5), completion: {() -> Void in
+            let thunder = ThunderEmitterNode.makeArrow()
+            thunder.position.x = self.getPositionX(pos)
+            thunder.position.y = 1000
+            thunder.damage = damage
+            self.addChild(thunder)
+        })
+    }
+
     
-    /***********************************************************************************/
-    /******************************** 宝を描画  ****************************************/
-    /***********************************************************************************/
-    func createTreasure(pos : Int){
-        let treasure = TreasureNode.makeTreasure()
-        treasure.position.x = getPositionX(pos)
-        treasure.position.y = kappa_first_position_y
-        treasure.pos = pos
-        map.treasures[pos] = treasure.item_name
-        addChild(treasure)
-        treasure.run(actionModel.highJump!)
-    }
-
-    func getTreasure(pos : Int){
-        gameData.setEquip(key: map.treasures[pos])
-        updateStatus()
-        removeTreasure(pos: pos)
-    }
-
-    func removeTreasure(pos : Int){
-        map.positionData[pos] = "free"
-        map.treasures[pos] = ""
-
-        let treasure = childNode(withName: "//treasure") as! TreasureNode
-        if treasure.pos == pos {
-            treasure.removeFromParent()
-        }
-    }
-
     /***********************************************************************************/
     /********************************** 敵を描画  ****************************************/
     /***********************************************************************************/
@@ -621,7 +609,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
 
         enemy.pos = pos
         enemy.position.x = getPositionX(pos)
-        if enemy.canFly || enemy.isGhost{
+        if enemy.canFly || enemy.isGhost {
             enemy.position.y = kappa_first_position_y + Const.enemyFlyHeight
         } else {
             enemy.position.y = kappa_first_position_y
@@ -656,7 +644,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     func createEnemyLifeBar(pos: Int, x: CGFloat, y: CGFloat){
         let lifeBarBackGround = SKSpriteNode(color: .black, size: CGSize(width: 90, height: 20))
         lifeBarBackGround.position = CGPoint(x: x, y: y)
-        lifeBarBackGround.zPosition = 98
+        lifeBarBackGround.zPosition = 97
         lifeBarBackGround.name = "back_life_bar\(pos)"
         lifeBarBackGround.anchorPoint = CGPoint(x: 0.0, y: 0.5)
         addChild(lifeBarBackGround)
@@ -711,6 +699,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             prepareBGM(fileName: Const.bgm_last_battle)
             playBGM()
             bossStopFlag = true
+            displayLongMessage("Boss: \(map.boss_name)")
         }
     }
 
@@ -730,8 +719,9 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             "fire",
             "damage_text",
             "bg_damage_text",
-            "treasure",
-            "displayText"
+            "displayText",
+            "thunder",
+            "arrow",
         ]
         enumerateChildNodes(withName: "*") { node, _ in
             if node.name != nil {
@@ -771,7 +761,6 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         let IntLabel       = childNode(withName: "//IntLabel")    as! SKLabelNode
         let PieLabel       = childNode(withName: "//PieLabel")    as! SKLabelNode
         let LucLabel       = childNode(withName: "//LucLabel")    as! SKLabelNode
-        let ExpLabel       = childNode(withName: "//ExpLabel")    as! SKLabelNode
 
         MAXHPLabel.text = "HP  \(String(describing: kappa.maxHp))"
         HPLabel.text  = "\(String(describing: kappa.hp))"
@@ -782,7 +771,6 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         IntLabel.text = "知恵  \(String(describing: kappa.int))"
         PieLabel.text = "精神  \(String(describing: kappa.pie))"
         LucLabel.text = "幸運  \(String(describing: kappa.luc))"
-        ExpLabel.text = "次のレベルまで　　\(String(describing: kappa.nextExp))"
 
         // 職業情報
         let JobLVLabel     = childNode(withName: "//JobLVLabel") as! SKLabelNode
@@ -791,21 +779,23 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         JobNameLabel.text = jobModel.displayName
         JobLVLabel.text = "LV  \(jobModel.lv)"
 
-        // 装備情報
-        let equipLabel  = childNode(withName: "//EquipLabel") as! SKLabelNode
-        equipLabel.text = equipModel.getName(gameData.equip)
-
         // タップ情報
         let TapCountLabel  = childNode(withName: "//TapCountLabel") as! SKLabelNode
         TapCountLabel.text = "\(gameData.tapCount)"
 
         changeLifeBar()
+        updateName()
     }
 
     // 距離情報の更新
     func updateDistance(){
         let distanceLabel    = childNode(withName: "//DistanceLabel") as! SKLabelNode
         distanceLabel.text = "\(map.distance)km"
+    }
+    
+    func updateName(){
+        let nameLabel = childNode(withName: "//NameLabel") as! SKLabelNode
+        nameLabel.text = gameData.displayName(jobModel.displayName)
     }
 
     /***********************************************************************************/
@@ -870,7 +860,6 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         bigMessages.remove(at: 0)
         bigMessageNode.run(actionModel.displayBigMessage!, completion: {() -> Void in
             self.isShowingBigMessage = false
-            self.bossStopFlag = false
         })
     }
 
@@ -903,6 +892,45 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         isShowingBigMessage = false
     }
 
+    func displayLongMessage(_ text : String){
+        showLongMessage()
+        let longLabel = childNode(withName: "//longMessageLabel") as! SKLabelNode
+        longLabel.text = text
+        longLabel.run(actionModel.longMessage!, completion: {() -> Void in
+            self.hideLongMessage()
+            self.bossStopFlag = false
+            self.goCutin("\(self.world_name)_pre")
+        })
+    }
+    
+    func goCutin(_ key : String){
+        let nextScene = CutinScene(fileNamed: "CutinScene")!
+        nextScene.size = scene!.size
+        nextScene.scaleMode = SKSceneScaleMode.aspectFill
+        nextScene.backScene = scene as! GameScene
+        nextScene.key = key
+        view!.presentScene(nextScene, transition: .fade(with: .black, duration: Const.gameOverInterval))
+    }
+    
+    func hideLongMessage(){
+        let longLabel = childNode(withName: "//longMessageLabel") as! SKLabelNode
+        let longLabel2 = childNode(withName: "//longMessageLabel2") as! SKLabelNode
+        let longNode = childNode(withName: "//longMessageNode") as! SKSpriteNode
+        longLabel.isHidden = true
+        longLabel2.isHidden = true
+        longNode.isHidden = true
+    }
+
+    func showLongMessage(){
+        let longLabel = childNode(withName: "//longMessageLabel") as! SKLabelNode
+        let longLabel2 = childNode(withName: "//longMessageLabel2") as! SKLabelNode
+        let longNode = childNode(withName: "//longMessageNode") as! SKSpriteNode
+        longLabel.isHidden = false
+        longLabel2.isHidden = false
+        longNode.isHidden = false
+    }
+
+    
     /***********************************************************************************/
     /********************************* 画面遷移 ****************************************/
     /***********************************************************************************/
@@ -925,14 +953,10 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     }
 
     func goClear(){
-        if gameOverFlag == true {
-            return
-        }
         let scene = GameClearScene(fileNamed: "GameClearScene")!
         scene.size = self.scene!.size
         scene.scaleMode = SKSceneScaleMode.aspectFill
         scene.world = world_name
-        scene.clearWord = map.clear_word
         scene.maxDamage = maxDamage
         self.view!.presentScene(scene, transition: .doorsCloseHorizontal(withDuration: Const.gameOverInterval))
     }
@@ -1066,11 +1090,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             if map.canMoveRight() {
                 moveRight()
             } else if map.isRightEnemy() {
-                if gameData.equip == "head" {
-                    specialAttackHead()
-                } else {
-                    attack(pos: map.myPosition+1)
-                }
+                attack(pos: map.myPosition+1)
             } else {
                 kappa.run(actionModel.moveBack2)
             }
@@ -1117,18 +1137,11 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             }
             switch tapNode.name! {
             case "ButtonNode", "ButtonLabel":
-                if map.isTreasure() {
-                    getTreasure(pos : map.myPosition)
-                } else {
-                    goMenu()
-                }
+                goMenu()
             case "JobNode", "JobLabel":
                 showJob()
             case "KappaInfoLabel", "KappaInfoNode":
                 displayAlert("ステータス", message: JobModel.allSkillExplain(skillModel, kappa: kappa!, gameData: gameData), okString: "閉じる")
-            case "EquipLabel", "EquipNode":
-                print("equip label")
-                break
             default:
                 self.touchDown(atPoint: positionInScene)
             }
@@ -1282,12 +1295,12 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                 enemy.thunderTimerReset()
             } else if enemy.isArrow() {
                 if CommonUtil.rnd(2) == 0 {
-                    createThunder(pos: 2, damage: enemy.int)
-                    createThunder(pos: 4, damage: enemy.int)
+                    createArrow(pos: 2, damage: enemy.int)
+                    createArrow(pos: 4, damage: enemy.int)
                 } else {
-                    createThunder(pos: 1, damage: enemy.int)
-                    createThunder(pos: 3, damage: enemy.int)
-                    createThunder(pos: 5, damage: enemy.int)
+                    createArrow(pos: 1, damage: enemy.int)
+                    createArrow(pos: 3, damage: enemy.int)
+                    createArrow(pos: 5, damage: enemy.int)
                 }
                 enemy.arrowTimerReset()
             } else if enemy.jumpTimer%4 == 0 && !enemy.canFly {

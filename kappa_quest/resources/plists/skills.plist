@@ -2,12 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>shoes</key>
-	<string>[縮地] 素早く左右に動く事ができる。 </string>
-	<key>head</key>
-	<string>[スキル: 頭突き魂] 通常攻撃がスーパー頭突きになる。 </string>
-	<key>exp</key>
-	<string>[機械学習] 敵を撃破時、経験値を２倍獲得できる。 </string>
 	<key>kappa_heal</key>
 	<string>[カッパヒール  LV(lv)]
 (tap)タップごとにHPが(lv)回復する。
@@ -19,5 +13,11 @@
 	<key>konjo</key>
 	<string>[ど根性かっぱ]
 死ぬダメージを受けても稀にHP１で生き残る。 （HPが2以上の時に攻撃を受けて発動。幸運が高いほど発生確率は高まる）  </string>
+	<key>thief</key>
+	<string>[moveヒール LV(lv)]
+マップを移動するたびにHPが(lv)回復。 回復量は盗賊LVに等しい。</string>
+	<key>knight</key>
+	<string>[機械学習(lv)]
+LVアップするたびにHPが(lv)回復。 回復量は騎士LVに等しい。 </string>
 </dict>
 </plist>

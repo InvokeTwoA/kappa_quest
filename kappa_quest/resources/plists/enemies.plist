@@ -7,7 +7,7 @@
 		<key>name</key>
 		<string>新米ヒヨコ</string>
 		<key>hp</key>
-		<integer>3</integer>
+		<integer>4</integer>
 		<key>str</key>
 		<integer>1</integer>
 		<key>def</key>
@@ -20,13 +20,61 @@
 		<integer>1</integer>
 		<key>range</key>
 		<integer>1</integer>
-		<key>exp</key>
-		<integer>1</integer>
 		<key>type</key>
 		<string>animal</string>
 		<key>explain</key>
 		<string>最弱モンスター。
 しかし自分に大いなる才能が眠っていると密かに思っている。  冒険者に基本操作を教えるためだけに生まれたような尊い存在。</string>
+	</dict>
+	<key>chibidora</key>
+	<dict>
+		<key>name</key>
+		<string>Doubleドラゴン</string>
+		<key>hp</key>
+		<integer>3</integer>
+		<key>str</key>
+		<integer>2</integer>
+		<key>def</key>
+		<integer>2</integer>
+		<key>agi</key>
+		<integer>5</integer>
+		<key>int</key>
+		<integer>2</integer>
+		<key>pie</key>
+		<integer>1</integer>
+		<key>range</key>
+		<integer>1</integer>
+		<key>canFire</key>
+		<true/>
+		<key>type</key>
+		<string>flying</string>
+		<key>explain</key>
+		<string>プレイヤーにファイアボールの危険性を教えるため、 三日三晩徹夜して習得した努力家のドラゴン。  良い先輩だけど、寝不足自慢が少しうざい。</string>
+	</dict>
+	<key>megane</key>
+	<dict>
+		<key>name</key>
+		<string>Mr チュー・トリアル</string>
+		<key>hp</key>
+		<integer>7</integer>
+		<key>str</key>
+		<integer>2</integer>
+		<key>def</key>
+		<integer>1</integer>
+		<key>agi</key>
+		<integer>10</integer>
+		<key>int</key>
+		<integer>3</integer>
+		<key>pie</key>
+		<integer>0</integer>
+		<key>range</key>
+		<integer>1</integer>
+		<key>canFire</key>
+		<true/>
+		<key>type</key>
+		<string>animal</string>
+		<key>explain</key>
+		<string>メガネをかけた意識の高いカッパ。  人にアドバイスをしてドヤ顔するのが生きがい。 覚えたての用語をやたら使いたがるのが玉にキズ。</string>
 	</dict>
 	<key>usagi</key>
 	<dict>
@@ -48,62 +96,37 @@
 		<integer>2</integer>
 		<key>canFly</key>
 		<true/>
-		<key>exp</key>
-		<integer>2</integer>
 		<key>type</key>
 		<string>animal</string>
 		<key>explain</key>
 		<string>新米ヒヨコを見て自分は最下位では無いと安心しているモンスター。  ピョンピョン飛び跳ねる空中殺法が得意。</string>
 	</dict>
-	<key>buffalo</key>
+	<key>wizard</key>
 	<dict>
 		<key>name</key>
-		<string>鬼バッファロー</string>
+		<string>空飛ぶ魔法使い　ジャバ</string>
 		<key>hp</key>
 		<integer>3</integer>
 		<key>str</key>
-		<integer>3</integer>
+		<integer>2</integer>
 		<key>def</key>
-		<integer>3</integer>
+		<integer>4</integer>
 		<key>agi</key>
-		<integer>1</integer>
+		<integer>6</integer>
 		<key>int</key>
-		<integer>1</integer>
+		<integer>6</integer>
 		<key>pie</key>
 		<integer>1</integer>
 		<key>range</key>
-		<integer>1</integer>
-		<key>canFire</key>
-		<false/>
-		<key>exp</key>
-		<integer>3</integer>
-		<key>type</key>
-		<string>animal</string>
-	</dict>
-	<key>chibidora</key>
-	<dict>
-		<key>name</key>
-		<string>チビドラ</string>
-		<key>hp</key>
 		<integer>2</integer>
-		<key>str</key>
-		<integer>2</integer>
-		<key>def</key>
-		<integer>2</integer>
-		<key>agi</key>
-		<integer>5</integer>
-		<key>int</key>
-		<integer>2</integer>
-		<key>pie</key>
-		<integer>1</integer>
-		<key>range</key>
-		<integer>1</integer>
 		<key>canFire</key>
 		<true/>
-		<key>exp</key>
-		<integer>3</integer>
+		<key>isGhost</key>
+		<true/>
 		<key>type</key>
-		<string>flying</string>
+		<string>human</string>
+		<key>explain</key>
+		<string>カッパの先輩。 河童神拳では頭突きやアッパーカットが魔法攻撃扱いであるという事に疑問を抱いている。  舞空術を使い、カッパに対空攻撃の重要性を身を以て示した。  世界各地にいる魔法使いはジャバのそっくりさん。</string>
 	</dict>
 	<key>ghost</key>
 	<dict>
@@ -112,13 +135,13 @@
 		<key>hp</key>
 		<integer>3</integer>
 		<key>str</key>
-		<integer>1</integer>
+		<integer>3</integer>
 		<key>def</key>
 		<integer>999</integer>
 		<key>agi</key>
 		<integer>1</integer>
 		<key>int</key>
-		<integer>2</integer>
+		<integer>1</integer>
 		<key>pie</key>
 		<integer>1</integer>
 		<key>range</key>
@@ -130,68 +153,49 @@
 		<key>explain</key>
 		<string>過労死した魔王軍の亡霊。 社畜なので死して尚、勇者を倒そうとサービス残業している。  空中にいるため通常攻撃は届かない。 彼らに永遠の有給を与えるためには必殺技で倒すしかないだろう。</string>
 	</dict>
-	<key>arakure</key>
+	<key>knight</key>
 	<dict>
 		<key>name</key>
-		<string>荒くれ</string>
+		<string>希望の騎士　シー・シャープ</string>
 		<key>hp</key>
-		<integer>7</integer>
+		<integer>12</integer>
 		<key>str</key>
-		<integer>3</integer>
-		<key>def</key>
 		<integer>4</integer>
-		<key>agi</key>
-		<integer>2</integer>
-		<key>int</key>
-		<integer>1</integer>
-		<key>pie</key>
-		<integer>2</integer>
-		<key>range</key>
-		<integer>1</integer>
-		<key>type</key>
-		<string>normal</string>
-	</dict>
-	<key>thief</key>
-	<dict>
-		<key>name</key>
-		<string>シーフ</string>
-		<key>hp</key>
-		<integer>5</integer>
-		<key>str</key>
-		<integer>3</integer>
 		<key>def</key>
-		<integer>4</integer>
+		<integer>30</integer>
 		<key>agi</key>
-		<integer>10</integer>
+		<integer>1</integer>
 		<key>int</key>
 		<integer>3</integer>
 		<key>pie</key>
-		<integer>3</integer>
+		<integer>0</integer>
 		<key>range</key>
-		<integer>5</integer>
-		<key>canFire</key>
-		<false/>
-		<key>exp</key>
-		<integer>5</integer>
+		<integer>1</integer>
+		<key>canThunder</key>
+		<true/>
 		<key>type</key>
 		<string>human</string>
+		<key>explain</key>
+		<string>カッパ神拳の師範代。 普段は冷たいが、仮面の下では常に泣いている情熱的な人。
+
+この世界には通常攻撃ではダメージを与えられない敵がいることを、自らの強靭な肉体を持って教えようとする。 大した魔法力もないのに遠距離魔法を使いその特性を示すあたりに優しさが見受けられる。  世界各地にいる騎士は彼のクローン。</string>
 	</dict>
 	<key>priest</key>
 	<dict>
 		<key>name</key>
-		<string>僧侶</string>
+		<string>絶望した僧侶</string>
 		<key>hp</key>
-		<integer>10</integer>
+		<integer>30</integer>
 		<key>str</key>
-		<integer>3</integer>
+		<integer>9</integer>
 		<key>def</key>
-		<integer>1</integer>
+		<integer>3</integer>
 		<key>agi</key>
-		<integer>2</integer>
-		<key>int</key>
-		<integer>4</integer>
-		<key>pie</key>
 		<integer>6</integer>
+		<key>int</key>
+		<integer>12</integer>
+		<key>pie</key>
+		<integer>3</integer>
 		<key>range</key>
 		<integer>2</integer>
 		<key>canFire</key>
@@ -200,10 +204,79 @@
 		<true/>
 		<key>heal</key>
 		<integer>4</integer>
-		<key>exp</key>
-		<integer>5</integer>
 		<key>type</key>
 		<string>human</string>
+	</dict>
+	<key>arakure</key>
+	<dict>
+		<key>name</key>
+		<string>荒くれ</string>
+		<key>hp</key>
+		<integer>35</integer>
+		<key>str</key>
+		<integer>3</integer>
+		<key>def</key>
+		<integer>1</integer>
+		<key>agi</key>
+		<integer>2</integer>
+		<key>int</key>
+		<integer>1</integer>
+		<key>pie</key>
+		<integer>-50</integer>
+		<key>range</key>
+		<integer>1</integer>
+		<key>type</key>
+		<string>normal</string>
+		<key>explain</key>
+		<string>世紀末でヒャッハーする人たち。 好き放題やれているのはその高いHPのおかげ。</string>
+	</dict>
+	<key>thief</key>
+	<dict>
+		<key>name</key>
+		<string>盗む者</string>
+		<key>hp</key>
+		<integer>0</integer>
+		<key>str</key>
+		<integer>13</integer>
+		<key>def</key>
+		<integer>5</integer>
+		<key>agi</key>
+		<integer>30</integer>
+		<key>int</key>
+		<integer>1</integer>
+		<key>pie</key>
+		<integer>0</integer>
+		<key>range</key>
+		<integer>5</integer>
+		<key>canFly</key>
+		<true/>
+		<key>type</key>
+		<string>human</string>
+		<key>explain</key>
+		<string>盗む者ウェア・スパイ  他者からの情報を盗み、売る事で生計を立てている。 悪い事は大体インターネットから学んだ。</string>
+	</dict>
+	<key>buffalo</key>
+	<dict>
+		<key>name</key>
+		<string>バッファロー・ルーター</string>
+		<key>hp</key>
+		<integer>4</integer>
+		<key>str</key>
+		<integer>6</integer>
+		<key>def</key>
+		<integer>6</integer>
+		<key>agi</key>
+		<integer>5</integer>
+		<key>int</key>
+		<integer>1</integer>
+		<key>pie</key>
+		<integer>1</integer>
+		<key>range</key>
+		<integer>10</integer>
+		<key>type</key>
+		<string>animal</string>
+		<key>explain</key>
+		<string>驚異の攻撃射程を持つバッファロー。  自宅の無線LANが調子悪いので、その怒りを突進に込めている。 </string>
 	</dict>
 	<key>archer</key>
 	<dict>
@@ -227,8 +300,6 @@
 		<false/>
 		<key>canArrow</key>
 		<true/>
-		<key>exp</key>
-		<integer>5</integer>
 		<key>type</key>
 		<string>human</string>
 	</dict>
@@ -275,8 +346,8 @@
 		<integer>2</integer>
 		<key>range</key>
 		<integer>1</integer>
-		<key>canFire</key>
-		<false/>
+		<key>isZombi</key>
+		<string>ghost</string>
 		<key>heal</key>
 		<integer>1</integer>
 		<key>exp</key>
@@ -334,60 +405,6 @@
 		<key>type</key>
 		<string>animal</string>
 	</dict>
-	<key>wizard</key>
-	<dict>
-		<key>name</key>
-		<string>魔法使い</string>
-		<key>hp</key>
-		<integer>5</integer>
-		<key>str</key>
-		<integer>2</integer>
-		<key>def</key>
-		<integer>4</integer>
-		<key>agi</key>
-		<integer>6</integer>
-		<key>int</key>
-		<integer>6</integer>
-		<key>pie</key>
-		<integer>1</integer>
-		<key>range</key>
-		<integer>2</integer>
-		<key>canFire</key>
-		<true/>
-		<key>exp</key>
-		<integer>10</integer>
-		<key>type</key>
-		<string>human</string>
-	</dict>
-	<key>knight</key>
-	<dict>
-		<key>name</key>
-		<string>最後の騎士</string>
-		<key>hp</key>
-		<integer>6</integer>
-		<key>New item</key>
-		<string></string>
-		<key>str</key>
-		<integer>4</integer>
-		<key>def</key>
-		<integer>30</integer>
-		<key>agi</key>
-		<integer>1</integer>
-		<key>int</key>
-		<integer>3</integer>
-		<key>pie</key>
-		<integer>0</integer>
-		<key>range</key>
-		<integer>1</integer>
-		<key>canThunder</key>
-		<true/>
-		<key>type</key>
-		<string>human</string>
-		<key>explain</key>
-		<string>カッパの兄弟子に当たる騎士。 普段は冷たいが、仮面の下では常に泣いている情熱的な人。
-
-この世界には通常攻撃ではダメージを与えられない敵がいることを、自らの強靭な肉体を持って教えようとする。 大した魔法力もないのに遠距離魔法を使いその特性を示すあたりに優しさが見受けられる。</string>
-	</dict>
 	<key>dancer</key>
 	<dict>
 		<key>name</key>
@@ -420,19 +437,19 @@
 	<key>fighter</key>
 	<dict>
 		<key>name</key>
-		<string>剣士レイルズ</string>
+		<string>偉大なる剣士ルビー・オン・レイルズ</string>
 		<key>hp</key>
 		<integer>30</integer>
 		<key>str</key>
 		<integer>7</integer>
 		<key>def</key>
-		<integer>18</integer>
+		<integer>3</integer>
 		<key>agi</key>
 		<integer>1</integer>
 		<key>int</key>
 		<integer>6</integer>
 		<key>pie</key>
-		<integer>999</integer>
+		<integer>4</integer>
 		<key>range</key>
 		<integer>3</integer>
 		<key>canArrow</key>
@@ -444,7 +461,7 @@
 		<key>type</key>
 		<string>human</string>
 		<key>explain</key>
-		<string>偉大なる剣士ルビー・オン・レイルズ。 聖なる加護を得た鎧はあらゆる必殺攻撃をほぼ無効化する。  強力な近距離攻撃と、広範囲な遠距離魔法を扱う隙のない強敵。 しかも自動回復の能力まで持っている。  余談だが作者は Ruby On Rails を扱う仕事を普段はしている。</string>
+		<string>偉大なる剣士ルビー・オン・レイルズ。 帝国に忠誠を誓い、不屈の精神で挑んでくる。  強力な近距離攻撃と、広範囲な遠距離魔法を扱う隙のない強敵。 しかも自動回復の能力まで持っている。  余談だが作者は Ruby On Rails を扱う仕事を普段はしている。</string>
 	</dict>
 	<key>samurai</key>
 	<dict>

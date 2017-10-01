@@ -55,8 +55,10 @@
 		<true/>
 		<key>is_random</key>
 		<false/>
+		<key>boss_name</key>
+		<string>狩る者　オブジェ・クティブシー</string>
 		<key>event</key>
-		<true/>
+		<false/>
 		<key>event_text0</key>
 		<string>「カッパごときに何ができる！？」</string>
 		<key>event_text1</key>

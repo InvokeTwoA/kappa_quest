@@ -16,8 +16,8 @@
 		CE31F9231F51582500E868FB /* OptionScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31F9221F51582500E868FB /* OptionScene.swift */; };
 		CE31F9271F53BCE700E868FB /* TitleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31F9261F53BCE700E868FB /* TitleScene.swift */; };
 		CE31F9291F53BD4200E868FB /* TitleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE31F9281F53BD4200E868FB /* TitleScene.sks */; };
-		CE31F92B1F5449CF00E868FB /* LetterScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE31F92A1F5449CF00E868FB /* LetterScene.sks */; };
-		CE31F92D1F544FD000E868FB /* LetterScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31F92C1F544FD000E868FB /* LetterScene.swift */; };
+		CE31F92B1F5449CF00E868FB /* CutinScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE31F92A1F5449CF00E868FB /* CutinScene.sks */; };
+		CE31F92D1F544FD000E868FB /* CutinScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31F92C1F544FD000E868FB /* CutinScene.swift */; };
 		CE31F92F1F55B77B00E868FB /* BaseScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31F92E1F55B77B00E868FB /* BaseScene.swift */; };
 		CE31F9311F5A62CC00E868FB /* SkillModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31F9301F5A62CC00E868FB /* SkillModel.swift */; };
 		CE31F9331F5A673F00E868FB /* skills.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE31F9321F5A673F00E868FB /* skills.plist */; };
@@ -26,7 +26,6 @@
 		CE31F9391F5BFC4D00E868FB /* BattleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31F9381F5BFC4D00E868FB /* BattleModel.swift */; };
 		CE31F93B1F5BFFE700E868FB /* blue_spark.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE31F93A1F5BFFE700E868FB /* blue_spark.sks */; };
 		CE31F93D1F5C077900E868FB /* se_maoudamashii_battle09.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CE31F93C1F5C077900E868FB /* se_maoudamashii_battle09.mp3 */; };
-		CE31F93F1F5D9B3100E868FB /* TreasureNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31F93E1F5D9B3100E868FB /* TreasureNode.swift */; };
 		CE31F9411F626CF600E868FB /* WorldScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE31F9401F626CF600E868FB /* WorldScene.sks */; };
 		CE31F9431F626F4D00E868FB /* WorldScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31F9421F626F4D00E868FB /* WorldScene.swift */; };
 		CE31F9451F62964F00E868FB /* map_thief.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE31F9441F62964F00E868FB /* map_thief.plist */; };
@@ -36,22 +35,25 @@
 		CE31F94D1F63CF8D00E868FB /* SpecialAttckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31F94C1F63CF8D00E868FB /* SpecialAttckModel.swift */; };
 		CE31F94F1F653B9000E868FB /* GameClearScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE31F94E1F653B9000E868FB /* GameClearScene.sks */; };
 		CE31F9511F653F0200E868FB /* GameClearScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31F9501F653F0200E868FB /* GameClearScene.swift */; };
-		CE31F9531F66C78500E868FB /* EquipModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE31F9521F66C78500E868FB /* EquipModel.swift */; };
-		CE31F9551F66C97E00E868FB /* equips.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE31F9541F66C97E00E868FB /* equips.plist */; };
 		CE524F801F20D5B900A6D14C /* jpn.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE524F7F1F20D5B900A6D14C /* jpn.strings */; };
 		CE524F831F20D88800A6D14C /* eng.strings in Resources */ = {isa = PBXBuildFile; fileRef = CE524F821F20D88800A6D14C /* eng.strings */; };
 		CE524F851F236EEC00A6D14C /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE524F841F236EEC00A6D14C /* GameData.swift */; };
 		CE5884E01F793A2B00ABAC1C /* WorldNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5884DF1F793A2B00ABAC1C /* WorldNode.swift */; };
-		CE5884E31F7CF70100ABAC1C /* map_tutorial0.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE5884E21F7CF70100ABAC1C /* map_tutorial0.plist */; };
+		CE5884E31F7CF70100ABAC1C /* map_tutorial.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE5884E21F7CF70100ABAC1C /* map_tutorial.plist */; };
+		CE5884E51F7E49C400ABAC1C /* arrow.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE5884E41F7E49C400ABAC1C /* arrow.sks */; };
+		CE5884E71F7E4C6C00ABAC1C /* dark.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE5884E61F7E4C6C00ABAC1C /* dark.sks */; };
+		CE5884E91F7E97A500ABAC1C /* bar.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE5884E81F7E97A500ABAC1C /* bar.plist */; };
+		CE5884EB1F7E9C9A00ABAC1C /* BarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5884EA1F7E9C9A00ABAC1C /* BarModel.swift */; };
 		CE6BB81F1F23C8860046DA65 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6BB81E1F23C8860046DA65 /* Map.swift */; };
-		CE6BB8211F23CA710046DA65 /* ShopNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6BB8201F23CA710046DA65 /* ShopNode.swift */; };
 		CE6BB8231F24C2430046DA65 /* EnemyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6BB8221F24C2430046DA65 /* EnemyModel.swift */; };
 		CE6BB8251F24CA2E0046DA65 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE6BB8241F24CA2E0046DA65 /* MenuScene.sks */; };
 		CE6BB8271F24CAA30046DA65 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE6BB8261F24CAA30046DA65 /* GameScene.sks */; };
 		CE6BB8291F24D3040046DA65 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6BB8281F24D3040046DA65 /* MenuScene.swift */; };
+		CE7E69461F80F81E000ECC33 /* cutin.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE7E69451F80F81E000ECC33 /* cutin.plist */; };
+		CE7E69481F810359000ECC33 /* CutinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E69471F810359000ECC33 /* CutinModel.swift */; };
 		CE8D51391F6D8E9B004F8D0B /* map_archer.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE8D51381F6D8E9B004F8D0B /* map_archer.plist */; };
 		CE8D513C1F6E46DF004F8D0B /* JobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8D513B1F6E46DF004F8D0B /* JobViewController.swift */; };
-		CE8D513E1F6FB3F4004F8D0B /* map_tutorial2.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE8D513D1F6FB3F4004F8D0B /* map_tutorial2.plist */; };
+		CE8D513E1F6FB3F4004F8D0B /* map_knight.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE8D513D1F6FB3F4004F8D0B /* map_knight.plist */; };
 		CE8D51401F6FCA05004F8D0B /* bgm_maoudamashii_piano_ahurera.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CE8D513F1F6FCA05004F8D0B /* bgm_maoudamashii_piano_ahurera.mp3 */; };
 		CEB904551F24EBA10061A919 /* ShopScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CEB904541F24EBA10061A919 /* ShopScene.sks */; };
 		CEB904571F24EBBE0061A919 /* ShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB904561F24EBBE0061A919 /* ShopScene.swift */; };
@@ -64,7 +66,6 @@
 		CEC2B68F1F177A3C0014B114 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEC2B68D1F177A3C0014B114 /* LaunchScreen.storyboard */; };
 		CEC2B69F1F198F7F0014B114 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC2B69E1F198F7F0014B114 /* Const.swift */; };
 		CEC2B6A61F1A4DE70014B114 /* EnemyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC2B6A51F1A4DE70014B114 /* EnemyNode.swift */; };
-		CEC2B6A81F1AE6FA0014B114 /* TapNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC2B6A71F1AE6FA0014B114 /* TapNode.swift */; };
 		CED3777E1F6FF4530068768B /* thunder.sks in Resources */ = {isa = PBXBuildFile; fileRef = CED3777D1F6FF4530068768B /* thunder.sks */; };
 		CED377801F6FF5540068768B /* ThunderEmitterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED3777F1F6FF5540068768B /* ThunderEmitterNode.swift */; };
 		CED377821F7002850068768B /* worlds.plist in Resources */ = {isa = PBXBuildFile; fileRef = CED377811F7002850068768B /* worlds.plist */; };
@@ -86,7 +87,7 @@
 		CED621E21F40405600C92480 /* FireEmitterNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED621E11F40405600C92480 /* FireEmitterNode.swift */; };
 		CED621E61F40924D00C92480 /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CED621E51F40924D00C92480 /* GameOverScene.sks */; };
 		CED621E81F409B1C00C92480 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED621E71F409B1C00C92480 /* GameOverScene.swift */; };
-		CED621EA1F41EE6C00C92480 /* map_tutorial.plist in Resources */ = {isa = PBXBuildFile; fileRef = CED621E91F41EE6C00C92480 /* map_tutorial.plist */; };
+		CED621EA1F41EE6C00C92480 /* map_wizard.plist in Resources */ = {isa = PBXBuildFile; fileRef = CED621E91F41EE6C00C92480 /* map_wizard.plist */; };
 		CEDBE7931F1C5274007E72B9 /* GN-KillGothic-U-KanaNB.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEEB83D41F1C464B0025E021 /* GN-KillGothic-U-KanaNB.ttf */; };
 		CEDBE7941F1C5278007E72B9 /* GN-KillGothic-U-KanaO.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEEB83D51F1C464B0025E021 /* GN-KillGothic-U-KanaO.ttf */; };
 		CEDBE7961F1CC469007E72B9 /* enemies.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEDBE7951F1CC469007E72B9 /* enemies.plist */; };
@@ -111,8 +112,8 @@
 		CE31F9221F51582500E868FB /* OptionScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionScene.swift; path = scenes/OptionScene.swift; sourceTree = "<group>"; };
 		CE31F9261F53BCE700E868FB /* TitleScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TitleScene.swift; path = scenes/TitleScene.swift; sourceTree = "<group>"; };
 		CE31F9281F53BD4200E868FB /* TitleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = TitleScene.sks; path = sks/TitleScene.sks; sourceTree = "<group>"; };
-		CE31F92A1F5449CF00E868FB /* LetterScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = LetterScene.sks; path = sks/LetterScene.sks; sourceTree = "<group>"; };
-		CE31F92C1F544FD000E868FB /* LetterScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LetterScene.swift; path = scenes/LetterScene.swift; sourceTree = "<group>"; };
+		CE31F92A1F5449CF00E868FB /* CutinScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = CutinScene.sks; path = sks/CutinScene.sks; sourceTree = "<group>"; };
+		CE31F92C1F544FD000E868FB /* CutinScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CutinScene.swift; path = scenes/CutinScene.swift; sourceTree = "<group>"; };
 		CE31F92E1F55B77B00E868FB /* BaseScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseScene.swift; path = scenes/BaseScene.swift; sourceTree = "<group>"; };
 		CE31F9301F5A62CC00E868FB /* SkillModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SkillModel.swift; path = models/SkillModel.swift; sourceTree = "<group>"; };
 		CE31F9321F5A673F00E868FB /* skills.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = skills.plist; path = resources/plists/skills.plist; sourceTree = "<group>"; };
@@ -121,7 +122,6 @@
 		CE31F9381F5BFC4D00E868FB /* BattleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BattleModel.swift; path = models/BattleModel.swift; sourceTree = "<group>"; };
 		CE31F93A1F5BFFE700E868FB /* blue_spark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = blue_spark.sks; path = resources/particles/blue_spark.sks; sourceTree = "<group>"; };
 		CE31F93C1F5C077900E868FB /* se_maoudamashii_battle09.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = se_maoudamashii_battle09.mp3; path = "../../../Desktop/ゲームブック/音楽/効果音/se_maoudamashii_battle09.mp3"; sourceTree = "<group>"; };
-		CE31F93E1F5D9B3100E868FB /* TreasureNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TreasureNode.swift; path = nodes/TreasureNode.swift; sourceTree = "<group>"; };
 		CE31F9401F626CF600E868FB /* WorldScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = WorldScene.sks; path = sks/WorldScene.sks; sourceTree = "<group>"; };
 		CE31F9421F626F4D00E868FB /* WorldScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorldScene.swift; path = scenes/WorldScene.swift; sourceTree = "<group>"; };
 		CE31F9441F62964F00E868FB /* map_thief.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_thief.plist; path = resources/plists/map_thief.plist; sourceTree = "<group>"; };
@@ -131,22 +131,25 @@
 		CE31F94C1F63CF8D00E868FB /* SpecialAttckModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpecialAttckModel.swift; path = models/SpecialAttckModel.swift; sourceTree = "<group>"; };
 		CE31F94E1F653B9000E868FB /* GameClearScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameClearScene.sks; path = sks/GameClearScene.sks; sourceTree = "<group>"; };
 		CE31F9501F653F0200E868FB /* GameClearScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameClearScene.swift; path = sks/GameClearScene.swift; sourceTree = "<group>"; };
-		CE31F9521F66C78500E868FB /* EquipModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EquipModel.swift; path = models/EquipModel.swift; sourceTree = "<group>"; };
-		CE31F9541F66C97E00E868FB /* equips.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = equips.plist; path = resources/plists/equips.plist; sourceTree = "<group>"; };
 		CE524F7F1F20D5B900A6D14C /* jpn.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = jpn.strings; path = resources/texts/jpn.strings; sourceTree = "<group>"; };
 		CE524F821F20D88800A6D14C /* eng.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = eng.strings; path = resources/texts/eng.strings; sourceTree = "<group>"; };
 		CE524F841F236EEC00A6D14C /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameData.swift; path = models/GameData.swift; sourceTree = "<group>"; };
 		CE5884DF1F793A2B00ABAC1C /* WorldNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorldNode.swift; path = nodes/WorldNode.swift; sourceTree = "<group>"; };
-		CE5884E21F7CF70100ABAC1C /* map_tutorial0.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_tutorial0.plist; path = resources/plists/map_tutorial0.plist; sourceTree = "<group>"; };
+		CE5884E21F7CF70100ABAC1C /* map_tutorial.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_tutorial.plist; path = resources/plists/map_tutorial.plist; sourceTree = "<group>"; };
+		CE5884E41F7E49C400ABAC1C /* arrow.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = arrow.sks; path = resources/particles/arrow.sks; sourceTree = "<group>"; };
+		CE5884E61F7E4C6C00ABAC1C /* dark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = dark.sks; path = resources/particles/dark.sks; sourceTree = "<group>"; };
+		CE5884E81F7E97A500ABAC1C /* bar.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = bar.plist; path = resources/plists/bar.plist; sourceTree = "<group>"; };
+		CE5884EA1F7E9C9A00ABAC1C /* BarModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BarModel.swift; path = models/BarModel.swift; sourceTree = "<group>"; };
 		CE6BB81E1F23C8860046DA65 /* Map.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Map.swift; path = models/Map.swift; sourceTree = "<group>"; };
-		CE6BB8201F23CA710046DA65 /* ShopNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShopNode.swift; path = nodes/ShopNode.swift; sourceTree = "<group>"; };
 		CE6BB8221F24C2430046DA65 /* EnemyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnemyModel.swift; path = models/EnemyModel.swift; sourceTree = "<group>"; };
 		CE6BB8241F24CA2E0046DA65 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = MenuScene.sks; path = sks/MenuScene.sks; sourceTree = "<group>"; };
 		CE6BB8261F24CAA30046DA65 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameScene.sks; path = sks/GameScene.sks; sourceTree = "<group>"; };
 		CE6BB8281F24D3040046DA65 /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuScene.swift; path = scenes/MenuScene.swift; sourceTree = "<group>"; };
+		CE7E69451F80F81E000ECC33 /* cutin.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = cutin.plist; path = resources/plists/cutin.plist; sourceTree = "<group>"; };
+		CE7E69471F810359000ECC33 /* CutinModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CutinModel.swift; path = models/CutinModel.swift; sourceTree = "<group>"; };
 		CE8D51381F6D8E9B004F8D0B /* map_archer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_archer.plist; path = resources/plists/map_archer.plist; sourceTree = "<group>"; };
 		CE8D513B1F6E46DF004F8D0B /* JobViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JobViewController.swift; path = controllers/JobViewController.swift; sourceTree = "<group>"; };
-		CE8D513D1F6FB3F4004F8D0B /* map_tutorial2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_tutorial2.plist; path = resources/plists/map_tutorial2.plist; sourceTree = "<group>"; };
+		CE8D513D1F6FB3F4004F8D0B /* map_knight.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_knight.plist; path = resources/plists/map_knight.plist; sourceTree = "<group>"; };
 		CE8D513F1F6FCA05004F8D0B /* bgm_maoudamashii_piano_ahurera.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bgm_maoudamashii_piano_ahurera.mp3; path = "../../../Desktop/ゲームブック/音楽/bgm_maoudamashii_piano_ahurera.mp3"; sourceTree = "<group>"; };
 		CEB904541F24EBA10061A919 /* ShopScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = ShopScene.sks; path = sks/ShopScene.sks; sourceTree = "<group>"; };
 		CEB904561F24EBBE0061A919 /* ShopScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShopScene.swift; path = scenes/ShopScene.swift; sourceTree = "<group>"; };
@@ -161,7 +164,6 @@
 		CEC2B6901F177A3C0014B114 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEC2B69E1F198F7F0014B114 /* Const.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Const.swift; path = common/Const.swift; sourceTree = "<group>"; };
 		CEC2B6A51F1A4DE70014B114 /* EnemyNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnemyNode.swift; path = nodes/EnemyNode.swift; sourceTree = "<group>"; };
-		CEC2B6A71F1AE6FA0014B114 /* TapNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TapNode.swift; path = nodes/TapNode.swift; sourceTree = "<group>"; };
 		CEC2B6AA1F1BB9EF0014B114 /* PixelMplus12-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "PixelMplus12-Bold.ttf"; path = "resources/fonts/PixelMplus12-Bold.ttf"; sourceTree = "<group>"; };
 		CEC2B6AB1F1BB9EF0014B114 /* PixelMplus12-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "PixelMplus12-Regular.ttf"; path = "resources/fonts/PixelMplus12-Regular.ttf"; sourceTree = "<group>"; };
 		CED3777D1F6FF4530068768B /* thunder.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = thunder.sks; path = resources/particles/thunder.sks; sourceTree = "<group>"; };
@@ -185,7 +187,7 @@
 		CED621E11F40405600C92480 /* FireEmitterNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FireEmitterNode.swift; path = emitters/FireEmitterNode.swift; sourceTree = "<group>"; };
 		CED621E51F40924D00C92480 /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = GameOverScene.sks; path = sks/GameOverScene.sks; sourceTree = "<group>"; };
 		CED621E71F409B1C00C92480 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameOverScene.swift; path = scenes/GameOverScene.swift; sourceTree = "<group>"; };
-		CED621E91F41EE6C00C92480 /* map_tutorial.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_tutorial.plist; path = resources/plists/map_tutorial.plist; sourceTree = "<group>"; };
+		CED621E91F41EE6C00C92480 /* map_wizard.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_wizard.plist; path = resources/plists/map_wizard.plist; sourceTree = "<group>"; };
 		CEDBE7951F1CC469007E72B9 /* enemies.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = enemies.plist; path = resources/plists/enemies.plist; sourceTree = "<group>"; };
 		CEDBE7981F1CECA9007E72B9 /* KappaNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KappaNode.swift; path = nodes/KappaNode.swift; sourceTree = "<group>"; };
 		CEEB83D11F1BCE200025E021 /* CommonUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommonUtil.swift; path = common/CommonUtil.swift; sourceTree = "<group>"; };
@@ -255,9 +257,10 @@
 				CE31F9381F5BFC4D00E868FB /* BattleModel.swift */,
 				CE049FD41F2D6C460079DEDB /* JobModel.swift */,
 				CE31F9301F5A62CC00E868FB /* SkillModel.swift */,
-				CE31F9521F66C78500E868FB /* EquipModel.swift */,
 				CE049FD81F3312EB0079DEDB /* ActionModel.swift */,
 				CED377831F7003D50068768B /* WorldModel.swift */,
+				CE5884EA1F7E9C9A00ABAC1C /* BarModel.swift */,
+				CE7E69471F810359000ECC33 /* CutinModel.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -265,9 +268,9 @@
 		CE5884E11F7AAC5600ABAC1C /* map */ = {
 			isa = PBXGroup;
 			children = (
-				CE5884E21F7CF70100ABAC1C /* map_tutorial0.plist */,
-				CED621E91F41EE6C00C92480 /* map_tutorial.plist */,
-				CE8D513D1F6FB3F4004F8D0B /* map_tutorial2.plist */,
+				CE5884E21F7CF70100ABAC1C /* map_tutorial.plist */,
+				CED621E91F41EE6C00C92480 /* map_wizard.plist */,
+				CE8D513D1F6FB3F4004F8D0B /* map_knight.plist */,
 				CE31F94A1F63C72000E868FB /* map_priest.plist */,
 				CE31F9441F62964F00E868FB /* map_thief.plist */,
 				CE8D51381F6D8E9B004F8D0B /* map_archer.plist */,
@@ -357,7 +360,7 @@
 				CE31F92E1F55B77B00E868FB /* BaseScene.swift */,
 				CE31F9261F53BCE700E868FB /* TitleScene.swift */,
 				CE31F9421F626F4D00E868FB /* WorldScene.swift */,
-				CE31F92C1F544FD000E868FB /* LetterScene.swift */,
+				CE31F92C1F544FD000E868FB /* CutinScene.swift */,
 				CEC2B6841F177A3C0014B114 /* GameScene.swift */,
 				CE6BB8281F24D3040046DA65 /* MenuScene.swift */,
 				CEB904561F24EBBE0061A919 /* ShopScene.swift */,
@@ -373,9 +376,6 @@
 			children = (
 				CEDBE7981F1CECA9007E72B9 /* KappaNode.swift */,
 				CEC2B6A51F1A4DE70014B114 /* EnemyNode.swift */,
-				CE31F93E1F5D9B3100E868FB /* TreasureNode.swift */,
-				CEC2B6A71F1AE6FA0014B114 /* TapNode.swift */,
-				CE6BB8201F23CA710046DA65 /* ShopNode.swift */,
 				CE5884DF1F793A2B00ABAC1C /* WorldNode.swift */,
 			);
 			name = nodes;
@@ -388,7 +388,7 @@
 				CE6BB8261F24CAA30046DA65 /* GameScene.sks */,
 				CE6BB8241F24CA2E0046DA65 /* MenuScene.sks */,
 				CE31F9401F626CF600E868FB /* WorldScene.sks */,
-				CE31F92A1F5449CF00E868FB /* LetterScene.sks */,
+				CE31F92A1F5449CF00E868FB /* CutinScene.sks */,
 				CED621E51F40924D00C92480 /* GameOverScene.sks */,
 				CE31F94E1F653B9000E868FB /* GameClearScene.sks */,
 				CE31F9201F5156C200E868FB /* OptionScene.sks */,
@@ -425,6 +425,8 @@
 			children = (
 				CED621D41F4035B600C92480 /* bokeh.sks */,
 				CED621DA1F40361200C92480 /* fire.sks */,
+				CE5884E41F7E49C400ABAC1C /* arrow.sks */,
+				CE5884E61F7E4C6C00ABAC1C /* dark.sks */,
 				CE31F93A1F5BFFE700E868FB /* blue_spark.sks */,
 				CED621DC1F40363300C92480 /* spark.sks */,
 				CED3777D1F6FF4530068768B /* thunder.sks */,
@@ -452,7 +454,8 @@
 				CED377811F7002850068768B /* worlds.plist */,
 				CE049FD61F2E0EED0079DEDB /* jobs.plist */,
 				CE31F9321F5A673F00E868FB /* skills.plist */,
-				CE31F9541F66C97E00E868FB /* equips.plist */,
+				CE5884E81F7E97A500ABAC1C /* bar.plist */,
+				CE7E69451F80F81E000ECC33 /* cutin.plist */,
 			);
 			name = plists;
 			sourceTree = "<group>";
@@ -520,8 +523,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE5884E31F7CF70100ABAC1C /* map_tutorial0.plist in Resources */,
-				CE31F92B1F5449CF00E868FB /* LetterScene.sks in Resources */,
+				CE5884E31F7CF70100ABAC1C /* map_tutorial.plist in Resources */,
+				CE31F92B1F5449CF00E868FB /* CutinScene.sks in Resources */,
 				CEDBE7941F1C5278007E72B9 /* GN-KillGothic-U-KanaO.ttf in Resources */,
 				CED621D71F4035B600C92480 /* Assets.xcassets in Resources */,
 				CE31F9291F53BD4200E868FB /* TitleScene.sks in Resources */,
@@ -533,12 +536,13 @@
 				CED621E61F40924D00C92480 /* GameOverScene.sks in Resources */,
 				CED621D91F4035F000C92480 /* energy.sks in Resources */,
 				CED621DD1F40363300C92480 /* spark.sks in Resources */,
+				CE5884E51F7E49C400ABAC1C /* arrow.sks in Resources */,
 				CED377871F72C2EE0068768B /* Job.storyboard in Resources */,
 				CEEB83D61F1C46760025E021 /* GN-KillGothic-U-KanaNA.ttf in Resources */,
 				CEEB83CF1F1BBD240025E021 /* PixelMplus12-Bold.ttf in Resources */,
+				CE5884E71F7E4C6C00ABAC1C /* dark.sks in Resources */,
 				CE049FD71F2E0EED0079DEDB /* jobs.plist in Resources */,
 				CED621D61F4035B600C92480 /* bokeh.sks in Resources */,
-				CE31F9551F66C97E00E868FB /* equips.plist in Resources */,
 				CED377971F77FF590068768B /* map_ninja.plist in Resources */,
 				CED621DB1F40361200C92480 /* fire.sks in Resources */,
 				CEEB83D01F1BBD240025E021 /* PixelMplus12-Regular.ttf in Resources */,
@@ -547,8 +551,9 @@
 				CE31F9491F63BFE000E868FB /* map_necro.plist in Resources */,
 				CE049FCE1F2C927B0079DEDB /* maoudamashii_lastboss02.mp3 in Resources */,
 				CED3777E1F6FF4530068768B /* thunder.sks in Resources */,
+				CE7E69461F80F81E000ECC33 /* cutin.plist in Resources */,
 				CEB904551F24EBA10061A919 /* ShopScene.sks in Resources */,
-				CED621EA1F41EE6C00C92480 /* map_tutorial.plist in Resources */,
+				CED621EA1F41EE6C00C92480 /* map_wizard.plist in Resources */,
 				CE31F93D1F5C077900E868FB /* se_maoudamashii_battle09.mp3 in Resources */,
 				CEC2B68C1F177A3C0014B114 /* Assets.xcassets in Resources */,
 				CE31F9451F62964F00E868FB /* map_thief.plist in Resources */,
@@ -559,13 +564,14 @@
 				CED3778B1F72CD0E0068768B /* Dungeon.storyboard in Resources */,
 				CE31F9411F626CF600E868FB /* WorldScene.sks in Resources */,
 				CE31F9361F5BF17900E868FB /* se_maoudamashii_battle08.mp3 in Resources */,
-				CE8D513E1F6FB3F4004F8D0B /* map_tutorial2.plist in Resources */,
+				CE8D513E1F6FB3F4004F8D0B /* map_knight.plist in Resources */,
 				CE524F801F20D5B900A6D14C /* jpn.strings in Resources */,
 				CE31F94B1F63C72000E868FB /* map_priest.plist in Resources */,
 				CE31F9331F5A673F00E868FB /* skills.plist in Resources */,
 				CE524F831F20D88800A6D14C /* eng.strings in Resources */,
 				CEC2B68F1F177A3C0014B114 /* LaunchScreen.storyboard in Resources */,
 				CE8D51391F6D8E9B004F8D0B /* map_archer.plist in Resources */,
+				CE5884E91F7E97A500ABAC1C /* bar.plist in Resources */,
 				CEDBE7961F1CC469007E72B9 /* enemies.plist in Resources */,
 				CEC2B6831F177A3C0014B114 /* Actions.sks in Resources */,
 				CE6BB8251F24CA2E0046DA65 /* MenuScene.sks in Resources */,
@@ -630,18 +636,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEC2B6A61F1A4DE70014B114 /* EnemyNode.swift in Sources */,
-				CE31F93F1F5D9B3100E868FB /* TreasureNode.swift in Sources */,
 				CE31F9231F51582500E868FB /* OptionScene.swift in Sources */,
 				CE524F851F236EEC00A6D14C /* GameData.swift in Sources */,
 				CED377841F7003D50068768B /* WorldModel.swift in Sources */,
-				CEC2B6A81F1AE6FA0014B114 /* TapNode.swift in Sources */,
 				CEB904571F24EBBE0061A919 /* ShopScene.swift in Sources */,
+				CE5884EB1F7E9C9A00ABAC1C /* BarModel.swift in Sources */,
 				CE31F9391F5BFC4D00E868FB /* BattleModel.swift in Sources */,
 				CE6BB8291F24D3040046DA65 /* MenuScene.swift in Sources */,
 				CEC2B69F1F198F7F0014B114 /* Const.swift in Sources */,
 				CED621E21F40405600C92480 /* FireEmitterNode.swift in Sources */,
 				CEC2B6851F177A3C0014B114 /* GameScene.swift in Sources */,
-				CE31F92D1F544FD000E868FB /* LetterScene.swift in Sources */,
+				CE31F92D1F544FD000E868FB /* CutinScene.swift in Sources */,
 				CEC2B6871F177A3C0014B114 /* GameViewController.swift in Sources */,
 				CED377911F74D8300068768B /* ListViewController.swift in Sources */,
 				CED377801F6FF5540068768B /* ThunderEmitterNode.swift in Sources */,
@@ -652,13 +657,11 @@
 				CED621DF1F40380600C92480 /* SparkEmitterNode.swift in Sources */,
 				CEDBE7991F1CECA9007E72B9 /* KappaNode.swift in Sources */,
 				CE049FD91F3312EB0079DEDB /* ActionModel.swift in Sources */,
-				CE31F9531F66C78500E868FB /* EquipModel.swift in Sources */,
 				CE31F9511F653F0200E868FB /* GameClearScene.swift in Sources */,
 				CE6BB8231F24C2430046DA65 /* EnemyModel.swift in Sources */,
 				CE31F9311F5A62CC00E868FB /* SkillModel.swift in Sources */,
 				CE049FD51F2D6C460079DEDB /* JobModel.swift in Sources */,
 				CE31F92F1F55B77B00E868FB /* BaseScene.swift in Sources */,
-				CE6BB8211F23CA710046DA65 /* ShopNode.swift in Sources */,
 				CEC2B67F1F177A3C0014B114 /* AppDelegate.swift in Sources */,
 				CEEB83D21F1BCE200025E021 /* CommonUtil.swift in Sources */,
 				CE5884E01F793A2B00ABAC1C /* WorldNode.swift in Sources */,
@@ -666,6 +669,7 @@
 				CE31F9431F626F4D00E868FB /* WorldScene.swift in Sources */,
 				CE8D513C1F6E46DF004F8D0B /* JobViewController.swift in Sources */,
 				CE31F9271F53BCE700E868FB /* TitleScene.swift in Sources */,
+				CE7E69481F810359000ECC33 /* CutinModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

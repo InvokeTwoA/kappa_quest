@@ -39,8 +39,8 @@ class KappaNode: SKSpriteNode {
         int     = UserDefaults.standard.integer(forKey: "int")
         pie     = UserDefaults.standard.integer(forKey: "pie")
         luc     = UserDefaults.standard.integer(forKey: "luc")
-        nextExp = UserDefaults.standard.integer(forKey: "nextExp")
-
+        exp     = UserDefaults.standard.integer(forKey: "exp")
+        
         hp  = maxHp
     }
 
@@ -56,7 +56,8 @@ class KappaNode: SKSpriteNode {
         int += jobModel.int
         pie += jobModel.pie
         luc += jobModel.luc
-        setNextExp(jobModel)
+        exp = 0
+        setNextExp(jobModel)        
     }
 
     func heal(){
@@ -76,7 +77,7 @@ class KappaNode: SKSpriteNode {
         UserDefaults.standard.set(int, forKey: "int")
         UserDefaults.standard.set(pie, forKey: "pie")
         UserDefaults.standard.set(luc, forKey: "luc")
-        UserDefaults.standard.set(nextExp, forKey: "nextExp")
+        UserDefaults.standard.set(exp, forKey: "exp")
     }
 
     // 物理属性を適用
@@ -138,6 +139,10 @@ class KappaNode: SKSpriteNode {
 
     func dead(){
         texture = SKTexture(imageNamed: "kappa_dead")
+    }
+    
+    class func setInitLv(){
+        UserDefaults.standard.set(1, forKey: "lv")
     }
 
 }

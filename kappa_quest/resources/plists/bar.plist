@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>master</key>
+	<array>
+		<string>いらっしゃい。 今日もいつもの酒を用意しておいたぜ。</string>
+		<string>なんだ、まだくたばってなかったか。 良いから酒を呑んでいきな。</string>
+		<string>さっさと注文を言いな。</string>
+		<string>いらっしゃーい！ ……なんだ、カッパかよ</string>
+	</array>
+	<key>megane</key>
+	<array>
+		<string>これはジャストアイディアですが、 まずは回復力の高い僧侶などの職業でLVを上げるのが良いと思います。</string>
+		<string>論理的に考えて、 村人は成長率も低いしとっとと転職するべきです。</string>
+		<string>知恵が高いと必殺技の威力が上がります。 ソースは2chです！</string>
+		<string>体力が高いと敵からの物理攻撃のダメージを減らせます。 検証した事はないけどみんなそう言ってるから多分そうです。</string>
+		<string>敏捷が高いと敵の攻撃頻度が少なくなります。 やっぱスピードで攻めるのは格好良いっすねー。</string>
+		<string>筋力が高いと物理攻撃のダメージが上がります。 最近では脳筋で筋力ばかり上げる人が増えてきたようですねー。</string>
+		<string>これはフラッシュアイディアですが、 まずは騎士に転職してHPを上げて頑丈にしてみたらどうでしょう？</string>
+		<string>もう呑めないっす……。</string>
+		<string>明日も仕事だけど、 このまま二次会に行ってしまおうかと思います。</string>
+		<string>可愛い彼女が欲しいなぁ。</string>
+		<string>奢ってくれるんですか？</string>
+		<string>砂漠の荒くれ者たちはHPが高いです。 でも必殺技にめっぽう弱く、喰らえば一撃で倒せます。</string>
+		<string>死んでも失うものは何もないんです。 失敗を恐れずアグレッシブにチャレンジしていきましょう！</string>
+	</array>
+	<key>wizard</key>
+	<array>
+		<string>私、酔ってません</string>
+		<string>必殺技の事は何でも聞いてよ</string>
+		<string>カッパ頭突きは（力＋魔力）で攻撃する突進技です。  相手との距離が遠いほど頭突きスピードが上がるよ！</string>
+		<string>竜巻旋風蹴は強力なカウンター技。  （魔力＋敏捷＋敵の攻撃力）で相手を攻撃するんだ。</string>
+		<string>カッパ昇熊拳は（力＋魔力）で攻撃するよ。  空中にいる敵にはこの攻撃で撃ち墜とすんだ。</string>
+		<string>カッパ波動砲は遠距離攻撃。  （魔力）の威力で敵を攻撃するよ。 魔法使いをLV10にすれば敵を貫通するようになるんだ。</string>
+		<string>ウィー、ヒック</string>
+		<string>魔王は世界の東側にいるらしい。 ワールドマップは左側にスライドできるの知ってた？</string>
+	</array>
+	<key>knight</key>
+	<array>
+		<string>酒はダメなんで、オレンジジュースください……</string>
+		<string>攻略するならば、　教会→砂漠→森　の順がオススメだ……。</string>
+		<string>……無口ですまぬ。</string>
+		<string>……兜を外せ？　それだけは勘弁してくれ。</string>
+		<string>……鎧が重い。</string>
+		<string>男ならとりあえず騎士に転職するべき、そう思わんかね？  騎士は良いぞー。</string>
+		<string>騎士はHP、筋力、体力がバランスよく上がる。 物理攻撃主体で行くならば騎士一択と言っても過言ではないだろう。</string>
+		<string>騎士になればレベルアップするたびにHPが回復するようになる。 ……素晴らしいと思わんかね？</string>
+		<string>……この世界のどこかには隠し職業があるらしい。
+荒くれ、踊り子、そして忍者……。</string>
+		<string>必殺技が弱点のモンスターは 何でも良いので必殺技を当てれば99999ダメージ与えられる。</string>
+		<string>取得経験値は下記の計算式で決まる。 （そのステージのLV）+(0~カッパの幸運)  幸運が高くなると、貰える経験値が高くなるぞ。</string>
+	</array>
+</dict>
+</plist>
