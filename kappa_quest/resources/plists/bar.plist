@@ -51,5 +51,64 @@
 		<string>必殺技が弱点のモンスターは 何でも良いので必殺技を当てれば99999ダメージ与えられる。</string>
 		<string>取得経験値は下記の計算式で決まる。 （そのステージのLV）+(0~カッパの幸運)  幸運が高くなると、貰える経験値が高くなるぞ。</string>
 	</array>
+	<key>priest</key>
+	<array>
+		<string>ほろ酔い〜</string>
+		<string>これが呑まずにいられますかいっ！</string>
+		<string>回復スキルを覚える職業。 騎士、盗賊、僧侶、ネクロマンサー……</string>
+		<string>ワールドマップ表示時に、 ６分の１の確率で見つかる場所があるらしいです。</string>
+		<string>踊り子の職業になればレベルがガンガン上がるとか…… 良いなぁ</string>
+		<string>敵のファイアボールやサンダーなどは必殺技攻撃。 精神をあげるほど被ダメージが減ります。</string>
+		<string>僧侶はスキルは強いけどステータスの成長率が微妙〜</string>
+		<string>……二次会行こうかな</string>
+		<string>お会計！</string>
+		<string>とりあえず枝豆は飲み会に必須ですよね〜</string>
+	</array>
+	<key>thief</key>
+	<array>
+		<string>俺は人から盗んだ金で呑んだくれているんだ。</string>
+		<string>男には１ゴールドも奢らない。 それが盗賊のポリシー。</string>
+		<string>敏捷が早いと良いぞ〜 敵の攻撃頻度が少なくなる。</string>
+		<string>魔法使いLV10で覚えるスキル強くね？</string>
+		<string>特定の職業をLV10まで上げれば必殺技がパワーアップするらしいですぜ。</string>
+		<string>彼女募集中っす。</string>
+		<string>どこかに可愛くて美人でダイナマイトボディで だけど彼氏がいなくて寂しがり屋な子はいないかな〜</string>
+		<string>盗賊の汎用スキルって微妙じゃね？ 固有スキルは素早く動けて格好いいけどさ……</string>
+		<string>盗賊を極めれば忍者に転職できる？ そんな訳ねーだろ。常識ねえのかよ。</string>
+		<string>敏捷を上げまくるとカッパ竜巻旋風蹴の威力も上がるんだぜ。</string>
+	</array>
+	<key>archer</key>
+	<array>
+		<string>すごーい。 君はお酒を呑めるフレンズなんだね。</string>
+		<string>ウーロン茶のおかわり〜。</string>
+		<string>ノンアルコールの飲み物って、 僅かにアルコール分が含まれてるから自分のような下戸には辛い。</string>
+		<string>狩人の職業って成長率良いよね。</string>
+		<string>狩人をLV10まで上げればカッパ昇熊拳がパワーアップするんだ。 くるくる横回転するようになるんだよ！</string>
+		<string>犬派の人間と交わす酒は無い。</string>
+		<string>たけのこ派と交わす言葉は無い。</string>
+		<string>たけのこ派と交わす言葉は無い。</string>
+	</array>
+	<key>necro</key>
+	<array>
+		<string>二日酔いで頭が痛い……。</string>
+		<string>アンデッドって良いよね</string>
+		<string>死神は通常攻撃は透けて当たらないけど、必殺技なら当たるよ</string>
+		<string>知恵をあげまくって必殺技で大ダメージ！ これこそがこのゲームのコツだと思わない？</string>
+		<string>っていうか、通常攻撃が効かないモンスター多すぎない？</string>
+		<string>魔王の正体は一体……</string>
+		<string>異名って行動によって変わるらしいねー。</string>
+		<string>一通りの転職してみたら強くなれるんじゃない？</string>
+		<string>この世界のどこかにいる忍者。 強すぎて正攻法で倒すのは無理だけど、工夫すれば低レベルでも倒せるみたい。</string>
+	</array>
+	<key>fighter</key>
+	<array>
+		<string>酒だー！　酒を持ってこーい！</string>
+		<string>ぐびぐび……　プハァーッ！</string>
+		<string>カッパ頭突きって弱いと思ってる？ そのセリフは勇者をLV10まで上げてから言ってもらいたいね。</string>
+		<string>勇者って成長率も高いし最高！  でも、女子受けが悪いんだよなー。</string>
+		<string>なんで盗賊ばかりモテるんだ！</string>
+		<string>もっとグイグイ行くべきかなぁ</string>
+		<string>俺は女子と普通に話せる勇気が欲しくて勇者になったんだ。</string>
+	</array>
 </dict>
 </plist>

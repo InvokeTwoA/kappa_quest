@@ -13,9 +13,6 @@ class GameData {
     var bgmFlag = true
     var soundEffectFlag = true
     
-    // flag
-    var konjoFlag = false
-    
     // パラメーターを userDefault から読み取り
     func setParameterByUserDefault(){
         if UserDefaults.standard.object(forKey: "lv") == nil {
@@ -24,7 +21,6 @@ class GameData {
         tapCount        = UserDefaults.standard.integer(forKey: "tapCount")
         bgmFlag         = UserDefaults.standard.bool(forKey: "bgm")
         soundEffectFlag = UserDefaults.standard.bool(forKey: "sound_effect")
-        konjoFlag       = UserDefaults.standard.bool(forKey: "konjo")
         nickname        = UserDefaults.standard.string(forKey: "nickname")!
         name            = UserDefaults.standard.string(forKey: "name")!
     }
@@ -104,10 +100,7 @@ class GameData {
     }
     
     class func clearCountUp(_ key : String){
-        var clear_count = UserDefaults.standard.integer(forKey: "stage_\(key)_clear")
-        if clear_count == nil {
-            clear_count = 0
-        }
+        let clear_count = UserDefaults.standard.integer(forKey: "stage_\(key)_clear")
         UserDefaults.standard.set(clear_count+1,  forKey: "stage_\(key)_clear")
     }
     

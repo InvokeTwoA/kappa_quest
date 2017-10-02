@@ -112,6 +112,36 @@
 		<key>boss</key>
 		<string></string>
 	</dict>
+	<key>gundom</key>
+	<dict>
+		<key>name</key>
+		<string>マクロ火山</string>
+		<key>lv</key>
+		<integer>7</integer>
+		<key>explain</key>
+		<string>火山の頂上付近に古代文明が見つかった。 魔王軍に悪用される前に回収せねば！</string>
+		<key>clear_item</key>
+		<string>新職業: ガソダム</string>
+		<key>enemies</key>
+		<array/>
+		<key>boss</key>
+		<string></string>
+	</dict>
+	<key>angel</key>
+	<dict>
+		<key>name</key>
+		<string>マーキュリー湖</string>
+		<key>lv</key>
+		<integer>8</integer>
+		<key>explain</key>
+		<string>天使の目撃情報があった湖。 多くの人が天国を求めてその湖に向かっている。</string>
+		<key>clear_item</key>
+		<string>新職業: 天使</string>
+		<key>enemies</key>
+		<array/>
+		<key>boss</key>
+		<string></string>
+	</dict>
 	<key>fighter</key>
 	<dict>
 		<key>name</key>

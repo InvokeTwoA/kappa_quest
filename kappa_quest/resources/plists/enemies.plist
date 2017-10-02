@@ -104,7 +104,7 @@
 	<key>wizard</key>
 	<dict>
 		<key>name</key>
-		<string>空飛ぶ魔法使い　ジャバ</string>
+		<string>魔法使い</string>
 		<key>hp</key>
 		<integer>3</integer>
 		<key>str</key>
@@ -235,7 +235,7 @@
 		<key>name</key>
 		<string>盗む者</string>
 		<key>hp</key>
-		<integer>0</integer>
+		<integer>30</integer>
 		<key>str</key>
 		<integer>13</integer>
 		<key>def</key>
@@ -281,23 +281,21 @@
 	<key>archer</key>
 	<dict>
 		<key>name</key>
-		<string>弓使い</string>
+		<string>狩人</string>
 		<key>hp</key>
-		<integer>10</integer>
+		<integer>50</integer>
 		<key>str</key>
-		<integer>5</integer>
+		<integer>15</integer>
 		<key>def</key>
-		<integer>5</integer>
+		<integer>10</integer>
 		<key>agi</key>
-		<integer>5</integer>
+		<integer>15</integer>
 		<key>int</key>
-		<integer>5</integer>
+		<integer>15</integer>
 		<key>pie</key>
 		<integer>5</integer>
 		<key>range</key>
 		<integer>2</integer>
-		<key>canFire</key>
-		<false/>
 		<key>canArrow</key>
 		<true/>
 		<key>type</key>
@@ -410,17 +408,17 @@
 		<key>name</key>
 		<string>冷たい谷の踊り手</string>
 		<key>hp</key>
-		<integer>44</integer>
-		<key>str</key>
 		<integer>10</integer>
+		<key>str</key>
+		<integer>1</integer>
 		<key>def</key>
 		<integer>1</integer>
 		<key>agi</key>
 		<integer>99</integer>
 		<key>int</key>
-		<integer>3</integer>
+		<integer>1</integer>
 		<key>pie</key>
-		<integer>0</integer>
+		<integer>99</integer>
 		<key>range</key>
 		<integer>1</integer>
 		<key>canArrow</key>
@@ -437,7 +435,7 @@
 	<key>fighter</key>
 	<dict>
 		<key>name</key>
-		<string>偉大なる剣士ルビー・オン・レイルズ</string>
+		<string>堕ちた勇者ルビー・オン・レイルズ</string>
 		<key>hp</key>
 		<integer>30</integer>
 		<key>str</key>
@@ -521,7 +519,7 @@
 	<key>necro</key>
 	<dict>
 		<key>name</key>
-		<string>ネクロマンサー</string>
+		<string>死を愛する者　リスプ</string>
 		<key>hp</key>
 		<integer>10</integer>
 		<key>str</key>

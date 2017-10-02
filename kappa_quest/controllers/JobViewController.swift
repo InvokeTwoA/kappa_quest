@@ -30,7 +30,7 @@ class JobViewController : BaseTableViewController {
     var job = "murabito"
     var from = ""
     
-    let sections = ["職業名", "説明", "成長率", "固有スキル", "習得スキル", "あなたの行動"]
+    let sections = ["職業名", "説明", "成長率", "固有スキル", "習得スキル", "あなたの選択"]
     let JOB_NAME = 0
     let JOB_EXPLAIN = 1
     let JOB_LVUP_PER = 2

@@ -52,21 +52,11 @@
 		<key>is_boss</key>
 		<true/>
 		<key>boss_name</key>
-		<string>未設定</string>
+		<string>死を愛する者　リスプ</string>
 		<key>is_random</key>
 		<false/>
 		<key>event</key>
 		<false/>
-		<key>event_text0</key>
-		<string>「今日からこのゲームのタイトルは……</string>
-		<key>event_text1</key>
-		<string>カッパ・オブ・ザ・デッド！」</string>
-		<key>boss_word0</key>
-		<string>「これで憧れのゾンビになれる……」</string>
-		<key>boss_word1</key>
-		<string></string>
-		<key>clear_word</key>
-		<string>ゾンビたちは成仏した。</string>
 	</dict>
 </dict>
 </plist>

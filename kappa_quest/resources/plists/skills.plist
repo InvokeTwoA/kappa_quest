@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>kappa_heal</key>
+	<key>priest</key>
 	<string>[カッパヒール  LV(lv)]
 (tap)タップごとにHPが(lv)回復する。
 回復量は僧侶LVに等しい。  </string>
@@ -10,7 +10,7 @@
 	<string>[生命奪取 LV(lv)]
 敵撃破時にHPが(lv)回復する。
 回復量はネクロマンサーLVに等しい。  </string>
-	<key>konjo</key>
+	<key>murabito</key>
 	<string>[ど根性かっぱ]
 死ぬダメージを受けても稀にHP１で生き残る。 （HPが2以上の時に攻撃を受けて発動。幸運が高いほど発生確率は高まる）  </string>
 	<key>thief</key>
@@ -19,5 +19,16 @@
 	<key>knight</key>
 	<string>[機械学習(lv)]
 LVアップするたびにHPが(lv)回復。 回復量は騎士LVに等しい。 </string>
+	<key>wizard</key>
+	<string>[カッパ波動砲・改]
+カッパ波動砲が敵を貫通するようになる。 これで一列に並んだ敵を倒すと気持ちいい。</string>
+	<key>archer</key>
+	<string>[カッパ昇熊拳・改]
+カッパ昇熊拳に横回転の動きが加わる事で、 敏捷の値だけ更に威力が増す。
+</string>
+	<key>dancer</key>
+	<string>[タップダンス] タップする毎に１経験値を得ます。
+カッパ昇熊拳に横回転の動きが加わる事で、 敏捷の値だけ更に威力が増す。
+</string>
 </dict>
 </plist>

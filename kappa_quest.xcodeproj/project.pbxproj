@@ -51,6 +51,8 @@
 		CE6BB8291F24D3040046DA65 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6BB8281F24D3040046DA65 /* MenuScene.swift */; };
 		CE7E69461F80F81E000ECC33 /* cutin.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE7E69451F80F81E000ECC33 /* cutin.plist */; };
 		CE7E69481F810359000ECC33 /* CutinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E69471F810359000ECC33 /* CutinModel.swift */; };
+		CE7E694A1F82745D000ECC33 /* map_gundom.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE7E69491F82745D000ECC33 /* map_gundom.plist */; };
+		CE7E694C1F828C0E000ECC33 /* map_angel.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE7E694B1F828C0E000ECC33 /* map_angel.plist */; };
 		CE8D51391F6D8E9B004F8D0B /* map_archer.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE8D51381F6D8E9B004F8D0B /* map_archer.plist */; };
 		CE8D513C1F6E46DF004F8D0B /* JobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8D513B1F6E46DF004F8D0B /* JobViewController.swift */; };
 		CE8D513E1F6FB3F4004F8D0B /* map_knight.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE8D513D1F6FB3F4004F8D0B /* map_knight.plist */; };
@@ -147,6 +149,8 @@
 		CE6BB8281F24D3040046DA65 /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuScene.swift; path = scenes/MenuScene.swift; sourceTree = "<group>"; };
 		CE7E69451F80F81E000ECC33 /* cutin.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = cutin.plist; path = resources/plists/cutin.plist; sourceTree = "<group>"; };
 		CE7E69471F810359000ECC33 /* CutinModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CutinModel.swift; path = models/CutinModel.swift; sourceTree = "<group>"; };
+		CE7E69491F82745D000ECC33 /* map_gundom.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_gundom.plist; path = resources/plists/map_gundom.plist; sourceTree = "<group>"; };
+		CE7E694B1F828C0E000ECC33 /* map_angel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_angel.plist; path = resources/plists/map_angel.plist; sourceTree = "<group>"; };
 		CE8D51381F6D8E9B004F8D0B /* map_archer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_archer.plist; path = resources/plists/map_archer.plist; sourceTree = "<group>"; };
 		CE8D513B1F6E46DF004F8D0B /* JobViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JobViewController.swift; path = controllers/JobViewController.swift; sourceTree = "<group>"; };
 		CE8D513D1F6FB3F4004F8D0B /* map_knight.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_knight.plist; path = resources/plists/map_knight.plist; sourceTree = "<group>"; };
@@ -275,9 +279,11 @@
 				CE31F9441F62964F00E868FB /* map_thief.plist */,
 				CE8D51381F6D8E9B004F8D0B /* map_archer.plist */,
 				CED377921F74EEC00068768B /* map_dancer.plist */,
+				CE31F9481F63BFE000E868FB /* map_necro.plist */,
+				CE7E69491F82745D000ECC33 /* map_gundom.plist */,
+				CE7E694B1F828C0E000ECC33 /* map_angel.plist */,
 				CED377941F77F7480068768B /* map_fighter.plist */,
 				CED377961F77FF590068768B /* map_ninja.plist */,
-				CE31F9481F63BFE000E868FB /* map_necro.plist */,
 				CE31F9461F63BE5A00E868FB /* map_maou.plist */,
 			);
 			name = map;
@@ -536,6 +542,7 @@
 				CED621E61F40924D00C92480 /* GameOverScene.sks in Resources */,
 				CED621D91F4035F000C92480 /* energy.sks in Resources */,
 				CED621DD1F40363300C92480 /* spark.sks in Resources */,
+				CE7E694C1F828C0E000ECC33 /* map_angel.plist in Resources */,
 				CE5884E51F7E49C400ABAC1C /* arrow.sks in Resources */,
 				CED377871F72C2EE0068768B /* Job.storyboard in Resources */,
 				CEEB83D61F1C46760025E021 /* GN-KillGothic-U-KanaNA.ttf in Resources */,
@@ -555,6 +562,7 @@
 				CEB904551F24EBA10061A919 /* ShopScene.sks in Resources */,
 				CED621EA1F41EE6C00C92480 /* map_wizard.plist in Resources */,
 				CE31F93D1F5C077900E868FB /* se_maoudamashii_battle09.mp3 in Resources */,
+				CE7E694A1F82745D000ECC33 /* map_gundom.plist in Resources */,
 				CEC2B68C1F177A3C0014B114 /* Assets.xcassets in Resources */,
 				CE31F9451F62964F00E868FB /* map_thief.plist in Resources */,
 				CE31F9371F5BF17900E868FB /* se_maoudamashii_battle17.mp3 in Resources */,

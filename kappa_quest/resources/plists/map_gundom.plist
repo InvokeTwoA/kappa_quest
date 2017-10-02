@@ -5,31 +5,31 @@
 	<key>0.0</key>
 	<dict>
 		<key>background</key>
-		<string>nil</string>
+		<string>bg_kazan</string>
 		<key>lv</key>
-		<integer>8</integer>
+		<integer>7</integer>
 		<key>enemies</key>
 		<array/>
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>
-		<string>この先に行けば、忍者に会える！</string>
+		<string>こんな場所に一体何が……</string>
 		<key>event_text1</key>
-		<string>ニンニン！</string>
+		<string></string>
 	</dict>
 	<key>0.1</key>
 	<dict>
 		<key>enemies</key>
 		<array>
 			<string></string>
-			<string>samurai</string>
-			<string>samurai</string>
-			<string>ninja</string>
+			<string></string>
+			<string></string>
+			<string>gundom</string>
 		</array>
 		<key>is_boss</key>
 		<true/>
 		<key>boss_name</key>
-		<string>目に映らぬ忍者えんじに丸</string>
+		<string>古代兵器ガソダム</string>
 		<key>is_random</key>
 		<false/>
 		<key>event</key>

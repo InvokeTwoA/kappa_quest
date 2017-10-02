@@ -59,16 +59,6 @@
 		<string>狩る者　オブジェ・クティブシー</string>
 		<key>event</key>
 		<false/>
-		<key>event_text0</key>
-		<string>「カッパごときに何ができる！？」</string>
-		<key>event_text1</key>
-		<string></string>
-		<key>boss_word0</key>
-		<string>「さすがカッパさん……」</string>
-		<key>boss_word1</key>
-		<string></string>
-		<key>clear_word</key>
-		<string>森の動物がフレンズになった！</string>
 	</dict>
 </dict>
 </plist>

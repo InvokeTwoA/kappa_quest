@@ -32,9 +32,9 @@
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>
-		<string>通常攻撃があまり効かない敵がいる。</string>
+		<string>画面の右側か左側か、</string>
 		<key>event_text1</key>
-		<string>そんな時は必殺技を使おう。</string>
+		<string>特定の順番にタップで必殺技が発動</string>
 	</dict>
 	<key>0.2</key>
 	<dict>

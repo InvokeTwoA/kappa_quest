@@ -14,6 +14,7 @@ class WorldScene: BaseScene, DungeonDelegate {
         "ninja",
         "fighter",
         "necro",
+        "gundom",
         "maou"
     ]
     private let worldModel : WorldModel = WorldModel()
@@ -46,15 +47,27 @@ class WorldScene: BaseScene, DungeonDelegate {
                 node4?.removeFromParent()
             }
         }
+        
         if !GameData.isClear("priest") {
-            let node = childNode(withName: "//fighter")
+            let node = childNode(withName: "//angel")
             node?.removeFromParent()
         }
-        if !GameData.isClear("priest") && !GameData.isClear("thief") && !GameData.isClear("archer") {
+        if !GameData.isClear("thief") {
+            let node = childNode(withName: "//gundom")
+            node?.removeFromParent()
+        }
+        if !GameData.isClear("archer") {
             let node = childNode(withName: "//necro")
             node?.removeFromParent()
         }
-        if !GameData.isClear("necro") {
+        
+        // 上位を一つでもクリアしていたら行ける
+        if !GameData.isClear("necro") && !GameData.isClear("angel") && !GameData.isClear("gundom"){
+            let node = childNode(withName: "//fighter")
+            node?.removeFromParent()
+        }
+        
+        if !GameData.isClear("fighter") {
             let node = childNode(withName: "//maou")
             node?.removeFromParent()
         }

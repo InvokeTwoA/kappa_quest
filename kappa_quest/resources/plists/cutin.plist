@@ -149,9 +149,9 @@
 			<key>image</key>
 			<string>kappa</string>
 			<key>text1</key>
-			<string>もしかして自分には</string>
+			<string>どうやら自分には</string>
 			<key>text2</key>
-			<string>倒したボスのジョブを手にいれる能力があるのか？</string>
+			<string>倒した敵の力を奪う能力があるようだ</string>
 		</dict>
 	</array>
 	<key>knight_pre</key>
@@ -316,26 +316,36 @@
 	<array>
 		<dict>
 			<key>name</key>
-			<string>カッパ</string>
+			<string>狩る者　オブジェ</string>
 			<key>image</key>
-			<string>kappa</string>
+			<string>archer</string>
 			<key>text1</key>
-			<string>未設定</string>
+			<string>森のフレンズたちの</string>
 			<key>text2</key>
-			<string></string>
+			<string>怒りを知れ！</string>
 		</dict>
 	</array>
 	<key>archer_end</key>
 	<array>
 		<dict>
 			<key>name</key>
+			<string>狩る者　オブジェ</string>
+			<key>image</key>
+			<string>archer</string>
+			<key>text1</key>
+			<string>つ、強すぎる……</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
 			<string>カッパ</string>
 			<key>image</key>
 			<string>kappa</string>
 			<key>text1</key>
-			<string>未設定</string>
+			<string>勝った、勝った！</string>
 			<key>text2</key>
-			<string></string>
+			<string>夕飯はドン勝だ！</string>
 		</dict>
 	</array>
 	<key>dancer_pre</key>
@@ -346,7 +356,37 @@
 			<key>image</key>
 			<string>kappa</string>
 			<key>text1</key>
-			<string>未設定</string>
+			<string>お、可愛い子ちゃん発見！</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>冷たい谷の踊り手</string>
+			<key>image</key>
+			<string>dancer</string>
+			<key>text1</key>
+			<string>踊りましょう……</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>冷たい谷の踊り手</string>
+			<key>image</key>
+			<string>dancer</string>
+			<key>text1</key>
+			<string>その足が真っ赤になって</string>
+			<key>text2</key>
+			<string>踊れなくなるまで……</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>カッパ</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>（……メンヘラだったか）</string>
 			<key>text2</key>
 			<string></string>
 		</dict>
@@ -355,11 +395,11 @@
 	<array>
 		<dict>
 			<key>name</key>
-			<string>カッパ</string>
+			<string>冷たい谷の踊り手</string>
 			<key>image</key>
-			<string>kappa</string>
+			<string>dancer</string>
 			<key>text1</key>
-			<string>未設定</string>
+			<string>もう踊れない……</string>
 			<key>text2</key>
 			<string></string>
 		</dict>
@@ -368,11 +408,21 @@
 	<array>
 		<dict>
 			<key>name</key>
+			<string>えんじに丸</string>
+			<key>image</key>
+			<string>ninja</string>
+			<key>text1</key>
+			<string>……残像だ</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
 			<string>カッパ</string>
 			<key>image</key>
 			<string>kappa</string>
 			<key>text1</key>
-			<string>未設定</string>
+			<string>は、速い！</string>
 			<key>text2</key>
 			<string></string>
 		</dict>
@@ -381,11 +431,11 @@
 	<array>
 		<dict>
 			<key>name</key>
-			<string>カッパ</string>
+			<string>えんじに丸</string>
 			<key>image</key>
-			<string>kappa</string>
+			<string>ninja</string>
 			<key>text1</key>
-			<string>未設定</string>
+			<string>……残像、じゃない</string>
 			<key>text2</key>
 			<string></string>
 		</dict>
@@ -394,11 +444,31 @@
 	<array>
 		<dict>
 			<key>name</key>
+			<string>死霊術師リスプ</string>
+			<key>image</key>
+			<string>necro</string>
+			<key>text1</key>
+			<string>今日からこのゲームのタイトルは</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>死霊術師リスプ</string>
+			<key>image</key>
+			<string>necro</string>
+			<key>text1</key>
+			<string>カッパ・オブ・ザ・デッド！</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
 			<string>カッパ</string>
 			<key>image</key>
 			<string>kappa</string>
 			<key>text1</key>
-			<string>未設定</string>
+			<string>させるかぁ！</string>
 			<key>text2</key>
 			<string></string>
 		</dict>
@@ -407,24 +477,110 @@
 	<array>
 		<dict>
 			<key>name</key>
-			<string>カッパ</string>
+			<string>死霊術師リスプ</string>
 			<key>image</key>
-			<string>kappa</string>
+			<string>necro</string>
 			<key>text1</key>
-			<string>未設定</string>
+			<string>これで憧れのゾンビに……</string>
 			<key>text2</key>
 			<string></string>
 		</dict>
 	</array>
-	<key>fighter_pre</key>
+	<key>gundom_pre</key>
 	<array>
+		<dict>
+			<key>name</key>
+			<string>ガソダム</string>
+			<key>image</key>
+			<string>gundom</string>
+			<key>text1</key>
+			<string>……カッパを発見。</string>
+			<key>text2</key>
+			<string>……カッパを発見。</string>
+		</dict>
 		<dict>
 			<key>name</key>
 			<string>カッパ</string>
 			<key>image</key>
 			<string>kappa</string>
 			<key>text1</key>
-			<string>未設定</string>
+			<string>こいつ……動くぞ！？</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>ガソダム</string>
+			<key>image</key>
+			<string>gundom</string>
+			<key>text1</key>
+			<string>ビームサーベル装備。</string>
+			<key>text2</key>
+			<string>銭湯を開始します。</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>カッパ</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>やるしか……ないのか！</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>カッパ</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>カッパ、いきまーす！</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+	</array>
+	<key>gundom_end</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>ガソダム</string>
+			<key>image</key>
+			<string>gundom</string>
+			<key>text1</key>
+			<string>……活動限界。</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>カッパ</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>当たらなければ</string>
+			<key>text2</key>
+			<string>どうという事もない！</string>
+		</dict>
+	</array>
+	<key>fighter_pre</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>勇者レイルズ</string>
+			<key>image</key>
+			<string>fighter</string>
+			<key>text1</key>
+			<string>カッパ如きに、何ができる！</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>カッパ</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>お前に勝てる！（どんっ）</string>
 			<key>text2</key>
 			<string></string>
 		</dict>
@@ -433,11 +589,11 @@
 	<array>
 		<dict>
 			<key>name</key>
-			<string>カッパ</string>
+			<string>勇者レイルズ</string>
 			<key>image</key>
-			<string>kappa</string>
+			<string>fighter</string>
 			<key>text1</key>
-			<string>未設定</string>
+			<string>さすがカッパさん……</string>
 			<key>text2</key>
 			<string></string>
 		</dict>
@@ -446,26 +602,36 @@
 	<array>
 		<dict>
 			<key>name</key>
-			<string>カッパ</string>
+			<string>魔王</string>
 			<key>image</key>
-			<string>kappa</string>
+			<string>maou</string>
 			<key>text1</key>
-			<string>未設定</string>
+			<string>来たか……</string>
 			<key>text2</key>
 			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>魔王</string>
+			<key>image</key>
+			<string>maou</string>
+			<key>text1</key>
+			<string>光と闇、どちらが残るべきか。</string>
+			<key>text2</key>
+			<string>決着を付けよう。</string>
 		</dict>
 	</array>
 	<key>maou_end</key>
 	<array>
 		<dict>
 			<key>name</key>
-			<string>カッパ</string>
+			<string>魔王</string>
 			<key>image</key>
-			<string>kappa</string>
+			<string>maou</string>
 			<key>text1</key>
-			<string>未設定</string>
+			<string>お前こそが</string>
 			<key>text2</key>
-			<string></string>
+			<string>真のカッパだ</string>
 		</dict>
 	</array>
 </dict>

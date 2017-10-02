@@ -11,7 +11,7 @@
 		<key>own_skill</key>
 		<string>なし</string>
 		<key>general_skill</key>
-		<string>[LV5 :  ど根性カッパ] HPが2以上の時に攻撃を受けても、一度だけ復活する。 復活後のHPは幸運の値と一緒になる。</string>
+		<string>[LV5 :  ど根性カッパ] HPが2以上の時に攻撃を受けても、一度だけ復活します。 復活後のHPは幸運の値と一緒になります。 村人LV5で習得。</string>
 		<key>hp</key>
 		<integer>3</integer>
 		<key>str</key>
@@ -34,7 +34,7 @@
 		<key>explain</key>
 		<string>守る事に重きを置いた戦士。 鉄壁の防御力を誇る。</string>
 		<key>own_skill</key>
-		<string>物理ダメージ軽減</string>
+		<string>なし</string>
 		<key>general_skill</key>
 		<string>[機械学習(lv)]
 LVアップするたびにHPが(lv)回復。 回復量は騎士LVに等しい。 </string>
@@ -60,7 +60,7 @@ LVアップするたびにHPが(lv)回復。 回復量は騎士LVに等しい�
 		<key>explain</key>
 		<string>敬虔な僧侶。 神秘の力でHPを回復する事ができる。</string>
 		<key>own_skill</key>
-		<string>回復力２倍</string>
+		<string>なし</string>
 		<key>general_skill</key>
 		<string>[カッパヒール]
 20タップごとにHPが回復する。
@@ -89,7 +89,7 @@ LVアップするたびにHPが(lv)回復。 回復量は騎士LVに等しい�
 		<key>own_skill</key>
 		<string>なし</string>
 		<key>general_skill</key>
-		<string>なし</string>
+		<string>[LV10  カッパ波動砲・改] カッパ波動砲が敵を貫通するようになります。 魔法使いLV10で習得。</string>
 		<key>hp</key>
 		<integer>3</integer>
 		<key>str</key>
@@ -139,9 +139,9 @@ LVアップするたびにHPが(lv)回復。 回復量は騎士LVに等しい�
 		<key>explain</key>
 		<string>狩を生業とする者。 弓を扱えば右に出る者はいない。</string>
 		<key>own_skill</key>
-		<string></string>
-		<key>general_skill</key>
 		<string>なし</string>
+		<key>general_skill</key>
+		<string>[LV10  カッパ昇熊拳・改] カッパ昇熊拳に横回転の動きが加わり、 ダメージ計算に敏捷も加わります。 狩人LV10で習得。</string>
 		<key>hp</key>
 		<integer>4</integer>
 		<key>str</key>
@@ -189,9 +189,9 @@ LVアップするたびにHPが(lv)回復。 回復量は騎士LVに等しい�
 		<key>explain</key>
 		<string></string>
 		<key>own_skill</key>
-		<string></string>
+		<string>[縮地] 移動が早くなります。</string>
 		<key>general_skill</key>
-		<string></string>
+		<string>[LV10:ステップアップ] タップする毎に経験値を1獲得します。 踊り子LV10で習得。</string>
 		<key>hp</key>
 		<integer>3</integer>
 		<key>str</key>

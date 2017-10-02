@@ -40,7 +40,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         skillModel.readDataByPlist()
         actionModel.setActionData(sceneWidth: self.size.width)
         createKappa()
-        skillJudge()
+        skillModel.judgeSKill()
         displayExpLabel()
         changeExpBar()
         updateName()
@@ -125,7 +125,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         kappa.walkRight()
 
         var action : SKAction!
-        if jobModel.name == "thief" || jobModel.name == "ninja" {
+        if jobModel.isHighSpeed() {
             action = actionModel.speedMoveRight
         } else {
             action = actionModel.moveRight
@@ -151,7 +151,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         createMap()
         updateDistance()
         
-        heal(map_heal)
+        heal(skillModel.map_heal)
     }
 
     func stageClear(){
@@ -265,7 +265,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         playSoundEffect(type: 1)
 
         kappa.hp -= damage
-        if kappa.hp <= 0 && skillModel.konjoFlag && !kappa.konjoEndFlag {
+        if kappa.hp <= 0 && skillModel.konjo_flag && !kappa.konjoEndFlag {
             kappa.hp = kappa.luc
             if kappa.hp > kappa.maxHp {
                 kappa.hp = kappa.maxHp
@@ -359,7 +359,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         let enemy = enemyModel.enemies[pos]
         enemy.hp = 0
         enemy.isDead = true
-        let exp = enemy.lv + CommonUtil.minimumRnd(CommonUtil.minimumRnd(kappa.luc))
+        let exp = map.lv + CommonUtil.minimumRnd(CommonUtil.minimumRnd(kappa.luc))
         getExp(exp, point: enemy.position)
 
         removeEnemyLifeBar(pos)
@@ -369,11 +369,11 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
 
         if map.isBoss && pos == Const.maxPosition - 1 {
             beat_boss_flag = true
-            _ = CommonUtil.setTimeout(delay: 6.0, block: { () -> Void in
+            _ = CommonUtil.setTimeout(delay: 0.2, block: { () -> Void in
                 self.stageClear()
             })
         }
-        heal(necro_heal)
+        heal(skillModel.necro_heal)
     }
 
     func getExp(_ get_exp: Int, point: CGPoint){
@@ -397,7 +397,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     func displayExpLabel(){
         
         let ExpLabel       = childNode(withName: "//ExpLabel")    as! SKLabelNode
-        let exp = kappa.nextExp - kappa.exp
+        let exp = CommonUtil.minimumRnd(kappa.nextExp - kappa.exp)
         ExpLabel.text = "次のレベルまで　　\(String(describing: exp))"
     }
 
@@ -443,23 +443,23 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         }
 
         // スキル判定
-        skillJudge()
-
-        getSkill()
+        skillModel.judgeSKill()
+        
+        if isGetSkill() {
+            showMessage("スキル習得", type: "skill")
+        }
         saveData()
         
-        heal(lv_up_heal)
+        heal(skillModel.lv_up_heal)
         
         gameData.changeNicknameByLV(lv: jobModel.lv)
         updateName()
     }
-
-    func getSkill(){
-        if jobModel.name == "murabito" && jobModel.lv == 5 {
-            gameData.getSkill(key: "konjo")
-            showMessage("スキル習得", type: "skill")
-        }
+    
+    func isGetSkill() -> Bool {
+        return (jobModel.name == "murabito" && jobModel.lv == 5) || (jobModel.name == "archer" && jobModel.lv == 10) || (jobModel.name == "wizard" && jobModel.lv == 10)
     }
+    
 
     // タップ数アップ
     // 40タップごとに僧侶のアビリティを発動
@@ -469,25 +469,11 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         gameData.tapCount += 1
         TapCountLabel.text = "\(gameData.tapCount)"
         if gameData.tapCount%Const.tapHealCount == 0 {
-            heal(heal_val)
+            heal(skillModel.heal_val)
         }
-    }
-
-    /***********************************************************************************/
-    /******************************* スキル判定     ************************************/
-    /***********************************************************************************/
-    var heal_val = 0
-    var necro_heal = 0
-    var lv_up_heal = 0
-    var map_heal = 0
-    func skillJudge(){
-        if gameData.konjoFlag {
-            skillModel.konjoFlag = true
+        if skillModel.tap_dance_flag {
+            heal(1)
         }
-        heal_val = JobModel.getLV("priest")
-        necro_heal = JobModel.getLV("necro")
-        lv_up_heal = JobModel.getLV("knight")
-        map_heal = JobModel.getLV("thief")
     }
 
     /***********************************************************************************/
@@ -995,6 +981,9 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     func specialAttackUpper(){
         kappa.upper()
         specialAttackModel.execUpper()
+        if skillModel.upper_rotate_flag {
+            kappa.isSpin = true
+        }
         let upper = SKAction.sequence([
             SKAction.moveBy(x: 60,  y:      Const.enemyFlyHeight, duration: Const.headAttackSpeed/2),
             SKAction.moveBy(x: 0,   y: -1 * Const.enemyFlyHeight, duration: Const.headAttackSpeed/2),
@@ -1002,6 +991,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         ])
 
         kappa.run(upper, completion: {() -> Void in
+            self.kappa.isSpin = false
             self.specialAttackModel.finishAttack()
         })
     }
@@ -1205,7 +1195,11 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                     case "head":
                         attackCalculate(str: kappa.str + kappa.int, type: "magick", enemy: enemy)
                     case "upper":
-                        attackCalculate(str: kappa.str + kappa.int, type: "magick", enemy: enemy)
+                        if skillModel.upper_rotate_flag {
+                            attackCalculate(str: kappa.str + kappa.int + kappa.agi, type: "magick", enemy: enemy)
+                        } else {
+                            attackCalculate(str: kappa.str + kappa.int, type: "magick", enemy: enemy)
+                        }
                     case "tornado":
                         attackCalculate(str: kappa.agi + kappa.int + enemy.str, type: "magick", enemy: enemy)
                     default:
@@ -1228,9 +1222,10 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                 }
                 makeSpark(point: (secondBody.node?.position)!)
                 attackCalculate(str: kappa.int, type: "magick", enemy: enemy)
-                
-                // LV アップすれば貫通
-                firstBody.node?.removeFromParent()
+                // 貫通スキルがなければ波動拳は消滅
+                if !skillModel.hado_penetrate_flag {
+                    firstBody.node?.removeFromParent()
+                }
             }
         }
     }
@@ -1262,7 +1257,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         let dt = currentTime - self.lastUpdateTime
         self.lastUpdateTime = currentTime
 
-        if kappa.isTornado {
+        if kappa.isTornado || kappa.isSpin {
             if CommonUtil.rnd(4) == 0 {
                 kappa.xScale *= -1
             }

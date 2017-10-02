@@ -14,15 +14,16 @@ class ListViewController : BaseTableViewController {
     // モンスター図鑑（一覧）
     private var enemy_array = [
         "hiyoko",
-        "usagi",
         "chibidora",
-        "wizard",
+        "megane",
         "ghost",
+        "wizard",
+        "usagi",
         "knight",
         "arakure",
+        "buffalo",
         "thief",
         "priest",
-        "buffalo",
         "archer",
         "dancer",
         "skelton",
@@ -38,7 +39,7 @@ class ListViewController : BaseTableViewController {
 
     // モンスター図鑑（詳細）
     var enemy_name = ""
-    private let library_section = ["名称", "説明", "能力(LV1の状態)", "特性", "戻る"]
+    private let library_section = ["名称", "説明", "能力", ""]
     private let LIBRARY_ENEMY_NAME = 0
     private let LIBRARY_ENEMY_EXPLAIN = 1
     private let LIBRARY_ENEMY_STATUS  = 2
@@ -60,7 +61,7 @@ class ListViewController : BaseTableViewController {
     func setData(){
         switch type {
         case "enemies":
-            let sections_array = ["戻る", "モンスター一覧", "戻る"]
+            let sections_array = ["", "モンスター一覧", ""]
             if world != "" {
                  worldModel.readDataByPlist()
                  worldModel.setData(world)
@@ -88,7 +89,12 @@ class ListViewController : BaseTableViewController {
     func setBarPeople(){
         let array : [String] = [
             "wizard",
-            "knight"
+            "knight",
+            "priest",
+            "thief",
+            "archer",
+            "necro",
+            "fighter"
         ]
         for name in array {
             if GameData.isClear(name) {
@@ -110,7 +116,11 @@ class ListViewController : BaseTableViewController {
         case "library":
             return 1
         case "bar":
-            return bar_people.count
+            if section == BAR_MASTER || section == BAR_BACK {
+                return 1
+            } else {
+                return bar_people.count
+            }
         default:
             return 0
         }
@@ -194,13 +204,14 @@ class ListViewController : BaseTableViewController {
             }
         case "library":
             if indexPath.section == LIBRARY_ENEMY_BACK {
-                dismiss(animated: false, completion: nil)
+                type = "enemies"
+                _tableView.reloadData()
             }
         case "bar":
             if indexPath.section == BAR_BACK {
                 dismiss(animated: false, completion: nil)
             } else {
-                _tableView.reloadData()
+                _tableView.reloadRows(at: [indexPath], with: .none)
             }
         default:
             break
@@ -221,6 +232,11 @@ class ListViewController : BaseTableViewController {
                 cell.backgroundColor = CommonUtil.UIColorFromRGB(0xfff0f5)
                 return
             }
+        case "bar":
+            if indexPath.section == BAR_BACK {
+                cell.backgroundColor = CommonUtil.UIColorFromRGB(0xfff0f5)
+            }
+            return
         default:
             break
         }

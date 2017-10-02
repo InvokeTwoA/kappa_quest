@@ -74,6 +74,10 @@ class JobModel {
         return data.object(forKey: "explain") as! String
     }
     
+    func isHighSpeed() -> Bool {
+        return name == "niinja" || name == "thief" || name == "dancer"
+    }
+    
     class func allSkillExplain(_ skillModel : SkillModel, kappa : KappaNode, gameData : GameData) -> String {
         var res = ""
         res += "クリティカル発生率：　\(BattleModel.displayCriticalPer(luc: kappa.luc))% \n"
@@ -81,9 +85,16 @@ class JobModel {
         
         res += "【発動中のスキル】\n"
         
-        if gameData.konjoFlag {
-            let text = skillModel.getExplain("konjo")
+        if JobModel.getLV("murabito") >= 5 {
+            let text = skillModel.getExplain("murabito")
             res += text
+        }
+        let skill_array = ["wizard", "archer"]
+        for key in skill_array {
+            if JobModel.getLV(key) >= 10 {
+                let text = skillModel.getExplain(key)
+                res += text
+            }
         }
         
         let knight_lv = getLV("knight")
@@ -93,7 +104,7 @@ class JobModel {
         }
         let priest_lv = getLV("priest")
         if priest_lv >= 1 {
-            let text = skillModel.getExplain("kappa_heal")
+            let text = skillModel.getExplain("priest")
             var replaceString = text.replacingOccurrences(of: "(lv)", with: "\(priest_lv)")
             replaceString = replaceString.replacingOccurrences(of: "(tap)", with: "\(Const.tapHealCount)")
             res += replaceString

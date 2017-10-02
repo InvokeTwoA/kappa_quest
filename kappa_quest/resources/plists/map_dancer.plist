@@ -51,21 +51,11 @@
 		<key>is_boss</key>
 		<true/>
 		<key>boss_name</key>
-		<string>未設定</string>
+		<string>冷たい谷の踊り手</string>
 		<key>is_random</key>
 		<false/>
 		<key>event</key>
 		<false/>
-		<key>event_text0</key>
-		<string>「踊りましょう。バラ色の頬が青ざめて</string>
-		<key>event_text1</key>
-		<string>　雪のように冷たくなるまで」</string>
-		<key>boss_word0</key>
-		<string>「もう踊れない……」</string>
-		<key>boss_word1</key>
-		<string></string>
-		<key>clear_word</key>
-		<string>この先に帝王がいる……</string>
 	</dict>
 </dict>
 </plist>

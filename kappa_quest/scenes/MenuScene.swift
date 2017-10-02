@@ -43,7 +43,7 @@ class MenuScene: BaseScene {
         }
     }
     
-    func goSpecial(){
+    func goJob(){
         let storyboard = UIStoryboard(name: "Job", bundle: nil)
         let jobViewController = storyboard.instantiateViewController(withIdentifier: "JobViewController") as! JobViewController
         self.view?.window?.rootViewController?.present(jobViewController, animated: true, completion: nil)
@@ -74,9 +74,8 @@ class MenuScene: BaseScene {
             
             switch tapNode.name! {
             case "SkillNode", "SkillLabel":
+//                goJob()
                 showStatus()
-            case "SpecialNode", "SpecialLabel":
-                goSpecial()
             case "LibraryNode", "LibraryLabel":
                 goLibrary()
             case "CloseNode", "CloseLabel":
