@@ -5,46 +5,31 @@
 	<key>0.0</key>
 	<dict>
 		<key>background</key>
-		<string>bg_lake</string>
+		<string>bg_makai</string>
 		<key>lv</key>
-		<integer>8</integer>
+		<integer>10</integer>
 		<key>enemies</key>
 		<array/>
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>
-		<string>天使の目撃情報……</string>
+		<string>名探偵の血が騒ぐ！</string>
 		<key>event_text1</key>
-		<string>見過ごす訳にはいかぬ</string>
+		<string></string>
 	</dict>
 	<key>0.1</key>
 	<dict>
 		<key>enemies</key>
 		<array>
-			<string>death</string>
-		</array>
-		<key>is_boss</key>
-		<false/>
-		<key>boss_name</key>
-		<string>堕天使　エリクサ</string>
-		<key>is_random</key>
-		<true/>
-		<key>event</key>
-		<false/>
-	</dict>
-	<key>0.2</key>
-	<dict>
-		<key>enemies</key>
-		<array>
 			<string></string>
 			<string></string>
 			<string></string>
-			<string>angel</string>
+			<string>miyuki</string>
 		</array>
 		<key>is_boss</key>
 		<true/>
 		<key>boss_name</key>
-		<string>堕天使　エリクサ</string>
+		<string>妹</string>
 		<key>is_random</key>
 		<false/>
 		<key>event</key>

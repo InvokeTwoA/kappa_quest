@@ -47,11 +47,12 @@ class ListViewController : BaseTableViewController {
 
     // 酒場
     private let barModel = BarModel()
-    private let bar_section = ["マスターの言葉(タップで内容変更)", "常連たち(タップで内容変更)", "あなたの行動"]
+    private let bar_section = ["酒場の店長K(タップで話しかける)", "常連たち(タップで話しかける)", "あなたの行動"]
     private var bar_people = ["megane"]
     private let BAR_MASTER = 0
     private let BAR_PEOPLE = 1
     private let BAR_BACK = 2
+    private var talk_array = [0,0,0,0,0,0,0,0,0,0,0,0]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,18 +84,24 @@ class ListViewController : BaseTableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        _tableView.reloadData()
+        if type != "bar" {
+            _tableView.reloadData()
+        }
     }
     
     func setBarPeople(){
         let array : [String] = [
+            "miyuki",
+            "gundom",
+            "angel",
+            "fighter",
             "wizard",
-            "knight",
-            "priest",
-            "thief",
-            "archer",
             "necro",
-            "fighter"
+            "knight", // si
+            "archer",  // tu
+            "priest",  // du
+            "thief",  // ke
+            "dancer",  // ro
         ]
         for name in array {
             if GameData.isClear(name) {
@@ -175,7 +182,9 @@ class ListViewController : BaseTableViewController {
             case BAR_PEOPLE:
                 let people = bar_people[indexPath.row]
                 let list = barModel.getList(people)
-                cell.textLabel?.text = list[CommonUtil.rnd(list.count)]
+                
+//                cell.textLabel?.text = list[CommonUtil.rnd(list.count)]
+                cell.textLabel?.text = list[talk_array[indexPath.row]]
                 cell.imageView?.isHidden = false
                 cell.imageView?.image = UIImage(named: people)
             case BAR_BACK:
@@ -211,6 +220,10 @@ class ListViewController : BaseTableViewController {
             if indexPath.section == BAR_BACK {
                 dismiss(animated: false, completion: nil)
             } else {
+                let people = bar_people[indexPath.row]
+                let list = barModel.getList(people)
+
+                talk_array[indexPath.row] = CommonUtil.rnd(list.count)
                 _tableView.reloadRows(at: [indexPath], with: .none)
             }
         default:

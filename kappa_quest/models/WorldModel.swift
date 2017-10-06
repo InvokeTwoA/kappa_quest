@@ -10,7 +10,6 @@ class WorldModel {
     var explain = ""
     var clear_item = ""
     var enemies = [""]
-    var boss = ""
     
     // plist からデータを読み込む
     func readDataByPlist(){
@@ -25,7 +24,6 @@ class WorldModel {
         clear_item      = data.object(forKey: "clear_item") as! String
         explain         = data.object(forKey: "explain") as! String
         enemies         = data.object(forKey: "enemies") as! Array
-        boss            = data.object(forKey: "boss") as! String
     }
     
     // 地名を取得

@@ -33,6 +33,7 @@ class ActionModel {
     var enemyJump         : SKAction!
     var enemyHighJump     : SKAction!
     var enemyMiniJump     : SKAction!
+    var enemyChange       : SKAction!
     var normalAttack      : SKAction!
     var underAttack       : SKAction!
     var highJump          : SKAction!
@@ -212,6 +213,11 @@ class ActionModel {
             SKAction.moveBy(x: 0, y:    Const.enemyJumpSpace, duration: Const.enemyJump*3),
             SKAction.moveBy(x: 0, y: -1*Const.enemyJumpSpace, duration: Const.enemyJump*3),
         ])
+        
+        // 敵が変身
+        enemyChange = SKAction.sequence([
+            SKAction.moveBy(x: 0, y:   250.0, duration: Const.enemyJump*2),
+        ])
 
         // 下方向にノーマルアタック
         underAttack = SKAction.sequence([
@@ -227,9 +233,10 @@ class ActionModel {
     }
 
     func enemyAttack(range: CGFloat) -> SKAction {
+        let time : TimeInterval = 0.115 + Double(range)*0.01
         let attack = SKAction.sequence([
-            SKAction.moveBy(x: -2*moveSpace*range, y:  0, duration: Const.enemyJump),
-            SKAction.moveBy(x:  2*moveSpace*range, y:  0, duration: Const.enemyJump),
+            SKAction.moveBy(x: -2*moveSpace*range, y:  0, duration: time),
+            SKAction.moveBy(x:  2*moveSpace*range, y:  0, duration: time),
         ])
         return attack
     }

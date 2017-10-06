@@ -11,10 +11,6 @@ class GameOverScene: BaseScene {
     private var hintLabel2 : SKLabelNode!
 
     override func sceneDidLoad() {
-        hintLabel0     = childNode(withName: "//hintLabel0") as! SKLabelNode
-        hintLabel1     = childNode(withName: "//hintLabel1") as! SKLabelNode
-        hintLabel2     = childNode(withName: "//hintLabel2") as! SKLabelNode
-
         let worldLabel = childNode(withName: "//WorldLabel") as! SKLabelNode
         let worldNode  = childNode(withName: "//WorldNode")  as! SKSpriteNode
 
@@ -22,25 +18,6 @@ class GameOverScene: BaseScene {
             worldLabel.isHidden = true
             worldNode.isHidden = true
         }
-        
-        let hints  = getRandomHint()
-        hintLabel0.text = hints[0]
-        hintLabel1.text = hints[1]
-        hintLabel2.text = hints[2]
-    }
-    
-    func getRandomHint() -> [String] {
-        var hints = [[String]]()
-
-        hints.append(["冒険日誌1", "敵の攻撃が痛い。",           "体力が足りないのだろうか？"])
-        hints.append(["冒険日誌2", "敵の魔法が痛い。",           "精神が足りないのだろうか？"])
-        hints.append(["冒険日誌3", "クリティカルヒットが出ない。", "幸運が足りないのだろうか？"])
-        hints.append(["冒険日誌4", "レベルが中々上がらない。",    "転職するべきかもしれない……。"])
-        hints.append(["冒険日誌5", "KはカッパのK。",            "この言葉が勇気を与えてくれる。"])
-        hints.append(["冒険日誌6", "力こそ全て",                "果たして本当にそうなのだろうか？"])
-        hints.append(["冒険日誌7", "スキルが足りない。",         "もっと転職するべきか。"])
-        let hint = hints[CommonUtil.rnd(hints.count)]
-        return hint
     }
     
     func goBack(){
@@ -48,7 +25,6 @@ class GameOverScene: BaseScene {
         resetData()
         self.view!.presentScene(backScene, transition: .flipHorizontal(withDuration: 3.5))
     }
-    
     
     func resetData(){
         backScene.resetData()

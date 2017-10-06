@@ -15,7 +15,9 @@ class WorldScene: BaseScene, DungeonDelegate {
         "fighter",
         "necro",
         "gundom",
-        "maou"
+        "angel",
+        "maou",
+        "miyuki"
     ]
     private let worldModel : WorldModel = WorldModel()
 
@@ -69,6 +71,11 @@ class WorldScene: BaseScene, DungeonDelegate {
         
         if !GameData.isClear("fighter") {
             let node = childNode(withName: "//maou")
+            node?.removeFromParent()
+        }
+        
+        if !GameData.isClear("maou") {
+            let node = childNode(withName: "//miyuki")
             node?.removeFromParent()
         }
     }

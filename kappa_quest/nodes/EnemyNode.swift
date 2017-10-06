@@ -24,14 +24,19 @@ class EnemyNode: SKSpriteNode {
     var canThunder = false
     var canArrow  = false
     var isGhost = false
+    var isMovingFree = false
+    var isZombi = ""
 
     // 各種フラグ
     var isDead = true
     var isAttacking = false
+    
 
     // その他変数
     var pos = 0
     var fire : FireEmitterNode!
+    var dx = 10
+    var dy = 10
 
     class func makeEnemy(name : String) -> EnemyNode {
         let enemy = EnemyNode(imageNamed: name)
@@ -55,7 +60,7 @@ class EnemyNode: SKSpriteNode {
     /***********************************************************************************/
     /******************************** ステータス  **************************************/
     /***********************************************************************************/
-    func setParameterByDictionary(dictionary : NSDictionary, set_lv : Int){
+    func setParameterByDictionary(dictionary : NSDictionary){
         displayName = dictionary.object(forKey: "name") as! String
         maxHp   = dictionary.object(forKey: "hp") as! Int
         str     = dictionary.object(forKey: "str") as! Int
@@ -84,6 +89,15 @@ class EnemyNode: SKSpriteNode {
         if dictionary["isGhost"] != nil {
             isGhost = dictionary.object(forKey: "isGhost") as! Bool
         }
+        if dictionary["isMovingFree"] != nil {
+            isMovingFree = dictionary.object(forKey: "isMovingFree") as! Bool
+            dx =  -30 - CommonUtil.rnd(10)
+            dy =   30 + CommonUtil.rnd(10)
+            isAttacking = true
+        }
+        if dictionary["isZombi"] != nil {
+            isZombi = dictionary.object(forKey: "isZombi") as! String
+        }        
     }
     
     func healHP(_ heal : Int){
@@ -104,10 +118,14 @@ class EnemyNode: SKSpriteNode {
         int += 1
         pie += 1
         lv += 1
-        
+        bossSpeedUp()        
         size = CGSize(width: Const.bossSize, height: Const.bossSize)
-
 //        anchorPoint = CGPoint(x: 1.0, y: 0)     // 左下がアンカーポイント
+    }
+    
+    func bossSpeedUp(){
+        dx *= 2
+        dy *= 2
     }
 
     // HP の割合を返す  32% ならば　32
@@ -149,7 +167,7 @@ class EnemyNode: SKSpriteNode {
     }
 
     func isAttack() -> Bool {
-        return !isDead && attackTimer > 100
+        return !isDead && attackTimer > 100 && !isMovingFree
     }
 
     func isFire() -> Bool {
@@ -224,7 +242,7 @@ class EnemyNode: SKSpriteNode {
         } else {
             physic.affectedByGravity = false
         }
-        physic.allowsRotation = true
+        physic.allowsRotation = false
         physic.categoryBitMask = Const.enemyCategory
         if canFly {
             physic.contactTestBitMask = Const.worldCategory

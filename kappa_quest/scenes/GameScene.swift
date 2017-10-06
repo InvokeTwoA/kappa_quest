@@ -249,6 +249,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
 
         enemy.hp -= damage
         changeEnemyLifeBar(pos, per: enemy.hp_per())
+        
         if enemy.hp <= 0 {
             beatEnemy(pos: pos)
         }
@@ -340,17 +341,9 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     }
 
     func displayExp(value: Int, point: CGPoint){
-        let label = SKLabelNode(fontNamed: Const.damageFont)
-        label.name = "damage_text"
-        label.text = "\(value) exp"
-        label.fontSize = 24
-        label.fontName = Const.pixelFont
-        label.position = CGPoint(x: point.x, y: point.y + 30.0)
-        label.fontColor = .black
-        label.zPosition = 90
-        label.alpha = 0.9
-        self.addChild(label)
-        label.run(actionModel.displayExp!)
+        let ExpUpLabel = childNode(withName: "//ExpUpLabel") as! SKLabelNode
+        ExpUpLabel.text = "+\(value)"
+        ExpUpLabel.run(actionModel.fadeInOut!)
     }
 
     // モンスター撃破処理
@@ -363,24 +356,34 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         getExp(exp, point: enemy.position)
 
         removeEnemyLifeBar(pos)
-        enemy.setBeatPhysic()
         map.positionData[pos] = "free"
-        enemy.run(actionModel.displayExp!)
 
-        if map.isBoss && pos == Const.maxPosition - 1 {
-            beat_boss_flag = true
-            _ = CommonUtil.setTimeout(delay: 0.2, block: { () -> Void in
-                self.stageClear()
+        if enemy.isZombi != "" {
+            enemy.run(actionModel.enemyChange!, completion: {() -> Void in
+                self.createGhost(position: enemy.position, enemy_name: enemy.isZombi, pos: pos)
+                enemy.run(self.actionModel.displayExp!)
+                enemy.removeFromParent()
             })
+        } else {
+            enemy.setBeatPhysic()
+        }
+        
+        if map.isBoss && pos == Const.maxPosition - 1 {
+            beatBoss()
         }
         heal(skillModel.necro_heal)
+    }
+    
+    func beatBoss(){
+        beat_boss_flag = true
+        _ = CommonUtil.setTimeout(delay: 0.2, block: { () -> Void in
+            self.stageClear()
+        })
     }
 
     func getExp(_ get_exp: Int, point: CGPoint){
         displayExp(value: get_exp, point: CGPoint(x: point.x, y: point.y + Const.enemySize))
         updateExp(get_exp)
-        displayExpLabel()
-        changeExpBar()
     }
 
     // 経験値更新
@@ -390,14 +393,14 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             LvUp()
         }
         displayExpLabel()
+        changeExpBar()
         updateStatus()
     }
     
     // 経験値を表示
     func displayExpLabel(){
-        
         let ExpLabel       = childNode(withName: "//ExpLabel")    as! SKLabelNode
-        let exp = CommonUtil.minimumRnd(kappa.nextExp - kappa.exp)
+        let exp = CommonUtil.valueMin1(kappa.nextExp - kappa.exp)
         ExpLabel.text = "次のレベルまで　　\(String(describing: exp))"
     }
 
@@ -580,7 +583,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             let num = pos-3
             if map.enemies.count > num {
                 if map.enemies[num] != "" {
-                    enemy = enemyModel.getEnemy(enemy_name: map.enemies[num], lv: map.lv)
+                    enemy = enemyModel.getEnemy(enemy_name: map.enemies[num])
                 } else {
                     return false
                 }
@@ -601,12 +604,11 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             enemy.position.y = kappa_first_position_y
         }
         enemy.setPhysic()
-        if enemy.isGhost {
+        if enemy.isGhost || enemy.isMovingFree {
             map.positionData[pos] = "free"
             enemy.ghostMove()
         }
         addChild(enemy)
-        createEnemyLv(enemy.lv, position: CGPoint(x: enemy.position.x, y: enemy.position.y + Const.enemySize + 20))
         createEnemyLifeBar(pos: pos, x: (enemy.position.x - Const.enemySize/2), y: enemy.position.y - 30)
         enemyModel.enemies[pos] = enemy        
         enemy.diff_agi = CommonUtil.valueMin1(enemy.agi - kappa.agi)
@@ -616,16 +618,25 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         }
         return true
     }
+    
+    func createGhost(position : CGPoint, enemy_name : String, pos: Int){
+        let enemy = enemyModel.getEnemy(enemy_name: enemy_name)
+        enemy.position = position
+        enemy.pos = pos
+        enemy.setPhysic()
+        if enemy.isGhost || enemy.isMovingFree {
+            enemy.ghostMove()
+        }
+        addChild(enemy)
+//        createEnemyLifeBar(pos: pos, x: (enemy.position.x - Const.enemySize/2), y: enemy.position.y - 30)
+        enemyModel.enemies[pos] = enemy
+        enemy.diff_agi = CommonUtil.valueMin1(enemy.agi - kappa.agi)
 
-    func createEnemyLv(_ val : Int, position: CGPoint){
-        let lv = SKLabelNode(text: "LV\(val)")
-        lv.fontName = Const.pixelFont
-        lv.fontSize = 24
-        lv.fontColor = .black
-        lv.position = position
-        addChild(lv)
-        lv.run(actionModel.fadeOutQuickly!)
+        if world_name == "dancer" {
+            enemy.str = 999999999
+        }
     }
+    
 
     func createEnemyLifeBar(pos: Int, x: CGFloat, y: CGFloat){
         let lifeBarBackGround = SKSpriteNode(color: .black, size: CGSize(width: 90, height: 20))
@@ -974,6 +985,9 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             self.kappa.zRotation = 0
             self.specialAttackModel.finishAttack()
         })
+        if skillModel.super_head_flag {
+            createHado()
+        }
         map.myPosition = pos - 1
     }
 
@@ -1016,12 +1030,15 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     func specialAttackHado(){
         kappa.hado()
         specialAttackModel.execHado()
-
+        createHado()
+        specialAttackModel.finishAttack()
+    }
+    
+    func createHado(){
         let fire = FireEmitterNode.makeKappaFire()
         fire.position = CGPoint(x: kappa.position.x - 30, y: kappa.position.y + 20)
         self.addChild(fire)
         fire.hado()
-        specialAttackModel.finishAttack()
     }
 
     func updateSpecialLabel(){
@@ -1189,6 +1206,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                     attacked(attack: enemy.str, type: "physic", point: (firstBody.node?.position)!)
                     makeSpark(point: (firstBody.node?.position)!)
                 }
+                
                 // カッパの攻撃
                 if specialAttackModel.is_attacking {
                     switch specialAttackModel.mode {
@@ -1205,7 +1223,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                     default:
                         break
                     }
-                } else if kappa.hasActions() {
+                } else if kappa.hasActions() && !enemy.isMovingFree {
                     attackCalculate(str: kappa.str, type: "physic", enemy: enemy)
                 }
             }
@@ -1305,6 +1323,23 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             if enemy.heal != 0 {
                 enemy.healHP(enemy.heal)
                 changeEnemyLifeBar(enemy.pos, per: enemy.hp_per())
+            }
+            if enemy.isMovingFree {
+                if enemy.position.x < getPositionX(1) {
+                    enemy.dx = 30 + CommonUtil.rnd(10)
+                    enemy.bossSpeedUp()
+                } else if enemy.position.x > getPositionX(Const.maxPosition-1) {
+                    enemy.dx = -1 * (30 + CommonUtil.rnd(10))
+                    enemy.bossSpeedUp()
+                }
+                if enemy.position.y < kappa_first_position_y {
+                    enemy.dy = 20 + CommonUtil.rnd(10)
+                    enemy.bossSpeedUp()
+                } else if enemy.position.y > kappa_first_position_y + 250.0 {
+                    enemy.dy = -1 * (20 + CommonUtil.rnd(10))
+                    enemy.bossSpeedUp()
+                }
+                enemy.run(SKAction.moveBy(x: CGFloat(enemy.dx), y: CGFloat(enemy.dy) , duration: 1.0))
             }
         }
     }

@@ -37,11 +37,13 @@ class TitleScene: BaseScene {
             "ninja",
             "dancer",
             "fighter",
-            
+            "death",
+            "cross",
             "miira",
             "skelton",
             "zombi",
             "angel",
+            "miyuki",
             "maou",
         ]
         

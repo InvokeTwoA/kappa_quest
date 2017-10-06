@@ -187,5 +187,18 @@
 		<key>boss</key>
 		<string></string>
 	</dict>
+	<key>miyuki</key>
+	<dict>
+		<key>name</key>
+		<string>魔王城スィフト（隠し部屋）</string>
+		<key>lv</key>
+		<integer>10</integer>
+		<key>explain</key>
+		<string>再び妹が操られる前に、 真犯人のヒントを聞き出すのだ。  （クリアするたびに真犯人のヒントがランダムで得られます） 危険レベル：？？？？</string>
+		<key>clear_item</key>
+		<string>真犯人のヒント（ランダム）</string>
+		<key>enemies</key>
+		<array/>
+	</dict>
 </dict>
 </plist>

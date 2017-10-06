@@ -12,29 +12,32 @@ class GameClearScene: BaseScene {
     }
 
     override func didMove(to view: SKView) {
-        let clearLabel      = childNode(withName: "//clearWord")  as! SKLabelNode
-        let clear2Label      = childNode(withName: "//clearWord2")  as! SKLabelNode
+        let clearLabel     = childNode(withName: "//clearWord")  as! SKLabelNode
+        let getLabel1      = childNode(withName: "//clearText1")  as! SKLabelNode
+        let getLabel2      = childNode(withName: "//clearText2")  as! SKLabelNode
+        let getLabel3      = childNode(withName: "//clearText3")  as! SKLabelNode
 
-        clearLabel.text = randomWord()
-        clear2Label.text = "勝利メッセージ"
-
+        
+        switch world {
+        case "tutorial":
+            clearLabel.text = "これから伝説が始まる！"
+            getLabel1.text = "「酒場」がオープンしました"
+            getLabel2.text = "「魔法使い」のステージが出現しました"
+        case "wizard":
+            clearLabel.text = "そして、次の戦いが始まるのです"
+            getLabel1.text = "「魔法使い」のジョブを取得しました"
+            getLabel2.text = "「魔法使い」が酒場に来ました"
+            getLabel3.text = "「騎士」のステージが出現しました"
+        default:
+            clearLabel.text = "未設定"
+            getLabel1.text = "未設定"
+            getLabel2.text = "未設定"
+        }
+        
         // クリアフラグを立てる
         GameData.clearCountUp(world)
     }
 
-    func randomWord() -> String {
-        let array = [
-            "もうここに用はない！",
-            "悪は滅びる運命！",
-            "勝った、勝った、夕飯はドン勝だ！",
-            "カッパこそが最強！",
-            "余裕のよっちゃん！",
-            "そして、次の戦いが始まるのです",
-            "敗北が知りたい",
-            "",
-        ]
-        return array[CommonUtil.rnd(array.count)]
-    }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {

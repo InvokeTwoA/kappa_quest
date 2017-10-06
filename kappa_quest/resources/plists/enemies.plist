@@ -304,27 +304,25 @@
 	<key>skelton</key>
 	<dict>
 		<key>name</key>
-		<string>スケルトン</string>
+		<string>ボーン・バックJS</string>
 		<key>hp</key>
-		<integer>6</integer>
+		<integer>36</integer>
 		<key>str</key>
-		<integer>4</integer>
+		<integer>24</integer>
 		<key>def</key>
-		<integer>2</integer>
+		<integer>12</integer>
 		<key>agi</key>
-		<integer>4</integer>
+		<integer>24</integer>
 		<key>int</key>
-		<integer>3</integer>
+		<integer>18</integer>
 		<key>pie</key>
-		<integer>3</integer>
+		<integer>9</integer>
 		<key>range</key>
 		<integer>1</integer>
-		<key>canFire</key>
-		<false/>
-		<key>exp</key>
-		<integer>4</integer>
 		<key>type</key>
 		<string>undead</string>
+		<key>explain</key>
+		<string>動く骨。  全体的に高めの能力を持つ上級戦士。</string>
 	</dict>
 	<key>zombi</key>
 	<dict>
@@ -353,28 +351,51 @@
 		<key>type</key>
 		<string>undead</string>
 	</dict>
+	<key>death</key>
+	<dict>
+		<key>name</key>
+		<string>デスマーチ</string>
+		<key>hp</key>
+		<integer>6</integer>
+		<key>str</key>
+		<integer>12</integer>
+		<key>def</key>
+		<integer>1</integer>
+		<key>agi</key>
+		<integer>1</integer>
+		<key>int</key>
+		<integer>1</integer>
+		<key>pie</key>
+		<integer>1</integer>
+		<key>range</key>
+		<integer>1</integer>
+		<key>isMovingFree</key>
+		<integer>1</integer>
+		<key>type</key>
+		<string>undead</string>
+		<key>explain</key>
+		<string>死神。 この世界とは違う次元に存在するため一切の物理攻撃が効かないという説があるが、 つまりどういう事かは誰も分からない。  必殺技で倒そう。</string>
+	</dict>
 	<key>miira</key>
 	<dict>
 		<key>name</key>
 		<string>ミイラ</string>
 		<key>hp</key>
-		<integer>7</integer>
+		<integer>30</integer>
 		<key>str</key>
-		<integer>5</integer>
+		<integer>7</integer>
 		<key>def</key>
-		<integer>3</integer>
+		<integer>12</integer>
 		<key>agi</key>
-		<integer>3</integer>
+		<integer>10</integer>
 		<key>int</key>
-		<integer>5</integer>
+		<integer>1</integer>
 		<key>pie</key>
-		<integer>5</integer>
+		<integer>12</integer>
+		<key>isZombi</key>
+		<string>death</string>
 		<key>range</key>
 		<integer>1</integer>
-		<key>canFire</key>
-		<false/>
-		<key>exp</key>
-		<integer>5</integer>
 		<key>type</key>
 		<string>undead</string>
 	</dict>
@@ -544,8 +565,6 @@
 		<true/>
 		<key>heal</key>
 		<integer>1</integer>
-		<key>exp</key>
-		<integer>10</integer>
 		<key>type</key>
 		<string>human</string>
 	</dict>
@@ -569,10 +588,37 @@
 		<integer>2</integer>
 		<key>canFire</key>
 		<true/>
-		<key>exp</key>
-		<integer>7</integer>
 		<key>type</key>
 		<string>flying</string>
+	</dict>
+	<key>gundom</key>
+	<dict>
+		<key>name</key>
+		<string>機動戦士ガソダム</string>
+		<key>hp</key>
+		<integer>100</integer>
+		<key>str</key>
+		<integer>20</integer>
+		<key>def</key>
+		<integer>14</integer>
+		<key>agi</key>
+		<integer>8</integer>
+		<key>int</key>
+		<integer>25</integer>
+		<key>pie</key>
+		<integer>10</integer>
+		<key>range</key>
+		<integer>0</integer>
+		<key>canFire</key>
+		<true/>
+		<key>canArrow</key>
+		<true/>
+		<key>type</key>
+		<string>flying</string>
+		<key>explain</key>
+		<string>古代兵器。 誰が、どのような目的でこのようなロマン溢れる兵器を作ったのかは一切不明。  動きは死神をモチーフに作られており、 物理攻撃は一切効かない。  まさに白い死神と言ったところだろうか。</string>
+		<key>isMovingFree</key>
+		<integer>1</integer>
 	</dict>
 	<key>dark_kappa</key>
 	<dict>
@@ -596,8 +642,6 @@
 		<false/>
 		<key>canThunder</key>
 		<true/>
-		<key>exp</key>
-		<integer>7</integer>
 		<key>type</key>
 		<string>human</string>
 	</dict>
@@ -606,28 +650,59 @@
 		<key>name</key>
 		<string>魔王</string>
 		<key>hp</key>
-		<integer>15</integer>
+		<integer>999</integer>
 		<key>str</key>
-		<integer>10</integer>
+		<integer>100</integer>
 		<key>def</key>
-		<integer>10</integer>
+		<integer>100</integer>
 		<key>agi</key>
-		<integer>10</integer>
+		<integer>100</integer>
 		<key>int</key>
-		<integer>10</integer>
+		<integer>100</integer>
 		<key>pie</key>
-		<integer>10</integer>
+		<integer>100</integer>
 		<key>range</key>
-		<integer>3</integer>
+		<integer>6</integer>
 		<key>canFire</key>
 		<true/>
 		<key>canThunder</key>
 		<true/>
 		<key>canArrow</key>
 		<true/>
+		<key>canFly</key>
+		<true/>
 		<key>heal</key>
 		<integer>10</integer>
-		<key>exp</key>
+		<key>type</key>
+		<string>undead</string>
+	</dict>
+	<key>miyuki</key>
+	<dict>
+		<key>name</key>
+		<string>妹</string>
+		<key>hp</key>
+		<integer>1</integer>
+		<key>str</key>
+		<integer>100</integer>
+		<key>def</key>
+		<integer>100</integer>
+		<key>agi</key>
+		<integer>100</integer>
+		<key>int</key>
+		<integer>100</integer>
+		<key>pie</key>
+		<integer>100</integer>
+		<key>range</key>
+		<integer>6</integer>
+		<key>canFire</key>
+		<true/>
+		<key>canThunder</key>
+		<true/>
+		<key>canArrow</key>
+		<true/>
+		<key>canFly</key>
+		<true/>
+		<key>heal</key>
 		<integer>10</integer>
 		<key>type</key>
 		<string>undead</string>

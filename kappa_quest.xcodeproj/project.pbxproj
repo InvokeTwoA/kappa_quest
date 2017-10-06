@@ -53,6 +53,8 @@
 		CE7E69481F810359000ECC33 /* CutinModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E69471F810359000ECC33 /* CutinModel.swift */; };
 		CE7E694A1F82745D000ECC33 /* map_gundom.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE7E69491F82745D000ECC33 /* map_gundom.plist */; };
 		CE7E694C1F828C0E000ECC33 /* map_angel.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE7E694B1F828C0E000ECC33 /* map_angel.plist */; };
+		CE7E694E1F85E490000ECC33 /* map_miyuki.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE7E694D1F85E490000ECC33 /* map_miyuki.plist */; };
+		CE7E69501F872578000ECC33 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E694F1F872578000ECC33 /* NotificationModel.swift */; };
 		CE8D51391F6D8E9B004F8D0B /* map_archer.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE8D51381F6D8E9B004F8D0B /* map_archer.plist */; };
 		CE8D513C1F6E46DF004F8D0B /* JobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8D513B1F6E46DF004F8D0B /* JobViewController.swift */; };
 		CE8D513E1F6FB3F4004F8D0B /* map_knight.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE8D513D1F6FB3F4004F8D0B /* map_knight.plist */; };
@@ -151,6 +153,8 @@
 		CE7E69471F810359000ECC33 /* CutinModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CutinModel.swift; path = models/CutinModel.swift; sourceTree = "<group>"; };
 		CE7E69491F82745D000ECC33 /* map_gundom.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_gundom.plist; path = resources/plists/map_gundom.plist; sourceTree = "<group>"; };
 		CE7E694B1F828C0E000ECC33 /* map_angel.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_angel.plist; path = resources/plists/map_angel.plist; sourceTree = "<group>"; };
+		CE7E694D1F85E490000ECC33 /* map_miyuki.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_miyuki.plist; path = resources/plists/map_miyuki.plist; sourceTree = "<group>"; };
+		CE7E694F1F872578000ECC33 /* NotificationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationModel.swift; path = models/NotificationModel.swift; sourceTree = "<group>"; };
 		CE8D51381F6D8E9B004F8D0B /* map_archer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_archer.plist; path = resources/plists/map_archer.plist; sourceTree = "<group>"; };
 		CE8D513B1F6E46DF004F8D0B /* JobViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JobViewController.swift; path = controllers/JobViewController.swift; sourceTree = "<group>"; };
 		CE8D513D1F6FB3F4004F8D0B /* map_knight.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_knight.plist; path = resources/plists/map_knight.plist; sourceTree = "<group>"; };
@@ -265,6 +269,7 @@
 				CED377831F7003D50068768B /* WorldModel.swift */,
 				CE5884EA1F7E9C9A00ABAC1C /* BarModel.swift */,
 				CE7E69471F810359000ECC33 /* CutinModel.swift */,
+				CE7E694F1F872578000ECC33 /* NotificationModel.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -285,6 +290,7 @@
 				CED377941F77F7480068768B /* map_fighter.plist */,
 				CED377961F77FF590068768B /* map_ninja.plist */,
 				CE31F9461F63BE5A00E868FB /* map_maou.plist */,
+				CE7E694D1F85E490000ECC33 /* map_miyuki.plist */,
 			);
 			name = map;
 			sourceTree = "<group>";
@@ -371,8 +377,8 @@
 				CE6BB8281F24D3040046DA65 /* MenuScene.swift */,
 				CEB904561F24EBBE0061A919 /* ShopScene.swift */,
 				CE31F9221F51582500E868FB /* OptionScene.swift */,
-				CED621E71F409B1C00C92480 /* GameOverScene.swift */,
 				CE31F9501F653F0200E868FB /* GameClearScene.swift */,
+				CED621E71F409B1C00C92480 /* GameOverScene.swift */,
 			);
 			name = scenes;
 			sourceTree = "<group>";
@@ -560,6 +566,7 @@
 				CED3777E1F6FF4530068768B /* thunder.sks in Resources */,
 				CE7E69461F80F81E000ECC33 /* cutin.plist in Resources */,
 				CEB904551F24EBA10061A919 /* ShopScene.sks in Resources */,
+				CE7E694E1F85E490000ECC33 /* map_miyuki.plist in Resources */,
 				CED621EA1F41EE6C00C92480 /* map_wizard.plist in Resources */,
 				CE31F93D1F5C077900E868FB /* se_maoudamashii_battle09.mp3 in Resources */,
 				CE7E694A1F82745D000ECC33 /* map_gundom.plist in Resources */,
@@ -661,6 +668,7 @@
 				CED621E81F409B1C00C92480 /* GameOverScene.swift in Sources */,
 				CE6BB81F1F23C8860046DA65 /* Map.swift in Sources */,
 				CED3778F1F74B26C0068768B /* BaseTableViewController.swift in Sources */,
+				CE7E69501F872578000ECC33 /* NotificationModel.swift in Sources */,
 				CED3778D1F74232A0068768B /* DungeonViewController.swift in Sources */,
 				CED621DF1F40380600C92480 /* SparkEmitterNode.swift in Sources */,
 				CEDBE7991F1CECA9007E72B9 /* KappaNode.swift in Sources */,

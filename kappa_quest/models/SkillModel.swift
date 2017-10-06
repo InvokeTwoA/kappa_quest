@@ -22,6 +22,7 @@ class SkillModel {
     var hado_penetrate_flag = false
     var upper_rotate_flag = false
     var tap_dance_flag = false
+    var super_head_flag = false
 
     // スキル変数
     var heal_val = 0
@@ -41,6 +42,9 @@ class SkillModel {
         }
         if JobModel.getLV("dancer") >= 10 {
             tap_dance_flag = true
+        }
+        if JobModel.getLV("fighter") >= 10 {
+            super_head_flag = true
         }
         heal_val = JobModel.getLV("priest")
         necro_heal = JobModel.getLV("necro")

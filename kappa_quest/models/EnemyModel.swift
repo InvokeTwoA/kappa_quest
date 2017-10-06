@@ -15,13 +15,13 @@ class EnemyModel {
         let enemy_name = enemyList[CommonUtil.rnd(enemyList.count)]
 
         let enemyNode = EnemyNode.makeEnemy(name: enemy_name)
-        enemyNode.setParameterByDictionary(dictionary: enemiesData.object(forKey: enemy_name) as! NSDictionary, set_lv : lv)
+        enemyNode.setParameterByDictionary(dictionary: enemiesData.object(forKey: enemy_name) as! NSDictionary)
         return enemyNode
     }
 
-    func getEnemy(enemy_name: String, lv : Int) -> EnemyNode {
+    func getEnemy(enemy_name: String) -> EnemyNode {
         let enemyNode = EnemyNode.makeEnemy(name: enemy_name)
-        enemyNode.setParameterByDictionary(dictionary: enemiesData.object(forKey: enemy_name) as! NSDictionary, set_lv : lv)
+        enemyNode.setParameterByDictionary(dictionary: enemiesData.object(forKey: enemy_name) as! NSDictionary)
         return enemyNode
     }
 
