@@ -10,9 +10,9 @@
 			<key>image</key>
 			<string>megane</string>
 			<key>text1</key>
-			<string>チュートリアルのクリアおめでとう。</string>
+			<string>……来たか。</string>
 			<key>text2</key>
-			<string>そしてお疲れ様。</string>
+			<string>我が弟子、カッパよ。</string>
 		</dict>
 		<dict>
 			<key>name</key>
@@ -20,19 +20,29 @@
 			<key>image</key>
 			<string>megane</string>
 			<key>text1</key>
-			<string>これからは僕が主人公をするので</string>
+			<string>河童神拳は一子相伝。</string>
 			<key>text2</key>
-			<string>ゆっくり休むと良いよ</string>
+			<string>我々のうち、生き残った者が後継者だ。</string>
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>カッパ</string>
+			<string>(kappa)</string>
 			<key>image</key>
 			<string>kappa</string>
 			<key>text1</key>
-			<string>主人公の座は渡さん！</string>
+			<string>な、なんだってー！</string>
 			<key>text2</key>
 			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>チュー・トリアル</string>
+			<key>image</key>
+			<string>megane</string>
+			<key>text1</key>
+			<string>情けは無用！</string>
+			<key>text2</key>
+			<string>行くぞぉ！</string>
 		</dict>
 	</array>
 	<key>tutorial_end</key>
@@ -43,9 +53,9 @@
 			<key>image</key>
 			<string>megane</string>
 			<key>text1</key>
-			<string>今日は体調が悪いので</string>
+			<string>……お見事</string>
 			<key>text2</key>
-			<string>ここでギブアップしておくよ……</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>name</key>
@@ -53,9 +63,29 @@
 			<key>image</key>
 			<string>megane</string>
 			<key>text1</key>
-			<string>これからは僕は酒場で</string>
+			<string>その力で、世界を平和にしてくれ</string>
 			<key>text2</key>
-			<string>情報収集する事で君を手伝う。</string>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>ししょーーーーーーー！</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>俺は師匠の分も</string>
+			<key>text2</key>
+			<string>立派なカッパとして生きていきます……！</string>
 		</dict>
 		<dict>
 			<key>name</key>
@@ -63,9 +93,19 @@
 			<key>image</key>
 			<string>megane</string>
 			<key>text1</key>
-			<string>冒険の合間に酒場に寄る。</string>
+			<string>……</string>
 			<key>text2</key>
-			<string>これはとても重要な事だから忘れないで。</string>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>チュー・トリアル</string>
+			<key>image</key>
+			<string>megane</string>
+			<key>text1</key>
+			<string>（死んでないとは言いにくい空気だ）</string>
+			<key>text2</key>
+			<string></string>
 		</dict>
 	</array>
 	<key>wizard_pre</key>
@@ -76,9 +116,9 @@
 			<key>image</key>
 			<string>wizard</string>
 			<key>text1</key>
-			<string>我が舞空術の力、お見せしよう</string>
+			<string>あなたがカッパ神拳の後継者……</string>
 			<key>text2</key>
-			<string>この高さでは通常攻撃は当たるまい！</string>
+			<string>(name)ですね。</string>
 		</dict>
 		<dict>
 			<key>name</key>
@@ -86,19 +126,29 @@
 			<key>image</key>
 			<string>wizard</string>
 			<key>text1</key>
-			<string>あなたが必殺技の昇熊拳でも使わぬ限り</string>
+			<string>帝国の命令により</string>
 			<key>text2</key>
-			<string>私を倒す事は永遠にできないのだ！</string>
+			<string>危険分子を排除させていただきます。</string>
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>カッパ</string>
+			<string>ジャバ</string>
+			<key>image</key>
+			<string>wizard</string>
+			<key>text1</key>
+			<string>あらゆるデータから計算して</string>
+			<key>text2</key>
+			<string>私の勝率は98%</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
 			<key>image</key>
 			<string>kappa</string>
 			<key>text1</key>
-			<string>……昇熊拳のコマンドは</string>
+			<string>2%の勝機があれば充分！</string>
 			<key>text2</key>
-			<string>→　→　←　→　←　だったな。</string>
+			<string></string>
 		</dict>
 	</array>
 	<key>wizard_end</key>
@@ -109,49 +159,59 @@
 			<key>image</key>
 			<string>wizard</string>
 			<key>text1</key>
-			<string>つ、強い……</string>
-			<key>text2</key>
-			<string>さすがはカッパさん。</string>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>ジャバ</string>
-			<key>image</key>
-			<string>wizard</string>
-			<key>text1</key>
-			<string>あなたに倒されたボスたちはきっと改心し</string>
-			<key>text2</key>
-			<string>酒場に顔を出すようになるでしょう。</string>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>ジャバ</string>
-			<key>image</key>
-			<string>wizard</string>
-			<key>text1</key>
-			<string>どんな悪い人も本当は</string>
-			<key>text2</key>
-			<string>飲み会に誘って欲しいんですよ……。</string>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>カッパ</string>
-			<key>image</key>
-			<string>kappa</string>
-			<key>text1</key>
-			<string>（……魔法使いのジョブを入手した）</string>
+			<string>くっ、殺せ！</string>
 			<key>text2</key>
 			<string></string>
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>カッパ</string>
+			<string>(kappa)</string>
 			<key>image</key>
 			<string>kappa</string>
 			<key>text1</key>
-			<string>どうやら自分には</string>
+			<string>……勝負はついた。</string>
 			<key>text2</key>
-			<string>倒した敵の力を奪う能力があるようだ</string>
+			<string>命を捨てる必要はない。</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>ジャバ</string>
+			<key>image</key>
+			<string>wizard</string>
+			<key>text1</key>
+			<string>き、君というカッパは……</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>ジャバ</string>
+			<key>image</key>
+			<string>wizard</string>
+			<key>text1</key>
+			<string>私の完敗だ！</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>ジャバ</string>
+			<key>image</key>
+			<string>wizard</string>
+			<key>text1</key>
+			<string>私の魔法使いの力を</string>
+			<key>text2</key>
+			<string>あなたに託そう……。</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>（魔法使いのジョブを会得した）</string>
+			<key>text2</key>
+			<string></string>
 		</dict>
 	</array>
 	<key>knight_pre</key>
@@ -162,7 +222,7 @@
 			<key>image</key>
 			<string>knight</string>
 			<key>text1</key>
-			<string>さて、最後の修行を始めよう。</string>
+			<string>……</string>
 			<key>text2</key>
 			<string></string>
 		</dict>
@@ -172,29 +232,19 @@
 			<key>image</key>
 			<string>knight</string>
 			<key>text1</key>
-			<string>河童神拳は一子相伝。</string>
+			<string>……死刑執行</string>
 			<key>text2</key>
-			<string>我々のうち、生き残った者が後継者だ。</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>カッパ</string>
+			<string>(kappa)</string>
 			<key>image</key>
 			<string>kappa</string>
 			<key>text1</key>
-			<string>な、なんだってー！</string>
+			<string>（なんて無口な敵だ）</string>
 			<key>text2</key>
 			<string></string>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>シー・シャープ</string>
-			<key>image</key>
-			<string>knight</string>
-			<key>text1</key>
-			<string>迷いのある拳では</string>
-			<key>text2</key>
-			<string>通常攻撃無効の私を倒せぬぞ！</string>
 		</dict>
 	</array>
 	<key>knight_end</key>
@@ -211,21 +261,11 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>シー・シャープ</string>
-			<key>image</key>
-			<string>knight</string>
-			<key>text1</key>
-			<string>その力で世界を平和に……</string>
-			<key>text2</key>
-			<string>グフッ</string>
-		</dict>
-		<dict>
-			<key>name</key>
-			<string>カッパ</string>
+			<string>(kappa)</string>
 			<key>image</key>
 			<string>kappa</string>
 			<key>text1</key>
-			<string>お師匠様……</string>
+			<string>（とことん無口な人だ）</string>
 			<key>text2</key>
 			<string></string>
 		</dict>
@@ -244,11 +284,31 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>カッパ</string>
+			<string>(kappa)</string>
 			<key>image</key>
 			<string>kappa</string>
 			<key>text1</key>
 			<string>一人で行け！</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>(敵の回復力は凄まじい)</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>(攻撃連打で一気に押し切る！)</string>
 			<key>text2</key>
 			<string></string>
 		</dict>
@@ -276,11 +336,21 @@
 			<key>text1</key>
 			<string>ヒャッハー！</string>
 			<key>text2</key>
-			<string>金を置いて行きな</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>カッパ</string>
+			<string>ウェア・スパイ</string>
+			<key>image</key>
+			<string>thief</string>
+			<key>text1</key>
+			<string>金を置いていきな。</string>
+			<key>text2</key>
+			<string>女の連絡先は全て奪い尽くせー！</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
 			<key>image</key>
 			<string>kappa</string>
 			<key>text1</key>
@@ -303,7 +373,7 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>カッパ</string>
+			<string>(kappa)</string>
 			<key>image</key>
 			<string>kappa</string>
 			<key>text1</key>
@@ -339,7 +409,7 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>カッパ</string>
+			<string>(kappa)</string>
 			<key>image</key>
 			<string>kappa</string>
 			<key>text1</key>
@@ -352,7 +422,7 @@
 	<array>
 		<dict>
 			<key>name</key>
-			<string>カッパ</string>
+			<string>(kappa)</string>
 			<key>image</key>
 			<string>kappa</string>
 			<key>text1</key>
@@ -382,7 +452,7 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>カッパ</string>
+			<string>(kappa)</string>
 			<key>image</key>
 			<string>kappa</string>
 			<key>text1</key>
@@ -418,7 +488,7 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>カッパ</string>
+			<string>(kappa)</string>
 			<key>image</key>
 			<string>kappa</string>
 			<key>text1</key>
@@ -464,7 +534,7 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>カッパ</string>
+			<string>(kappa)</string>
 			<key>image</key>
 			<string>kappa</string>
 			<key>text1</key>
@@ -500,7 +570,7 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>カッパ</string>
+			<string>(kappa)</string>
 			<key>image</key>
 			<string>kappa</string>
 			<key>text1</key>
@@ -520,7 +590,7 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>カッパ</string>
+			<string>(kappa)</string>
 			<key>image</key>
 			<string>kappa</string>
 			<key>text1</key>
@@ -530,7 +600,7 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>カッパ</string>
+			<string>(kappa)</string>
 			<key>image</key>
 			<string>kappa</string>
 			<key>text1</key>
@@ -553,7 +623,7 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>カッパ</string>
+			<string>(kappa)</string>
 			<key>image</key>
 			<string>kappa</string>
 			<key>text1</key>
@@ -576,7 +646,7 @@
 		</dict>
 		<dict>
 			<key>name</key>
-			<string>カッパ</string>
+			<string>(kappa)</string>
 			<key>image</key>
 			<string>kappa</string>
 			<key>text1</key>
@@ -640,6 +710,112 @@
 			<string>fighter</string>
 			<key>text1</key>
 			<string>さすがカッパさん……</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+	</array>
+	<key>king_pre</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>リッチキング</string>
+			<key>image</key>
+			<string>king</string>
+			<key>text1</key>
+			<string>貴様が解放軍のリーダー</string>
+			<key>text2</key>
+			<string>(name)か</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>リッチキング</string>
+			<key>image</key>
+			<string>king</string>
+			<key>text1</key>
+			<string>この世界がおかしいと</string>
+			<key>text2</key>
+			<string>感じた事はないか？</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>リッチキング</string>
+			<key>image</key>
+			<string>king</string>
+			<key>text1</key>
+			<string>我らの頭上に</string>
+			<key>text2</key>
+			<string>常に得体の知れない何かがあると……</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>リッチキング</string>
+			<key>image</key>
+			<string>king</string>
+			<key>text1</key>
+			<string>私はただ、</string>
+			<key>text2</key>
+			<string>その支配から逃れたいだけだ！</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>問答無用！</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+	</array>
+	<key>king_end</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>リッチキング</string>
+			<key>image</key>
+			<string>king</string>
+			<key>text1</key>
+			<string>グハァー！</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>リッチキング</string>
+			<key>image</key>
+			<string>king</string>
+			<key>text1</key>
+			<string>しかし残念ながら</string>
+			<key>text2</key>
+			<string>私は魔王ではない</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>リッチキング</string>
+			<key>image</key>
+			<string>king</string>
+			<key>text1</key>
+			<string>真の魔王は</string>
+			<key>text2</key>
+			<string>魔王城にいるのだ！</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>な、なんだってー！</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>よし、魔王城に行くか</string>
 			<key>text2</key>
 			<string></string>
 		</dict>

@@ -13,7 +13,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         // adMob
-        self.view.addSubview(_bannerView)
+//        self.view.addSubview(_bannerView)
         _bannerView.adUnitID = Const.adMobID
         _bannerView.rootViewController = self
         _bannerView.load(GADRequest())
@@ -23,8 +23,8 @@ class GameViewController: UIViewController {
                 sceneNode.scaleMode = .aspectFill
                 _skView.presentScene(sceneNode)
                 _skView.ignoresSiblingOrder = true
-//                    _skView.showsFPS = true
-                    _skView.showsNodeCount = true
+//                _skView.showsFPS = true
+//                _skView.showsNodeCount = true
 //                _skView.showsPhysics = true
             }
         }

@@ -26,11 +26,10 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         // 二重読み込みの防止
         if isSceneDidLoaded {
             return
-        } else {
-            isSceneDidLoaded = true
         }
+        isSceneDidLoaded = true
 
-        self.lastUpdateTime = 0
+        lastUpdateTime = 0
         setWorld()
 
         // データをセット
@@ -38,12 +37,13 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         jobModel.readDataByPlist()
         jobModel.loadParam()
         skillModel.readDataByPlist()
-        actionModel.setActionData(sceneWidth: self.size.width)
+        actionModel.setActionData(sceneWidth: size.width)
         createKappa()
         skillModel.judgeSKill()
         displayExpLabel()
         changeExpBar()
         updateName()
+        updateSpecialView()
         hideLongMessage()
         
         // 音楽関係の処理
@@ -54,7 +54,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     }
 
     func setWorld(){
-        self.physicsWorld.contactDelegate = self
+        physicsWorld.contactDelegate = self
         let underground = childNode(withName: "//underground") as! SKSpriteNode
         underground.physicsBody = SKPhysicsBody(rectangleOf: underground.size)
         WorldNode.setWorldPhysic(underground.physicsBody!)
@@ -62,15 +62,10 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
 
     // 画面が読み込まれた時に呼ばれる
     private var isSceneDidMoved = false
-    private var isBossTalkEnd = false
     override func didMove(to view: SKView) {
         updateStatus()
         updateDistance()
 
-        if isBossTalkEnd {
-            stopBGM()
-            goClear()
-        }
         if isSceneDidMoved {
             return
         }
@@ -158,8 +153,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         map.resetData()
         kappa.heal()
         saveData()
-        isBossTalkEnd = true
-        goCutin("\(world_name)_end")
+        goCutin("end")
     }
 
     // 左へ移動
@@ -227,15 +221,14 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
 
         if BattleModel.isCritical(luc: Double(kappa.pie)) {
             for _ in 0...2 {
-                makeSpark(point: CGPoint(x: enemy.position.x, y: enemyModel.enemies[pos].position.y), isCtirical: true, random: 100)
+                makeSpark(point: CGPoint(x: enemy.position.x, y: enemyModel.enemies[pos].position.y), isCtirical: true)
             }
             damage = BattleModel.calculateCriticalDamage(str: str, def: def)
             playSoundEffect(type: 2)
         } else {
             for _ in 0...2 {
-                makeSpark(point: CGPoint(x: enemy.position.x, y: enemyModel.enemies[pos].position.y), random: 100)
+                makeSpark(point: CGPoint(x: enemy.position.x, y: enemyModel.enemies[pos].position.y))
             }
-
             damage = BattleModel.calculateDamage(str: str, def: def)
             playSoundEffect(type: 3)
         }
@@ -283,18 +276,6 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         if kappa.hp == 0 {
             gameOver()
         }
-    }
-
-    func makeSpark(point : CGPoint, isCtirical : Bool = false, random : Int = 0){
-        var particle = SparkEmitterNode.makeSpark()
-        if isCtirical {
-            particle = SparkEmitterNode.makeBlueSpark()
-        }
-        let point_x =  point.x + CGFloat(CommonUtil.rnd(random) - random/2)
-        let point_y =  point.y + CGFloat(CommonUtil.rnd(random) - random/2)
-        particle.position = CGPoint(x: point_x, y: point_y)
-        particle.run(actionModel.sparkFadeOut!)
-        self.addChild(particle)
     }
     
     func heal(_ heal_val : Int){
@@ -467,10 +448,12 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     // タップ数アップ
     // 40タップごとに僧侶のアビリティを発動
     func tapCountUp(){
-        let TapCountLabel  = childNode(withName: "//TapCountLabel") as! SKLabelNode
-
         gameData.tapCount += 1
+        specialAttackModel.countUp()
+
+        let TapCountLabel  = childNode(withName: "//TapCountLabel") as! SKLabelNode
         TapCountLabel.text = "\(gameData.tapCount)"
+        
         if gameData.tapCount%Const.tapHealCount == 0 {
             heal(skillModel.heal_val)
         }
@@ -498,6 +481,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
 
     func resetData(){
         kappa.hp = kappa.maxHp
+        kappa.konjoEndFlag = false
         map.resetData()
         gameOverFlag = false
 
@@ -615,6 +599,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         
         if world_name == "dancer" {
             enemy.str = 999999999
+            enemy.int = 999999999
         }
         return true
     }
@@ -628,7 +613,6 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             enemy.ghostMove()
         }
         addChild(enemy)
-//        createEnemyLifeBar(pos: pos, x: (enemy.position.x - Const.enemySize/2), y: enemy.position.y - 30)
         enemyModel.enemies[pos] = enemy
         enemy.diff_agi = CommonUtil.valueMin1(enemy.agi - kappa.agi)
 
@@ -637,18 +621,17 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         }
     }
     
-
     func createEnemyLifeBar(pos: Int, x: CGFloat, y: CGFloat){
         let lifeBarBackGround = SKSpriteNode(color: .black, size: CGSize(width: 90, height: 20))
         lifeBarBackGround.position = CGPoint(x: x, y: y)
-        lifeBarBackGround.zPosition = 97
+        lifeBarBackGround.zPosition = 90
         lifeBarBackGround.name = "back_life_bar\(pos)"
         lifeBarBackGround.anchorPoint = CGPoint(x: 0.0, y: 0.5)
         addChild(lifeBarBackGround)
 
         let lifeBar = SKSpriteNode(color: .yellow, size: CGSize(width: 90, height: 20))
         lifeBar.position = CGPoint(x: x, y: y)
-        lifeBar.zPosition = 99
+        lifeBar.zPosition = 91
         lifeBar.anchorPoint = CGPoint(x: 0.0, y: 0.5)
         lifeBar.name = "life_bar\(pos)"
         addChild(lifeBar)
@@ -665,6 +648,16 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
 
         let barBackground = self.childNode(withName: "//back_life_bar\(pos)") as? SKSpriteNode
         barBackground?.removeFromParent()
+    }
+    
+    // 死神召喚
+    func makeDeath(position: CGPoint){
+
+        for i in 0...(Const.maxPosition-2) {
+            if enemyModel.enemies[i] == EnemyNode() || enemyModel.enemies[i].isDead {
+                createGhost(position: position, enemy_name: "death", pos: i)
+            }
+        }        
     }
 
     /***********************************************************************************/
@@ -896,17 +889,8 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         longLabel.run(actionModel.longMessage!, completion: {() -> Void in
             self.hideLongMessage()
             self.bossStopFlag = false
-            self.goCutin("\(self.world_name)_pre")
+            self.goCutin("pre")
         })
-    }
-    
-    func goCutin(_ key : String){
-        let nextScene = CutinScene(fileNamed: "CutinScene")!
-        nextScene.size = scene!.size
-        nextScene.scaleMode = SKSceneScaleMode.aspectFill
-        nextScene.backScene = scene as! GameScene
-        nextScene.key = key
-        view!.presentScene(nextScene, transition: .fade(with: .black, duration: Const.gameOverInterval))
     }
     
     func hideLongMessage(){
@@ -942,30 +926,28 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
 
     // ゲームオーバー画面へ
     func goGameOver(){
-        let scene = GameOverScene(fileNamed: "GameOverScene")!
-        scene.size = self.scene!.size
-        scene.scaleMode = SKSceneScaleMode.aspectFill
-        scene.backScene = self.scene as! GameScene
-        self.view!.presentScene(scene, transition: .fade(with: .white, duration: Const.gameOverInterval))
+        if beat_boss_flag {
+            return
+        }
+        let nextScene = GameOverScene(fileNamed: "GameOverScene")!
+        nextScene.size = nextScene.size
+        nextScene.scaleMode = SKSceneScaleMode.aspectFill
+        nextScene.backScene = self.scene as! GameScene
+        view!.presentScene(nextScene, transition: .fade(with: .white, duration: Const.gameOverInterval))
     }
 
-    func goClear(){
-        let scene = GameClearScene(fileNamed: "GameClearScene")!
-        scene.size = self.scene!.size
-        scene.scaleMode = SKSceneScaleMode.aspectFill
-        scene.world = world_name
-        scene.maxDamage = maxDamage
-        self.view!.presentScene(scene, transition: .doorsCloseHorizontal(withDuration: Const.gameOverInterval))
+    // カットイン画面へ
+    func goCutin(_ key : String){
+        let nextScene = CutinScene(fileNamed: "CutinScene")!
+        nextScene.size = scene!.size
+        nextScene.scaleMode = SKSceneScaleMode.aspectFill
+        nextScene.backScene = scene as! GameScene
+        nextScene.key = key
+        nextScene.world = world_name
+        nextScene.bgm = _audioPlayer
+        view!.presentScene(nextScene, transition: .fade(with: .black, duration: Const.gameOverInterval))
     }
-
-    func showJob(){
-        let storyboard = UIStoryboard(name: "Job", bundle: nil)
-        let jobViewController = storyboard.instantiateViewController(withIdentifier: "JobViewController") as! JobViewController
-        jobViewController.job = jobModel.name
-        jobViewController.from = "battle"
-        self.view?.window?.rootViewController?.present(jobViewController, animated: true, completion: nil)
-    }
-
+    
     /***********************************************************************************/
     /********************************** specialAttack **********************************/
     /***********************************************************************************/
@@ -1036,37 +1018,31 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     
     func createHado(){
         let fire = FireEmitterNode.makeKappaFire()
-        fire.position = CGPoint(x: kappa.position.x - 30, y: kappa.position.y + 20)
+        fire.position = CGPoint(x: kappa.position.x - 60, y: kappa.position.y + 20)
         self.addChild(fire)
         fire.hado()
     }
+    
+    func updateSpecialView(){
+        let upperNode   = childNode(withName: "//IconNotKappaUpper") as! SKSpriteNode
+        let headNode    = childNode(withName: "//IconNotKappaHead") as! SKSpriteNode
+        let tornadoNode = childNode(withName: "//IconNotKappaTornado") as! SKSpriteNode
+        let hadoNode    = childNode(withName: "//IconNotKappaHado") as! SKSpriteNode
 
-    func updateSpecialLabel(){
-        let headLabel       = childNode(withName: "//SpecialHeadLabel") as! SKLabelNode
-        let upperLabel      = childNode(withName: "//SpecialUpperLabel") as! SKLabelNode
-        let tornadoLabel    = childNode(withName: "//SpecialTornadoLabel") as! SKLabelNode
-        let hadoLabel       = childNode(withName: "//SpecialHadoLabel") as! SKLabelNode
-
-        headLabel.text      = specialAttackModel.displayHeadCount()
-        upperLabel.text     = specialAttackModel.displayUpperCount()
-        tornadoLabel.text   = specialAttackModel.displayTornadoCount()
-        hadoLabel.text      = specialAttackModel.displayHadoCount()
-    }
-
-    func execSpecialAttack(){
-        let specialName = specialAttackModel.specialName()
-        switch specialName {
-        case "head":
-            specialAttackHead()
-        case "upper":
-            specialAttackUpper()
-        case "tornado":
-            specialAttackTornado()
-        case "hado":
-            specialAttackHado()
-        default:
-            break
-        }
+        upperNode.isHidden      = specialAttackModel.canSpecialUpper()
+        headNode.isHidden       = specialAttackModel.canSpecialHead()
+        tornadoNode.isHidden    = specialAttackModel.canSpecialTornado()
+        hadoNode.isHidden       = specialAttackModel.canSpecialHado()
+        
+        let upperBar    = childNode(withName: "//UpperBar") as! SKSpriteNode
+        let headBar     = childNode(withName: "//HeadBar") as! SKSpriteNode
+        let tornadoBar  = childNode(withName: "//TornadoBar") as! SKSpriteNode
+        let hadoBar     = childNode(withName: "//HadoBar") as! SKSpriteNode
+        
+        upperBar.size.width     = CGFloat(specialAttackModel.barSpecialUpper())
+        headBar.size.width      = CGFloat(specialAttackModel.barSpecialHead())
+        tornadoBar.size.width   = CGFloat(specialAttackModel.barSpecialTornado())
+        hadoBar.size.width      = CGFloat(specialAttackModel.barSpecialHado())
     }
 
     /***********************************************************************************/
@@ -1088,12 +1064,6 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         }
 
         if pos.x >= 0 {
-            specialAttackModel.countUp(direction: "right")
-            if specialAttackModel.isSpecial() {
-                updateSpecialLabel()
-                execSpecialAttack()
-                return
-            }
             if map.canMoveRight() {
                 moveRight()
             } else if map.isRightEnemy() {
@@ -1102,19 +1072,12 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                 kappa.run(actionModel.moveBack2)
             }
         } else {
-            specialAttackModel.countUp(direction: "left")
-            if specialAttackModel.isSpecial() {
-                updateSpecialLabel()
-                execSpecialAttack()
-                return
-            }
             if map.canMoveLeft() {
                 moveLeft()
             } else {
                 kappa!.run(actionModel.moveBack!)
             }
         }
-        updateSpecialLabel()
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -1145,13 +1108,34 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             switch tapNode.name! {
             case "ButtonNode", "ButtonLabel":
                 goMenu()
-            case "JobNode", "JobLabel":
-                showJob()
-            case "KappaInfoLabel", "KappaInfoNode":
-                displayAlert("ステータス", message: JobModel.allSkillExplain(skillModel, kappa: kappa!, gameData: gameData), okString: "閉じる")
+            case "IconKappaHado":
+                if specialAttackModel.canSpecialHado() {
+                    specialAttackHado()
+                } else {
+                    self.touchDown(atPoint: positionInScene)
+                }
+            case "IconKappaHead":
+                if specialAttackModel.canSpecialHead() {
+                    specialAttackHead()
+                } else {
+                    self.touchDown(atPoint: positionInScene)
+                }
+            case "IconKappaTornado":
+                if specialAttackModel.canSpecialTornado() {
+                    specialAttackTornado()
+                } else {
+                    self.touchDown(atPoint: positionInScene)
+                }
+            case "IconKappaUpper":
+                if specialAttackModel.canSpecialUpper() {
+                    specialAttackUpper()
+                } else {
+                    self.touchDown(atPoint: positionInScene)
+                }
             default:
                 self.touchDown(atPoint: positionInScene)
             }
+            updateSpecialView()
         }
     }
 
@@ -1280,6 +1264,8 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                 kappa.xScale *= -1
             }
         }
+        
+        
         doubleTimer += dt
         if doubleTimer > 1.0 {
             doubleTimer = 0.0
@@ -1316,6 +1302,8 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                     createArrow(pos: 5, damage: enemy.int)
                 }
                 enemy.arrowTimerReset()
+            } else if enemy.isDeath() {
+                makeDeath(position: enemy.position)
             } else if enemy.jumpTimer%4 == 0 && !enemy.canFly {
                 enemy.run(actionModel.enemyMiniJump!)
                 enemy.jumpTimerReset()
@@ -1340,6 +1328,9 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                     enemy.bossSpeedUp()
                 }
                 enemy.run(SKAction.moveBy(x: CGFloat(enemy.dx), y: CGFloat(enemy.dy) , duration: 1.0))
+            }
+            if enemy.canFly && enemy.position.y > kappa_first_position_y + 250 {
+                enemy.physicsBody?.velocity = CGVector(dx:0, dy:0)
             }
         }
     }

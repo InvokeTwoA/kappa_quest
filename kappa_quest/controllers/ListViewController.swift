@@ -56,7 +56,7 @@ class ListViewController : BaseTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setData()
+        setData()        
     }
 
     func setData(){
@@ -76,6 +76,7 @@ class ListViewController : BaseTableViewController {
             setSections(bar_section)
             barModel.readDataByPlist()
             setBarPeople()
+            NotificationModel.resetBarCount()
         default:
             break
         }
@@ -248,6 +249,27 @@ class ListViewController : BaseTableViewController {
         case "bar":
             if indexPath.section == BAR_BACK {
                 cell.backgroundColor = CommonUtil.UIColorFromRGB(0xfff0f5)
+            } else if indexPath.section == BAR_PEOPLE {
+                switch talk_array[indexPath.row] {
+                case 0:
+                    cell.backgroundColor = .white
+                case 1:
+                    cell.backgroundColor = .magenta
+                case 2:
+                    cell.backgroundColor = .orange
+                case 3:
+                    cell.backgroundColor = .yellow
+                case 4:
+                    cell.backgroundColor = .lightGray
+                case 5:
+                    cell.backgroundColor = .cyan
+                case 6:
+                    cell.backgroundColor = .red
+                case 7:
+                    cell.backgroundColor = .green
+                default:
+                    cell.backgroundColor = .white
+                }
             }
             return
         default:

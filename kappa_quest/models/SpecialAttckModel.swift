@@ -1,6 +1,8 @@
 import Foundation
 
 class SpecialAttackModel {
+    
+    private let BAR_LENGTH : Double = 131.0
 
     var is_attacking = false  // スペシャル攻撃を実行中かどうか
     var mode = ""             // 何の技か
@@ -10,230 +12,101 @@ class SpecialAttackModel {
         is_attacking = false
     }
 
-    // 必殺技可能な状態か
-    func isSpecial() -> Bool {
-        return (superHeadCount == 5 || superUpperCount == 5 || superTornadoCount == 5 || superHadoCount == 5)
-    }
-
-    // 必殺技可能な技名を返す
-    func specialName() -> String {
-        if superHeadCount == 5 {
-            return "head"
-        } else if superUpperCount == 5 {
-            return "upper"
-        } else if superTornadoCount == 5 {
-            return "tornado"
-        } else if superHadoCount == 5 {
-            return "hado"
-        } else {
-            return ""
+    func countUp() {
+        superHeadCount += 1
+        if superHeadCount >= SPECIAL_HEAD_NEED_COUNT {
+            superHeadCount = SPECIAL_HEAD_NEED_COUNT
         }
-    }
-
-    func countUp(direction : String) {
-        countUpHeadAttack(direction: direction)
-        countUpUpperAttack(direction: direction)
-        countUpTornadoAttack(direction: direction)
-        countUpHadoAttack(direction: direction)
+        superHadoCount += 1
+        if superHadoCount >= SPECIAL_HADO_NEED_COUNT {
+            superHadoCount = SPECIAL_HADO_NEED_COUNT
+        }
+        superUpperCount += 1
+        if superUpperCount >= SPECIAL_UPPER_NEED_COUNT {
+            superUpperCount = SPECIAL_UPPER_NEED_COUNT
+        }
+        superTornadoCount += 1
+        if superTornadoCount >= SPECIAL_TORNADO_NEED_COUNT {
+            superTornadoCount = SPECIAL_TORNADO_NEED_COUNT
+        }
     }
 
     /***********************************************************************************/
     /****************************** head attack ****************************************/
     /***********************************************************************************/
-    private var superHeadCount = 0  // スーパー頭突きの管理変数
-    func countUpHeadAttack(direction : String) {
-        if direction == "right" {
-            if superHeadCount == 2 || superHeadCount == 4 {
-                superHeadCount += 1
-            } else {
-                superHeadCount = 0
-            }
-        } else if direction == "left" {
-            if superHeadCount == 0 || superHeadCount == 1 || superHeadCount == 3 {
-                superHeadCount += 1
-            } else {
-                superHeadCount = 1
-            }
-        }
-    }
-
-    func displayHeadCount() -> String {
-        switch superHeadCount {
-        case 0:
-            return "← ← → ← →"
-        case 1:
-            return "⬅︎ ← → ← →"
-        case 2:
-            return "⬅︎ ⬅︎ → ← →"
-        case 3:
-            return "⬅︎ ⬅︎ ➡︎ ← →"
-        case 4:
-            return "⬅︎ ⬅︎ ➡︎ ⬅︎ →"
-        case 5:
-            return "⬅︎ ⬅︎ ➡︎ ⬅︎ ➡︎"
-        default:
-            return ""
-        }
-    }
-
+    private var superHeadCount = 10  // スーパー頭突きの管理変数
+    private let SPECIAL_HEAD_NEED_COUNT = 10
     func execHead(){
         superHeadCount = 0
         is_attacking = true
         mode = "head"
     }
-
+    
+    func canSpecialHead() -> Bool {
+        return superHeadCount >= SPECIAL_HEAD_NEED_COUNT
+    }
+    
+    func barSpecialHead() -> Double {
+        return Double(superHeadCount)/Double(SPECIAL_HEAD_NEED_COUNT)*BAR_LENGTH
+    }
+    
     /***********************************************************************************/
     /***************************** upper attack ****************************************/
     /***********************************************************************************/
-    private var superUpperCount = 0  // 昇竜拳の管理変数
-    func countUpUpperAttack(direction : String) {
-        if direction == "right" {
-            if superUpperCount == 0 || superUpperCount == 1 || superUpperCount == 3 {
-                superUpperCount += 1
-            } else {
-                superUpperCount = 1
-            }
-        } else if direction == "left" {
-            if superUpperCount == 2 || superUpperCount == 4 {
-                superUpperCount += 1
-            } else {
-                superUpperCount = 0
-            }
-        }
-    }
-
-    func displayUpperCount() -> String {
-        switch superUpperCount {
-        case 0:
-            return "→ → ← → ←"
-        case 1:
-            return "➡︎ → ← → ←"
-        case 2:
-            return "➡︎ ➡︎ ← → ←"
-        case 3:
-            return "➡︎ ➡︎ ⬅︎ → ←"
-        case 4:
-            return "➡︎ ➡︎ ⬅︎ ➡︎ ←"
-        case 5:
-            return "➡︎ ➡︎ ⬅︎ ➡︎ ⬅︎"
-        default:
-            return ""
-        }
-    }
-
+    private var superUpperCount = 18  // 昇竜拳の管理変数
+    private let SPECIAL_UPPER_NEED_COUNT = 18
     func execUpper(){
         superUpperCount = 0
         is_attacking = true
         mode = "upper"
     }
+    
+    func canSpecialUpper() -> Bool {
+        return superUpperCount >= SPECIAL_UPPER_NEED_COUNT
+    }
+
+    func barSpecialUpper() -> Double {
+        return Double(superUpperCount)/Double(SPECIAL_UPPER_NEED_COUNT)*BAR_LENGTH
+    }
 
     /***********************************************************************************/
     /***************************** tornado attack **************************************/
     /***********************************************************************************/
-    private var superTornadoCount = 0  // 竜巻旋風脚の管理変数
-    func countUpTornadoAttack(direction : String) {
-        if direction == "right" {
-            if superTornadoCount == 1 || superTornadoCount == 2 || superTornadoCount == 3 {
-                superTornadoCount += 1
-            } else {
-                superTornadoCount = 0
-            }
-        } else if direction == "left" {
-            if superTornadoCount == 0 || superTornadoCount == 4 {
-                superTornadoCount += 1
-            } else {
-                superTornadoCount = 1
-            }
-        }
-    }
-
-    func displayTornadoCount() -> String {
-        switch superTornadoCount {
-        case 0:
-            return "← → → → ←"
-        case 1:
-            return "⬅︎ → → → ←"
-        case 2:
-            return "⬅︎ ➡︎ → → ←"
-        case 3:
-            return "⬅︎ ➡︎ ➡︎ → ←"
-        case 4:
-            return "⬅︎ ➡︎ ➡︎ ➡︎ ←"
-        case 5:
-            return "⬅︎ ➡︎ ➡︎ ➡︎ ⬅︎"
-        default:
-            return ""
-        }
-    }
+    private var superTornadoCount = 12  // 竜巻旋風脚の管理変数
+    private let SPECIAL_TORNADO_NEED_COUNT = 12
 
     func execTornado(){
         superTornadoCount = 0
         is_attacking = true
         mode = "tornado"
     }
+    
+    func canSpecialTornado() -> Bool {
+        return superTornadoCount >= SPECIAL_TORNADO_NEED_COUNT
+    }
+    
+    func barSpecialTornado() -> Double {
+        return Double(superTornadoCount)/Double(SPECIAL_TORNADO_NEED_COUNT)*BAR_LENGTH
+    }
 
     /***********************************************************************************/
     /***************************** kappa_hado     **************************************/
     /***********************************************************************************/
-    private var superHadoCount = 0  // 波動の管理変数
-    func countUpHadoAttack(direction : String) {
-        if direction == "right" {
-            if superHadoCount == 2 ||  superHadoCount == 3 {
-                superHadoCount += 1
-            } else {
-                superHadoCount = 0
-            }
-        } else if direction == "left" {
-            if superHadoCount == 0 || superHadoCount == 1 || superHadoCount == 4 {
-                superHadoCount += 1
-            } else {
-                superHadoCount = 1
-            }
-        }
-    }
-
-    func displayHadoCount() -> String {
-        switch superHadoCount {
-        case 0:
-            return "← ← → → ←"
-        case 1:
-            return "⬅︎ ← → → ←"
-        case 2:
-            return "⬅︎ ⬅︎ → → ←"
-        case 3:
-            return "⬅︎ ⬅︎ ➡︎ → ←"
-        case 4:
-            return "⬅︎ ⬅︎ ➡︎ ➡︎ ←"
-        case 5:
-            return "⬅︎ ⬅︎ ➡︎ ➡︎ ⬅︎"
-        default:
-            return ""
-        }
-
-        /*
-        switch superHadoCount {
-        case 0:
-            return "→ → → ← →"
-        case 1:
-            return "➡︎ → → ← →"
-        case 2:
-            return "➡︎ ➡︎ → ← →"
-        case 3:
-            return "➡︎ ➡︎ ➡︎ ← →"
-        case 4:
-            return "➡︎ ➡︎ ➡︎ ⬅︎ →"
-        case 5:
-            return "➡︎ ➡︎ ➡︎ ⬅︎ ➡︎"
-        default:
-            return ""
-        }
- */
-    }
+    private var superHadoCount = 15  // 波動の管理変数
+    private let SPECIAL_HADO_NEED_COUNT = 15
 
     func execHado(){
         superHadoCount = 0
         is_attacking = true
         mode = "hado"
+    }
+
+    func canSpecialHado() -> Bool {
+        return superHadoCount >= SPECIAL_HADO_NEED_COUNT
+    }
+
+    func barSpecialHado() -> Double {
+        return Double(superHadoCount)/Double(SPECIAL_HADO_NEED_COUNT)*BAR_LENGTH
     }
 }
 

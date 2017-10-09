@@ -13,16 +13,34 @@ class MenuScene: BaseScene {
 
     override func didMove(to view: SKView) {
         if back == "world" {
-            let optionLabel     = childNode(withName: "//OptionLabel") as! SKLabelNode
-            let optionNode     = childNode(withName: "//OptionNode") as! SKSpriteNode
+            let optionLabel   = childNode(withName: "//OptionLabel") as! SKLabelNode
+            let optionNode    = childNode(withName: "//OptionNode") as! SKSpriteNode
             optionLabel.removeFromParent()
             optionNode.removeFromParent()
             
-            let worldLabel     = childNode(withName: "//WorldLabel") as! SKLabelNode
+            let worldLabel    = childNode(withName: "//WorldLabel") as! SKLabelNode
             let worldNode     = childNode(withName: "//WorldNode") as! SKSpriteNode
             worldLabel.removeFromParent()
             worldNode.removeFromParent()
         }
+        
+        if !GameData.isClear("tutorial0") {
+            let optionLabel   = childNode(withName: "//OptionLabel") as! SKLabelNode
+            let optionNode    = childNode(withName: "//OptionNode") as! SKSpriteNode
+            optionLabel.removeFromParent()
+            optionNode.removeFromParent()
+            
+            let worldLabel    = childNode(withName: "//WorldLabel") as! SKLabelNode
+            let worldNode     = childNode(withName: "//WorldNode") as! SKSpriteNode
+            worldLabel.removeFromParent()
+            worldNode.removeFromParent()
+            
+            let resetLabel    = childNode(withName: "//ResetLabel") as! SKLabelNode
+            let resetNode     = childNode(withName: "//ResetNode") as! SKSpriteNode
+            resetLabel.removeFromParent()
+            resetNode.removeFromParent()
+        }
+        
     }
     
     func showStatus(){
@@ -38,8 +56,13 @@ class MenuScene: BaseScene {
     func goBack(){
         if back == "world" {
             goWorld()
+        } else if back == "tutorial" {
+            let nextScene = Tutorial4Scene(fileNamed: "Tutorial4Scene")!
+            nextScene.size = nextScene.size
+            nextScene.scaleMode = SKSceneScaleMode.aspectFill
+            view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
         } else {
-            self.view!.presentScene(backScene!, transition: .fade(withDuration: Const.transitionInterval))
+            view!.presentScene(backScene!, transition: .fade(withDuration: Const.transitionInterval))
         }
     }
     

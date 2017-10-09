@@ -9,12 +9,12 @@ class KappaNode: SKSpriteNode {
     var job_lv = 1
     var maxHp = 10
     var hp = 10
-    var str = 1
-    var def = 1
-    var agi = 1
-    var int = 1
-    var pie = 1
-    var luc = 1
+    var str = 2
+    var def = 2
+    var agi = 2
+    var int = 2
+    var pie = 2
+    var luc = 2
     var nextExp = 10
     var exp = 0
 

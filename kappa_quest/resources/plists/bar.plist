@@ -8,81 +8,65 @@
 		<string>なんだ、まだくたばってなかったか。 良いから酒を呑んでいきな。</string>
 		<string>さっさと注文を言いな。</string>
 		<string>いらっしゃーい！ ……なんだ、カッパかよ</string>
+		<string>いつもので良いか？</string>
+		<string>さっさと席につけ</string>
+		<string>この酒場を開いてもう二年か</string>
 	</array>
 	<key>megane</key>
 	<array>
-		<string>これはジャストアイディアですが、 まずは回復力の高い僧侶などの職業でLVを上げるのが良いと思います。</string>
-		<string>論理的に考えて、 村人は成長率も低いし転職するべきです。</string>
-		<string>知恵が高いと必殺技の威力が上がります。 ソースは2chです！</string>
-		<string>体力が高いと敵からの物理攻撃のダメージを減らせます。 検証した事はないけどみんなそう言ってるから多分そうです。</string>
-		<string>敏捷が高いと敵の攻撃頻度が少なくなります。 やっぱスピードで攻めるのは格好良いっすねー。</string>
-		<string>精神が高いと敵の魔法攻撃のダメージを減らせます。 やっぱ大事なのは強靭なメンタルとモチベーションですね。</string>
-		<string>筋力が高いと物理攻撃のダメージが上がります。 最近では脳筋で筋力ばかり上げる人が増えてきたようですねー。</string>
-		<string>幸運のステータスは何の意味があるんでしょう？</string>
-		<string>これはフラッシュアイディアですが、 まずは騎士に転職してHPを上げて頑丈にしてみたらどうでしょう？</string>
-		<string>もう呑めないっす……。</string>
-		<string>明日も仕事だけど、 このまま二次会に行ってしまおうかと思います。</string>
-		<string>可愛い彼女が欲しいなぁ。</string>
-		<string>奢ってくれるんですか？</string>
-		<string>砂漠の荒くれ者たちはHPが高いです。 どうやったら楽に倒せるんだろう？</string>
-		<string>死んでも失うものは何もないんです。 失敗を恐れずアグレッシブにチャレンジしていきましょう！</string>
-		<string>『て』</string>
+		<string>ウィー、ヒック</string>
+		<string>必殺技の事は何でも聞きたまえ。</string>
+		<string>もう呑めぬ……。</string>
+		<string>カッパ頭突きは（力＋魔力）で攻撃する突進技じゃ。  相手との距離が遠いほど頭突きスピードが上がるんじゃー！</string>
+		<string>カッパ竜巻旋風蹴は強力なカウンター技じゃ。  （魔力＋敏捷＋敵の攻撃力）で相手を攻撃するんじゃー！</string>
+		<string>カッパ昇熊拳は（力＋魔力）で攻撃する技じゃ。  空中にいる敵にはこの攻撃で撃ち墜とすんじゃー！</string>
+		<string>カッパ波動砲は遠距離攻撃じゃ。  （魔力）の威力で敵を攻撃するんじゃー！</string>
+		<string>てってれ〜♪</string>
 	</array>
 	<key>wizard</key>
 	<array>
-		<string>私、酔ってません</string>
-		<string>必殺技の事は何でも聞いてよ</string>
-		<string>カッパ頭突きは（力＋魔力）で攻撃する突進技です。  相手との距離が遠いほど頭突きスピードが上がるよ！</string>
-		<string>竜巻旋風蹴は強力なカウンター技。  （魔力＋敏捷＋敵の攻撃力）で相手を攻撃するんだ。</string>
-		<string>カッパ昇熊拳は（力＋魔力）で攻撃するよ。  空中にいる敵にはこの攻撃で撃ち墜とすんだ。</string>
-		<string>カッパ波動砲は遠距離攻撃。  （魔力）の威力で敵を攻撃するよ。 魔法使いをLV10にすれば敵を貫通するようになるんだ。</string>
-		<string>ウィー、ヒック</string>
-		<string>魔王は世界の東側にいるらしい。 ワールドマップは左側にスライドできるの知ってた？</string>
-		<string>『っ』</string>
+		<string>これはジャストアイディアですが、 まずは回復力の高い僧侶などの職業でLVを上げるのが良いと思います。</string>
+		<string>これはフラッシュアイディアですが、 村人は成長率も低いし転職するべきです。</string>
+		<string>知恵が高いと必殺技の威力が上がります。 ソースは2chです！</string>
+		<string>体力が高いと敵からの物理攻撃のダメージを減らせます。 検証した事はないけどみんなそう言ってるから多分そうです。</string>
+		<string>筋力が高いと物理攻撃のダメージが上がります。 最近では脳筋で筋力ばかり上げる人が増えてきたようですねー。</string>
+		<string>奢ってくれるんですか？</string>
+		<string>死んでも失うものは何もないんです。 失敗を恐れずアグレッシブにチャレンジしていきましょう！</string>
+		<string>っプハー！</string>
 	</array>
 	<key>knight</key>
 	<array>
 		<string>酒はダメなんで、オレンジジュースください……</string>
 		<string>攻略するならば、　教会→砂漠→森　の順がオススメだ……。  危険レベルが低い順に攻略すると良いさ。</string>
-		<string>……無口ですまぬ。</string>
-		<string>……兜を外せ？　それだけは勘弁してくれ。</string>
+		<string>幸運が高いと、取得経験値が上がるらしい……。</string>
 		<string>……鎧が重い。</string>
+		<string>砂漠の荒くれ者たちはHPが高い……。 何か楽に倒す方法はないだろうか……。</string>
 		<string>男ならとりあえず騎士に転職するべき、そう思わんかね？  騎士は良いぞー。</string>
-		<string>騎士はHP、筋力、体力がバランスよく上がる。 物理攻撃主体で行くならば騎士一択と言っても過言ではないだろう。</string>
-		<string>騎士になればレベルアップするたびにHPが回復するようになる。 ……素晴らしいと思わんかね？</string>
 		<string>……この世界のどこかには隠し職業があるらしい。
 荒くれ、踊り子、そして忍者……。</string>
-		<string>必殺技が弱点のモンスターは 何でも良いので必殺技を当てれば99999ダメージ与えられる。</string>
-		<string>取得経験値は下記の計算式で決まる。 （そのステージのLV）+(0~カッパの幸運)  幸運が高くなると、貰える経験値が高くなるぞ。</string>
-		<string>『死』</string>
+		<string>死ぬなよ……。</string>
 	</array>
 	<key>priest</key>
 	<array>
 		<string>ほろ酔い〜</string>
 		<string>これが呑まずにいられますかいっ！</string>
 		<string>回復スキルを覚える職業。 騎士、盗賊、僧侶、ネクロマンサー……</string>
-		<string>ワールドマップ表示時に、 ６分の１の確率で見つかる場所があるらしいです。</string>
-		<string>踊り子の職業になればレベルがガンガン上がるとか…… 良いなぁ</string>
 		<string>敵のファイアボールやサンダーなどは必殺技攻撃。 精神をあげるほど被ダメージが減ります。</string>
 		<string>僧侶はスキルは強いけどステータスの成長率が微妙〜</string>
 		<string>……二次会行こうかな</string>
-		<string>お会計！</string>
-		<string>とりあえず枝豆は飲み会に必須ですよね〜</string>
-		<string>『づ』</string>
+		<string>敏捷が高いと敵の攻撃頻度が少なくなります。 やっぱスピードで攻めるのは格好良いっすねー。</string>
+		<string>づけマグロこそが、酒のベストパートナー！</string>
 	</array>
 	<key>thief</key>
 	<array>
 		<string>俺は人から盗んだ金で呑んだくれているんだ。</string>
-		<string>男には１ゴールドも奢らない。 それが盗賊のポリシー。</string>
-		<string>敏捷が早いと良いぞ〜 敵の攻撃頻度が少なくなる。</string>
+		<string>敏捷が早いと良いぞ〜 敵の攻撃頻度が少なくなるんだ。</string>
 		<string>魔法使いLV10で覚えるスキル強くね？</string>
-		<string>特定の職業をLV10まで上げれば必殺技がパワーアップするらしいですぜ。</string>
-		<string>彼女募集中っす。</string>
 		<string>どこかに可愛くて美人でダイナマイトボディで だけど彼氏がいなくて寂しがり屋な子はいないかな〜</string>
 		<string>盗賊の汎用スキルって微妙じゃね？ 固有スキルは素早く動けて格好いいけどさ……</string>
 		<string>盗賊を極めれば忍者に転職できる？ そんな訳ねーだろ。常識ねえのかよ。</string>
 		<string>敏捷を上げまくるとカッパ竜巻旋風蹴の威力も上がるんだぜ。</string>
-		<string>『ケ』</string>
+		<string>けぇぇぇぇ！</string>
 	</array>
 	<key>archer</key>
 	<array>
@@ -93,21 +77,18 @@
 		<string>狩人をLV10まで上げればカッパ昇熊拳がパワーアップするんだ。 くるくる横回転するようになるんだよ！</string>
 		<string>犬派の人間と交わす酒は無い。</string>
 		<string>たけのこ派と交わす言葉は無い。</string>
-		<string>たけのこ派と交わす言葉は無い。</string>
-		<string>『つ』</string>
+		<string>つらい時も〜　悲しい時も〜</string>
 	</array>
 	<key>necro</key>
 	<array>
 		<string>二日酔いで頭が痛い……。</string>
 		<string>アンデッドって良いよね</string>
-		<string>死神は通常攻撃は透けて当たらないけど、必殺技なら当たるよ</string>
+		<string>死神は通常攻撃は当たらないけど、必殺技なら当たるよ</string>
 		<string>知恵をあげまくって必殺技で大ダメージ！ これこそがこのゲームのコツだと思わない？</string>
 		<string>っていうか、通常攻撃が効かないモンスター多すぎない？</string>
-		<string>魔王の正体は一体……</string>
-		<string>異名って行動によって変わるらしいねー。</string>
 		<string>一通りの転職してみたら強くなれるんじゃない？</string>
 		<string>この世界のどこかにいる忍者。 強すぎて正攻法で倒すのは無理だけど、工夫すれば低レベルでも倒せるみたい。</string>
-		<string>『プ』</string>
+		<string>プリティー路線で行こうかな……</string>
 	</array>
 	<key>fighter</key>
 	<array>
@@ -118,34 +99,51 @@
 		<string>なんで盗賊ばかりモテるんだ！</string>
 		<string>もっとグイグイ行くべきかなぁ</string>
 		<string>俺は女子と普通に話せる勇気が欲しくて勇者になったんだ。</string>
-		<string>『タ』</string>
+		<string>ターン制RPGがやりたくなってきた</string>
 	</array>
 	<key>angel</key>
 	<array>
 		<string>ボス戦BGMってかっこいい  魔王魂様のBGMは心に染みるわぁ</string>
 		<string>ごくごく……　　フゥ</string>
 		<string>梅酒のロックで！</string>
-		<string>『お』</string>
+		<string>とりあえず枝豆は飲み会に必須ですよね〜</string>
+		<string>村人はLV５まで、他職業はそれぞれLV10まで上げる。 それで一通りのスキルは覚えられるはず。</string>
+		<string>ワールドマップ表示時に、 ６分の１の確率で見つかる『冷たい谷』。  あそこでは全モンスターの攻撃力が9999だとか。</string>
+		<string>忍者は遥か東の大陸にいるらしいですね。 忍者の攻撃力は9999なので注意</string>
+		<string>おかわりー！</string>
 	</array>
 	<key>gundom</key>
 	<array>
 		<string>人はなぜ二日酔いになると分かっていてお酒を飲むんでしょうか？</string>
 		<string>二次会……そこに参加するメリットは何ですか？</string>
 		<string>私の動きはモンスターの死神をモチーフに作られました。  つまり必殺技以外の攻撃は効かないという事です。</string>
-		<string>『長』</string>
+		<string>明日も仕事ですが このまま二次会に行ってしまおうかと思います。</string>
+		<string>可愛い彼女が欲しいなぁ。</string>
+		<string>タイトル画面の十字架を調べると サウンドテスト室に行けます。  魔王魂さんの音楽が堪能できるのです。</string>
+		<string>ワールドマップを東にスライドし続ければ忍者の里が見つかるはずです。  西にスライドし続けても残念ながら何もありません。</string>
+		<string>長い話を聞いてると寝ちゃいそうです。</string>
 	</array>
 	<key>dancer</key>
 	<array>
 		<string>飲みましょう……</string>
 		<string>敵をたくさん召喚してくるボスは……LV稼ぎに便利かも</string>
-		<string>『ろ』</string>
+		<string>二年前、この世界に現れし３匹のカッパ。  １匹目は『教える者』としての道を選んだ。 ２匹目は『戦う者』としての道を選んだ。  そして３匹目は『滅ぼす者』の道を選んだ。</string>
+		<string>意味深な発言をしてればモテモテになるって本当かしら</string>
+		<string>このお酒、美味しい。 今すぐレビューで５つ星をつけなくちゃ！  今すぐレビューで５つ星をつけなくちゃ！</string>
+		<string>魔王魂さんのBGMが心に染みるぅ〜  え、消音でプレイしてるの？ 勿体無い〜</string>
+		<string>友達の結婚報告が多すぎて、SNSから逃げ出しました。</string>
+		<string>ろくでなしと結婚するくらいなら一生独身！</string>
 	</array>
 	<key>miyuki</key>
 	<array>
-		<string>この世界に降り立った３匹のカッパ</string>
-		<string>１匹は勇者に、１匹は導く者に、そして最後の一人は滅ぼす者となった。</string>
-		<string>この世界は何かがおかしい</string>
-		<string>『ん』</string>
+		<string>さすが、お兄様</string>
+		<string>偽物とはいえ魔王を倒すなんて、 なかなかできる事じゃないです。</string>
+		<string>お兄様ならば不可能を可能にできるはずです！</string>
+		<string>１６ドット……。  人もモンスターも全て１６×１６で示される。  この世界で生きている限り、それは絶対に抗えない運命。</string>
+		<string>この世界は何かがおかしい……。</string>
+		<string>私たちの頭上にいつも表示されているものは、何なの？</string>
+		<string>あ　　全ての始まりを示す言葉。</string>
+		<string>ん　　全ての終わりを示す言葉。</string>
 	</array>
 </dict>
 </plist>

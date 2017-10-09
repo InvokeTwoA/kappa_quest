@@ -1,4 +1,5 @@
 // ダンジョン情報の表示
+// 消しても良いかも
 
 import Foundation
 
@@ -20,12 +21,10 @@ class DungeonViewController : BaseTableViewController {
     
     var world = "tutorial"
     
-    private let dungeon_sections = ["ダンジョン名", "クエスト内容", "クリア報酬（初回のみ）", "出現モンスター(タップで詳細情報)", "あなたの行動"]
+    private let dungeon_sections = ["ダンジョン名", "クエスト内容", "あなたの行動"]
     private let DUNGEON_NAME = 0
     private let DUNGEON_EXPLAIN = 1
-    private let CLEAR_ITEM = 2
-    private let ENEMY_INFO = 3
-    private let YOUR_CHOICE = 4
+    private let YOUR_CHOICE = 2
     
     private let GO_DUNGEON = 0
     private let BACK_DUNGEON = 1
@@ -57,7 +56,7 @@ class DungeonViewController : BaseTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var rows = 0
         switch section {
-        case DUNGEON_NAME, DUNGEON_EXPLAIN, CLEAR_ITEM, ENEMY_INFO:
+        case DUNGEON_NAME, DUNGEON_EXPLAIN:
             rows = 1
         case YOUR_CHOICE:
             rows = 2
@@ -78,10 +77,6 @@ class DungeonViewController : BaseTableViewController {
             return cell2
         case DUNGEON_EXPLAIN:
             cell.textLabel?.text = worldModel.explain
-        case CLEAR_ITEM:
-            cell.textLabel?.text = worldModel.clear_item
-        case ENEMY_INFO:
-            cell.textLabel?.text = "危険レベル:  \(worldModel.lv)"
         case YOUR_CHOICE :
             cell.textLabel?.numberOfLines = 0
             if indexPath.row == GO_DUNGEON {
@@ -98,8 +93,6 @@ class DungeonViewController : BaseTableViewController {
     // タップ時の処理
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
-        case ENEMY_INFO:
-            goLibrary()
         case YOUR_CHOICE:
             if indexPath.row == GO_DUNGEON {
                 dismiss(animated: false, completion: nil)

@@ -18,8 +18,6 @@
 			<string>usagi</string>
 			<string>chibidora</string>
 		</array>
-		<key>boss</key>
-		<string>wizard</string>
 	</dict>
 	<key>knight</key>
 	<dict>
@@ -33,8 +31,6 @@
 		<string>新職業: 騎士</string>
 		<key>enemies</key>
 		<array/>
-		<key>boss</key>
-		<string></string>
 	</dict>
 	<key>priest</key>
 	<dict>
@@ -48,8 +44,6 @@
 		<string>新職業: 僧侶</string>
 		<key>enemies</key>
 		<array/>
-		<key>boss</key>
-		<string></string>
 	</dict>
 	<key>thief</key>
 	<dict>
@@ -63,8 +57,6 @@
 		<string>新職業: 盗賊</string>
 		<key>enemies</key>
 		<array/>
-		<key>boss</key>
-		<string></string>
 	</dict>
 	<key>archer</key>
 	<dict>
@@ -78,8 +70,6 @@
 		<string>新職業: 狩人</string>
 		<key>enemies</key>
 		<array/>
-		<key>boss</key>
-		<string></string>
 	</dict>
 	<key>necro</key>
 	<dict>
@@ -172,12 +162,23 @@
 		<key>boss</key>
 		<string></string>
 	</dict>
+	<key>king</key>
+	<dict>
+		<key>name</key>
+		<string>キング城</string>
+		<key>lv</key>
+		<integer>10</integer>
+		<key>explain</key>
+		<string>ついに君は帝国の本拠地にたどり着いた！  もはや何も言う事はない。 圧政を強いる皇帝を倒すのだ！</string>
+		<key>enemies</key>
+		<array/>
+	</dict>
 	<key>maou</key>
 	<dict>
 		<key>name</key>
 		<string>魔王城スィフト</string>
 		<key>lv</key>
-		<integer>10</integer>
+		<integer>15</integer>
 		<key>explain</key>
 		<string>魔王スィフトの居城。 この城に挑み、生きて帰った者は居ない。  「もはやアドバイスは何も無い。世界の平和は君にかかっている！」  危険レベル：？？？？</string>
 		<key>clear_item</key>
@@ -192,7 +193,7 @@
 		<key>name</key>
 		<string>魔王城スィフト（隠し部屋）</string>
 		<key>lv</key>
-		<integer>10</integer>
+		<integer>20</integer>
 		<key>explain</key>
 		<string>再び妹が操られる前に、 真犯人のヒントを聞き出すのだ。  （クリアするたびに真犯人のヒントがランダムで得られます） 危険レベル：？？？？</string>
 		<key>clear_item</key>

@@ -20,6 +20,15 @@ class GameOverScene: BaseScene {
         }
     }
     
+    override func didMove(to view: SKView) {
+        if backScene.world_name == "dancer" {
+            let continueLabel = childNode(withName: "//ContinueLabel") as! SKLabelNode
+            let continueNode  = childNode(withName: "//ContinueNode")  as! SKSpriteNode
+            continueLabel.removeFromParent()
+            continueNode.removeFromParent()
+        }
+    }
+    
     func goBack(){
         gameData.changeNicknameByDeath()
         resetData()
@@ -32,7 +41,6 @@ class GameOverScene: BaseScene {
             self.backScene.playBGM()
         })
     }
-    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {

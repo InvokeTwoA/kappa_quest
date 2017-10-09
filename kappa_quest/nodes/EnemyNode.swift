@@ -23,6 +23,7 @@ class EnemyNode: SKSpriteNode {
     var canFly = false   // 飛行
     var canThunder = false
     var canArrow  = false
+    var canDeath = false
     var isGhost = false
     var isMovingFree = false
     var isZombi = ""
@@ -83,6 +84,10 @@ class EnemyNode: SKSpriteNode {
         if dictionary["canArrow"] != nil {
             canArrow = dictionary.object(forKey: "canArrow") as! Bool
         }
+        if dictionary["canDeath"] != nil {
+            canDeath = dictionary.object(forKey: "canDeath") as! Bool
+        }
+
         if dictionary["heal"] != nil {
             heal = dictionary.object(forKey: "heal") as! Int
         }
@@ -120,7 +125,6 @@ class EnemyNode: SKSpriteNode {
         lv += 1
         bossSpeedUp()        
         size = CGSize(width: Const.bossSize, height: Const.bossSize)
-//        anchorPoint = CGPoint(x: 1.0, y: 0)     // 左下がアンカーポイント
     }
     
     func bossSpeedUp(){
@@ -141,6 +145,7 @@ class EnemyNode: SKSpriteNode {
     var fireTimer = 100   // この数値が100になったら炎攻撃をする
     var thunderTimer = 100
     var arrowTimer = 100
+    var deathTimer = 80
     var jumpTimer = 0     // この数値が 7 の倍数の時、小さくジャンプする
 
     func timerUp(){
@@ -153,6 +158,9 @@ class EnemyNode: SKSpriteNode {
         }
         if canArrow {
             arrowTimer += timerRnd()
+        }
+        if canDeath {
+            deathTimer += timerRnd()
         }
         
         jumpTimer += CommonUtil.rnd(3)
@@ -181,6 +189,11 @@ class EnemyNode: SKSpriteNode {
     func isArrow() -> Bool {
         return canArrow && arrowTimer > 100
     }
+    
+    func isDeath() -> Bool {
+        return canDeath && deathTimer > 100
+    }
+
 
     func attackTimerReset(){
         if attackTimer >= 100 {
@@ -210,6 +223,13 @@ class EnemyNode: SKSpriteNode {
         if arrowTimer >= 100 {
             arrowTimer = 0
         }
+    }
+    
+    func deathTimerReset(){
+        if deathTimer >= 100 {
+            deathTimer = 0
+        }
+    
     }
 
     /***********************************************************************************/

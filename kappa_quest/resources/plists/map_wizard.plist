@@ -15,74 +15,25 @@
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>
-		<string>今日は必殺技の修行だ。</string>
+		<string>魔物が凶暴化している。</string>
 		<key>event_text1</key>
-		<string></string>
+		<string>これも魔王復活の影響か。</string>
 	</dict>
 	<key>0.1</key>
 	<dict>
 		<key>enemies</key>
 		<array>
 			<string>hiyoko</string>
-			<string>hiyoko</string>
 			<string>ghost</string>
-		</array>
-		<key>is_random</key>
-		<false/>
-		<key>event</key>
-		<true/>
-		<key>event_text0</key>
-		<string>画面の右側か左側か、</string>
-		<key>event_text1</key>
-		<string>特定の順番にタップで必殺技が発動</string>
-	</dict>
-	<key>0.2</key>
-	<dict>
-		<key>enemies</key>
-		<array>
-			<string>hiyoko</string>
-			<string>hiyoko</string>
-			<string>ghost</string>
-			<string>ghost</string>
-		</array>
-		<key>is_random</key>
-		<false/>
-		<key>event</key>
-		<true/>
-		<key>event_text0</key>
-		<string>左　右　左　左　右　と画面をタップ。</string>
-		<key>event_text1</key>
-		<string>スーパー頭突きが発動するぞ。</string>
-	</dict>
-	<key>0.3</key>
-	<dict>
-		<key>enemies</key>
-		<array>
-			<string>ghost</string>
-			<string>ghost</string>
-			<string>ghost</string>
-			<string>hiyoko</string>
-		</array>
-		<key>is_random</key>
-		<true/>
-		<key>event</key>
-		<true/>
-		<key>event_text0</key>
-		<string>右　右　左　右　左　でカッパ昇熊拳</string>
-		<key>event_text1</key>
-		<string>対空の強烈な一撃を放てる。</string>
-	</dict>
-	<key>0.4</key>
-	<dict>
-		<key>enemies</key>
-		<array>
-			<string>hiyoko</string>
-			<string>hiyoko</string>
-			<string>usagi</string>
 			<string>chibidora</string>
 		</array>
 		<key>is_random</key>
 		<true/>
+		<key>event</key>
+		<false/>
+	</dict>
+	<key>0.4</key>
+	<dict>
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>
@@ -94,9 +45,9 @@
 	<dict>
 		<key>enemies</key>
 		<array>
-			<string>usagi</string>
-			<string>usagi</string>
 			<string>chibidora</string>
+			<string>chibidora</string>
+			<string>usagi</string>
 			<string>wizard</string>
 		</array>
 		<key>is_boss</key>

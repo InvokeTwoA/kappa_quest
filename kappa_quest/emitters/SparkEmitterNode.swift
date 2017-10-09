@@ -21,5 +21,12 @@ class SparkEmitterNode: SKEmitterNode {
         particle.zPosition = 5
         return particle
     }
-    
+
+    class func makeBlackSpark() -> SKEmitterNode {
+        let path = Bundle.main.path(forResource: "black_spark", ofType: "sks")
+        let particle = NSKeyedUnarchiver.unarchiveObject(withFile: path!) as! SKEmitterNode
+        particle.zPosition = 5
+        return particle
+    }
+
 }

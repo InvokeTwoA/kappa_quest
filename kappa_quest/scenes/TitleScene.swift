@@ -16,7 +16,6 @@ class TitleScene: BaseScene {
     }
 
     override func willMove(from view: SKView) {
-        stopBGM()
     }
 
     // ランダムなキャラアイコンをTOPに表示
@@ -27,22 +26,27 @@ class TitleScene: BaseScene {
             "usagi",
             "megane",
             "master",
-            "buffalo",
             "chibidora",
             "ghost",
             "wizard",
+            "knight",
+            "priest",
+            "buffalo",
             "arakure",
             "thief",
-            "knight",
+            "archer",
             "ninja",
             "dancer",
+            "zombi",
+            "miira",
+            "skelton",
+            "necro",
+            "samurai",
             "fighter",
             "death",
             "cross",
-            "miira",
-            "skelton",
-            "zombi",
             "angel",
+            "king",
             "miyuki",
             "maou",
         ]
@@ -65,28 +69,27 @@ class TitleScene: BaseScene {
         let resetNode = childNode(withName: "//ResetNode") as! SKSpriteNode
         resetNode.physicsBody = SKPhysicsBody(rectangleOf: resetNode.size)
         WorldNode.setWorldEnd(resetNode.physicsBody!)
- */        
+ */
+        stopBGM()
+        
         if GameData.isClear("tutorial") {
             goWorld()
+        } else if GameData.isClear("tutorial0") {
+            goFirstWorld()
         } else {
-            KappaNode.setInitLv()
-            JobModel.setInitLv()
-            gameData.saveParam()
-            let kappaNode = KappaNode()
-            kappaNode.saveParam()
-            
-            let scene = GameScene(fileNamed: "GameScene")!
-            scene.size = self.scene!.size
-            scene.scaleMode = SKSceneScaleMode.aspectFill
-            scene.world_name = "tutorial"
-            self.view!.presentScene(scene, transition: .fade(withDuration: Const.transitionInterval))
-            /*
-            let scene = LetterScene(fileNamed: "LetterScene")
-            scene?.size = self.scene!.size
-            scene?.scaleMode = SKSceneScaleMode.aspectFill
-            self.view!.presentScene(scene!, transition: .doorway(withDuration: Const.doorTransitionInterval))
- */
+            let nextScene = TutorialScene(fileNamed: "TutorialScene")!
+            nextScene.size = nextScene.size
+            nextScene.scaleMode = SKSceneScaleMode.aspectFill
+            view!.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
         }
+    }
+    
+    func goFirstWorld(){
+        let scene = GameScene(fileNamed: "GameScene")!
+        scene.size = self.scene!.size
+        scene.scaleMode = SKSceneScaleMode.aspectFill
+        scene.world_name = "tutorial"
+        self.view!.presentScene(scene, transition: .fade(withDuration: Const.transitionInterval))
     }
     
     func resetAlert(){
@@ -102,6 +105,8 @@ class TitleScene: BaseScene {
     }
     
     func resetData(){
+        stopBGM()
+
         let appDomain:String = Bundle.main.bundleIdentifier!
         UserDefaults.standard.removePersistentDomain(forName: appDomain)
 

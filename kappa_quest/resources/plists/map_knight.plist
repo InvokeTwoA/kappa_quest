@@ -15,71 +15,32 @@
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>
-		<string>今日で修行も最終日だ。</string>
+		<string>帝国軍の圧政で人々は苦しんでいる。</string>
 		<key>event_text1</key>
-		<string>なぜか妙な胸騒ぎがする。</string>
+		<string></string>
 	</dict>
 	<key>0.1</key>
 	<dict>
 		<key>enemies</key>
 		<array>
 			<string>hiyoko</string>
-			<string>hiyoko</string>
+			<string>ghost</string>
+			<string>chibidora</string>
 			<string>usagi</string>
-			<string>buffalo</string>
 		</array>
 		<key>is_random</key>
+		<true/>
+		<key>event</key>
 		<false/>
-		<key>event</key>
-		<true/>
-		<key>event_text0</key>
-		<string>左　左　右　右　左　でカッパ波動砲</string>
-		<key>event_text1</key>
-		<string>遠距離攻撃だ！</string>
-	</dict>
-	<key>0.2</key>
-	<dict>
-		<key>enemies</key>
-		<array>
-			<string>hiyoko</string>
-			<string>hiyoko</string>
-			<string>ghost</string>
-			<string>ghost</string>
-		</array>
-		<key>is_random</key>
-		<false/>
-		<key>event</key>
-		<true/>
-		<key>event_text0</key>
-		<string>左　右　右　右　左　でカッパ旋風蹴。</string>
-		<key>event_text1</key>
-		<string>強力なカウンター攻撃だ！</string>
-	</dict>
-	<key>0.3</key>
-	<dict>
-		<key>enemies</key>
-		<array>
-			<string>hiyoko</string>
-			<string>usagi</string>
-			<string>ghost</string>
-		</array>
-		<key>is_random</key>
-		<true/>
-		<key>event</key>
-		<true/>
-		<key>event_text0</key>
-		<string>チュートリアルは以上で終了だ。</string>
-		<key>event_text1</key>
-		<string>後は酒場でじょうほう収集をすると良い。</string>
 	</dict>
 	<key>0.4</key>
 	<dict>
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>
-		<string>……この先で、最後の試練が待っている。</string>
+		<string>この先に強力な敵の気配を感じる</string>
 		<key>event_text1</key>
-		<string>君の胸騒ぎは最高潮に達している！</string>
+		<string></string>
 	</dict>
 	<key>0.5</key>
 	<dict>

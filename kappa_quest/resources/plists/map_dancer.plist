@@ -24,6 +24,10 @@
 			<string>usagi</string>
 			<string>chibidora</string>
 			<string>ghost</string>
+			<string>hiyoko</string>
+			<string>arakure</string>
+			<string>zombi</string>
+			<string>death</string>
 		</array>
 		<key>is_random</key>
 		<true/>

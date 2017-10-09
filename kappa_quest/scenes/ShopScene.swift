@@ -4,9 +4,9 @@ import GameplayKit
 class ShopScene: BaseScene, JobDelegate {
 
     private var page = 0
-    private var jobNameList0 = ["murabito", "wizard", "knight", "priest", "thief", "arakure"]
-    private var jobNameList1 = ["archer", "necro", "ninja", "samurai", "gundam", "fighter"]
-    private var jobNameList2 = ["king", "odoriko", "usagi", "sister", "assassin", "dark_knight"]
+    private var jobNameList0 = ["murabito", "wizard", "knight", "priest", "thief", "archer"]
+    private var jobNameList1 = ["dancer", "necro", "ninja", "samurai", "gundam", "fighter"]
+    private var jobNameList2 = ["king", "angel", "maou", "sister", "assassin", "dark_knight"]
     private var enableJob : [Bool] = [true,false,false,false,false,false,false]
     private var jobList : [String]!
 
@@ -37,6 +37,15 @@ class ShopScene: BaseScene, JobDelegate {
         } else if page == 2 {
             jobList = jobNameList2
         }
+        
+        // お知らせ数
+        NotificationModel.resetShopCount(page)
+        if page == 0 {
+            updateNextPageNotification(1)
+        } else if page == 1 {
+            updateNextPageNotification(2)
+        }
+        
 
         for i in 0...5 {
             displayJobInfo(pos: i, job: jobList[i])
@@ -49,32 +58,26 @@ class ShopScene: BaseScene, JobDelegate {
         }
         setCurrentJobInfo()
     }
+    
+    func updateNextPageNotification(_ page : Int ){
+        let shop_notification_label = childNode(withName: "//ShopNotificationLabel") as! SKLabelNode
+        let shop_notification_node  = childNode(withName: "//ShopNotificationNode") as! SKSpriteNode
+        if NotificationModel.getShopCountByPage(page) == 0 {
+            shop_notification_label.isHidden = true
+            shop_notification_node.isHidden = true
+        } else {
+            shop_notification_label.isHidden = false
+            shop_notification_node.isHidden = false
+            shop_notification_label.text = "\(NotificationModel.getShopCountByPage(page))"
+        }
+    }
+    
 
     func displayJobInfo(pos : Int, job : String){
-        let jobLvLabel  = childNode(withName: "//JobLv\(pos)") as! SKLabelNode
-        let jobImageNode = childNode(withName: "//JobImage\(pos)") as! SKSpriteNode
-
         switch job {
         case "murabito":
             setJobInfo(pos: pos, job: job)
-        case "wizard":
-            if GameData.isClear("tutorial") {
-                setJobInfo(pos: pos, job: job)
-                enableJob[pos] = true
-            } else {
-                setHatenaImage(pos: pos)
-                enableJob[pos] = false
-            }
-        case "knight":
-            if GameData.isClear("tutorial2") {
-                jobLvLabel.text = "LV \(JobModel.getLV(job))"
-                jobImageNode.texture = SKTexture(imageNamed: job)
-                enableJob[pos] = true
-            } else {
-                setHatenaImage(pos: pos)
-                enableJob[pos] = false
-            }
-        case "priest", "thief", "archer", "necro", "fighter":
+        case "wizard", "knight", "priest", "thief", "archer", "necro", "fighter":
             if GameData.isClear(job) {
                 enableJob[pos] = true
                 setJobInfo(pos: pos, job: job)
@@ -132,11 +135,11 @@ class ShopScene: BaseScene, JobDelegate {
         let backLabel  = childNode(withName: "//backLabel") as? SKLabelNode
         let backNode = childNode(withName: "//backNode") as? SKSpriteNode
         if page == 1 {
-            nextLabel?.isHidden = true
-            nextNode?.isHidden = true
+            nextLabel?.isHidden = false
+            nextNode?.isHidden = false
             backLabel?.isHidden = false
             backNode?.isHidden = false
-        } else if page == 0 {
+        } else if page == 2 {
             nextLabel?.isHidden = false
             nextNode?.isHidden = false
             backLabel?.isHidden = true

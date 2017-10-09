@@ -9,7 +9,6 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
 
     var gameData : GameData = GameData()
     var jobModel : JobModel = JobModel()
-
     
     override func didMove(to view: SKView) {
         gameData.setParameterByUserDefault()
@@ -26,21 +25,50 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
         alert.addAction(defaultAction)
         self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
     }
+    
+    let RANDOM_WIDTH = 100
+    func makeSpark(point : CGPoint, isCtirical : Bool = false){
+        var particle = SparkEmitterNode.makeSpark()
+        if isCtirical {
+            particle = SparkEmitterNode.makeBlueSpark()
+        }
 
+        let sparkFadeOut = SKAction.sequence([
+            SKAction.fadeOut(withDuration: 0.25),
+            SKAction.removeFromParent()
+            ])
+        
+        let point_x =  point.x + CGFloat(CommonUtil.rnd(RANDOM_WIDTH) - RANDOM_WIDTH/2)
+        let point_y =  point.y + CGFloat(CommonUtil.rnd(RANDOM_WIDTH) - RANDOM_WIDTH/2)
+        particle.position = CGPoint(x: point_x, y: point_y)
+        particle.run(sparkFadeOut)
+        addChild(particle)
+
+        let point_x2 =  point.x + CGFloat(CommonUtil.rnd(RANDOM_WIDTH) - RANDOM_WIDTH/2)
+        let point_y2 =  point.y + CGFloat(CommonUtil.rnd(RANDOM_WIDTH) - RANDOM_WIDTH/2)
+        let black_particle = SparkEmitterNode.makeBlackSpark()
+        black_particle.position = CGPoint(x: point_x2, y: point_y2)
+        black_particle.run(sparkFadeOut)
+        addChild(black_particle)
+    }
+
+    /***********************************************************************************/
+    /********************************** 画面遷移 ****************************************/
+    /***********************************************************************************/
     func goTitle(){
-        let scene = TitleScene(fileNamed: "TitleScene")!
-        scene.size = self.scene!.size
-        scene.scaleMode = SKSceneScaleMode.aspectFill
-        self.view!.presentScene(scene, transition: .fade(withDuration: Const.transitionInterval))
+        let nextScene = TitleScene(fileNamed: "TitleScene")!
+        nextScene.size = nextScene.size
+        nextScene.scaleMode = SKSceneScaleMode.aspectFill
+        view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
     }
     
     func goWorld(){
-        let scene = WorldScene(fileNamed: "WorldScene")!
-        scene.size = self.scene!.size
-        scene.scaleMode = SKSceneScaleMode.aspectFill
-        self.view!.presentScene(scene, transition: .doorway(withDuration: Const.doorTransitionInterval))
+        let nextScene = WorldScene(fileNamed: "WorldScene")!
+        nextScene.size = nextScene.size
+        nextScene.scaleMode = SKSceneScaleMode.aspectFill
+        view!.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
     }
-
+    
     /***********************************************************************************/
     /********************************** music ******************************************/
     /***********************************************************************************/
@@ -66,13 +94,13 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
             return
         }
         _audioPlayer.numberOfLoops = -1;
-        if ( !_audioPlayer.isPlaying ){
+        if !_audioPlayer.isPlaying {
             _audioPlayer.play()
         }
     }
 
     func stopBGM(){
-        if ( _audioPlayer.isPlaying ){
+        if _audioPlayer.isPlaying {
             _audioPlayer.stop()
         }
     }

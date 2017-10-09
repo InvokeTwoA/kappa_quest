@@ -49,21 +49,30 @@ class Map {
         if map_info["enemies"] != nil {
             enemies = map_info["enemies"] as! [String]
         }
+        
         if map_info["background"] != nil {
             background  = map_info["background"] as! String
         }
-        isEvent     = map_info["event"] as! Bool
-
-        if map_info["is_boss"] != nil {
-            isBoss    = map_info["is_boss"] as! Bool
-            boss_name = map_info["boss_name"] as! String            
-        }
-        if map_info["is_random"] != nil {
-            isRandom    = map_info["is_random"] as! Bool
+        if map_info["event"] != nil {
+            isEvent = map_info["event"] as! Bool
+        } else {
+            isEvent = false
         }
         if isEvent {
             text0 = map_info["event_text0"] as! String
             text1 = map_info["event_text1"] as! String
+        }
+
+        if map_info["is_boss"] != nil {
+            isBoss    = map_info["is_boss"] as! Bool
+            boss_name = map_info["boss_name"] as! String            
+        } else {
+            isBoss = false
+        }
+        if map_info["is_random"] != nil {
+            isRandom    = map_info["is_random"] as! Bool
+        } else {
+            isRandom = false
         }
         
         if map_info["lv"] != nil {

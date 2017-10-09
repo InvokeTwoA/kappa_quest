@@ -16,6 +16,7 @@ class WorldScene: BaseScene, DungeonDelegate {
         "necro",
         "gundom",
         "angel",
+        "king",
         "maou",
         "miyuki"
     ]
@@ -32,6 +33,11 @@ class WorldScene: BaseScene, DungeonDelegate {
     }
     
     override func didMove(to view: SKView) {
+        prepareBGM(fileName: Const.bgm_castle)
+        playBGM()
+
+        setNotificationCount()
+        
         if !GameData.isClear("wizard") {
             let node = childNode(withName: "//knight")
             node?.removeFromParent()
@@ -43,11 +49,11 @@ class WorldScene: BaseScene, DungeonDelegate {
             node1?.removeFromParent()
             node2?.removeFromParent()
             node3?.removeFromParent()
-            
-            if CommonUtil.rnd(6) != 0 {
-                let node4 = childNode(withName: "//dancer")
-                node4?.removeFromParent()
-            }
+        }
+        
+        if CommonUtil.rnd(6) != 0 {
+            let node4 = childNode(withName: "//dancer")
+            node4?.removeFromParent()
         }
         
         if !GameData.isClear("priest") {
@@ -68,17 +74,43 @@ class WorldScene: BaseScene, DungeonDelegate {
             let node = childNode(withName: "//fighter")
             node?.removeFromParent()
         }
-        
         if !GameData.isClear("fighter") {
+            let node = childNode(withName: "//king")
+            node?.removeFromParent()
+        }
+        if !GameData.isClear("king") {
             let node = childNode(withName: "//maou")
             node?.removeFromParent()
         }
-        
         if !GameData.isClear("maou") {
             let node = childNode(withName: "//miyuki")
             node?.removeFromParent()
         }
     }
+    
+    
+    func setNotificationCount(){
+        let bar_notification_label = childNode(withName: "//BarNotificationLabel") as! SKLabelNode
+        let bar_notification_node  = childNode(withName: "//BarNotificationNode") as! SKSpriteNode
+        if NotificationModel.getBarCount() == 0 {
+            bar_notification_label.removeFromParent()
+            bar_notification_node.removeFromParent()
+        } else {
+            bar_notification_label.text = "\(NotificationModel.getBarCount())"
+        }
+
+
+        let shop_notification_label = childNode(withName: "//ShopNotificationLabel") as! SKLabelNode
+        let shop_notification_node  = childNode(withName: "//ShopNotificationNode") as! SKSpriteNode
+        if NotificationModel.getShopCount() == 0 {
+            shop_notification_label.removeFromParent()
+            shop_notification_node.removeFromParent()
+        } else {
+            shop_notification_label.text = "\(NotificationModel.getShopCount())"
+        }
+
+    }
+    
     
     func explainDungeon(_ key: String){
         let storyboard = UIStoryboard(name: "Dungeon", bundle: nil)
@@ -90,6 +122,8 @@ class WorldScene: BaseScene, DungeonDelegate {
     
     
     func goDungeon(_ key : String){
+        stopBGM()
+        
         let map = Map()
         map.initData()
         
@@ -110,6 +144,8 @@ class WorldScene: BaseScene, DungeonDelegate {
     
     // 酒場へ行く
     func goBar(){
+        NotificationModel.resetBarCount()
+        setNotificationCount()        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let listViewController = storyboard.instantiateViewController(withIdentifier: "ListViewController") as! ListViewController
         listViewController.type = "bar"
@@ -145,9 +181,14 @@ class WorldScene: BaseScene, DungeonDelegate {
                 return
             }
             if map_nodes.contains(tapNode.name!) {
-                explainDungeon(tapNode.name!)
+                goDungeon(tapNode.name!)
+//                explainDungeon(tapNode.name!)
             } else if tapNode.name! == "ShopLabel" || tapNode.name == "ShopNode" {
-                goShop()
+                if GameData.isClear("wizard") {
+                    goShop()
+                } else {
+                    displayAlert("君にはまだ転職は早い", message: "「魔法使い」のステージクリアで解禁される", okString: "OK")
+                }
             } else if tapNode.name! == "BarLabel" || tapNode.name == "BarNode" {
                 goBar()
             } else if tapNode.name! == "MenuLabel" || tapNode.name == "MenuNode" {

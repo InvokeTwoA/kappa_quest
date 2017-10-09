@@ -14,7 +14,7 @@ class CutinModel {
     var max_page = 0
     
     // plist からデータを読み込む
-    func readDataByPlist(_ key : String) {
+    func readDataByPlist(_ key : String) {        
         let dataPath = Bundle.main.path(forResource: "cutin", ofType:"plist" )!
         dictionary = NSDictionary(contentsOfFile: dataPath)!
         pageData = dictionary[key] as! [NSDictionary]

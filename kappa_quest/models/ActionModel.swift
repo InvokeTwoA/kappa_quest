@@ -37,7 +37,6 @@ class ActionModel {
     var normalAttack      : SKAction!
     var underAttack       : SKAction!
     var highJump          : SKAction!
-    var sparkFadeOut      : SKAction!
 
     func setActionData(sceneWidth : CGFloat){
         moveSpace = sceneWidth/7.0/4.0
@@ -187,12 +186,6 @@ class ActionModel {
 
         fadeOutQuickly = SKAction.sequence([
             SKAction.fadeOut(withDuration: 1.5),
-            SKAction.removeFromParent()
-        ])
-
-        // 火花など、一瞬だけ出てfadeOut
-        sparkFadeOut = SKAction.sequence([
-            SKAction.fadeOut(withDuration: 0.25),
             SKAction.removeFromParent()
         ])
 
