@@ -21,6 +21,8 @@ class GameOverScene: BaseScene {
     }
     
     override func didMove(to view: SKView) {
+        prepareBGM(fileName: Const.bgm_gameover)
+        playBGM()
         if backScene.world_name == "dancer" {
             let continueLabel = childNode(withName: "//ContinueLabel") as! SKLabelNode
             let continueNode  = childNode(withName: "//ContinueNode")  as! SKSpriteNode
@@ -30,6 +32,8 @@ class GameOverScene: BaseScene {
     }
     
     func goBack(){
+        stopBGM()
+        
         gameData.changeNicknameByDeath()
         resetData()
         self.view!.presentScene(backScene, transition: .flipHorizontal(withDuration: 3.5))
@@ -54,6 +58,7 @@ class GameOverScene: BaseScene {
                 goBack()
             case "WorldNode", "WorldLabel":
                 gameData.changeNicknameByDeath()
+                stopBGM()
                 goWorld()
             default:
                 break

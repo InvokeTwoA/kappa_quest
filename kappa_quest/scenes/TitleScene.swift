@@ -92,6 +92,14 @@ class TitleScene: BaseScene {
         self.view!.presentScene(scene, transition: .fade(withDuration: Const.transitionInterval))
     }
     
+    func goMusic(){
+        stopBGM()
+        let scene = MusicScene(fileNamed: "MusicScene")!
+        scene.size = self.scene!.size
+        scene.scaleMode = SKSceneScaleMode.aspectFill
+        self.view!.presentScene(scene, transition: .fade(withDuration: Const.transitionInterval))
+    }
+    
     func resetAlert(){
         let alert = UIAlertController(
             title: "データをリセットします。",
@@ -130,6 +138,8 @@ class TitleScene: BaseScene {
                 goGame()
             case "ResetNode", "ResetLabel":
                 resetAlert()
+            case "CrossMusic":
+                goMusic()
             default:
                 break
             }

@@ -219,7 +219,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             def = enemyModel.enemies[pos].pie
         }
 
-        if BattleModel.isCritical(luc: Double(kappa.pie)) {
+        if BattleModel.isCritical(luc: Double(kappa.luc)) {
             for _ in 0...2 {
                 makeSpark(point: CGPoint(x: enemy.position.x, y: enemyModel.enemies[pos].position.y), isCtirical: true)
             }
@@ -252,9 +252,9 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     func attacked(attack:Int, type: String, point: CGPoint){
         var damage = 1
         if type == "magic" {
-            damage = BattleModel.calculateDamage(str: attack, def: kappa.pie)
+            damage = BattleModel.calculateDamage(str: attack, def: 0)
         } else {
-            damage = BattleModel.calculateDamage(str: attack, def: kappa.def)
+            damage = BattleModel.calculateDamage(str: attack, def: 0)
         }
         playSoundEffect(type: 1)
 
@@ -391,10 +391,8 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
 
         let HPUpLabel      = childNode(withName: "//HPUpLabel")  as! SKLabelNode
         let StrUpLabel     = childNode(withName: "//StrUpLabel") as! SKLabelNode
-        let DefUpLabel     = childNode(withName: "//DefUpLabel") as! SKLabelNode
         let AgiUpLabel     = childNode(withName: "//AgiUpLabel") as! SKLabelNode
         let IntUpLabel     = childNode(withName: "//IntUpLabel") as! SKLabelNode
-        let PieUpLabel     = childNode(withName: "//PieUpLabel") as! SKLabelNode
         let LucUpLabel     = childNode(withName: "//LucUpLabel") as! SKLabelNode
 
         if jobModel.hp != 0 {
@@ -405,10 +403,6 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             StrUpLabel.text = "+\(jobModel.str)"
             StrUpLabel.run(actionModel.fadeInOut!)
         }
-        if jobModel.def != 0 {
-            DefUpLabel.text = "+\(jobModel.def)"
-            DefUpLabel.run(actionModel.fadeInOut!)
-        }
         if jobModel.str != 0 {
             AgiUpLabel.text = "+\(jobModel.agi)"
             AgiUpLabel.run(actionModel.fadeInOut!)
@@ -416,10 +410,6 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         if jobModel.int != 0 {
             IntUpLabel.text = "+\(jobModel.int)"
             IntUpLabel.run(actionModel.fadeInOut!)
-        }
-        if jobModel.pie != 0 {
-            PieUpLabel.text = "+\(jobModel.pie)"
-            PieUpLabel.run(actionModel.fadeInOut!)
         }
         if jobModel.luc != 0 {
             LucUpLabel.text = "+\(jobModel.luc)"
@@ -746,20 +736,16 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         let HPLabel        = childNode(withName: "//HPLabel")     as! SKLabelNode
         let LVLabel        = childNode(withName: "//LVLabel")     as! SKLabelNode
         let StrLabel       = childNode(withName: "//StrLabel")    as! SKLabelNode
-        let DefLabel       = childNode(withName: "//DefLabel")    as! SKLabelNode
         let AgiLabel       = childNode(withName: "//AgiLabel")    as! SKLabelNode
         let IntLabel       = childNode(withName: "//IntLabel")    as! SKLabelNode
-        let PieLabel       = childNode(withName: "//PieLabel")    as! SKLabelNode
         let LucLabel       = childNode(withName: "//LucLabel")    as! SKLabelNode
 
         MAXHPLabel.text = "HP  \(String(describing: kappa.maxHp))"
         HPLabel.text  = "\(String(describing: kappa.hp))"
         LVLabel.text  = "LV    \(String(describing: kappa.lv))"
         StrLabel.text = "筋力  \(String(describing: kappa.str))"
-        DefLabel.text = "体力  \(String(describing: kappa.def))"
         AgiLabel.text = "敏捷  \(String(describing: kappa.agi))"
         IntLabel.text = "知恵  \(String(describing: kappa.int))"
-        PieLabel.text = "精神  \(String(describing: kappa.pie))"
         LucLabel.text = "幸運  \(String(describing: kappa.luc))"
 
         // 職業情報

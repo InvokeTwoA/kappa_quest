@@ -24,13 +24,7 @@ class BattleModel {
         if def < 0 {
             return 9999999
         }
-        var damage = 0
-        let min_str = CommonUtil.valueMin1(str/4)
-        var tmp_str = CommonUtil.rnd(str)
-        if tmp_str <= min_str {
-            tmp_str = min_str
-        }
-        damage = CommonUtil.valueMin1(tmp_str - CommonUtil.rnd(def))
+        let damage = CommonUtil.valueMin1(str - CommonUtil.rnd(def))
         return damage
     }
 

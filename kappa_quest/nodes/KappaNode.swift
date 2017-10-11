@@ -10,10 +10,8 @@ class KappaNode: SKSpriteNode {
     var maxHp = 10
     var hp = 10
     var str = 2
-    var def = 2
     var agi = 2
     var int = 2
-    var pie = 2
     var luc = 2
     var nextExp = 10
     var exp = 0
@@ -35,10 +33,8 @@ class KappaNode: SKSpriteNode {
         lv      = UserDefaults.standard.integer(forKey: "lv")
         maxHp   = UserDefaults.standard.integer(forKey: "hp")
         str     = UserDefaults.standard.integer(forKey: "str")
-        def     = UserDefaults.standard.integer(forKey: "def")
         agi     = UserDefaults.standard.integer(forKey: "agi")
         int     = UserDefaults.standard.integer(forKey: "int")
-        pie     = UserDefaults.standard.integer(forKey: "pie")
         luc     = UserDefaults.standard.integer(forKey: "luc")
         exp     = UserDefaults.standard.integer(forKey: "exp")
         
@@ -52,10 +48,8 @@ class KappaNode: SKSpriteNode {
         maxHp += jobModel.hp
         hp  += jobModel.hp
         str += jobModel.str
-        def += jobModel.def
         agi += jobModel.agi
         int += jobModel.int
-        pie += jobModel.pie
         luc += jobModel.luc
         exp = 0
         setNextExp(jobModel)        
@@ -73,10 +67,8 @@ class KappaNode: SKSpriteNode {
         UserDefaults.standard.set(lv,  forKey: "lv")
         UserDefaults.standard.set(maxHp,  forKey: "hp")
         UserDefaults.standard.set(str, forKey: "str")
-        UserDefaults.standard.set(def, forKey: "def")
         UserDefaults.standard.set(agi, forKey: "agi")
         UserDefaults.standard.set(int, forKey: "int")
-        UserDefaults.standard.set(pie, forKey: "pie")
         UserDefaults.standard.set(luc, forKey: "luc")
         UserDefaults.standard.set(exp, forKey: "exp")
     }

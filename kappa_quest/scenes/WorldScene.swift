@@ -90,23 +90,22 @@ class WorldScene: BaseScene, DungeonDelegate {
     
     
     func setNotificationCount(){
-        let bar_notification_label = childNode(withName: "//BarNotificationLabel") as! SKLabelNode
-        let bar_notification_node  = childNode(withName: "//BarNotificationNode") as! SKSpriteNode
+        let bar_notification_label = childNode(withName: "//BarNotificationLabel") as? SKLabelNode
+        let bar_notification_node  = childNode(withName: "//BarNotificationNode") as? SKSpriteNode
         if NotificationModel.getBarCount() == 0 {
-            bar_notification_label.removeFromParent()
-            bar_notification_node.removeFromParent()
+            bar_notification_label?.removeFromParent()
+            bar_notification_node?.removeFromParent()
         } else {
-            bar_notification_label.text = "\(NotificationModel.getBarCount())"
+            bar_notification_label?.text = "\(NotificationModel.getBarCount())"
         }
 
-
-        let shop_notification_label = childNode(withName: "//ShopNotificationLabel") as! SKLabelNode
-        let shop_notification_node  = childNode(withName: "//ShopNotificationNode") as! SKSpriteNode
+        let shop_notification_label = childNode(withName: "//ShopNotificationLabel") as? SKLabelNode
+        let shop_notification_node  = childNode(withName: "//ShopNotificationNode") as? SKSpriteNode
         if NotificationModel.getShopCount() == 0 {
-            shop_notification_label.removeFromParent()
-            shop_notification_node.removeFromParent()
+            shop_notification_label?.removeFromParent()
+            shop_notification_node?.removeFromParent()
         } else {
-            shop_notification_label.text = "\(NotificationModel.getShopCount())"
+            shop_notification_label?.text = "\(NotificationModel.getShopCount())"
         }
 
     }

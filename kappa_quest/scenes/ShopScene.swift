@@ -140,10 +140,10 @@ class ShopScene: BaseScene, JobDelegate {
             backLabel?.isHidden = false
             backNode?.isHidden = false
         } else if page == 2 {
-            nextLabel?.isHidden = false
-            nextNode?.isHidden = false
-            backLabel?.isHidden = true
-            backNode?.isHidden = true
+            nextLabel?.isHidden = true
+            nextNode?.isHidden = true
+            backLabel?.isHidden = false
+            backNode?.isHidden = false
         }
     }
 

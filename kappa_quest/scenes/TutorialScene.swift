@@ -26,7 +26,8 @@ class TutorialScene: BaseScene {
         let nextScene = Tutorial2Scene(fileNamed: "Tutorial2Scene")!
         nextScene.size = nextScene.size
         nextScene.scaleMode = SKSceneScaleMode.aspectFill
-        view?.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
+//        view?.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
+        view?.presentScene(nextScene, transition: .crossFade(withDuration: 0.1))
     }
 
     private var kappa_position = 1
