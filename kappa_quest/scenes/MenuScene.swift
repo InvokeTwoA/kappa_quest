@@ -40,7 +40,6 @@ class MenuScene: BaseScene {
             resetLabel.removeFromParent()
             resetNode.removeFromParent()
         }
-        
     }
     
     func showStatus(){
@@ -69,22 +68,29 @@ class MenuScene: BaseScene {
     func goJob(){
         let storyboard = UIStoryboard(name: "Job", bundle: nil)
         let jobViewController = storyboard.instantiateViewController(withIdentifier: "JobViewController") as! JobViewController
-        self.view?.window?.rootViewController?.present(jobViewController, animated: true, completion: nil)
+        view?.window?.rootViewController?.present(jobViewController, animated: true, completion: nil)
     }
     
     func goOption(){
-        let scene = OptionScene(fileNamed: "OptionScene")
-        scene?.size = self.scene!.size
-        scene?.scaleMode = SKSceneScaleMode.aspectFill
-        scene?.backScene = self.scene as! MenuScene        
-        self.view!.presentScene(scene!, transition: .flipVertical(withDuration: Const.transitionInterval))
+        let nextScene = OptionScene(fileNamed: "OptionScene")!
+        nextScene.size = scene!.size
+        nextScene.scaleMode = SKSceneScaleMode.aspectFill
+        nextScene.backScene = scene as! MenuScene
+        view!.presentScene(nextScene, transition: .flipVertical(withDuration: Const.transitionInterval))
     }
     
     func goLibrary(){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let listViewController = storyboard.instantiateViewController(withIdentifier: "ListViewController") as! ListViewController
         listViewController.type = "enemies"
-        self.view?.window?.rootViewController?.present(listViewController, animated: true, completion: nil)
+        view?.window?.rootViewController?.present(listViewController, animated: true, completion: nil)
+    }
+    
+    func goStatus(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let listViewController = storyboard.instantiateViewController(withIdentifier: "ListViewController") as! ListViewController
+        listViewController.type = "status"
+        view?.window?.rootViewController?.present(listViewController, animated: true, completion: nil)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -97,8 +103,8 @@ class MenuScene: BaseScene {
             
             switch tapNode.name! {
             case "SkillNode", "SkillLabel":
-//                goJob()
-                showStatus()
+//                showStatus()
+                goStatus()
             case "LibraryNode", "LibraryLabel":
                 goLibrary()
             case "CloseNode", "CloseLabel":

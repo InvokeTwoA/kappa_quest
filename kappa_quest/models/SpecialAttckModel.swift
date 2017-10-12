@@ -10,6 +10,8 @@ class SpecialAttackModel {
     func finishAttack(){
         mode = ""
         is_attacking = false
+        is_upper = false
+        is_tornado = false
     }
 
     func countUp() {
@@ -55,9 +57,12 @@ class SpecialAttackModel {
     /***********************************************************************************/
     private var superUpperCount = 18  // 昇竜拳の管理変数
     private let SPECIAL_UPPER_NEED_COUNT = 18
+    var is_upper = false
+
     func execUpper(){
         superUpperCount = 0
         is_attacking = true
+        is_upper = true
         mode = "upper"
     }
     
@@ -74,10 +79,12 @@ class SpecialAttackModel {
     /***********************************************************************************/
     private var superTornadoCount = 12  // 竜巻旋風脚の管理変数
     private let SPECIAL_TORNADO_NEED_COUNT = 12
+    var is_tornado = false
 
     func execTornado(){
         superTornadoCount = 0
         is_attacking = true
+        is_tornado = true
         mode = "tornado"
     }
     

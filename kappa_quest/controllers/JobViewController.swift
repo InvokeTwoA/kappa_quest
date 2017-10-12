@@ -93,7 +93,7 @@ class JobViewController : BaseTableViewController {
             cell.textLabel?.text = jobModel.explain
         case JOB_LVUP_PER:
             cell.textLabel?.numberOfLines = 0
-            cell.textLabel?.text = "HP:\(jobModel.hp)\n筋力:\(jobModel.str)\n体力:\(jobModel.def)\n魔力:\(jobModel.int)\n信仰:\(jobModel.pie)\n幸運:\(jobModel.luc)"
+            cell.textLabel?.text = "HP:\(jobModel.hp)\n筋力:\(jobModel.str)\n魔力:\(jobModel.int)\n敏捷:\(jobModel.agi)\n幸運:\(jobModel.luc)"
         case JOB_OWN_SKILL :
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.text = jobModel.own_skill

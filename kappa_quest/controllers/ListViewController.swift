@@ -54,6 +54,16 @@ class ListViewController : BaseTableViewController {
     private let BAR_BACK = 2
     private var talk_array = [0,0,0,0,0,0,0,0,0,0,0,0]
     
+    // ステータス画面
+    private let status_section = ["名前", "レベル", "ステータス", "職業固有スキル", "発動中のスキル", ""]
+    private let STATUS_NAME = 0
+    private let STATUS_LV = 1
+    private let STATUS_STATUS = 2
+    private let STATUS_OWN_SKILL = 3
+    private let STATUS_GENERAL_SKILL = 4
+    private let STATUS_BACK = 5
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setData()        
@@ -77,6 +87,8 @@ class ListViewController : BaseTableViewController {
             barModel.readDataByPlist()
             setBarPeople()
             NotificationModel.resetBarCount()
+        case "status":
+            setSections(status_section)
         default:
             break
         }
@@ -129,6 +141,8 @@ class ListViewController : BaseTableViewController {
             } else {
                 return bar_people.count
             }
+        case "status":
+            return 1
         default:
             return 0
         }
@@ -194,6 +208,44 @@ class ListViewController : BaseTableViewController {
             default:
                 break
             }
+        case "status":
+            let kappa = KappaNode()
+            kappa.setParameterByUserDefault()
+            let gameData = GameData()
+            gameData.setParameterByUserDefault()
+            let jobModel = JobModel()
+            jobModel.readDataByPlist()
+            jobModel.loadParam()
+            let skillModel = SkillModel()
+            skillModel.readDataByPlist()
+
+            switch indexPath.section {
+            case STATUS_NAME:
+                cell.textLabel?.text = gameData.displayName(jobModel.displayName)
+                cell.imageView?.isHidden = true
+            case STATUS_LV:
+                cell.textLabel?.text = "Total LV\(kappa.lv)\n\(jobModel.displayName)LV\(jobModel.lv)"
+                cell.imageView?.isHidden = true
+                break
+            case STATUS_STATUS:
+                cell.textLabel?.text = kappa.displayStatus()
+                cell.imageView?.isHidden = true
+                break
+            case STATUS_OWN_SKILL:
+                cell.textLabel?.text = jobModel.own_skill
+                cell.imageView?.isHidden = true
+                break
+            case STATUS_GENERAL_SKILL:
+                cell.textLabel?.text = JobModel.allSkillExplain(skillModel, kappa: kappa, gameData: gameData)
+                cell.imageView?.isHidden = true
+                break
+            case STATUS_BACK:
+                cell.textLabel?.text = "戻る"
+                cell.imageView?.isHidden = true
+                break
+            default:
+                break
+            }
         default:
             break
         }
@@ -226,6 +278,10 @@ class ListViewController : BaseTableViewController {
 
                 talk_array[indexPath.row] = CommonUtil.rnd(list.count)
                 _tableView.reloadRows(at: [indexPath], with: .none)
+            }
+        case "status":
+            if indexPath.section == STATUS_BACK {
+                dismiss(animated: false, completion: nil)
             }
         default:
             break
@@ -272,6 +328,11 @@ class ListViewController : BaseTableViewController {
                 }
             }
             return
+        case "status":
+            if indexPath.section == STATUS_BACK {
+                cell.backgroundColor = CommonUtil.UIColorFromRGB(0xfff0f5)
+                return
+            }
         default:
             break
         }

@@ -27,6 +27,7 @@ class EnemyNode: SKSpriteNode {
     var isGhost = false
     var isMovingFree = false
     var isZombi = ""
+    var isBoss = false
 
     // 各種フラグ
     var isDead = true
@@ -123,6 +124,7 @@ class EnemyNode: SKSpriteNode {
         int += 1
         pie += 1
         lv += 1
+        isBoss = true
         bossSpeedUp()        
         size = CGSize(width: Const.bossSize, height: Const.bossSize)
     }
@@ -256,7 +258,12 @@ class EnemyNode: SKSpriteNode {
     /******************************** 物理属性      ************************************/
     /***********************************************************************************/
     func setPhysic(){
-        let physic = SKPhysicsBody(rectangleOf: CGSize(width: Const.kappaSize, height: Const.kappaSize))
+        var enemy_size = Const.kappaSize
+        if isBoss {
+            enemy_size = Const.bossSize
+        }
+        
+        let physic = SKPhysicsBody(rectangleOf: CGSize(width: enemy_size, height: enemy_size), center: CGPoint(x: 0, y: size.height/2.0))
         if canFly {
             physic.affectedByGravity = true
         } else {

@@ -82,6 +82,9 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         kappa = childNode(withName: "//kappa") as! KappaNode
         kappa.setParameterByUserDefault()
         kappa.setNextExp(jobModel)
+        if jobModel.name == "knight" {
+            kappa.physic_type = "noppo"
+        }
         kappa.setPhysic()
         kappa_first_position_y = kappa.position.y
         setFirstPosition()
@@ -99,9 +102,9 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     // カッパを初期ポジションに設置
     func setFirstPosition(){
         map.myPosition = 1
-        kappa?.position.x = getPositionX(1)
-        kappa?.position.y = kappa_first_position_y
-        kappa?.texture = SKTexture(imageNamed: "kappa")
+        kappa.position.x = getPositionX(1)
+        kappa.position.y = kappa_first_position_y
+        kappa.texture = SKTexture(imageNamed: "kappa")
     }
 
     func saveData(){
@@ -214,9 +217,9 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         var def = 0
         let pos = enemy.pos
         if type == "physic" {
-            def = enemyModel.enemies[pos].def
+            def = enemy.def
         } else {
-            def = enemyModel.enemies[pos].pie
+            def = enemy.pie
         }
 
         if BattleModel.isCritical(luc: Double(kappa.luc)) {
@@ -339,7 +342,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         removeEnemyLifeBar(pos)
         map.positionData[pos] = "free"
 
-        if enemy.isZombi != "" {
+        if enemy.isZombi != "" && jobModel.name != "necro" {
             enemy.run(actionModel.enemyChange!, completion: {() -> Void in
                 self.createGhost(position: enemy.position, enemy_name: enemy.isZombi, pos: pos)
                 enemy.run(self.actionModel.displayExp!)
@@ -989,7 +992,6 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             SKAction.moveBy(x: 0, y: -45, duration: Const.headAttackSpeed/2),
         ])
         kappa.run(upper, completion: {() -> Void in
-            self.kappa.isTornado = false
             self.specialAttackModel.finishAttack()
         })
     }
@@ -1042,7 +1044,6 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                 specialAttackModel.finishAttack()
                 kappa.removeAllActions()
                 kappa.position.y = kappa_first_position_y
-                kappa.isTornado = false
             }
         }
         if gameOverFlag || bossStopFlag {
@@ -1075,7 +1076,6 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                 specialAttackModel.finishAttack()
                 kappa.removeAllActions()
                 kappa.position.y = kappa_first_position_y
-                kappa.isTornado = false
             }
         }
         if gameOverFlag || bossStopFlag {
@@ -1172,7 +1172,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                     return
                 }
                 // 敵の攻撃
-                if enemy.isAttacking && !kappa.isTornado {
+                if enemy.isAttacking && !specialAttackModel.is_tornado && !specialAttackModel.is_upper {
                     attacked(attack: enemy.str, type: "physic", point: (firstBody.node?.position)!)
                     makeSpark(point: (firstBody.node?.position)!)
                 }
@@ -1245,7 +1245,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         let dt = currentTime - self.lastUpdateTime
         self.lastUpdateTime = currentTime
 
-        if kappa.isTornado || kappa.isSpin {
+        if specialAttackModel.is_tornado || kappa.isSpin {
             if CommonUtil.rnd(4) == 0 {
                 kappa.xScale *= -1
             }

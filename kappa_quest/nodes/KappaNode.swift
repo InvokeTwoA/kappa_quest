@@ -15,12 +15,13 @@ class KappaNode: SKSpriteNode {
     var luc = 2
     var nextExp = 10
     var exp = 0
+    var physic_type = "normal"
+
 
     var mode = ""
 
     // フラグ
     var konjoEndFlag = false
-    var isTornado = false
     var isSpin = false
 
     // パラメーターを userDefault から読み取り
@@ -72,10 +73,28 @@ class KappaNode: SKSpriteNode {
         UserDefaults.standard.set(luc, forKey: "luc")
         UserDefaults.standard.set(exp, forKey: "exp")
     }
+    
+    func displayStatus() -> String {
+        var res = ""
+        res += "HP : \(maxHp)\n"
+        res += "筋力 : \(str)\n"
+        res += "魔力 : \(int)\n"
+        res += "敏捷 : \(agi)\n"
+        res += "幸運 : \(luc)"
+        
+        return res
+    }
 
     // 物理属性を適用
     func setPhysic(){
-        let physic = SKPhysicsBody(rectangleOf: CGSize(width: Const.kappaSize, height: Const.kappaSize))
+        var kappa_height = Const.kappaSize
+        var centerPoint = CGPoint(x: 0, y: Const.kappaSize/2.0)
+        if physic_type == "noppo" {
+            kappa_height = 2*Const.kappaSize
+            centerPoint = CGPoint(x: 0, y: Const.kappaSize)
+            size = CGSize(width: Const.kappaSize, height: 2*Const.kappaSize)
+        }
+        let physic = SKPhysicsBody(rectangleOf: CGSize(width: Const.kappaSize, height: kappa_height), center: centerPoint)
         physic.affectedByGravity = false
         physic.allowsRotation = false
         physic.isDynamic = false
@@ -84,15 +103,16 @@ class KappaNode: SKSpriteNode {
         physic.collisionBitMask = 0
         physic.linearDamping = 0
         physic.friction = 0
-        self.physicsBody = physic
+        physicsBody = physic
     }
-
+    
     // カッパの華麗なる攻撃
     // 画像をランダムに変更
     func attack(){
         let images = ["kappa_punch", "kappa_upper", "kappa_kick", "kappa_body", "kappa_punch_r", "kappa_flying"]
         let image = images[CommonUtil.rnd(images.count)]
         texture = SKTexture(imageNamed: image)
+
         setPhysic()
     }
 
@@ -121,7 +141,6 @@ class KappaNode: SKSpriteNode {
     // カッパ竜巻旋風脚
     func tornado(){
         texture = SKTexture(imageNamed: "kappa_kick")
-        isTornado = true
     }
 
     // カッパ波動砲

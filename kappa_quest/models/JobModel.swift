@@ -12,10 +12,8 @@ class JobModel {
     // その職業の成長率
     var hp = 0
     var str = 0
-    var def = 0
     var agi = 0
     var int = 0
-    var pie = 0
     var luc = 0
     
     var explain = ""
@@ -36,10 +34,8 @@ class JobModel {
         displayName     = data.object(forKey: "name") as! String
         hp              = data.object(forKey: "hp") as! Int
         str             = data.object(forKey: "str") as! Int
-        def             = data.object(forKey: "def") as! Int
         agi             = data.object(forKey: "agi") as! Int
         int             = data.object(forKey: "int") as! Int
-        pie             = data.object(forKey: "pie") as! Int
         luc             = data.object(forKey: "luc") as! Int
         
         explain         = data.object(forKey: "explain") as! String

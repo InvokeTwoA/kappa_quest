@@ -16,14 +16,10 @@
 		<integer>3</integer>
 		<key>str</key>
 		<integer>1</integer>
-		<key>def</key>
-		<integer>0</integer>
 		<key>agi</key>
 		<integer>0</integer>
 		<key>int</key>
 		<integer>1</integer>
-		<key>pie</key>
-		<integer>0</integer>
 		<key>luc</key>
 		<integer>0</integer>
 	</dict>
@@ -34,7 +30,7 @@
 		<key>explain</key>
 		<string>守る事に重きを置いた戦士。 鉄壁の防御力を誇る。</string>
 		<key>own_skill</key>
-		<string>なし</string>
+		<string>[高身長] 身長が高くなります。</string>
 		<key>general_skill</key>
 		<string>[機械学習(lv)]
 LVアップするたびにHPが(lv)回復。 回復量は騎士LVに等しい。 </string>
@@ -42,14 +38,10 @@ LVアップするたびにHPが(lv)回復。 回復量は騎士LVに等しい�
 		<integer>4</integer>
 		<key>str</key>
 		<integer>2</integer>
-		<key>def</key>
-		<integer>2</integer>
 		<key>agi</key>
 		<integer>1</integer>
 		<key>int</key>
 		<integer>0</integer>
-		<key>pie</key>
-		<integer>1</integer>
 		<key>luc</key>
 		<integer>1</integer>
 	</dict>
@@ -69,14 +61,10 @@ LVアップするたびにHPが(lv)回復。 回復量は騎士LVに等しい�
 		<integer>1</integer>
 		<key>str</key>
 		<integer>0</integer>
-		<key>def</key>
-		<integer>0</integer>
 		<key>agi</key>
 		<integer>1</integer>
 		<key>int</key>
 		<integer>1</integer>
-		<key>pie</key>
-		<integer>2</integer>
 		<key>luc</key>
 		<integer>0</integer>
 	</dict>
@@ -94,14 +82,10 @@ LVアップするたびにHPが(lv)回復。 回復量は騎士LVに等しい�
 		<integer>3</integer>
 		<key>str</key>
 		<integer>1</integer>
-		<key>def</key>
-		<integer>1</integer>
 		<key>agi</key>
 		<integer>0</integer>
 		<key>int</key>
 		<integer>2</integer>
-		<key>pie</key>
-		<integer>1</integer>
 		<key>luc</key>
 		<integer>0</integer>
 	</dict>
@@ -121,14 +105,10 @@ LVアップするたびにHPが(lv)回復。 回復量は騎士LVに等しい�
 		<integer>3</integer>
 		<key>str</key>
 		<integer>2</integer>
-		<key>def</key>
-		<integer>1</integer>
 		<key>agi</key>
 		<integer>3</integer>
 		<key>int</key>
 		<integer>1</integer>
-		<key>pie</key>
-		<integer>0</integer>
 		<key>luc</key>
 		<integer>3</integer>
 	</dict>
@@ -146,13 +126,9 @@ LVアップするたびにHPが(lv)回復。 回復量は騎士LVに等しい�
 		<integer>4</integer>
 		<key>str</key>
 		<integer>1</integer>
-		<key>def</key>
-		<integer>1</integer>
 		<key>agi</key>
 		<integer>2</integer>
 		<key>int</key>
-		<integer>2</integer>
-		<key>pie</key>
 		<integer>2</integer>
 		<key>luc</key>
 		<integer>1</integer>
@@ -164,21 +140,17 @@ LVアップするたびにHPが(lv)回復。 回復量は騎士LVに等しい�
 		<key>explain</key>
 		<string>死者を操る禁術に魅入られし者。 呪いによる独特なスキルを扱う。</string>
 		<key>own_skill</key>
-		<string></string>
+		<string>[成仏] ゾンビやミイラの転生能力を封じる。</string>
 		<key>general_skill</key>
 		<string>[生命奪取] 敵を撃破時に、ネクロマンサーLVだけHPを回復する。</string>
 		<key>hp</key>
 		<integer>4</integer>
 		<key>str</key>
 		<integer>1</integer>
-		<key>def</key>
-		<integer>1</integer>
 		<key>agi</key>
 		<integer>0</integer>
 		<key>int</key>
 		<integer>3</integer>
-		<key>pie</key>
-		<integer>2</integer>
 		<key>luc</key>
 		<integer>1</integer>
 	</dict>
@@ -196,13 +168,9 @@ LVアップするたびにHPが(lv)回復。 回復量は騎士LVに等しい�
 		<integer>3</integer>
 		<key>str</key>
 		<integer>1</integer>
-		<key>def</key>
-		<integer>0</integer>
 		<key>agi</key>
 		<integer>3</integer>
 		<key>int</key>
-		<integer>1</integer>
-		<key>pie</key>
 		<integer>1</integer>
 		<key>luc</key>
 		<integer>1</integer>
@@ -221,13 +189,9 @@ LVアップするたびにHPが(lv)回復。 回復量は騎士LVに等しい�
 		<integer>5</integer>
 		<key>str</key>
 		<integer>2</integer>
-		<key>def</key>
-		<integer>2</integer>
 		<key>agi</key>
 		<integer>2</integer>
 		<key>int</key>
-		<integer>2</integer>
-		<key>pie</key>
 		<integer>2</integer>
 		<key>luc</key>
 		<integer>2</integer>
@@ -246,14 +210,10 @@ LVアップするたびにHPが(lv)回復。 回復量は騎士LVに等しい�
 		<integer>4</integer>
 		<key>str</key>
 		<integer>3</integer>
-		<key>def</key>
-		<integer>1</integer>
 		<key>agi</key>
 		<integer>4</integer>
 		<key>int</key>
 		<integer>3</integer>
-		<key>pie</key>
-		<integer>0</integer>
 		<key>luc</key>
 		<integer>0</integer>
 	</dict>
@@ -271,14 +231,10 @@ LVアップするたびにHPが(lv)回復。 回復量は騎士LVに等しい�
 		<integer>0</integer>
 		<key>str</key>
 		<integer>5</integer>
-		<key>def</key>
-		<integer>0</integer>
 		<key>agi</key>
 		<integer>5</integer>
 		<key>int</key>
 		<integer>5</integer>
-		<key>pie</key>
-		<integer>0</integer>
 		<key>luc</key>
 		<integer>5</integer>
 	</dict>
