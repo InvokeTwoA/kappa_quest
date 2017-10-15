@@ -12,6 +12,7 @@ class GameData {
     // option
     var bgmFlag = true
     var soundEffectFlag = true
+    var volume : Float = 1.0
     
     // パラメーターを userDefault から読み取り
     func setParameterByUserDefault(){
@@ -23,6 +24,7 @@ class GameData {
         soundEffectFlag = UserDefaults.standard.bool(forKey: "sound_effect")
         nickname        = UserDefaults.standard.string(forKey: "nickname")!
         name            = UserDefaults.standard.string(forKey: "name")!
+        volume          = UserDefaults.standard.float(forKey: "volume")
     }
     
     func saveParam(){
@@ -30,12 +32,18 @@ class GameData {
         UserDefaults.standard.set(bgmFlag,          forKey: "bgm")
         UserDefaults.standard.set(soundEffectFlag,  forKey: "sound_effect")
         UserDefaults.standard.set(nickname,         forKey: "nickname")
-        UserDefaults.standard.set(name,          forKey: "name")
+        UserDefaults.standard.set(name,             forKey: "name")
+        UserDefaults.standard.set(volume,           forKey: "volume")
     }
     
     func displayName(_ job : String) -> String {
         return "\(nickname)\(job)\(name)"
     }
+
+    func displayNickJob(_ job : String) -> String {
+        return "\(nickname)\(job)"
+    }
+
     
     
     func getSkill(key : String){
@@ -62,7 +70,7 @@ class GameData {
     
     func changeNicknameByLV(lv : Int){
         if lv == 3 {
-            let list = ["そこそこ慣れた", "一人前の", "すごい"]
+            let list = ["中級", "一人前の", "すごい"]
             nickname = list[CommonUtil.rnd(list.count)]
         } else if lv == 5 {
             let list = ["ハイパー", "スーパー", "超", "ベテラン", "一流"]
@@ -119,6 +127,26 @@ class GameData {
     class func isChangeJob() -> Bool {
         return UserDefaults.standard.bool(forKey: "change_job")
     }
+    
+    class func setName(value : String) {
+        UserDefaults.standard.set(value,  forKey: "name")
+        if value == "お兄様" {
+            UserDefaults.standard.set("最強の",  forKey: "nickname")
+            let kappa = KappaNode()
+            kappa.oniisama()
+            kappa.saveParam()
+        } else if value == "ラッキー" {
+            let kappa = KappaNode()
+            kappa.lucky()
+            kappa.saveParam()
+        }
+    }
+    
+    class func getName() -> String {
+        return UserDefaults.standard.string(forKey: "name")!
+    }
+    
+
     
     
 }

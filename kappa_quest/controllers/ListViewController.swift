@@ -190,15 +190,19 @@ class ListViewController : BaseTableViewController {
         case "bar":
             switch indexPath.section {
             case BAR_MASTER:
-                let list = barModel.getList("master")
-                cell.textLabel?.text = list[CommonUtil.rnd(list.count)]
-                cell.imageView?.isHidden = false
-                cell.imageView?.image = UIImage(named: "master")
+                if GameData.isClear("question") {
+                    cell.textLabel?.text = "今日は閉店だ。もう帰ってくれ……。"
+                    cell.imageView?.isHidden = false
+                    cell.imageView?.image = UIImage(named: "master")
+                } else {
+                    let list = barModel.getList("master")
+                    cell.textLabel?.text = list[CommonUtil.rnd(list.count)]
+                    cell.imageView?.isHidden = false
+                    cell.imageView?.image = UIImage(named: "master")
+                }
             case BAR_PEOPLE:
                 let people = bar_people[indexPath.row]
                 let list = barModel.getList(people)
-                
-//                cell.textLabel?.text = list[CommonUtil.rnd(list.count)]
                 cell.textLabel?.text = list[talk_array[indexPath.row]]
                 cell.imageView?.isHidden = false
                 cell.imageView?.image = UIImage(named: people)
@@ -253,6 +257,7 @@ class ListViewController : BaseTableViewController {
     }
 
     // タップ時の処理
+    var bar_tap_count = 0
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch type {
         case "enemies":
@@ -270,7 +275,13 @@ class ListViewController : BaseTableViewController {
                 _tableView.reloadData()
             }
         case "bar":
-            if indexPath.section == BAR_BACK {
+            if indexPath.section == BAR_MASTER {
+                bar_tap_count += 1
+                if bar_tap_count >= 77 {
+                    GameData.clearCountUp("question")
+                }
+                _tableView.reloadRows(at: [indexPath], with: .none)
+            } else if indexPath.section == BAR_BACK {
                 dismiss(animated: false, completion: nil)
             } else {
                 let people = bar_people[indexPath.row]
@@ -325,6 +336,13 @@ class ListViewController : BaseTableViewController {
                     cell.backgroundColor = .green
                 default:
                     cell.backgroundColor = .white
+                }
+                return
+            } else if indexPath.section == BAR_MASTER {
+                if GameData.isClear("question") {
+                    cell.backgroundColor = .black
+                    cell.textLabel?.textColor = .white
+                    return
                 }
             }
             return

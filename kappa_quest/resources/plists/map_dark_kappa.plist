@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>0.0</key>
+	<dict>
+		<key>background</key>
+		<string>bg_dungeon</string>
+		<key>lv</key>
+		<integer>20</integer>
+		<key>enemies</key>
+		<array/>
+		<key>event</key>
+		<true/>
+		<key>event_text0</key>
+		<string>この先に</string>
+		<key>event_text1</key>
+		<string>闇のカッパが待っている</string>
+	</dict>
+	<key>0.1</key>
+	<dict>
+		<key>enemies</key>
+		<array>
+			<string></string>
+			<string></string>
+			<string></string>
+			<string>dark_kappa</string>
+		</array>
+		<key>is_boss</key>
+		<true/>
+		<key>boss_name</key>
+		<string>闇のカッパ</string>
+		<key>is_random</key>
+		<false/>
+		<key>event</key>
+		<false/>
+	</dict>
+</dict>
+</plist>

@@ -55,7 +55,6 @@ class CutinScene: BaseScene {
         if bgm.isPlaying {
             bgm.stop()
         }
-        
         let nextScene = GameClearScene(fileNamed: "GameClearScene")!
         nextScene.size = nextScene.size
         nextScene.scaleMode = SKSceneScaleMode.aspectFill
@@ -65,6 +64,23 @@ class CutinScene: BaseScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         page += 1
+        for t in touches {
+            let positionInScene = t.location(in: self)
+            let tapNode = self.atPoint(positionInScene)
+            if tapNode.name != nil {
+                switch tapNode.name! {
+                case "SkipNode", "SkipLabel":
+                    if key == "pre" {
+                        goBack()
+                    } else if key == "end" {
+                        goClear()
+                    }
+                default:
+                    break
+                }
+            }
+        }
+
         if cutinModel.max_page <= page {
             if key == "pre" {
                 goBack()

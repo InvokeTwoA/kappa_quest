@@ -9,6 +9,7 @@ class MusicScene: BaseScene {
     
     override func sceneDidLoad() {
         prepareBGM(fileName: "maoudamashii_fantasy15")
+        gameData.setParameterByUserDefault()
     }
 
     override func willMove(from view: SKView) {
@@ -28,16 +29,27 @@ class MusicScene: BaseScene {
             volume = 1.0
         }
         _audioPlayer.volume = volume
+        
+        let volumeLabel = childNode(withName: "//volumeLabel") as! SKLabelNode
+        volumeLabel.text = "音量 \(volume)"
+        
+        gameData.volume = volume
+        gameData.saveParam()
     }
 
     func volumeDown(){
-        if volume < 0.0 {
-            volume = 0.0
-        }
         volume -= 0.1
+        if volume <= 0.1 {
+            volume = 0.1
+        }
         _audioPlayer.volume = volume
+        
+        let volumeLabel = childNode(withName: "//volumeLabel") as! SKLabelNode
+        volumeLabel.text = "音量 \(volume)"
+        
+        gameData.volume = volume
+        gameData.saveParam()
     }
-
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {

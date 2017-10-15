@@ -73,6 +73,11 @@
 		CE7E69781F8D2E16000ECC33 /* bgm_maoudamashii_8bit22.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CE7E69771F8D2E16000ECC33 /* bgm_maoudamashii_8bit22.mp3 */; };
 		CE7E697A1F8D2E22000ECC33 /* bgm_maoudamashii_8bit23.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CE7E69791F8D2E22000ECC33 /* bgm_maoudamashii_8bit23.mp3 */; };
 		CE7E697C1F8D3345000ECC33 /* bgm_maoudamashii_8bit26.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CE7E697B1F8D3345000ECC33 /* bgm_maoudamashii_8bit26.mp3 */; };
+		CE7E697E1F92054D000ECC33 /* map_master.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE7E697D1F92054D000ECC33 /* map_master.plist */; };
+		CE7E69801F92148C000ECC33 /* map_dark_kappa.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE7E697F1F92148C000ECC33 /* map_dark_kappa.plist */; };
+		CE7E69841F931495000ECC33 /* LastBattleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7E69831F931495000ECC33 /* LastBattleScene.swift */; };
+		CE7E69861F9320B0000ECC33 /* map_last.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE7E69851F9320B0000ECC33 /* map_last.plist */; };
+		CE7E69881F938F84000ECC33 /* LastBattleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CE7E69871F938F84000ECC33 /* LastBattleScene.sks */; };
 		CE8D51391F6D8E9B004F8D0B /* map_archer.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE8D51381F6D8E9B004F8D0B /* map_archer.plist */; };
 		CE8D513C1F6E46DF004F8D0B /* JobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8D513B1F6E46DF004F8D0B /* JobViewController.swift */; };
 		CE8D513E1F6FB3F4004F8D0B /* map_knight.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE8D513D1F6FB3F4004F8D0B /* map_knight.plist */; };
@@ -190,6 +195,11 @@
 		CE7E69771F8D2E16000ECC33 /* bgm_maoudamashii_8bit22.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bgm_maoudamashii_8bit22.mp3; path = resources/musics/bgm_maoudamashii_8bit22.mp3; sourceTree = "<group>"; };
 		CE7E69791F8D2E22000ECC33 /* bgm_maoudamashii_8bit23.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bgm_maoudamashii_8bit23.mp3; path = resources/musics/bgm_maoudamashii_8bit23.mp3; sourceTree = "<group>"; };
 		CE7E697B1F8D3345000ECC33 /* bgm_maoudamashii_8bit26.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bgm_maoudamashii_8bit26.mp3; path = resources/musics/bgm_maoudamashii_8bit26.mp3; sourceTree = "<group>"; };
+		CE7E697D1F92054D000ECC33 /* map_master.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_master.plist; path = resources/plists/map_master.plist; sourceTree = "<group>"; };
+		CE7E697F1F92148C000ECC33 /* map_dark_kappa.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_dark_kappa.plist; path = resources/plists/map_dark_kappa.plist; sourceTree = "<group>"; };
+		CE7E69831F931495000ECC33 /* LastBattleScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LastBattleScene.swift; path = scenes/LastBattleScene.swift; sourceTree = "<group>"; };
+		CE7E69851F9320B0000ECC33 /* map_last.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_last.plist; path = resources/plists/map_last.plist; sourceTree = "<group>"; };
+		CE7E69871F938F84000ECC33 /* LastBattleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = LastBattleScene.sks; path = sks/LastBattleScene.sks; sourceTree = "<group>"; };
 		CE8D51381F6D8E9B004F8D0B /* map_archer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_archer.plist; path = resources/plists/map_archer.plist; sourceTree = "<group>"; };
 		CE8D513B1F6E46DF004F8D0B /* JobViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JobViewController.swift; path = controllers/JobViewController.swift; sourceTree = "<group>"; };
 		CE8D513D1F6FB3F4004F8D0B /* map_knight.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_knight.plist; path = resources/plists/map_knight.plist; sourceTree = "<group>"; };
@@ -331,6 +341,9 @@
 				CE7E69651F8AB48C000ECC33 /* map_king.plist */,
 				CE31F9461F63BE5A00E868FB /* map_maou.plist */,
 				CE7E694D1F85E490000ECC33 /* map_miyuki.plist */,
+				CE7E697D1F92054D000ECC33 /* map_master.plist */,
+				CE7E697F1F92148C000ECC33 /* map_dark_kappa.plist */,
+				CE7E69851F9320B0000ECC33 /* map_last.plist */,
 			);
 			name = map;
 			sourceTree = "<group>";
@@ -436,6 +449,7 @@
 				CE7E695B1F889B8D000ECC33 /* tutorial */,
 				CE31F9421F626F4D00E868FB /* WorldScene.swift */,
 				CEC2B6841F177A3C0014B114 /* GameScene.swift */,
+				CE7E69831F931495000ECC33 /* LastBattleScene.swift */,
 				CE31F92C1F544FD000E868FB /* CutinScene.swift */,
 				CE6BB8281F24D3040046DA65 /* MenuScene.swift */,
 				CEB904561F24EBBE0061A919 /* ShopScene.swift */,
@@ -462,13 +476,14 @@
 			children = (
 				CE31F9281F53BD4200E868FB /* TitleScene.sks */,
 				CE6BB8261F24CAA30046DA65 /* GameScene.sks */,
+				CE7E69871F938F84000ECC33 /* LastBattleScene.sks */,
 				CE6BB8241F24CA2E0046DA65 /* MenuScene.sks */,
 				CE31F9401F626CF600E868FB /* WorldScene.sks */,
 				CE31F92A1F5449CF00E868FB /* CutinScene.sks */,
 				CE7E69711F8B74D7000ECC33 /* MusicScene.sks */,
-				CED621E51F40924D00C92480 /* GameOverScene.sks */,
 				CE7E695E1F88D139000ECC33 /* tutorial */,
 				CE31F94E1F653B9000E868FB /* GameClearScene.sks */,
+				CED621E51F40924D00C92480 /* GameOverScene.sks */,
 				CE31F9201F5156C200E868FB /* OptionScene.sks */,
 				CEB904541F24EBA10061A919 /* ShopScene.sks */,
 				CEC2B6821F177A3C0014B114 /* Actions.sks */,
@@ -643,6 +658,7 @@
 				CE7E694E1F85E490000ECC33 /* map_miyuki.plist in Resources */,
 				CE7E696C1F8B6ED9000ECC33 /* se_maoudamashii_battle09.mp3 in Resources */,
 				CED621EA1F41EE6C00C92480 /* map_wizard.plist in Resources */,
+				CE7E69801F92148C000ECC33 /* map_dark_kappa.plist in Resources */,
 				CE7E69521F87C13C000ECC33 /* TutorialScene.sks in Resources */,
 				CE7E694A1F82745D000ECC33 /* map_gundom.plist in Resources */,
 				CEC2B68C1F177A3C0014B114 /* Assets.xcassets in Resources */,
@@ -658,15 +674,18 @@
 				CE524F801F20D5B900A6D14C /* jpn.strings in Resources */,
 				CE31F94B1F63C72000E868FB /* map_priest.plist in Resources */,
 				CE31F9331F5A673F00E868FB /* skills.plist in Resources */,
+				CE7E69861F9320B0000ECC33 /* map_last.plist in Resources */,
 				CE7E696E1F8B6EE1000ECC33 /* se_maoudamashii_battle17.mp3 in Resources */,
 				CE7E69721F8B74D7000ECC33 /* MusicScene.sks in Resources */,
 				CE524F831F20D88800A6D14C /* eng.strings in Resources */,
 				CEC2B68F1F177A3C0014B114 /* LaunchScreen.storyboard in Resources */,
 				CE7E697A1F8D2E22000ECC33 /* bgm_maoudamashii_8bit23.mp3 in Resources */,
+				CE7E697E1F92054D000ECC33 /* map_master.plist in Resources */,
 				CE7E696A1F8B6ED2000ECC33 /* se_maoudamashii_battle08.mp3 in Resources */,
 				CE8D51391F6D8E9B004F8D0B /* map_archer.plist in Resources */,
 				CE5884E91F7E97A500ABAC1C /* bar.plist in Resources */,
 				CEDBE7961F1CC469007E72B9 /* enemies.plist in Resources */,
+				CE7E69881F938F84000ECC33 /* LastBattleScene.sks in Resources */,
 				CEC2B6831F177A3C0014B114 /* Actions.sks in Resources */,
 				CE6BB8251F24CA2E0046DA65 /* MenuScene.sks in Resources */,
 				CE31F94F1F653B9000E868FB /* GameClearScene.sks in Resources */,
@@ -731,6 +750,7 @@
 			files = (
 				CEC2B6A61F1A4DE70014B114 /* EnemyNode.swift in Sources */,
 				CE31F9231F51582500E868FB /* OptionScene.swift in Sources */,
+				CE7E69841F931495000ECC33 /* LastBattleScene.swift in Sources */,
 				CE524F851F236EEC00A6D14C /* GameData.swift in Sources */,
 				CED377841F7003D50068768B /* WorldModel.swift in Sources */,
 				CEB904571F24EBBE0061A919 /* ShopScene.swift in Sources */,

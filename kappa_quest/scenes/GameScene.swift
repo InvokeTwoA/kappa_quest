@@ -5,24 +5,23 @@ import AVFoundation
 
 class GameScene: BaseScene, SKPhysicsContactDelegate {
 
-    // 各種モデル
+    // internal要素
+    internal var actionModel : ActionModel = ActionModel()
+    internal var kappa_first_position_y : CGFloat!
+    internal var kappa : KappaNode!   // かっぱ画像
+    internal var map : Map = Map()
+    
+    // private要素
     private var enemyModel : EnemyModel = EnemyModel()
-    private var actionModel : ActionModel = ActionModel()
     private var specialAttackModel : SpecialAttackModel = SpecialAttackModel()
     private var skillModel : SkillModel = SkillModel()
-    var map : Map = Map()
-
-    // Node
-    var kappa : KappaNode!   // かっぱ画像
-    private var kappa_first_position_y : CGFloat!
-    private var big_message_first_position_y : CGFloat!
-
-    // その他変数
     var world_name = "tutorial"
 
     // Scene load 時に呼ばれる
-    private var isSceneDidLoaded = false
+    internal var isSceneDidLoaded = false
     override func sceneDidLoad() {
+        print("game scene did load")
+        
         // 二重読み込みの防止
         if isSceneDidLoaded {
             return
@@ -50,22 +49,17 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         prepareBGM(fileName: Const.bgm_fantasy)
         prepareSoundEffect()
         playBGM()
-        showMessage("冒険の始まりだ！", type: "start")
+        showMessage("危険LV \(map.lv)", type: "start")
     }
-
-    func setWorld(){
-        physicsWorld.contactDelegate = self
-        let underground = childNode(withName: "//underground") as! SKSpriteNode
-        underground.physicsBody = SKPhysicsBody(rectangleOf: underground.size)
-        WorldNode.setWorldPhysic(underground.physicsBody!)
-    }
-
+    
     // 画面が読み込まれた時に呼ばれる
     private var isSceneDidMoved = false
     override func didMove(to view: SKView) {
         updateStatus()
         updateDistance()
 
+        playBGM()
+        
         if isSceneDidMoved {
             return
         }
@@ -77,6 +71,13 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         gameData.setParameterByUserDefault()
     }
 
+    func setWorld(){
+        physicsWorld.contactDelegate = self
+        let underground = childNode(withName: "//underground") as! SKSpriteNode
+        underground.physicsBody = SKPhysicsBody(rectangleOf: underground.size)
+        WorldNode.setWorldPhysic(underground.physicsBody!)
+    }
+    
     // かっぱ画像にphysic属性を与える
     func createKappa(){
         kappa = childNode(withName: "//kappa") as! KappaNode
@@ -96,7 +97,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     // 左からpos番目のx座標を返す
     func getPositionX(_ pos : Int) -> CGFloat {
         let position = CGFloat(pos)/7.0-1.0/2.0
-        return self.size.width*position
+        return size.width*position
     }
 
     // カッパを初期ポジションに設置
@@ -252,13 +253,8 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     }
 
     // 攻撃をされた
-    func attacked(attack:Int, type: String, point: CGPoint){
-        var damage = 1
-        if type == "magic" {
-            damage = BattleModel.calculateDamage(str: attack, def: 0)
-        } else {
-            damage = BattleModel.calculateDamage(str: attack, def: 0)
-        }
+    func attacked(attack:Int, point: CGPoint){
+        let damage = BattleModel.calculateDamage(str: attack, def: 0)
         playSoundEffect(type: 1)
 
         kappa.hp -= damage
@@ -755,7 +751,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         let JobLVLabel     = childNode(withName: "//JobLVLabel") as! SKLabelNode
         let JobNameLabel   = childNode(withName: "//JobNameLabel") as! SKLabelNode
 
-        JobNameLabel.text = jobModel.displayName
+        JobNameLabel.text = gameData.displayNickJob(jobModel.displayName)
         JobLVLabel.text = "LV  \(jobModel.lv)"
 
         // タップ情報
@@ -774,7 +770,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     
     func updateName(){
         let nameLabel = childNode(withName: "//NameLabel") as! SKLabelNode
-        nameLabel.text = gameData.displayName(jobModel.displayName)
+        nameLabel.text = gameData.name
     }
 
     /***********************************************************************************/
@@ -906,6 +902,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     /***********************************************************************************/
     // メニュー画面へ遷移
     func goMenu(){
+        stopBGM()
         let scene = MenuScene(fileNamed: "MenuScene")!
         scene.size = self.scene!.size
         scene.scaleMode = SKSceneScaleMode.aspectFill
@@ -918,6 +915,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         if beat_boss_flag {
             return
         }
+        stopBGM()
         let nextScene = GameOverScene(fileNamed: "GameOverScene")!
         nextScene.size = nextScene.size
         nextScene.scaleMode = SKSceneScaleMode.aspectFill
@@ -1086,9 +1084,9 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         }
         for t in touches {
             let positionInScene = t.location(in: self)
-            let tapNode = self.atPoint(positionInScene)
+            let tapNode = atPoint(positionInScene)
             if tapNode.name == nil {
-                self.touchDown(atPoint: positionInScene)
+                touchDown(atPoint: positionInScene)
                 return
             }
             switch tapNode.name! {
@@ -1151,21 +1149,16 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         }
 
         if isFirstBodyKappa(firstBody) {
-            // 炎との衝突判定
             if secondBody.categoryBitMask & Const.fireCategory != 0 {
                 let fire = secondBody.node as! FireEmitterNode
-                attacked(attack: fire.damage, type: "magick", point: (firstBody.node?.position)!)
+                attacked(attack: fire.damage, point: (firstBody.node?.position)!)
                 makeSpark(point: (secondBody.node?.position)!)
                 secondBody.node?.removeFromParent()
-
-                // 雷との衝突判定
             } else if secondBody.categoryBitMask & Const.thunderCategory != 0 {
                 let thunder = secondBody.node as! ThunderEmitterNode
-                attacked(attack: thunder.damage, type: "magick", point: (firstBody.node?.position)!)
+                attacked(attack: thunder.damage, point: (firstBody.node?.position)!)
                 makeSpark(point: (secondBody.node?.position)!)
                 secondBody.node?.removeFromParent()
-
-                // 敵との衝突判定
             } else if secondBody.categoryBitMask & Const.enemyCategory != 0 {
                 let enemy = secondBody.node as! EnemyNode
                 if enemy.isDead {
@@ -1173,7 +1166,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                 }
                 // 敵の攻撃
                 if enemy.isAttacking && !specialAttackModel.is_tornado && !specialAttackModel.is_upper {
-                    attacked(attack: enemy.str, type: "physic", point: (firstBody.node?.position)!)
+                    attacked(attack: enemy.str, point: (firstBody.node?.position)!)
                     makeSpark(point: (firstBody.node?.position)!)
                 }
                 
@@ -1231,26 +1224,25 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     /***********************************************************************************/
     private var lastUpdateTime : TimeInterval = 0
     private var doubleTimer = 0.0 // 経過時間（小数点単位で厳密）
-
     override func update(_ currentTime: TimeInterval) {
         execMessages()
         if gameOverFlag || bossStopFlag {
             return
         }
 
-        if (self.lastUpdateTime == 0) {
-            self.lastUpdateTime = currentTime
+        if (lastUpdateTime == 0) {
+            lastUpdateTime = currentTime
         }
 
-        let dt = currentTime - self.lastUpdateTime
-        self.lastUpdateTime = currentTime
+        let dt = currentTime - lastUpdateTime
+        lastUpdateTime = currentTime
 
+        // カッパの回転処理
         if specialAttackModel.is_tornado || kappa.isSpin {
             if CommonUtil.rnd(4) == 0 {
                 kappa.xScale *= -1
             }
         }
-        
         
         doubleTimer += dt
         if doubleTimer > 1.0 {
@@ -1258,7 +1250,11 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         } else {
             return
         }
+        enemyAction()
+    }
 
+    // モンスターが1秒おきに実行する処理
+    func enemyAction(){
         for enemy in enemyModel.enemies {
             if enemy.isDead {
                 continue

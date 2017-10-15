@@ -47,5 +47,20 @@ class CommonUtil {
             alpha: CGFloat(1.0)
         )
     }
+
+    // 最大文字数をオーバーする場合
+    // 省略する範囲を作成する
+    class func cutString(str: String, maxLength: Int) -> String {
+        if str.characters.count > maxLength {
+            let start = str.index(str.startIndex, offsetBy: maxLength)
+            let end = str.endIndex
+            let range = start..<end
+            
+            return str.replacingCharacters(in: range, with: "")
+        } else {
+            return str
+        }
+        
+    }
     
 }

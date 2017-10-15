@@ -13,11 +13,6 @@ class MenuScene: BaseScene {
 
     override func didMove(to view: SKView) {
         if back == "world" {
-            let optionLabel   = childNode(withName: "//OptionLabel") as! SKLabelNode
-            let optionNode    = childNode(withName: "//OptionNode") as! SKSpriteNode
-            optionLabel.removeFromParent()
-            optionNode.removeFromParent()
-            
             let worldLabel    = childNode(withName: "//WorldLabel") as! SKLabelNode
             let worldNode     = childNode(withName: "//WorldNode") as! SKSpriteNode
             worldLabel.removeFromParent()
@@ -42,14 +37,25 @@ class MenuScene: BaseScene {
         }
     }
     
-    func showStatus(){
-        let skillModel = SkillModel()
-        skillModel.readDataByPlist()
-        let kappa = KappaNode()
-        kappa.setParameterByUserDefault()
-        let gameData = GameData()
-        gameData.setParameterByUserDefault()
-        displayAlert("ステータス", message: JobModel.allSkillExplain(skillModel, kappa: kappa, gameData: gameData), okString: "閉じる")
+    
+    func changeName(){
+        let alert = UIAlertController(title: "カッパの名は？(4文字以内)", message: "", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "入力完了", style: .default, handler: {
+            (action:UIAlertAction!) -> Void in
+            if let textFields = alert.textFields {
+                if textFields.first?.text != "" {
+                    let str = textFields.first!.text!
+                    let name = CommonUtil.cutString(str: str, maxLength: 4)
+                    GameData.setName(value: name)
+                }
+            }
+        })
+        alert.addAction(okAction)
+        alert.addTextField(configurationHandler: {(textField: UITextField!) -> Void in
+            textField.text = GameData.getName()
+        })
+        alert.view.setNeedsLayout()
+        self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
     }
     
     func goBack(){
@@ -93,6 +99,9 @@ class MenuScene: BaseScene {
         view?.window?.rootViewController?.present(listViewController, animated: true, completion: nil)
     }
     
+    /***********************************************************************************/
+    /********************************** touch ******************************************/
+    /***********************************************************************************/
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
             let positionInScene = t.location(in: self)
@@ -100,10 +109,8 @@ class MenuScene: BaseScene {
             if tapNode.name == nil {
                 return
             }
-            
             switch tapNode.name! {
             case "SkillNode", "SkillLabel":
-//                showStatus()
                 goStatus()
             case "LibraryNode", "LibraryLabel":
                 goLibrary()
@@ -115,6 +122,8 @@ class MenuScene: BaseScene {
                 goTitle()
             case "WorldNode", "WorldLabel":
                 goWorld()
+            case "NameNode", "NameLabel":
+                changeName()
             default:
                 break
             }

@@ -18,8 +18,19 @@ class WorldScene: BaseScene, DungeonDelegate {
         "angel",
         "king",
         "maou",
-        "miyuki"
+        "miyuki",
+        "master",
+        "dark_kappa"
     ]
+    
+    private let menu_node = [
+        "WorldNode",
+        "ShopNode",
+        "BarNode",
+        "MenuNode",
+        "MenuBox",
+    ]
+    
     private let worldModel : WorldModel = WorldModel()
 
     // delegate method
@@ -84,6 +95,15 @@ class WorldScene: BaseScene, DungeonDelegate {
         }
         if !GameData.isClear("maou") {
             let node = childNode(withName: "//miyuki")
+            node?.removeFromParent()
+        }
+        
+        if !GameData.isClear("question") {
+            let node = childNode(withName: "//master")
+            node?.removeFromParent()
+        }
+        if !GameData.isClear("master") {
+            let node = childNode(withName: "//dark_kappa")
             node?.removeFromParent()
         }
     }
@@ -154,11 +174,19 @@ class WorldScene: BaseScene, DungeonDelegate {
 
     // メニュー画面へ遷移
     func goMenu(){
-        let scene = MenuScene(fileNamed: "MenuScene")!
-        scene.size = self.scene!.size
-        scene.scaleMode = SKSceneScaleMode.aspectFill
-        scene.back = "world"
-        self.view!.presentScene(scene, transition: .fade(withDuration: Const.transitionInterval))
+        let nextScene = MenuScene(fileNamed: "MenuScene")!
+        nextScene.size = scene!.size
+        nextScene.scaleMode = SKSceneScaleMode.aspectFill
+        nextScene.back = "world"
+        view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
+    }
+    
+    func goLast(){
+        let nextScene = LastBattleScene(fileNamed: "LastBattleScene")!
+        nextScene.size = scene!.size
+        nextScene.scaleMode = SKSceneScaleMode.aspectFill
+        nextScene.world_name = "last"
+        view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
     }
 
     func moveObject(_ vector: CGVector){
@@ -172,6 +200,7 @@ class WorldScene: BaseScene, DungeonDelegate {
     }
 
     var beganPosition : CGPoint!
+    var tap_count = 0
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
             beganPosition = t.location(in: self)
@@ -179,9 +208,29 @@ class WorldScene: BaseScene, DungeonDelegate {
             if tapNode.name == nil {
                 return
             }
+            
+            if GameData.isClear("dark_kappa") {
+                if map_nodes.contains(tapNode.name!) || menu_node.contains(tapNode.name!){
+                    tap_count += 1
+                    deleteSPriteNode(tapNode.name!)
+                }
+                
+  
+                if tap_count > 1 {
+//                if tap_count > 16 {
+                    let label = childNode(withName: "//ExplainLabel") as! SKLabelNode
+                    label.text = "お前を倒して主人公になる"
+                    label.fontColor = .white
+                    
+                    if tapNode.name == "ExplainNode" || tapNode.name == "ExplainLabel" {
+                        goLast()
+                    }
+                }
+                return
+            }
+            
             if map_nodes.contains(tapNode.name!) {
                 goDungeon(tapNode.name!)
-//                explainDungeon(tapNode.name!)
             } else if tapNode.name! == "ShopLabel" || tapNode.name == "ShopNode" {
                 if GameData.isClear("wizard") {
                     goShop()

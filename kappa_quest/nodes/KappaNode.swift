@@ -153,8 +153,26 @@ class KappaNode: SKSpriteNode {
         texture = SKTexture(imageNamed: "kappa_dead")
     }
     
+    // 裏技
+    // 名前を司波達也にすることで最強のステータスになる
+    func oniisama(){
+        maxHp = 1000
+        str = 999
+        int = 999
+        agi = 999
+        luc = 999
+    }
+    
+    // 名前をラッキーにすることで幸運なステータスになる
+    func lucky(){
+        luc = 77
+    }
+
+    
+    
     class func setInitLv(){
         UserDefaults.standard.set(1, forKey: "lv")
     }
+    
 
 }

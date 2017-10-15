@@ -51,7 +51,15 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
         black_particle.run(sparkFadeOut)
         addChild(black_particle)
     }
-
+    
+    func deleteSPriteNode(_ name : String){
+        let node = childNode(withName: "//\(name)") as? SKSpriteNode
+        if (node != nil) {
+            node?.physicsBody = SKPhysicsBody(rectangleOf: (node?.size)!)
+            WorldNode.setWorldEnd((node?.physicsBody)!)
+        }
+    }
+    
     /***********************************************************************************/
     /********************************** 画面遷移 ****************************************/
     /***********************************************************************************/

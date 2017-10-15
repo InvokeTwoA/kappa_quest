@@ -37,6 +37,11 @@ class ActionModel {
     var normalAttack      : SKAction!
     var underAttack       : SKAction!
     var highJump          : SKAction!
+    
+    var downQuick         : SKAction!
+    var downSlow          : SKAction!
+    var downBack          : SKAction!
+    
 
     func setActionData(sceneWidth : CGFloat){
         moveSpace = sceneWidth/7.0/4.0
@@ -223,7 +228,30 @@ class ActionModel {
             SKAction.moveBy(x: 0, y:    HIGH_JUMP_SPACE, duration: HIGH_JUMP_SPEED),
             SKAction.moveBy(x: 0, y: -1*HIGH_JUMP_SPACE, duration: HIGH_JUMP_SPEED)
         ])
+        
+        downQuick = SKAction.sequence([
+            SKAction.wait(forDuration: 2.0),
+            SKAction.moveBy(x: 0, y:    -600, duration: 2.0),
+            SKAction.removeFromParent()
+        ])
+        
+        downSlow = SKAction.sequence([
+            SKAction.wait(forDuration: 2.0),
+            SKAction.moveBy(x: 0, y:    -600, duration: 4.0),
+            SKAction.removeFromParent()
+            ])
+
+        downBack = SKAction.sequence([
+            SKAction.wait(forDuration: 2.0),
+            SKAction.moveBy(x: 0, y:    -600, duration: 4.0),
+            SKAction.moveBy(x: 0, y:     800, duration: 6.0),
+            SKAction.removeFromParent()
+            ])
+
+        
     }
+    
+    
 
     func enemyAttack(range: CGFloat) -> SKAction {
         let time : TimeInterval = 0.115 + Double(range)*0.01

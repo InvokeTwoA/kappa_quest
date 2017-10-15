@@ -660,31 +660,6 @@
 		<key>explain</key>
 		<string>リッチな王様。 毎日忙しく働いているため、アンデッドのような容貌になっている。  この世界を支配する何かに抗うため、 魔王と手を結んでいた。</string>
 	</dict>
-	<key>dark_kappa</key>
-	<dict>
-		<key>name</key>
-		<string>暗黒騎士</string>
-		<key>hp</key>
-		<integer>9</integer>
-		<key>str</key>
-		<integer>7</integer>
-		<key>def</key>
-		<integer>6</integer>
-		<key>agi</key>
-		<integer>7</integer>
-		<key>int</key>
-		<integer>4</integer>
-		<key>pie</key>
-		<integer>4</integer>
-		<key>range</key>
-		<integer>3</integer>
-		<key>canFire</key>
-		<false/>
-		<key>canThunder</key>
-		<true/>
-		<key>type</key>
-		<string>human</string>
-	</dict>
 	<key>maou</key>
 	<dict>
 		<key>name</key>
@@ -725,7 +700,7 @@
 		<key>name</key>
 		<string>妹</string>
 		<key>hp</key>
-		<integer>1</integer>
+		<integer>100</integer>
 		<key>str</key>
 		<integer>100</integer>
 		<key>def</key>
@@ -750,6 +725,81 @@
 		<integer>10</integer>
 		<key>type</key>
 		<string>undead</string>
+	</dict>
+	<key>assassin</key>
+	<dict>
+		<key>name</key>
+		<string>暗殺者</string>
+		<key>hp</key>
+		<integer>100</integer>
+		<key>str</key>
+		<integer>100</integer>
+		<key>def</key>
+		<integer>1</integer>
+		<key>agi</key>
+		<integer>300</integer>
+		<key>int</key>
+		<integer>150</integer>
+		<key>pie</key>
+		<integer>1</integer>
+		<key>range</key>
+		<integer>5</integer>
+		<key>canFire</key>
+		<true/>
+		<key>heal</key>
+		<integer>20</integer>
+		<key>type</key>
+		<string>human</string>
+	</dict>
+	<key>master</key>
+	<dict>
+		<key>name</key>
+		<string>店長K</string>
+		<key>hp</key>
+		<integer>100</integer>
+		<key>str</key>
+		<integer>100</integer>
+		<key>def</key>
+		<integer>1</integer>
+		<key>agi</key>
+		<integer>300</integer>
+		<key>int</key>
+		<integer>150</integer>
+		<key>pie</key>
+		<integer>1</integer>
+		<key>range</key>
+		<integer>5</integer>
+		<key>canFire</key>
+		<true/>
+		<key>heal</key>
+		<integer>20</integer>
+		<key>type</key>
+		<string>human</string>
+	</dict>
+	<key>dark_kappa</key>
+	<dict>
+		<key>name</key>
+		<string>闇のカッパ</string>
+		<key>hp</key>
+		<integer>1000</integer>
+		<key>str</key>
+		<integer>1</integer>
+		<key>def</key>
+		<integer>0</integer>
+		<key>agi</key>
+		<integer>999</integer>
+		<key>int</key>
+		<integer>1</integer>
+		<key>pie</key>
+		<integer>0</integer>
+		<key>range</key>
+		<integer>3</integer>
+		<key>canFire</key>
+		<true/>
+		<key>canThunder</key>
+		<true/>
+		<key>type</key>
+		<string>human</string>
 	</dict>
 </dict>
 </plist>
