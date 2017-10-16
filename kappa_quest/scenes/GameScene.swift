@@ -823,7 +823,6 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
 
     internal var isShowingBigMessage = false
     internal func displayBigMessage(){
-        print("display big message")
         isShowingBigMessage = true
         let bigMessageNode     = childNode(withName: "//BigMessageNode") as! SKSpriteNode
         let bigMessageLabel0   = childNode(withName: "//BigMessageLabel0") as! SKLabelNode

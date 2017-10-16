@@ -154,7 +154,7 @@ class LastBattleScene: GameScene {
     /***********************************************************************************/
     private let ending_array0 = ["ス", "タ", "ッ", "フ", "", ""]
     private let ending_array1 = ["", "", "", "", "", ""]
-    private let move_pattern  = ["fast", "slow", "back", "so_quick"]
+    private let move_pattern  = ["fast", "slow", "back", "so_quick", "so_slow"]
     
     func endingAttack(_ page : Int){
         var target_array0 = [String]()
@@ -248,6 +248,11 @@ class LastBattleScene: GameScene {
             action = actionModel.downMaxQuick
             color = .red
             textColor = .white
+        case "so_slow":
+            action = actionModel.downMaxSlow
+            color = .blue
+            textColor = .white
+
         default:
             break
         }
