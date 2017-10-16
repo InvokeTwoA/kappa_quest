@@ -39,9 +39,11 @@ class ActionModel {
     var highJump          : SKAction!
     
     var downQuick         : SKAction!
+    var downMaxQuick      : SKAction!
     var downSlow          : SKAction!
+    var downMaxSlow       : SKAction!
     var downBack          : SKAction!
-    
+    var kappaDown         : SKAction!
 
     func setActionData(sceneWidth : CGFloat){
         moveSpace = sceneWidth/7.0/4.0
@@ -229,29 +231,45 @@ class ActionModel {
             SKAction.moveBy(x: 0, y: -1*HIGH_JUMP_SPACE, duration: HIGH_JUMP_SPEED)
         ])
         
+        // エンディング
         downQuick = SKAction.sequence([
             SKAction.wait(forDuration: 2.0),
-            SKAction.moveBy(x: 0, y:    -600, duration: 2.0),
+            SKAction.moveBy(x: 0, y:    -800, duration: 2.0),
             SKAction.removeFromParent()
         ])
         
         downSlow = SKAction.sequence([
             SKAction.wait(forDuration: 2.0),
-            SKAction.moveBy(x: 0, y:    -600, duration: 4.0),
+            SKAction.moveBy(x: 0, y:    -800, duration: 5.0),
             SKAction.removeFromParent()
             ])
 
         downBack = SKAction.sequence([
             SKAction.wait(forDuration: 2.0),
-            SKAction.moveBy(x: 0, y:    -600, duration: 4.0),
-            SKAction.moveBy(x: 0, y:     800, duration: 6.0),
+            SKAction.moveBy(x: 0, y:    -1200, duration: 4.0),
+            SKAction.moveBy(x: 0, y:     1800, duration: 6.0),
+            SKAction.removeFromParent()
+            ])
+        
+        downMaxQuick = SKAction.sequence([
+            SKAction.wait(forDuration: 5.0),
+            SKAction.moveBy(x: 0, y:    -800, duration: 1.0),
+            SKAction.removeFromParent()
+        ])
+
+        downMaxSlow = SKAction.sequence([
+            SKAction.wait(forDuration: 2.0),
+            SKAction.moveBy(x: 0, y:    -800, duration: 9.0),
             SKAction.removeFromParent()
             ])
 
         
+        kappaDown = SKAction.sequence([
+            SKAction.wait(forDuration: 0.5),
+            SKAction.moveBy(x: 0, y:    -320, duration: 0.5),
+        ])
+
     }
-    
-    
 
     func enemyAttack(range: CGFloat) -> SKAction {
         let time : TimeInterval = 0.115 + Double(range)*0.01

@@ -39,6 +39,7 @@ class LastBattleScene: GameScene {
     private var map_no = 0
     override func goNextMap(){
         clearMap()
+        resetMessage()
         setFirstPosition()
         map.goNextMap()
         createMap()
@@ -50,10 +51,12 @@ class LastBattleScene: GameScene {
         } else if map_no == 2 {
             destroyWorld(destroy_nodes2)
         } else if map_no == 3 {
-            print("destroy")
             destroyWorld(destroy_nodes3)
+            kappa.run(actionModel.kappaDown!)
         } else if map_no == 4 {
             destroyWorld(destroy_nodes4)
+        } else if map_no == 5 {
+            destroyWorld(destroy_nodes5)
         }
     }
     
@@ -78,23 +81,33 @@ class LastBattleScene: GameScene {
         "ButtonNode",
     ]
     private let destroy_nodes3 = [
-        "TapBox",
-        "ButtonNode",
-        "NameBox",
+        "underground",
+        "BackGround",
         ]
     private let destroy_nodes4 = [
         "JobBox",
-        "BackGround",
+        "HP",
+        "HPLabel",
+        "NameBox",
+    ]
+    private let destroy_nodes5 = [
+        "BackgroundNode"
     ]
 
     private let boss_kappa = EnemyNode(imageNamed: "dark_kappa")
     func bossGenerate(){
         boss_kappa.position.x = getPositionX(Const.maxPosition - 1)
-        boss_kappa.position.y = kappa_first_position_y
+        boss_kappa.position.y = kappa.position.y
         boss_kappa.zPosition = 99
         boss_kappa.size = kappa.size
         boss_kappa.anchorPoint = CGPoint(x: 0.5, y: 0)     // 中央下がアンカーポイント
         addChild(boss_kappa)
+    }
+    
+    override func setFirstPosition(){
+        map.myPosition = 1
+        kappa.position.x = getPositionX(1)
+        kappa.texture = SKTexture(imageNamed: "kappa")
     }
     
     /***********************************************************************************/
@@ -123,6 +136,9 @@ class LastBattleScene: GameScene {
             stopBGM()
             prepareBGM(fileName: Const.bgm_bit_ahurera)
             playBGM()
+            kappa.maxHp = 100
+            kappa.hp = 100
+            
             bossGenerate()
             bossStartFlag = true
         }
@@ -138,7 +154,7 @@ class LastBattleScene: GameScene {
     /***********************************************************************************/
     private let ending_array0 = ["ス", "タ", "ッ", "フ", "", ""]
     private let ending_array1 = ["", "", "", "", "", ""]
-    private let move_pattern  = ["fast", "slow", "back"]
+    private let move_pattern  = ["fast", "slow", "back", "so_quick"]
     
     func endingAttack(_ page : Int){
         var target_array0 = [String]()
@@ -161,6 +177,36 @@ class LastBattleScene: GameScene {
         case 25:
             target_array0 = ["カ", "ッ", "ト", "イ", "ン", "素材"]
             target_array1 = ["", "", "ビ", "タ", "犬", ""]
+        case 30:
+            target_array0 = ["プ", "ロ", "グ", "", "ラ", "マ"]
+            target_array1 = ["k", "", "a", "p", "p", "a"]
+        case 35:
+            target_array0 = ["シ", "ナ", "リ", "オ", "", ""]
+            target_array1 = ["k", "a", "p", "", "p", "a"]
+        case 40:
+            target_array0 = ["グ", "ラ", "フ", "ィ", "ッ", "ク"]
+            target_array1 = ["k", "a", "p", "p", "", "a"]
+        case 45:
+            target_array0 = ["ドッ", "ト絵", "制作", "ツ", "ー", "ル"]
+            target_array1 = ["d", "o", "t", "p", "i", "ct"]
+        case 50:
+            target_array0 = ["テ", "ス", "タ", "ー", "", ""]
+            target_array1 = ["", "k", "a", "p", "p", "a"]
+        case 55:
+            target_array0 = ["s", "p", "e", "c", "i", "al"]
+            target_array1 = ["t", "h", "a", "n", "k", "s"]
+        case 60:
+            target_array0 = ["t", "a", "k", "a", "sh", "i"]
+            target_array1 = ["h", "a", "g", "u", "r", "a"]
+        case 65:
+            target_array0 = ["n", "a", "o", "f", "u", "mi"]
+            target_array1 = ["h", "a", "t", "t", "o", "ri"]
+        case 70:
+            target_array0 = ["r", "y", "o", "", "", ""]
+            target_array1 = ["m", "u", "r", "a", "ka", "mi"]
+        case 75:
+            target_array0 = ["(", "k", "i", "n", "g", ")"]
+            target_array1 = ["", "", "", "", "", ""]
         default:
             target_array0 = ["", "", "", "", "", ""]
             target_array1 = ["", "", "", "", "", ""]
@@ -183,12 +229,11 @@ class LastBattleScene: GameScene {
         if key == "" {
             return
         }
-        print(pos)
-        print(key)
         
         let pattern = move_pattern[CommonUtil.rnd(move_pattern.count)]
         var action = actionModel.downSlow
         var color = UIColor.white
+        var textColor = UIColor.black
         switch pattern {
         case "fast":
             action = actionModel.downQuick
@@ -199,6 +244,10 @@ class LastBattleScene: GameScene {
         case "back":
             action = actionModel.downBack
             color = .orange
+        case "so_quick":
+            action = actionModel.downMaxQuick
+            color = .red
+            textColor = .white
         default:
             break
         }
@@ -214,7 +263,7 @@ class LastBattleScene: GameScene {
         let item = SKLabelNode(text: key)
         item.fontName = Const.pixelFont
         item.fontSize = 32
-        item.fontColor = .black
+        item.fontColor = textColor
         item.position.x = 50
         item.position.y = 0
         item.zPosition = 50
@@ -246,8 +295,20 @@ class LastBattleScene: GameScene {
         
         displayDamage(value: damage, point: CGPoint(x:point.x-30, y:point.y+30), color: UIColor.red, direction: "left")
         changeLifeBar()
+        changeLifeLabel()
         if kappa.hp == 0 {
             gameOver()
+        }
+    }
+    
+    func changeLifeLabel(){
+        let HPLabel        = childNode(withName: "//HPLabel")     as! SKLabelNode
+        HPLabel.text  = "\(kappa.hp)"
+    }
+    
+    override func execMessages(){
+        if !isShowingBigMessage && bigMessages.count > 0 {
+            displayBigMessage()
         }
     }
     
@@ -305,8 +366,7 @@ class LastBattleScene: GameScene {
         }
         for t in touches {
             let positionInScene = t.location(in: self)
-            let tapNode = self.atPoint(positionInScene)
-
+//            let tapNode = self.atPoint(positionInScene)
             touchDown(atPoint: positionInScene)
         }
     }
@@ -341,7 +401,7 @@ class LastBattleScene: GameScene {
         
         stage += 1
         switch stage {
-        case 1,5,10,15,20,25:
+        case 1,5,10,15,20,25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 270:
             endingAttack(stage)
         default:
             break

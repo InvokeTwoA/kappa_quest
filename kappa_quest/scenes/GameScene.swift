@@ -740,7 +740,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         let LucLabel       = childNode(withName: "//LucLabel")    as! SKLabelNode
 
         MAXHPLabel.text = "HP  \(String(describing: kappa.maxHp))"
-        HPLabel.text  = "\(String(describing: kappa.hp))"
+        HPLabel.text  = "\(kappa.hp)"
         LVLabel.text  = "LV    \(String(describing: kappa.lv))"
         StrLabel.text = "筋力  \(String(describing: kappa.str))"
         AgiLabel.text = "敏捷  \(String(describing: kappa.agi))"
@@ -816,13 +816,14 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     }
 
     // 巨大メッセージ表示
-    var bigMessages = [[String]]()
-    func showBigMessage(text0 : String, text1 : String){
+    internal var bigMessages = [[String]]()
+    internal func showBigMessage(text0 : String, text1 : String){
         bigMessages.append([text0, text1])
     }
 
-    var isShowingBigMessage = false
-    func displayBigMessage(){
+    internal var isShowingBigMessage = false
+    internal func displayBigMessage(){
+        print("display big message")
         isShowingBigMessage = true
         let bigMessageNode     = childNode(withName: "//BigMessageNode") as! SKSpriteNode
         let bigMessageLabel0   = childNode(withName: "//BigMessageLabel0") as! SKLabelNode
