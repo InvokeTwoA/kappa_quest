@@ -29,6 +29,12 @@ class GameViewController: UIViewController {
             }
         }
     }
+    
+    func hideBanner(){
+        print("hide banner")
+        _bannerView.isHidden = true
+        print("hide banner end")
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

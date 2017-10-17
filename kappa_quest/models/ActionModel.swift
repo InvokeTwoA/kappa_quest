@@ -43,6 +43,7 @@ class ActionModel {
     var downSlow          : SKAction!
     var downMaxSlow       : SKAction!
     var downBack          : SKAction!
+    var downFade          : SKAction!
     var kappaDown         : SKAction!
 
     func setActionData(sceneWidth : CGFloat){
@@ -261,8 +262,14 @@ class ActionModel {
             SKAction.wait(forDuration: 2.0),
             SKAction.moveBy(x: 0, y:    -800, duration: 9.0),
             SKAction.removeFromParent()
+        ])
+        
+        downFade = SKAction.sequence([
+            SKAction.wait(forDuration: 2.0),
+            SKAction.moveBy(x: 0, y:    -250, duration: 2.0),
+            SKAction.fadeOut(withDuration: 0.5),
+            SKAction.removeFromParent()
             ])
-
         
         kappaDown = SKAction.sequence([
             SKAction.wait(forDuration: 0.5),

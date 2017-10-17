@@ -20,7 +20,6 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     // Scene load 時に呼ばれる
     internal var isSceneDidLoaded = false
     override func sceneDidLoad() {
-        print("game scene did load")
         
         // 二重読み込みの防止
         if isSceneDidLoaded {
@@ -895,7 +894,6 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         longLabel2.isHidden = false
         longNode.isHidden = false
     }
-
     
     /***********************************************************************************/
     /********************************* 画面遷移 ****************************************/

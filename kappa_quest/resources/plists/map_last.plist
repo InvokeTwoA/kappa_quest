@@ -46,7 +46,29 @@
 		<key>event_text1</key>
 		<string>　巨大な広告をどう思う？」</string>
 	</dict>
+	<key>0.4</key>
+	<dict>
+		<key>enemies</key>
+		<array/>
+		<key>event</key>
+		<true/>
+		<key>event_text0</key>
+		<string>「この広告が表示された時間だけ</string>
+		<key>event_text1</key>
+		<string>　創造主がゴールドを入手するんだ」</string>
+	</dict>
 	<key>0.5</key>
+	<dict>
+		<key>enemies</key>
+		<array/>
+		<key>event</key>
+		<true/>
+		<key>event_text0</key>
+		<string>「俺たちの存在は</string>
+		<key>event_text1</key>
+		<string>　何なんだ？」</string>
+	</dict>
+	<key>0.6</key>
 	<dict>
 		<key>enemies</key>
 		<array>

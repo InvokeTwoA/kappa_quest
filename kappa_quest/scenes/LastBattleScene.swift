@@ -8,8 +8,6 @@ class LastBattleScene: GameScene {
     
     // Scene load 時に呼ばれる
     override func sceneDidLoad() {
-
-        
         // 二重読み込みの防止
         if isSceneDidLoaded {
             return
@@ -100,7 +98,9 @@ class LastBattleScene: GameScene {
         boss_kappa.position.y = kappa.position.y
         boss_kappa.zPosition = 99
         boss_kappa.size = kappa.size
+        boss_kappa.name = "boss"
         boss_kappa.anchorPoint = CGPoint(x: 0.5, y: 0)     // 中央下がアンカーポイント
+        map.positionData[Const.maxPosition-1] = "enemy"
         addChild(boss_kappa)
     }
     
@@ -111,14 +111,12 @@ class LastBattleScene: GameScene {
     }
     
     /***********************************************************************************/
-    /******************************** マップ更新  **************************************/
+    /******************************** マップ更新    **************************************/
     /***********************************************************************************/
-    
     // マップ作成
     var bossStartFlag = false
     override func createMap(){
         map.updatePositionData()
-        
         for (index, positionData) in map.positionData.enumerated() {
             switch positionData {
             case "enemy":
@@ -139,11 +137,14 @@ class LastBattleScene: GameScene {
             kappa.maxHp = 100
             kappa.hp = 100
             
+            let HPLabel        = childNode(withName: "//HPLabel")     as! SKLabelNode
+            HPLabel.text  = "\(kappa.hp)"
+            HPLabel.fontColor = .white
+
             bossGenerate()
             bossStartFlag = true
         }
     }
-
     
     override func tapCountUp(){
         gameData.tapCount += 1
@@ -154,7 +155,7 @@ class LastBattleScene: GameScene {
     /***********************************************************************************/
     private let ending_array0 = ["ス", "タ", "ッ", "フ", "", ""]
     private let ending_array1 = ["", "", "", "", "", ""]
-    private let move_pattern  = ["fast", "slow", "back", "so_quick", "so_slow"]
+    private let move_pattern  = ["fast", "slow", "back", "so_quick", "so_slow", "fade"]
     
     func endingAttack(_ page : Int){
         var target_array0 = [String]()
@@ -252,7 +253,10 @@ class LastBattleScene: GameScene {
             action = actionModel.downMaxSlow
             color = .blue
             textColor = .white
-
+        case "fade":
+            action = actionModel.downFade
+            color = .yellow
+            textColor = .black
         default:
             break
         }
@@ -317,6 +321,45 @@ class LastBattleScene: GameScene {
         }
     }
     
+    private var gameClearFlag = false
+    private func gameClear(){
+        if gameClearFlag {
+            return
+        }
+        gameClearFlag = true
+        goEnding()
+    }
+    
+    private var boss_position = 6
+    func bossMoveLeft(){
+        let boss = childNode(withName: "//boss") as! SKSpriteNode
+        boss.run(actionModel.moveLeft)
+        map.positionData[boss_position] = "enemy"
+        map.positionData[boss_position-1] = "boss"
+        boss_position -= 1
+    }
+    
+    /***********************************************************************************/
+    /********************************* 画面遷移 ****************************************/
+    /***********************************************************************************/
+    // メニュー画面へ遷移
+    func goEnding(){
+        stopBGM()
+   
+        showBigMessage(text0: "俺の負けだ……", text1: "")
+        let root = self.view?.window?.rootViewController as! GameViewController
+        root.hideBanner()
+        print("ending")
+        /*
+        let scene = EndingScene(fileNamed: "EndingScene")!
+        scene.size = self.scene!.size
+        scene.scaleMode = SKSceneScaleMode.aspectFill
+        scene.backScene = self.scene as! GameScene
+        self.view!.presentScene(scene, transition: .fade(withDuration: Const.transitionInterval))
+ */
+    }
+
+    
     /***********************************************************************************/
     /********************************** 衝突判定 ****************************************/
     /***********************************************************************************/
@@ -358,6 +401,9 @@ class LastBattleScene: GameScene {
         } else {
             if map.canMoveLeft() {
                 moveLeft()
+                if bossStartFlag {
+                    bossMoveLeft()
+                }
             } else {
                 kappa!.run(actionModel.moveBack!)
             }
@@ -408,9 +454,20 @@ class LastBattleScene: GameScene {
         switch stage {
         case 1,5,10,15,20,25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 270:
             endingAttack(stage)
+        case 80:
+            gameClear()
+            return
         default:
             break
         }
+
+        switch stage {
+        case 10:
+            showBigMessage(text0: "もう諦めてしまえ", text1: "")
+        default:
+            break
+        }
+        
     }
     
 
