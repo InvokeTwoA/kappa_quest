@@ -217,6 +217,90 @@ LVアップするたびにHPが(lv)回復。 回復量は騎士LVに等しい�
 		<key>luc</key>
 		<integer>0</integer>
 	</dict>
+	<key>angel</key>
+	<dict>
+		<key>name</key>
+		<string>天使</string>
+		<key>explain</key>
+		<string>天界より舞い降りた神の使い。 人智を超えた力を持つ。</string>
+		<key>own_skill</key>
+		<string>なし</string>
+		<key>general_skill</key>
+		<string>[頭突き回復] カッパ頭突きを行うたびにHPが回復する。 回復量は天使LVに等しい。 敵を撃破時に、ネクロマンサーLVだけHPを回復する。</string>
+		<key>hp</key>
+		<integer>1</integer>
+		<key>str</key>
+		<integer>1</integer>
+		<key>agi</key>
+		<integer>1</integer>
+		<key>int</key>
+		<integer>1</integer>
+		<key>luc</key>
+		<integer>6</integer>
+	</dict>
+	<key>gundom</key>
+	<dict>
+		<key>name</key>
+		<string>機動戦士</string>
+		<key>explain</key>
+		<string>謎の技術による戦士。 ロマンに満ち溢れている。</string>
+		<key>own_skill</key>
+		<string>炎無効</string>
+		<key>general_skill</key>
+		<string>[LV10　竜巻旋風脚の極み] 竜巻旋風脚を使用時、上方向に波動を発生させる。 機動戦士LV10で取得</string>
+		<key>hp</key>
+		<integer>3</integer>
+		<key>str</key>
+		<integer>2</integer>
+		<key>agi</key>
+		<integer>2</integer>
+		<key>int</key>
+		<integer>2</integer>
+		<key>luc</key>
+		<integer>1</integer>
+	</dict>
+	<key>king</key>
+	<dict>
+		<key>name</key>
+		<string>皇帝</string>
+		<key>explain</key>
+		<string>国を治める王。 人の上に立つ器が求められる。</string>
+		<key>own_skill</key>
+		<string>通常攻撃ダメージ２倍</string>
+		<key>general_skill</key>
+		<string>[カッパ波動砲の極み] 波動砲を打つたびにHPが回復する。 回復量は皇帝LVに等しい。</string>
+		<key>hp</key>
+		<integer>3</integer>
+		<key>str</key>
+		<integer>2</integer>
+		<key>agi</key>
+		<integer>2</integer>
+		<key>int</key>
+		<integer>2</integer>
+		<key>luc</key>
+		<integer>1</integer>
+	</dict>
+	<key>maou</key>
+	<dict>
+		<key>name</key>
+		<string>魔王</string>
+		<key>explain</key>
+		<string>魔物を統べる王。 フードをかぶり意味深な事を言うのが仕事。</string>
+		<key>own_skill</key>
+		<string>必殺技チャージ２倍</string>
+		<key>general_skill</key>
+		<string>[LV10 カッパ昇熊拳の極み] 昇熊拳を打つたびにHPが回復する。 回復量は魔王LVに等しい。</string>
+		<key>hp</key>
+		<integer>5</integer>
+		<key>str</key>
+		<integer>2</integer>
+		<key>agi</key>
+		<integer>2</integer>
+		<key>int</key>
+		<integer>2</integer>
+		<key>luc</key>
+		<integer>3</integer>
+	</dict>
 	<key>dark_knight</key>
 	<dict>
 		<key>name</key>

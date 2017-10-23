@@ -211,11 +211,11 @@
 		<key>hp</key>
 		<integer>15</integer>
 		<key>str</key>
-		<integer>5</integer>
+		<integer>10</integer>
 		<key>def</key>
 		<integer>4</integer>
 		<key>agi</key>
-		<integer>2</integer>
+		<integer>9</integer>
 		<key>int</key>
 		<integer>0</integer>
 		<key>pie</key>
@@ -236,11 +236,11 @@
 		<key>hp</key>
 		<integer>30</integer>
 		<key>str</key>
-		<integer>9</integer>
+		<integer>12</integer>
 		<key>def</key>
 		<integer>0</integer>
 		<key>agi</key>
-		<integer>9</integer>
+		<integer>11</integer>
 		<key>int</key>
 		<integer>15</integer>
 		<key>pie</key>
@@ -265,9 +265,9 @@
 		<key>hp</key>
 		<integer>40</integer>
 		<key>str</key>
-		<integer>8</integer>
+		<integer>13</integer>
 		<key>def</key>
-		<integer>4</integer>
+		<integer>8</integer>
 		<key>agi</key>
 		<integer>3</integer>
 		<key>int</key>
@@ -288,15 +288,15 @@
 		<key>hp</key>
 		<integer>40</integer>
 		<key>str</key>
-		<integer>13</integer>
+		<integer>14</integer>
 		<key>def</key>
-		<integer>5</integer>
+		<integer>0</integer>
 		<key>agi</key>
-		<integer>50</integer>
+		<integer>77</integer>
 		<key>int</key>
 		<integer>0</integer>
 		<key>pie</key>
-		<integer>1</integer>
+		<integer>0</integer>
 		<key>range</key>
 		<integer>5</integer>
 		<key>canFly</key>
@@ -313,15 +313,15 @@
 		<key>hp</key>
 		<integer>20</integer>
 		<key>str</key>
-		<integer>9</integer>
+		<integer>16</integer>
 		<key>def</key>
-		<integer>7</integer>
+		<integer>0</integer>
 		<key>agi</key>
 		<integer>15</integer>
 		<key>int</key>
 		<integer>9</integer>
 		<key>pie</key>
-		<integer>7</integer>
+		<integer>999999</integer>
 		<key>range</key>
 		<integer>1</integer>
 		<key>canFire</key>
@@ -329,7 +329,7 @@
 		<key>type</key>
 		<string>animal</string>
 		<key>explain</key>
-		<string>ゲッコ族の生き残り。  バランスの良いステータスで、さらにファイアボールも使える優秀な人材。 海賊になるのが夢。</string>
+		<string>ゲッコ族の生き残り。  ゲッコ族なので魔法攻撃が一切効かない。 海賊になるのが夢。</string>
 	</dict>
 	<key>archer</key>
 	<dict>
@@ -338,13 +338,13 @@
 		<key>hp</key>
 		<integer>50</integer>
 		<key>str</key>
-		<integer>20</integer>
+		<integer>14</integer>
 		<key>def</key>
 		<integer>10</integer>
 		<key>agi</key>
 		<integer>22</integer>
 		<key>int</key>
-		<integer>12</integer>
+		<integer>25</integer>
 		<key>pie</key>
 		<integer>1</integer>
 		<key>range</key>
@@ -369,24 +369,30 @@
 		<key>int</key>
 		<integer>0</integer>
 		<key>pie</key>
-		<integer>99999</integer>
+		<integer>0</integer>
 		<key>range</key>
 		<integer>1</integer>
+		<key>isMovingFree</key>
+		<true/>
+		<key>dx</key>
+		<integer>70</integer>
+		<key>dy</key>
+		<integer>0</integer>
 		<key>canFly</key>
 		<true/>
 		<key>type</key>
 		<string>undead</string>
 		<key>explain</key>
-		<string>動く骨。  全体的に高めの能力を持つ上級戦士。 骨なので魔法攻撃がまるで効かない。</string>
+		<string>動く骨。  骨なので関節にとらわれない独特な動きで襲いかかってくる。 骨なので物理攻撃が全く効かない。</string>
 	</dict>
 	<key>death</key>
 	<dict>
 		<key>name</key>
 		<string>デスマーチ</string>
 		<key>hp</key>
-		<integer>6</integer>
+		<integer>9</integer>
 		<key>str</key>
-		<integer>13</integer>
+		<integer>17</integer>
 		<key>def</key>
 		<integer>0</integer>
 		<key>agi</key>
@@ -398,7 +404,11 @@
 		<key>range</key>
 		<integer>1</integer>
 		<key>isMovingFree</key>
-		<integer>1</integer>
+		<true/>
+		<key>dx</key>
+		<integer>30</integer>
+		<key>dy</key>
+		<integer>20</integer>
 		<key>type</key>
 		<string>undead</string>
 		<key>explain</key>
@@ -442,7 +452,7 @@
 		<key>name</key>
 		<string>ミイラ</string>
 		<key>hp</key>
-		<integer>44</integer>
+		<integer>64</integer>
 		<key>str</key>
 		<integer>24</integer>
 		<key>def</key>
@@ -554,21 +564,25 @@
 		<string>古代兵器。 誰が、どのような目的でこのようなロマン溢れる兵器を作ったのかは一切不明。  動きは死神をモチーフに作られており、 物理攻撃は一切効かない。  まさに白い死神と言ったところだろうか。</string>
 		<key>isMovingFree</key>
 		<integer>1</integer>
+		<key>dx</key>
+		<integer>120</integer>
+		<key>dy</key>
+		<integer>80</integer>
 	</dict>
 	<key>samurai</key>
 	<dict>
 		<key>name</key>
 		<string>ラスト侍</string>
 		<key>hp</key>
-		<integer>15</integer>
+		<integer>55</integer>
 		<key>str</key>
-		<integer>12</integer>
+		<integer>78</integer>
 		<key>def</key>
-		<integer>9</integer>
+		<integer>0</integer>
 		<key>agi</key>
-		<integer>5</integer>
+		<integer>19</integer>
 		<key>int</key>
-		<integer>6</integer>
+		<integer>0</integer>
 		<key>pie</key>
 		<integer>4</integer>
 		<key>range</key>
@@ -586,23 +600,25 @@
 		<key>name</key>
 		<string>忍者えんじに丸</string>
 		<key>hp</key>
-		<integer>33</integer>
-		<key>str</key>
 		<integer>333</integer>
+		<key>str</key>
+		<real>33333</real>
 		<key>def</key>
 		<integer>3</integer>
 		<key>agi</key>
 		<integer>33</integer>
 		<key>int</key>
-		<integer>7</integer>
+		<integer>33</integer>
 		<key>pie</key>
-		<integer>0</integer>
+		<integer>3</integer>
 		<key>range</key>
 		<integer>3</integer>
 		<key>canArrow</key>
 		<true/>
+		<key>canLazer</key>
+		<true/>
 		<key>heal</key>
-		<integer>4</integer>
+		<integer>3</integer>
 		<key>type</key>
 		<string>human</string>
 		<key>explain</key>
@@ -615,20 +631,28 @@
 		<key>name</key>
 		<string>堕天使</string>
 		<key>hp</key>
-		<integer>8</integer>
+		<integer>49</integer>
 		<key>str</key>
-		<integer>5</integer>
+		<integer>37</integer>
 		<key>def</key>
-		<integer>5</integer>
+		<integer>777</integer>
 		<key>agi</key>
-		<integer>7</integer>
+		<integer>77</integer>
 		<key>int</key>
-		<integer>8</integer>
+		<integer>27</integer>
 		<key>pie</key>
-		<integer>10</integer>
+		<integer>7</integer>
 		<key>range</key>
 		<integer>2</integer>
-		<key>canFire</key>
+		<key>isMovingFree</key>
+		<integer>1</integer>
+		<key>dx</key>
+		<integer>60</integer>
+		<key>dy</key>
+		<integer>0</integer>
+		<key>canLazer</key>
+		<true/>
+		<key>isGhost</key>
 		<true/>
 		<key>type</key>
 		<string>flying</string>
@@ -638,22 +662,28 @@
 		<key>name</key>
 		<string>リッチキング</string>
 		<key>hp</key>
-		<integer>150</integer>
+		<integer>66</integer>
 		<key>str</key>
-		<integer>66</integer>
+		<integer>70</integer>
 		<key>def</key>
-		<integer>66</integer>
+		<integer>26</integer>
 		<key>agi</key>
 		<integer>66</integer>
 		<key>int</key>
-		<integer>66</integer>
+		<integer>36</integer>
 		<key>pie</key>
-		<integer>66</integer>
+		<integer>16</integer>
 		<key>heal</key>
-		<integer>6</integer>
+		<integer>1</integer>
 		<key>range</key>
 		<integer>6</integer>
-		<key>canThunder</key>
+		<key>isMovingFree</key>
+		<true/>
+		<key>dx</key>
+		<integer>10</integer>
+		<key>canFly</key>
+		<true/>
+		<key>canFire</key>
 		<true/>
 		<key>canDeath</key>
 		<true/>
@@ -665,17 +695,17 @@
 		<key>name</key>
 		<string>魔王</string>
 		<key>hp</key>
-		<integer>999</integer>
+		<integer>123</integer>
 		<key>str</key>
-		<integer>100</integer>
+		<integer>24</integer>
 		<key>def</key>
-		<integer>100</integer>
+		<integer>44</integer>
 		<key>agi</key>
 		<integer>100</integer>
 		<key>int</key>
-		<integer>100</integer>
+		<integer>25</integer>
 		<key>pie</key>
-		<integer>100</integer>
+		<integer>34</integer>
 		<key>range</key>
 		<integer>6</integer>
 		<key>canFire</key>
@@ -686,10 +716,8 @@
 		<true/>
 		<key>canFly</key>
 		<true/>
-		<key>canDeath</key>
-		<true/>
 		<key>heal</key>
-		<integer>10</integer>
+		<integer>1</integer>
 		<key>type</key>
 		<string>undead</string>
 		<key>explain</key>
@@ -700,17 +728,17 @@
 		<key>name</key>
 		<string>妹</string>
 		<key>hp</key>
-		<integer>100</integer>
+		<integer>147</integer>
 		<key>str</key>
-		<integer>100</integer>
+		<integer>32</integer>
 		<key>def</key>
-		<integer>100</integer>
+		<integer>50</integer>
 		<key>agi</key>
-		<integer>100</integer>
+		<integer>120</integer>
 		<key>int</key>
-		<integer>100</integer>
+		<integer>34</integer>
 		<key>pie</key>
-		<integer>100</integer>
+		<integer>40</integer>
 		<key>range</key>
 		<integer>6</integer>
 		<key>canFire</key>
@@ -722,7 +750,7 @@
 		<key>canFly</key>
 		<true/>
 		<key>heal</key>
-		<integer>10</integer>
+		<integer>2</integer>
 		<key>type</key>
 		<string>undead</string>
 	</dict>
@@ -733,17 +761,17 @@
 		<key>hp</key>
 		<integer>100</integer>
 		<key>str</key>
-		<integer>100</integer>
+		<integer>43</integer>
 		<key>def</key>
 		<integer>1</integer>
 		<key>agi</key>
-		<integer>300</integer>
+		<integer>180</integer>
 		<key>int</key>
-		<integer>150</integer>
+		<integer>52</integer>
 		<key>pie</key>
 		<integer>1</integer>
 		<key>range</key>
-		<integer>5</integer>
+		<integer>2</integer>
 		<key>canFire</key>
 		<true/>
 		<key>heal</key>
@@ -762,14 +790,14 @@
 		<key>def</key>
 		<integer>1</integer>
 		<key>agi</key>
-		<integer>300</integer>
+		<integer>200</integer>
 		<key>int</key>
 		<integer>150</integer>
 		<key>pie</key>
 		<integer>1</integer>
 		<key>range</key>
 		<integer>5</integer>
-		<key>canFire</key>
+		<key>canLazer</key>
 		<true/>
 		<key>heal</key>
 		<integer>20</integer>
@@ -779,25 +807,33 @@
 	<key>dark_kappa</key>
 	<dict>
 		<key>name</key>
-		<string>闇のカッパ</string>
+		<string></string>
 		<key>hp</key>
-		<integer>1000</integer>
+		<integer>300</integer>
 		<key>str</key>
-		<integer>1</integer>
+		<integer>97</integer>
 		<key>def</key>
 		<integer>0</integer>
 		<key>agi</key>
-		<integer>999</integer>
+		<integer>255</integer>
 		<key>int</key>
-		<integer>1</integer>
+		<integer>33</integer>
 		<key>pie</key>
 		<integer>0</integer>
 		<key>range</key>
 		<integer>3</integer>
 		<key>canFire</key>
 		<true/>
-		<key>canThunder</key>
+		<key>canLazer</key>
 		<true/>
+		<key>canArrow</key>
+		<true/>
+		<key>canFly</key>
+		<true/>
+		<key>isMovingFree</key>
+		<true/>
+		<key>dx</key>
+		<integer>150</integer>
 		<key>type</key>
 		<string>human</string>
 	</dict>

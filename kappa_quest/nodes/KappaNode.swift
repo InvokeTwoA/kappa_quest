@@ -23,6 +23,7 @@ class KappaNode: SKSpriteNode {
     // フラグ
     var konjoEndFlag = false
     var isSpin = false
+    
 
     // パラメーターを userDefault から読み取り
     func setParameterByUserDefault(){

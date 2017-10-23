@@ -31,7 +31,7 @@
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>
-		<string>「早く来い。カッパ……」</string>
+		<string>「カッパよ……」</string>
 		<key>event_text1</key>
 		<string></string>
 	</dict>
@@ -64,11 +64,55 @@
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>
-		<string>「俺たちの存在は</string>
+		<string>「そんな小遣い稼ぎの為に</string>
 		<key>event_text1</key>
-		<string>　何なんだ？」</string>
+		<string>　我々は太陽を失った」</string>
 	</dict>
 	<key>0.6</key>
+	<dict>
+		<key>enemies</key>
+		<array/>
+		<key>event</key>
+		<true/>
+		<key>event_text0</key>
+		<string>「この世界に生きる限り</string>
+		<key>event_text1</key>
+		<string>　誰もそのルールから逃れられない」</string>
+	</dict>
+	<key>0.7</key>
+	<dict>
+		<key>enemies</key>
+		<array/>
+		<key>event</key>
+		<true/>
+		<key>event_text0</key>
+		<string>「……お前の主人公の力を吸収し</string>
+		<key>event_text1</key>
+		<string>　俺はこの世界を脱出する」</string>
+	</dict>
+	<key>0.8</key>
+	<dict>
+		<key>enemies</key>
+		<array/>
+		<key>event</key>
+		<true/>
+		<key>event_text0</key>
+		<string>「この小さな16ドットの体を抜け出し</string>
+		<key>event_text1</key>
+		<string>　真の自由を手に入れるのだ」</string>
+	</dict>
+	<key>0.9</key>
+	<dict>
+		<key>enemies</key>
+		<array/>
+		<key>event</key>
+		<true/>
+		<key>event_text0</key>
+		<string>「……これが俺の最後の攻撃だ」</string>
+		<key>event_text1</key>
+		<string></string>
+	</dict>
+	<key>1.0</key>
 	<dict>
 		<key>enemies</key>
 		<array>

@@ -13,6 +13,7 @@ class GameData {
     var bgmFlag = true
     var soundEffectFlag = true
     var volume : Float = 1.0
+    var death = 0
     
     // パラメーターを userDefault から読み取り
     func setParameterByUserDefault(){
@@ -25,6 +26,7 @@ class GameData {
         nickname        = UserDefaults.standard.string(forKey: "nickname")!
         name            = UserDefaults.standard.string(forKey: "name")!
         volume          = UserDefaults.standard.float(forKey: "volume")
+        death           = UserDefaults.standard.integer(forKey: "death")
     }
     
     func saveParam(){
@@ -34,6 +36,7 @@ class GameData {
         UserDefaults.standard.set(nickname,         forKey: "nickname")
         UserDefaults.standard.set(name,             forKey: "name")
         UserDefaults.standard.set(volume,           forKey: "volume")
+        UserDefaults.standard.set(death,            forKey: "death")
     }
     
     func displayName(_ job : String) -> String {
@@ -143,7 +146,12 @@ class GameData {
     }
     
     class func getName() -> String {
-        return UserDefaults.standard.string(forKey: "name")!
+        if GameData.isExistData() && UserDefaults.standard.string(forKey: "name") != "" {
+            return UserDefaults.standard.string(forKey: "name")!
+        } else {
+            return "カッパ"
+        }
+        
     }
     
 

@@ -48,7 +48,6 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         prepareBGM(fileName: Const.bgm_fantasy)
         prepareSoundEffect()
         playBGM()
-        showMessage("危険LV \(map.lv)", type: "start")
     }
     
     // 画面が読み込まれた時に呼ばれる
@@ -68,6 +67,8 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
 
         isSceneDidMoved = true
         gameData.setParameterByUserDefault()
+        
+        showMessage("危険LV \(map.lv)", type: "start")
     }
 
     func setWorld(){
@@ -91,12 +92,6 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         if map.distance == 0.0 {
             kappa.heal()
         }
-    }
-
-    // 左からpos番目のx座標を返す
-    func getPositionX(_ pos : Int) -> CGFloat {
-        let position = CGFloat(pos)/7.0-1.0/2.0
-        return size.width*position
     }
 
     // カッパを初期ポジションに設置
@@ -169,7 +164,8 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         kappa.walkLeft()
 
         var action : SKAction!
-        if jobModel.name == "thief" || jobModel.name == "ninja" {
+        
+        if jobModel.isHighSpeed() {
             action = actionModel.speedMoveLeft
         } else {
             action = actionModel.moveLeft
@@ -206,7 +202,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     }
 
     // 攻撃
-    func attack(pos: Int){
+    func attack(){
         kappa.attack()
         kappa.run(actionModel.attack!)
     }
@@ -319,7 +315,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         }
     }
 
-    func displayExp(value: Int, point: CGPoint){
+    func displayExp(_ value: Int){
         let ExpUpLabel = childNode(withName: "//ExpUpLabel") as! SKLabelNode
         ExpUpLabel.text = "+\(value)"
         ExpUpLabel.run(actionModel.fadeInOut!)
@@ -332,7 +328,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         enemy.hp = 0
         enemy.isDead = true
         let exp = map.lv + CommonUtil.minimumRnd(CommonUtil.minimumRnd(kappa.luc))
-        getExp(exp, point: enemy.position)
+        updateExp(exp)
 
         removeEnemyLifeBar(pos)
         map.positionData[pos] = "free"
@@ -360,17 +356,13 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         })
     }
 
-    func getExp(_ get_exp: Int, point: CGPoint){
-        displayExp(value: get_exp, point: CGPoint(x: point.x, y: point.y + Const.enemySize))
-        updateExp(get_exp)
-    }
-
     // 経験値更新
     func updateExp(_ getExp : Int){
         kappa.exp += getExp
         if kappa.nextExp <= kappa.exp {
             LvUp()
         }
+        displayExp(getExp)
         displayExpLabel()
         changeExpBar()
         updateStatus()
@@ -414,22 +406,22 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             LucUpLabel.run(actionModel.fadeInOut!)
         }
 
-        // スキル判定
-        skillModel.judgeSKill()
-        
         if isGetSkill() {
             showMessage("スキル習得", type: "skill")
         }
         saveData()
+
+        // スキル判定
+        skillModel.judgeSKill()
         
         heal(skillModel.lv_up_heal)
         
         gameData.changeNicknameByLV(lv: jobModel.lv)
         updateName()
     }
-    
+
     func isGetSkill() -> Bool {
-        return (jobModel.name == "murabito" && jobModel.lv == 5) || (jobModel.name == "archer" && jobModel.lv == 10) || (jobModel.name == "wizard" && jobModel.lv == 10)
+        return (jobModel.name == "murabito" && jobModel.lv == 5) || (jobModel.name == "archer" && jobModel.lv == 10) || (jobModel.name == "wizard" && jobModel.lv == 10 || (jobModel.name == "fighter" && jobModel.lv == 10) || (jobModel.name == "gundom" && jobModel.lv == 10) )
     }
     
 
@@ -438,6 +430,9 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     func tapCountUp(){
         gameData.tapCount += 1
         specialAttackModel.countUp()
+        if jobModel.name == "maou" {
+            specialAttackModel.countUp()
+        }
 
         let TapCountLabel  = childNode(withName: "//TapCountLabel") as! SKLabelNode
         TapCountLabel.text = "\(gameData.tapCount)"
@@ -446,7 +441,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             heal(skillModel.heal_val)
         }
         if skillModel.tap_dance_flag {
-            heal(1)
+            updateExp(1)
         }
     }
 
@@ -539,6 +534,24 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         })
     }
 
+    func createLazer(pos : Int, damage: Int){
+        let target = SKSpriteNode(imageNamed: "target")
+        target.position.x = getPositionX(pos)
+        target.position.y = kappa_first_position_y
+        target.anchorPoint = CGPoint(x: 0.5, y: 0)     // 中央下がアンカーポイント
+        target.zPosition = 99
+        addChild(target)
+        
+        target.run(SKAction.fadeOut(withDuration: 1.5), completion: {() -> Void in
+            let dark = ThunderEmitterNode.makeDark()
+            dark.position.x = self.getPositionX(pos)
+            dark.position.y = self.kappa_first_position_y
+            dark.damage = damage
+            self.addChild(dark)
+        })
+    }
+
+    
     
     /***********************************************************************************/
     /********************************** 敵を描画  ****************************************/
@@ -603,7 +616,8 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         addChild(enemy)
         enemyModel.enemies[pos] = enemy
         enemy.diff_agi = CommonUtil.valueMin1(enemy.agi - kappa.agi)
-
+        enemy.dx += CommonUtil.rnd(300)
+        enemy.dy += CommonUtil.rnd(300)
         if world_name == "dancer" {
             enemy.str = 999999999
         }
@@ -640,14 +654,25 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     
     // 死神召喚
     func makeDeath(position: CGPoint){
-
-        for i in 0...(Const.maxPosition-2) {
+        for i in 0...(Const.maxPosition-3) {
             if enemyModel.enemies[i] == EnemyNode() || enemyModel.enemies[i].isDead {
                 createGhost(position: position, enemy_name: "death", pos: i)
             }
         }        
     }
+    
+    // レーザー攻撃
+    func makeLazer(_ damage: Int){
+        
+        for i in 0...6 {
+            let delay = 1.2 - 0.2*Double(i)
+            _ = CommonUtil.setTimeout(delay: delay, block: { () -> Void in
+                self.createLazer(pos: i, damage: damage)
+            })
+        }
+    }
 
+    
     /***********************************************************************************/
     /******************************** マップ更新  **************************************/
     /***********************************************************************************/
@@ -674,7 +699,11 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         }
         if map.isBoss {
             stopBGM()
-            prepareBGM(fileName: Const.bgm_last_battle)
+            if world_name == "dark_kappa" {
+                prepareBGM(fileName: Const.bgm_bit_cry)
+            } else {
+                prepareBGM(fileName: Const.bgm_last_battle)
+            }
             playBGM()
             bossStopFlag = true
             displayLongMessage("Boss: \(map.boss_name)")
@@ -939,6 +968,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     // スーパー頭突き
     func specialAttackHead(){
         kappa.head()
+        heal(skillModel.angel_heal)
         specialAttackModel.execHead()
 
         let pos = map.nearEnemyPosition()
@@ -965,13 +995,8 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         if skillModel.upper_rotate_flag {
             kappa.isSpin = true
         }
-        let upper = SKAction.sequence([
-            SKAction.moveBy(x: 60,  y:      Const.enemyFlyHeight, duration: Const.headAttackSpeed/2),
-            SKAction.moveBy(x: 0,   y: -1 * Const.enemyFlyHeight, duration: Const.headAttackSpeed/2),
-            SKAction.moveBy(x: -60, y: 0,  duration: Const.headAttackSpeed/2),
-        ])
 
-        kappa.run(upper, completion: {() -> Void in
+        kappa.run(actionModel.upper!, completion: {() -> Void in
             self.kappa.isSpin = false
             self.specialAttackModel.finishAttack()
         })
@@ -980,6 +1005,12 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     // 竜巻旋風脚
     func specialAttackTornado(){
         kappa.tornado()
+        if skillModel.super_tornado_flag {
+            let hado = FireEmitterNode.makeKappaUpperFire()
+            hado.position = kappa.position
+            hado.upShot()
+            addChild(hado)
+        }
         specialAttackModel.execTornado()
 
         let upper = SKAction.sequence([
@@ -995,6 +1026,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     // 波動砲
     func specialAttackHado(){
         kappa.hado()
+        heal(skillModel.hado_heal)
         specialAttackModel.execHado()
         createHado()
         specialAttackModel.finishAttack()
@@ -1050,7 +1082,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             if map.canMoveRight() {
                 moveRight()
             } else if map.isRightEnemy() {
-                attack(pos: map.myPosition+1)
+                attack()
             } else {
                 kappa.run(actionModel.moveBack2)
             }
@@ -1148,15 +1180,19 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
 
         if isFirstBodyKappa(firstBody) {
             if secondBody.categoryBitMask & Const.fireCategory != 0 {
-                let fire = secondBody.node as! FireEmitterNode
-                attacked(attack: fire.damage, point: (firstBody.node?.position)!)
-                makeSpark(point: (secondBody.node?.position)!)
-                secondBody.node?.removeFromParent()
+                if jobModel.name != "gundom" {
+                    let fire = secondBody.node as! FireEmitterNode
+                    attacked(attack: fire.damage, point: (firstBody.node?.position)!)
+                    makeSpark(point: (secondBody.node?.position)!)
+                    secondBody.node?.removeFromParent()
+                }
             } else if secondBody.categoryBitMask & Const.thunderCategory != 0 {
-                let thunder = secondBody.node as! ThunderEmitterNode
-                attacked(attack: thunder.damage, point: (firstBody.node?.position)!)
-                makeSpark(point: (secondBody.node?.position)!)
-                secondBody.node?.removeFromParent()
+                if !specialAttackModel.is_head {
+                    let thunder = secondBody.node as! ThunderEmitterNode
+                    attacked(attack: thunder.damage, point: (firstBody.node?.position)!)
+                    makeSpark(point: (secondBody.node?.position)!)
+                    secondBody.node?.removeFromParent()
+                }
             } else if secondBody.categoryBitMask & Const.enemyCategory != 0 {
                 let enemy = secondBody.node as! EnemyNode
                 if enemy.isDead {
@@ -1172,20 +1208,25 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                 if specialAttackModel.is_attacking {
                     switch specialAttackModel.mode {
                     case "head":
-                        attackCalculate(str: kappa.str + kappa.int, type: "magick", enemy: enemy)
+                        let damage = 1 + CommonUtil.rnd(kappa.str + kappa.int)
+                        attackCalculate(str: damage, type: "magick", enemy: enemy)
                     case "upper":
                         if skillModel.upper_rotate_flag {
-                            attackCalculate(str: kappa.str + kappa.int + kappa.agi, type: "magick", enemy: enemy)
+                            let damage = 1 + CommonUtil.rnd(kappa.str + kappa.int + kappa.agi)
+                            attackCalculate(str: damage, type: "magick", enemy: enemy)
                         } else {
-                            attackCalculate(str: kappa.str + kappa.int, type: "magick", enemy: enemy)
+                            let damage = 1 + CommonUtil.rnd(kappa.str + kappa.int)
+                            attackCalculate(str: damage, type: "magick", enemy: enemy)
                         }
                     case "tornado":
-                        attackCalculate(str: kappa.agi + kappa.int + enemy.str, type: "magick", enemy: enemy)
+                        let damage = enemy.str + CommonUtil.rnd(kappa.agi + kappa.int)
+                        attackCalculate(str: damage, type: "magick", enemy: enemy)
                     default:
                         break
                     }
                 } else if kappa.hasActions() && !enemy.isMovingFree {
-                    attackCalculate(str: kappa.str, type: "physic", enemy: enemy)
+                    let damage = 1 + CommonUtil.rnd(kappa.str)
+                    attackCalculate(str: damage, type: "physic", enemy: enemy)
                 }
             }
         } else if isMagickNode(firstBody) {
@@ -1261,7 +1302,9 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             if enemy.isAttack() {
                 enemy.normalAttack(actionModel)
             } else if enemy.isFire() {
-                enemy.run(actionModel.enemyJump!)
+                if !enemy.isMovingFree {
+                    enemy.run(actionModel.enemyJump!)
+                }
                 enemy.makeFire()
                 enemy.fire.position = CGPoint(x: enemy.position.x, y: enemy.position.y + 40 )
                 self.addChild(enemy.fire)
@@ -1284,32 +1327,39 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
                 enemy.arrowTimerReset()
             } else if enemy.isDeath() {
                 makeDeath(position: enemy.position)
+                enemy.deathTimerReset()
+            } else if enemy.isLazer() {
+                makeLazer(enemy.int)
+                enemy.lazerTimerReset()
             } else if enemy.jumpTimer%4 == 0 && !enemy.canFly {
                 enemy.run(actionModel.enemyMiniJump!)
                 enemy.jumpTimerReset()
             }
+            
+            // 再生
             if enemy.heal != 0 {
                 enemy.healHP(enemy.heal)
                 changeEnemyLifeBar(enemy.pos, per: enemy.hp_per())
             }
+            
+            // 移動
             if enemy.isMovingFree {
                 if enemy.position.x < getPositionX(1) {
-                    enemy.dx = 30 + CommonUtil.rnd(10)
-                    enemy.bossSpeedUp()
+                    enemy.convertDxPlus()
                 } else if enemy.position.x > getPositionX(Const.maxPosition-1) {
-                    enemy.dx = -1 * (30 + CommonUtil.rnd(10))
-                    enemy.bossSpeedUp()
+                    enemy.convertDxMinus()
                 }
                 if enemy.position.y < kappa_first_position_y {
-                    enemy.dy = 20 + CommonUtil.rnd(10)
-                    enemy.bossSpeedUp()
+                    enemy.convertDyPlus()
+
                 } else if enemy.position.y > kappa_first_position_y + 250.0 {
-                    enemy.dy = -1 * (20 + CommonUtil.rnd(10))
-                    enemy.bossSpeedUp()
+                    enemy.convertDyMinus()
                 }
                 enemy.run(SKAction.moveBy(x: CGFloat(enemy.dx), y: CGFloat(enemy.dy) , duration: 1.0))
             }
-            if enemy.canFly && enemy.position.y > kappa_first_position_y + 250 {
+            
+            // 移動制限
+            if enemy.canFly && !enemy.isMovingFree && enemy.position.y > kappa_first_position_y + 250 {
                 enemy.physicsBody?.velocity = CGVector(dx:0, dy:0)
             }
         }

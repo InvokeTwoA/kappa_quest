@@ -5,7 +5,7 @@
 	<key>0.0</key>
 	<dict>
 		<key>background</key>
-		<string>bg_lake</string>
+		<string>bg_kazan</string>
 		<key>lv</key>
 		<integer>8</integer>
 		<key>enemies</key>
@@ -22,6 +22,8 @@
 		<key>enemies</key>
 		<array>
 			<string>death</string>
+			<string>miira</string>
+			<string>priest</string>
 		</array>
 		<key>is_boss</key>
 		<false/>
@@ -32,7 +34,7 @@
 		<key>event</key>
 		<false/>
 	</dict>
-	<key>0.2</key>
+	<key>0.4</key>
 	<dict>
 		<key>enemies</key>
 		<array>

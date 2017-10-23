@@ -191,7 +191,7 @@ class ListViewController : BaseTableViewController {
             switch indexPath.section {
             case BAR_MASTER:
                 if GameData.isClear("question") {
-                    cell.textLabel?.text = "今日は閉店だ。もう帰ってくれ……。"
+                    cell.textLabel?.text = "（まさか、メニュー画面のアレがバレたのか？）"
                     cell.imageView?.isHidden = false
                     cell.imageView?.image = UIImage(named: "master")
                 } else {

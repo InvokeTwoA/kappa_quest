@@ -27,6 +27,18 @@ class ThunderEmitterNode: SKEmitterNode {
         return particle
     }
 
+    class func makeDark() -> ThunderEmitterNode {
+        let particle = ThunderEmitterNode(fileNamed: "dark")!
+        particle.zPosition = 5
+        particle.name = "dark"
+        particle.setPhysic()
+        particle.physicsBody?.affectedByGravity = false
+        particle.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 250))
+
+        
+        return particle
+    }
+    
     
     // 物理属性を適用
     func setPhysic(){

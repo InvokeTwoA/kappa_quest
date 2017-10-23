@@ -39,6 +39,10 @@ class FireEmitterNode: SKEmitterNode {
 //        physicsBody?.applyTorque(5.0)
     }
 
+    func upShot(){
+        run(SKAction.moveBy(x: 0, y: 900, duration: 2.0))
+    }
+
     class func makeKappaFire() -> FireEmitterNode {
         let particle = FireEmitterNode(fileNamed: "energy")!
         particle.zPosition = 5
@@ -46,6 +50,16 @@ class FireEmitterNode: SKEmitterNode {
         particle.setKappaFirePhysic()
         return particle
     }
+    
+    class func makeKappaUpperFire() -> FireEmitterNode {
+        let particle = FireEmitterNode(fileNamed: "energy")!
+        particle.zPosition = 5
+        particle.name = "fire"
+        particle.setKappaFirePhysic()
+        particle.zRotation = CGFloat(90.0  / 180.0 * .pi)
+        return particle
+    }
+    
 
     // 物理属性を適用
     func setKappaFirePhysic(){

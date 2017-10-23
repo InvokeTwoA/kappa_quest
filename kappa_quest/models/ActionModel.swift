@@ -10,6 +10,7 @@ class ActionModel {
     var moveSpace : CGFloat = 0.0
 
     var attack            : SKAction!
+    var upper             : SKAction!
     var moveRight         : SKAction!
     var moveLeft          : SKAction!
     var speedMoveRight    : SKAction!
@@ -54,6 +55,15 @@ class ActionModel {
             SKAction.moveBy(x: moveSpace*2, y: 0, duration: 0.1),
             SKAction.moveBy(x: -1*moveSpace*2, y: 0, duration: 0.1),
         ])
+        
+        // upper
+        upper = SKAction.sequence([
+            SKAction.moveBy(x: 60,  y:      Const.enemyFlyHeight, duration: Const.headAttackSpeed/2),
+            SKAction.moveBy(x: 0,   y: -1 * Const.enemyFlyHeight, duration: Const.headAttackSpeed/2),
+            SKAction.moveBy(x: -60, y: 0,  duration: Const.headAttackSpeed/2),
+            ])
+
+        
 
         // 移動
         moveRight = SKAction.sequence([

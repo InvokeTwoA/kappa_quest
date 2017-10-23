@@ -68,16 +68,13 @@ class WorldScene: BaseScene, DungeonDelegate {
         }
         
         if !GameData.isClear("priest") {
-            let node = childNode(withName: "//angel")
-            node?.removeFromParent()
+            hideNode("angel")
         }
         if !GameData.isClear("thief") {
-            let node = childNode(withName: "//gundom")
-            node?.removeFromParent()
+            hideNode("gundom")
         }
         if !GameData.isClear("archer") {
-            let node = childNode(withName: "//necro")
-            node?.removeFromParent()
+            hideNode("necro")
         }
         
         // 上位を一つでもクリアしていたら行ける
@@ -98,14 +95,24 @@ class WorldScene: BaseScene, DungeonDelegate {
             node?.removeFromParent()
         }
         
-        if !GameData.isClear("question") {
+        if !GameData.isClear("question2") {
             let node = childNode(withName: "//master")
             node?.removeFromParent()
         }
         if !GameData.isClear("master") {
-            let node = childNode(withName: "//dark_kappa")
-            node?.removeFromParent()
+            hideNode("dark_kappa")
         }
+        
+        if GameData.isClear("dark_kappa") {
+            hideNode("dark_kappa")
+        } else {
+            hideNode("last")
+        }
+    }
+    
+    func hideNode(_ name : String){
+        let node = childNode(withName: "//\(name)")
+        node?.removeFromParent()
     }
     
     
@@ -215,14 +222,11 @@ class WorldScene: BaseScene, DungeonDelegate {
                     deleteSPriteNode(tapNode.name!)
                 }
                 
-  
-                if tap_count > 1 {
-//                if tap_count > 16 {
+                if tap_count > 5 {
                     let label = childNode(withName: "//ExplainLabel") as! SKLabelNode
-                    label.text = "お前を倒して主人公になる"
+                    label.text = "最後の決着をつけよう……"
                     label.fontColor = .white
-                    
-                    if tapNode.name == "ExplainNode" || tapNode.name == "ExplainLabel" {
+                    if tapNode.name == "last" {
                         goLast()
                     }
                 }

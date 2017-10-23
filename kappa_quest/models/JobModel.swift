@@ -115,6 +115,21 @@ class JobModel {
             let text = skillModel.getExplain("necro")
             res += text.replacingOccurrences(of: "(lv)", with: "\(necro_lv)")
         }
+        let angel_lv = getLV("angel")
+        if angel_lv >= 1 {
+            let text = skillModel.getExplain("angel")
+            res += text.replacingOccurrences(of: "(lv)", with: "\(angel_lv)")
+        }
+        let king_lv = getLV("king")
+        if king_lv >= 1 {
+            let text = skillModel.getExplain("king")
+            res += text.replacingOccurrences(of: "(lv)", with: "\(king_lv)")
+        }
+        let maou_lv = getLV("maou")
+        if maou_lv >= 1 {
+            let text = skillModel.getExplain("maou")
+            res += text.replacingOccurrences(of: "(lv)", with: "\(maou_lv)")
+        }
         
         
         return res

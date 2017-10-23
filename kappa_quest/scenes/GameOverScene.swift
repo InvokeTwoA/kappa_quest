@@ -23,12 +23,15 @@ class GameOverScene: BaseScene {
     override func didMove(to view: SKView) {
         prepareBGM(fileName: Const.bgm_gameover)
         playBGM()
-        if backScene.world_name == "dancer" {
+        if backScene.world_name == "dancer" || backScene.world_name == "last" {
             let continueLabel = childNode(withName: "//ContinueLabel") as! SKLabelNode
             let continueNode  = childNode(withName: "//ContinueNode")  as! SKSpriteNode
             continueLabel.removeFromParent()
             continueNode.removeFromParent()
         }
+        
+        backScene.gameData.death += 1
+        backScene.gameData.saveParam()
     }
     
     func goBack(){

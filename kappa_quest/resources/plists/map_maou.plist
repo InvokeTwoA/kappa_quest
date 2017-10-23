@@ -21,7 +21,6 @@
 	<dict>
 		<key>enemies</key>
 		<array>
-			<string>angel</string>
 			<string>zombi</string>
 			<string>miira</string>
 			<string>gundom</string>
@@ -44,9 +43,9 @@
 	<dict>
 		<key>enemies</key>
 		<array>
-			<string>angel</string>
-			<string>angel</string>
-			<string>angel</string>
+			<string></string>
+			<string></string>
+			<string></string>
 			<string>maou</string>
 		</array>
 		<key>is_boss</key>

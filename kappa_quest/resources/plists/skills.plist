@@ -27,10 +27,16 @@ LVアップするたびにHPが(lv)回復。 回復量は騎士LVに等しい�
 カッパ昇熊拳に横回転の動きが加わる事で、 敏捷の値だけ更に威力が増す。
 </string>
 	<key>dancer</key>
-	<string>[タップダンス] タップする毎に１経験値を得ます。
-カッパ昇熊拳に横回転の動きが加わる事で、 敏捷の値だけ更に威力が増す。
-</string>
+	<string>[タップダンス] タップする毎に１経験値を得ます。 </string>
 	<key>fighter</key>
 	<string>[真・カッパ頭突き] カッパ頭突きと同時に波動を放ちます。</string>
+	<key>angel</key>
+	<string>[スーパーカッパ頭突き] 回復量は天使LVと一緒です。</string>
+	<key>gundom</key>
+	<string>[竜巻旋風脚の極み] 竜巻旋風脚を使用時、上方向に波動を発生させる。</string>
+	<key>king</key>
+	<string>[カッパ波動砲の極み] 波動砲を打つたびにHPが回復する。 回復量は皇帝LVに等しい。</string>
+	<key>maou</key>
+	<string>[カッパ昇熊拳の極み] 昇熊拳を打つたびにHPが回復する。 回復量は魔王LVに等しい。</string>
 </dict>
 </plist>

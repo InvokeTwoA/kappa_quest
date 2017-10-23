@@ -136,7 +136,7 @@ class GameClearScene: BaseScene {
                 NotificationModel.plusBarCount()
                 NotificationModel.plusShopCount(2)
             }
-        case "sister":
+        case "miyuki":
             let hint = CommonUtil.rnd(5)
             clearLabel.text = "真の黒幕のヒント(\(hint+1)/5)"
             switch hint {
@@ -157,6 +157,16 @@ class GameClearScene: BaseScene {
                 getLabel2.text = "縦読みすべし"
             default:
                 break
+            }
+        case "master":
+            clearLabel.text = "最後の戦いが始まる"
+            getLabel1.text = "店長は正体を現した"
+        case "dark_kappa":
+            clearLabel.text = "次回、最終回！"
+            if !GameData.isClear(world) {
+                getLabel1.text = ""
+                getLabel2.text = ""
+                getLabel3.text = ""
             }
         default:
             clearLabel.text = "未設定"

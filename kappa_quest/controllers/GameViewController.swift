@@ -25,15 +25,13 @@ class GameViewController: UIViewController {
                 _skView.ignoresSiblingOrder = true
 //                _skView.showsFPS = true
 //                _skView.showsNodeCount = true
-                _skView.showsPhysics = true
+//                _skView.showsPhysics = true
             }
         }
     }
     
     func hideBanner(){
-        print("hide banner")
         _bannerView.isHidden = true
-        print("hide banner end")
     }
 
     override func didReceiveMemoryWarning() {

@@ -12,6 +12,7 @@ class SpecialAttackModel {
         is_attacking = false
         is_upper = false
         is_tornado = false
+        is_head = false
     }
 
     func countUp() {
@@ -38,9 +39,11 @@ class SpecialAttackModel {
     /***********************************************************************************/
     private var superHeadCount = 10  // スーパー頭突きの管理変数
     private let SPECIAL_HEAD_NEED_COUNT = 10
+    var is_head = false
     func execHead(){
         superHeadCount = 0
         is_attacking = true
+        is_head = true
         mode = "head"
     }
     

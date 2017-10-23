@@ -5,8 +5,8 @@ class ShopScene: BaseScene, JobDelegate {
 
     private var page = 0
     private var jobNameList0 = ["murabito", "wizard", "knight", "priest", "thief", "archer"]
-    private var jobNameList1 = ["dancer", "necro", "ninja", "samurai", "gundam", "fighter"]
-    private var jobNameList2 = ["king", "angel", "maou", "sister", "assassin", "dark_knight"]
+    private var jobNameList1 = ["dancer", "necro", "ninja", "angel", "gundom", "fighter"]
+    private var jobNameList2 = ["king", "maou", "sister", "assassin", "dark_knight", ""]
     private var enableJob : [Bool] = [true,false,false,false,false,false,false]
     private var jobList : [String]!
 
@@ -77,7 +77,7 @@ class ShopScene: BaseScene, JobDelegate {
         switch job {
         case "murabito":
             setJobInfo(pos: pos, job: job)
-        case "wizard", "knight", "priest", "thief", "archer", "necro", "fighter":
+        case "wizard", "knight", "priest", "thief", "archer", "necro", "fighter", "dancer", "ninja", "samurai", "gundom", "king", "angel", "maou", "sister", "assassin", "dark_knight":
             if GameData.isClear(job) {
                 enableJob[pos] = true
                 setJobInfo(pos: pos, job: job)

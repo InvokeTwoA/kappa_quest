@@ -42,9 +42,9 @@ class CutinScene: BaseScene {
             kappa.isHidden = true
             nameLabel.text = cutinModel.name
         }
-
-        text1Label.text = cutinModel.text1.replacingOccurrences(of: "(name)", with: gameData.displayName(jobModel.displayName))
-        text2Label.text = cutinModel.text2.replacingOccurrences(of: "(name)", with: gameData.displayName(jobModel.displayName))
+        let str = cutinModel.text1.replacingOccurrences(of: "(name)",  with: gameData.displayName(jobModel.displayName))
+        text1Label.text = str.replacingOccurrences(of: "(death)", with: "\(gameData.death)")
+        text2Label.text = cutinModel.text2.replacingOccurrences(of: "(name)",  with: gameData.displayName(jobModel.displayName))
     }
     
     func goBack(){

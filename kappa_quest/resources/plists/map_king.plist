@@ -25,7 +25,6 @@
 			<string>zombi</string>
 			<string>miira</string>
 			<string>skelton</string>
-			<string>angel</string>
 		</array>
 		<key>is_random</key>
 		<true/>
@@ -45,9 +44,9 @@
 	<dict>
 		<key>enemies</key>
 		<array>
-			<string>angel</string>
-			<string>angel</string>
-			<string>angel</string>
+			<string></string>
+			<string></string>
+			<string></string>
 			<string>king</string>
 		</array>
 		<key>is_boss</key>

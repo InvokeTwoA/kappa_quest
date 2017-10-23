@@ -16,8 +16,12 @@ class Tutorial3Scene: BaseScene, SKPhysicsContactDelegate {
         prepareSoundEffect()
         physicsWorld.contactDelegate = self
         
-        let enemy = childNode(withName: "//enemy") as! EnemyNode
+//        let enemy = childNode(withName: "//enemy") as! EnemyNode
+        let enemy = EnemyNode.makeEnemy(name: "ghost")
         enemy.setPhysic()
+        enemy.position.y = kappa.position.y
+        enemy.position.x = getPositionX(4)
+        addChild(enemy)
     }
     
     func setKappa(){

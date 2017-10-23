@@ -24,6 +24,7 @@ class EnemyNode: SKSpriteNode {
     var canThunder = false
     var canArrow  = false
     var canDeath = false
+    var canLazer = false
     var isGhost = false
     var isMovingFree = false
     var isZombi = ""
@@ -33,12 +34,11 @@ class EnemyNode: SKSpriteNode {
     var isDead = true
     var isAttacking = false
     
-
     // その他変数
     var pos = 0
     var fire : FireEmitterNode!
-    var dx = 10
-    var dy = 10
+    var dx = 0
+    var dy = 0
 
     class func makeEnemy(name : String) -> EnemyNode {
         let enemy = EnemyNode(imageNamed: name)
@@ -49,6 +49,7 @@ class EnemyNode: SKSpriteNode {
         enemy.fireTimer     = CommonUtil.rnd(100)
         enemy.thunderTimer  = CommonUtil.rnd(100)
         enemy.arrowTimer    = CommonUtil.rnd(100)
+        enemy.lazerTimer    = CommonUtil.rnd(120)
         enemy.isDead = false
         enemy.name = "enemy"
         return enemy
@@ -88,6 +89,10 @@ class EnemyNode: SKSpriteNode {
         if dictionary["canDeath"] != nil {
             canDeath = dictionary.object(forKey: "canDeath") as! Bool
         }
+        if dictionary["canLazer"] != nil {
+            canLazer = dictionary.object(forKey: "canLazer") as! Bool
+        }
+
 
         if dictionary["heal"] != nil {
             heal = dictionary.object(forKey: "heal") as! Int
@@ -97,13 +102,20 @@ class EnemyNode: SKSpriteNode {
         }
         if dictionary["isMovingFree"] != nil {
             isMovingFree = dictionary.object(forKey: "isMovingFree") as! Bool
-            dx =  -30 - CommonUtil.rnd(10)
-            dy =   30 + CommonUtil.rnd(10)
             isAttacking = true
         }
         if dictionary["isZombi"] != nil {
             isZombi = dictionary.object(forKey: "isZombi") as! String
-        }        
+        }
+        
+        if dictionary["dx"] != nil {
+            dx = dictionary.object(forKey: "dx") as! Int
+            dx *= -1
+        }
+        if dictionary["dy"] != nil {
+            dy = dictionary.object(forKey: "dy") as! Int
+        }
+
     }
     
     func healHP(_ heal : Int){
@@ -125,15 +137,9 @@ class EnemyNode: SKSpriteNode {
         pie += 1
         lv += 1
         isBoss = true
-        bossSpeedUp()        
         size = CGSize(width: Const.bossSize, height: Const.bossSize)
     }
     
-    func bossSpeedUp(){
-        dx *= 2
-        dy *= 2
-    }
-
     // HP の割合を返す  32% ならば　32
     func hp_per() -> Double {
         let per = Double(hp)/Double(maxHp) * 100.0
@@ -148,6 +154,7 @@ class EnemyNode: SKSpriteNode {
     var thunderTimer = 100
     var arrowTimer = 100
     var deathTimer = 80
+    var lazerTimer = 100
     var jumpTimer = 0     // この数値が 7 の倍数の時、小さくジャンプする
 
     func timerUp(){
@@ -163,6 +170,9 @@ class EnemyNode: SKSpriteNode {
         }
         if canDeath {
             deathTimer += timerRnd()
+        }
+        if canLazer {
+            lazerTimer += timerRnd()
         }
         
         jumpTimer += CommonUtil.rnd(3)
@@ -194,6 +204,10 @@ class EnemyNode: SKSpriteNode {
     
     func isDeath() -> Bool {
         return canDeath && deathTimer > 100
+    }
+    
+    func isLazer() -> Bool {
+        return canLazer && lazerTimer > 120
     }
 
 
@@ -231,7 +245,12 @@ class EnemyNode: SKSpriteNode {
         if deathTimer >= 100 {
             deathTimer = 0
         }
+    }
     
+    func lazerTimerReset(){
+        if lazerTimer >= 120 {
+            lazerTimer = 0
+        }
     }
 
     /***********************************************************************************/
@@ -301,9 +320,35 @@ class EnemyNode: SKSpriteNode {
         physicsBody?.friction = 0.0
         physicsBody?.restitution = 1.0
 
-        let dx = 30 + CommonUtil.rnd(40)
-        let dy = 30 + CommonUtil.rnd(40)
-        physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))
+        let first_dx = 30 + CommonUtil.rnd(40)
+        let first_dy = 30 + CommonUtil.rnd(40)
+        physicsBody?.applyImpulse(CGVector(dx: first_dx, dy: first_dy))
     }
 
+    
+    func convertDxPlus(){
+        if dx < 0 {
+            dx *= -1
+        }
+    }
+    
+    func convertDxMinus(){
+        if dx > 0 {
+            dx *= -1
+        }
+    }
+
+    func convertDyPlus(){
+        if dy < 0 {
+            dy *= -1
+        }
+    }
+
+    func convertDyMinus(){
+        if dy > 0 {
+            dy *= -1
+        }
+    }
+
+    
 }

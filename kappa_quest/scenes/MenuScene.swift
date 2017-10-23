@@ -12,11 +12,24 @@ class MenuScene: BaseScene {
     }
 
     override func didMove(to view: SKView) {
+        
+        if !GameData.isClear("question") {
+            let label    = childNode(withName: "//NazoLabel") as! SKLabelNode
+            let node     = childNode(withName: "//NazoNode") as! SKSpriteNode
+            label.removeFromParent()
+            node.removeFromParent()
+        }
+        
         if back == "world" {
             let worldLabel    = childNode(withName: "//WorldLabel") as! SKLabelNode
             let worldNode     = childNode(withName: "//WorldNode") as! SKSpriteNode
             worldLabel.removeFromParent()
             worldNode.removeFromParent()
+            
+            let optionLabel    = childNode(withName: "//OptionLabel") as! SKLabelNode
+            let optionNode     = childNode(withName: "//OptionNode") as! SKSpriteNode
+            optionLabel.removeFromParent()
+            optionNode.removeFromParent()
         }
         
         if !GameData.isClear("tutorial0") {
@@ -124,6 +137,9 @@ class MenuScene: BaseScene {
                 goWorld()
             case "NameNode", "NameLabel":
                 changeName()
+            case "NazoNode", "NazoLabel":
+                displayAlert("何か音がした", message: "", okString: "OK")
+                GameData.clearCountUp("question2")
             default:
                 break
             }
