@@ -118,6 +118,11 @@ class GameData {
     class func isClear(_ key : String) -> Bool {
         return UserDefaults.standard.object(forKey: "stage_\(key)_clear") != nil
     }
+
+    class func resetClearCount(_ key: String) {
+        let ud = UserDefaults.standard
+        ud.removeObject(forKey: "stage_\(key)_clear")
+    }
     
     class func notChangeJob(){
         UserDefaults.standard.set(false,  forKey: "change_job")

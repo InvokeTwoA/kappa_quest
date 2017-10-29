@@ -33,6 +33,11 @@ class BaseTableViewController: UIViewController, UITableViewDelegate, UITableVie
         if(editingStyle == UITableViewCellEditingStyle.delete){
         }
     }
+    
+    // スワイプによる削除を許可するかどうか
+    func tableView(tableView: UITableView,canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return false
+    }
 
     // row count
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -27,23 +27,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="kappa" translatesAutoresizingMaskIntoConstraints="NO" id="QDf-I6-r65">
-                                <rect key="frame" x="91" y="286" width="64" height="64"/>
+                                <rect key="frame" x="154" y="286" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="miira" translatesAutoresizingMaskIntoConstraints="NO" id="syf-PN-qKz">
-                                <rect key="frame" x="215" y="366" width="64" height="64"/>
+                                <rect key="frame" x="226" y="366" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="skelton" translatesAutoresizingMaskIntoConstraints="NO" id="U9L-HV-grP">
-                                <rect key="frame" x="286" y="366" width="64" height="64"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="dead_king" translatesAutoresizingMaskIntoConstraints="NO" id="UIo-ln-2BM">
-                                <rect key="frame" x="286" y="286" width="64" height="64"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="buffalo" translatesAutoresizingMaskIntoConstraints="NO" id="5sl-wD-Yar">
-                                <rect key="frame" x="217" y="594" width="64" height="64"/>
+                                <rect key="frame" x="304" y="366" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="miyuki" translatesAutoresizingMaskIntoConstraints="NO" id="hP1-xu-LA0">
@@ -51,27 +43,27 @@
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="maou" translatesAutoresizingMaskIntoConstraints="NO" id="ReI-Pv-0DE">
-                                <rect key="frame" x="215" y="286" width="64" height="64"/>
+                                <rect key="frame" x="226" y="286" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="knight" translatesAutoresizingMaskIntoConstraints="NO" id="KPt-fh-fjQ">
-                                <rect key="frame" x="216" y="444" width="64" height="64"/>
+                                <rect key="frame" x="226" y="441" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="usagi" translatesAutoresizingMaskIntoConstraints="NO" id="heF-3U-pkw">
-                                <rect key="frame" x="89" y="366" width="64" height="64"/>
+                                <rect key="frame" x="154" y="366" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="dancer" translatesAutoresizingMaskIntoConstraints="NO" id="Y4H-KH-KcM">
-                                <rect key="frame" x="10" y="289" width="64" height="64"/>
+                                <rect key="frame" x="92" y="289" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="samurai" translatesAutoresizingMaskIntoConstraints="NO" id="Jil-7b-iyr">
-                                <rect key="frame" x="4" y="369" width="64" height="64"/>
+                                <rect key="frame" x="8" y="286" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="tokage" translatesAutoresizingMaskIntoConstraints="NO" id="koV-9o-h1D">
-                                <rect key="frame" x="293" y="517" width="64" height="64"/>
+                                <rect key="frame" x="295" y="519" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="wizard" translatesAutoresizingMaskIntoConstraints="NO" id="SJV-6N-f8x">
@@ -83,7 +75,7 @@
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="fighter" translatesAutoresizingMaskIntoConstraints="NO" id="7wv-38-mvG">
-                                <rect key="frame" x="293" y="447" width="64" height="64"/>
+                                <rect key="frame" x="304" y="445" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="assassin" translatesAutoresizingMaskIntoConstraints="NO" id="OMb-7W-bQM">
@@ -98,10 +90,6 @@
                                 <rect key="frame" x="92" y="441" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="chibidora" translatesAutoresizingMaskIntoConstraints="NO" id="6dt-2Y-p4i">
-                                <rect key="frame" x="209" y="201" width="64" height="64"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NOW LOADING" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hi1-xl-GSE">
                                 <rect key="frame" x="7" y="42" width="362" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -110,11 +98,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="zombi" translatesAutoresizingMaskIntoConstraints="NO" id="Wfm-1R-GY6">
-                                <rect key="frame" x="295" y="594" width="64" height="64"/>
+                                <rect key="frame" x="154" y="448" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="ghost" translatesAutoresizingMaskIntoConstraints="NO" id="ffz-CT-Fpw">
-                                <rect key="frame" x="4" y="208" width="64" height="64"/>
+                                <rect key="frame" x="8" y="208" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="arakure" translatesAutoresizingMaskIntoConstraints="NO" id="cwD-5f-oak">
@@ -122,27 +110,67 @@
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="necro" translatesAutoresizingMaskIntoConstraints="NO" id="Mo9-fj-4v5">
-                                <rect key="frame" x="287" y="201" width="64" height="64"/>
+                                <rect key="frame" x="304" y="211" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="ninja" translatesAutoresizingMaskIntoConstraints="NO" id="5WU-Mx-vHj">
-                                <rect key="frame" x="6" y="123" width="64" height="64"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="hiyoko" translatesAutoresizingMaskIntoConstraints="NO" id="crf-3y-dZp">
-                                <rect key="frame" x="91" y="123" width="64" height="64"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="megane" translatesAutoresizingMaskIntoConstraints="NO" id="aAW-Zw-7ei">
-                                <rect key="frame" x="213" y="519" width="64" height="64"/>
+                                <rect key="frame" x="0.0" y="123" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="master" translatesAutoresizingMaskIntoConstraints="NO" id="O6N-Vk-5kF">
-                                <rect key="frame" x="209" y="117" width="64" height="64"/>
+                                <rect key="frame" x="226" y="123" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="angel" translatesAutoresizingMaskIntoConstraints="NO" id="B90-ja-vGL">
-                                <rect key="frame" x="293" y="117" width="64" height="64"/>
+                                <rect key="frame" x="304" y="123" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="king" translatesAutoresizingMaskIntoConstraints="NO" id="dft-iB-2aW">
+                                <rect key="frame" x="304" y="289" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="hiyoko" translatesAutoresizingMaskIntoConstraints="NO" id="crf-3y-dZp">
+                                <rect key="frame" x="80" y="123" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="kappa_body" translatesAutoresizingMaskIntoConstraints="NO" id="iVL-j0-Dxy">
+                                <rect key="frame" x="154" y="123" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="chibidora" translatesAutoresizingMaskIntoConstraints="NO" id="6dt-2Y-p4i">
+                                <rect key="frame" x="226" y="210" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="cross" translatesAutoresizingMaskIntoConstraints="NO" id="auh-aK-gjZ">
+                                <rect key="frame" x="157" y="210" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="megane" translatesAutoresizingMaskIntoConstraints="NO" id="aAW-Zw-7ei">
+                                <rect key="frame" x="157" y="520" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="dark_kappa" translatesAutoresizingMaskIntoConstraints="NO" id="fwb-kY-tal">
+                                <rect key="frame" x="294" y="596" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="death" translatesAutoresizingMaskIntoConstraints="NO" id="aRc-iX-OL6">
+                                <rect key="frame" x="91" y="366" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="gundom" translatesAutoresizingMaskIntoConstraints="NO" id="iNj-xa-FAi">
+                                <rect key="frame" x="155" y="597" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="buffalo" translatesAutoresizingMaskIntoConstraints="NO" id="5sl-wD-Yar">
+                                <rect key="frame" x="226" y="594" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="icon_kappa_hado" translatesAutoresizingMaskIntoConstraints="NO" id="tQ0-cG-ezg">
+                                <rect key="frame" x="8" y="366" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="sword" translatesAutoresizingMaskIntoConstraints="NO" id="W3Z-VH-GS4">
+                                <rect key="frame" x="229" y="520" width="64" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                         </subviews>
@@ -161,12 +189,18 @@
         <image name="assassin" width="64" height="64"/>
         <image name="buffalo" width="64" height="64"/>
         <image name="chibidora" width="64" height="64"/>
+        <image name="cross" width="64" height="64"/>
         <image name="dancer" width="64" height="64"/>
-        <image name="dead_king" width="64" height="64"/>
+        <image name="dark_kappa" width="64" height="64"/>
+        <image name="death" width="64" height="64"/>
         <image name="fighter" width="64" height="64"/>
         <image name="ghost" width="64" height="64"/>
+        <image name="gundom" width="64" height="64"/>
         <image name="hiyoko" width="64" height="64"/>
+        <image name="icon_kappa_hado" width="64" height="64"/>
         <image name="kappa" width="64" height="64"/>
+        <image name="kappa_body" width="64" height="64"/>
+        <image name="king" width="64" height="64"/>
         <image name="knight" width="64" height="64"/>
         <image name="maou" width="64" height="64"/>
         <image name="master" width="64" height="64"/>
@@ -178,6 +212,7 @@
         <image name="priest" width="64" height="64"/>
         <image name="samurai" width="64" height="64"/>
         <image name="skelton" width="64" height="64"/>
+        <image name="sword" width="64" height="64"/>
         <image name="thief" width="64" height="64"/>
         <image name="tokage" width="64" height="64"/>
         <image name="usagi" width="64" height="64"/>

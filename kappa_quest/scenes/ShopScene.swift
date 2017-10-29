@@ -6,7 +6,7 @@ class ShopScene: BaseScene, JobDelegate {
     private var page = 0
     private var jobNameList0 = ["murabito", "wizard", "knight", "priest", "thief", "archer"]
     private var jobNameList1 = ["dancer", "necro", "ninja", "angel", "gundom", "fighter"]
-    private var jobNameList2 = ["king", "maou", "sister", "assassin", "dark_knight", ""]
+    private var jobNameList2 = ["king", "maou", "miyuki", "assassin", "dark_kappa", "arakure"]
     private var enableJob : [Bool] = [true,false,false,false,false,false,false]
     private var jobList : [String]!
 
@@ -44,6 +44,8 @@ class ShopScene: BaseScene, JobDelegate {
             updateNextPageNotification(1)
         } else if page == 1 {
             updateNextPageNotification(2)
+        } else if page == 2 {
+            updateNextPageNotification(3)
         }
         
 
@@ -62,6 +64,13 @@ class ShopScene: BaseScene, JobDelegate {
     func updateNextPageNotification(_ page : Int ){
         let shop_notification_label = childNode(withName: "//ShopNotificationLabel") as! SKLabelNode
         let shop_notification_node  = childNode(withName: "//ShopNotificationNode") as! SKSpriteNode
+        
+        if page == 2 {
+            shop_notification_label.isHidden = true
+            shop_notification_node.isHidden = true
+            return
+        }
+        
         if NotificationModel.getShopCountByPage(page) == 0 {
             shop_notification_label.isHidden = true
             shop_notification_node.isHidden = true
@@ -77,7 +86,24 @@ class ShopScene: BaseScene, JobDelegate {
         switch job {
         case "murabito":
             setJobInfo(pos: pos, job: job)
-        case "wizard", "knight", "priest", "thief", "archer", "necro", "fighter", "dancer", "ninja", "samurai", "gundom", "king", "angel", "maou", "sister", "assassin", "dark_knight":
+        case "arakure":
+            setJobInfo(pos: pos, job: job)
+            enableJob[pos] = true
+        case "assassin":
+            if GameData.isClear("master") {
+                setJobInfo(pos: pos, job: job)
+                enableJob[pos] = true
+            } else {
+                enableJob[pos] = false
+            }
+        case "dark_kappa":
+            if GameData.isClear("last") {
+                setJobInfo(pos: pos, job: job)
+                enableJob[pos] = true
+            } else {
+                enableJob[pos] = false
+            }
+        case "wizard", "knight", "priest", "thief", "archer", "necro", "fighter", "dancer", "ninja", "samurai", "gundom", "king", "angel", "maou", "miyuki", "dark_knight":
             if GameData.isClear(job) {
                 enableJob[pos] = true
                 setJobInfo(pos: pos, job: job)

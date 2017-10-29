@@ -21,9 +21,9 @@
 	<dict>
 		<key>enemies</key>
 		<array>
-			<string></string>
-			<string></string>
-			<string></string>
+			<string>cross</string>
+			<string>cross</string>
+			<string>cross</string>
 			<string>dark_kappa</string>
 		</array>
 		<key>is_boss</key>

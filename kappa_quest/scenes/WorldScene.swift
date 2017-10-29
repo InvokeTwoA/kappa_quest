@@ -108,6 +108,12 @@ class WorldScene: BaseScene, DungeonDelegate {
         } else {
             hideNode("last")
         }
+        
+        // 裏面
+        if !GameData.isClear("last") {
+            hideNode("kappa")
+        }
+        
     }
     
     func hideNode(_ name : String){
@@ -234,6 +240,8 @@ class WorldScene: BaseScene, DungeonDelegate {
             }
             
             if map_nodes.contains(tapNode.name!) {
+                goDungeon(tapNode.name!)
+            } else if tapNode.name == "kappa" {
                 goDungeon(tapNode.name!)
             } else if tapNode.name! == "ShopLabel" || tapNode.name == "ShopNode" {
                 if GameData.isClear("wizard") {

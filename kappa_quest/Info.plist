@@ -19,9 +19,17 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>3</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>PixelMplus12-Regular.ttf</string>
+		<string>PixelMplus12-Bold.ttf</string>
+		<string>GN-KillGothic-U-KanaNA.ttf</string>
+		<string>GN-KillGothic-U-KanaNB.ttf</string>
+		<string>GN-KillGothic-U-KanaO.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -44,14 +52,6 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UIAppFonts</key>
-	<array>
-		<string>PixelMplus12-Regular.ttf</string>
-		<string>PixelMplus12-Bold.ttf</string>
-		<string>GN-KillGothic-U-KanaNA.ttf</string>
-		<string>GN-KillGothic-U-KanaNB.ttf</string>
-		<string>GN-KillGothic-U-KanaO.ttf</string>
 	</array>
 </dict>
 </plist>

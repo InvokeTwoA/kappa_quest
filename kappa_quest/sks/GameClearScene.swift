@@ -92,11 +92,12 @@ class GameClearScene: BaseScene {
             if !GameData.isClear(world) {
                 getLabel1.text = "「勇者」のジョブを取得！"
                 getLabel2.text = "「勇者」が酒場に登場！"
+                getLabel3.text = "「皇帝」のステージが出現！"
                 NotificationModel.plusBarCount()
                 NotificationModel.plusShopCount(1)
             }
         case "dancer":
-            clearLabel.text = "ノーダメージクリア！"
+            clearLabel.text = "今夜はブギーバック！"
             if !GameData.isClear(world) {
                 getLabel1.text = "「踊り子」のジョブを取得！"
                 getLabel2.text = "「踊り子」が酒場に登場！"
@@ -114,8 +115,8 @@ class GameClearScene: BaseScene {
         case "angel":
             clearLabel.text = "これで忍者になれる！"
             if !GameData.isClear(world) {
-                getLabel1.text = "「忍者」のジョブを取得！"
-                getLabel2.text = "「忍者」が酒場に登場！"
+                getLabel1.text = "「天使」のジョブを取得！"
+                getLabel2.text = "「天使」が酒場に登場！"
                 NotificationModel.plusBarCount()
                 NotificationModel.plusShopCount(2)
             }
@@ -123,7 +124,7 @@ class GameClearScene: BaseScene {
             clearLabel.text = "帝国の圧政も終わりだ！"
             if !GameData.isClear(world) {
                 getLabel1.text = "「皇帝」のジョブを取得！"
-                getLabel2.text = "「皇帝」が酒場に登場！"
+                getLabel2.text = "「魔王城」が出現！"
                 NotificationModel.plusBarCount()
                 NotificationModel.plusShopCount(2)
             }
@@ -133,12 +134,15 @@ class GameClearScene: BaseScene {
                 getLabel1.text = "「魔王」のジョブが解禁！"
                 getLabel2.text = "「妹」が酒場に登場！"
                 getLabel3.text = "「妹」のステージが出現！"
-                NotificationModel.plusBarCount()
-                NotificationModel.plusShopCount(2)
+                NotificationModel.plusShopCount(3)
             }
         case "miyuki":
+            if !GameData.isClear(world) {
+                NotificationModel.plusShopCount(3)
+            }
             let hint = CommonUtil.rnd(5)
             clearLabel.text = "真の黒幕のヒント(\(hint+1)/5)"
+
             switch hint {
             case 0:
                 getLabel1.text = "酒場の常連を全て集めよ"
@@ -161,6 +165,10 @@ class GameClearScene: BaseScene {
         case "master":
             clearLabel.text = "最後の戦いが始まる"
             getLabel1.text = "店長は正体を現した"
+            getLabel2.text = ""
+            if !GameData.isClear(world) {
+                NotificationModel.plusShopCount(3)
+            }
         case "dark_kappa":
             clearLabel.text = "次回、最終回！"
             if !GameData.isClear(world) {
@@ -168,6 +176,10 @@ class GameClearScene: BaseScene {
                 getLabel2.text = ""
                 getLabel3.text = ""
             }
+        case "kappa":
+            getLabel1.text = "クリアおめでとう！"
+            getLabel2.text = "君こそが、伝説のカッパだ"
+            getLabel3.text = ""
         default:
             clearLabel.text = "未設定"
             getLabel1.text = "未設定"

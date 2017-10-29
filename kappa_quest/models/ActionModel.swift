@@ -15,6 +15,8 @@ class ActionModel {
     var moveLeft          : SKAction!
     var speedMoveRight    : SKAction!
     var speedMoveLeft     : SKAction!
+    var speedMaxMoveRight    : SKAction!
+    var speedMaxMoveLeft     : SKAction!
     var floatMoveRight    : SKAction!
     var floatMoveLeft     : SKAction!
     var moveBack          : SKAction!
@@ -86,6 +88,13 @@ class ActionModel {
             SKAction.moveBy(x: moveSpace, y:    0, duration: Const.moveSpeed/2.0),
             SKAction.moveBy(x: moveSpace, y:    0, duration: Const.moveSpeed/2.0),
         ])
+        
+        speedMaxMoveRight = SKAction.sequence([
+            SKAction.moveBy(x: moveSpace, y:    0, duration: Const.moveSpeed/3.0),
+            SKAction.moveBy(x: moveSpace, y:    0, duration: Const.moveSpeed/3.0),
+            SKAction.moveBy(x: moveSpace, y:    0, duration: Const.moveSpeed/3.0),
+            SKAction.moveBy(x: moveSpace, y:    0, duration: Const.moveSpeed/3.0),
+            ])
 
         speedMoveLeft = SKAction.sequence([
             SKAction.moveBy(x: -1*moveSpace, y:    0, duration: Const.moveSpeed/2.0),
@@ -94,6 +103,14 @@ class ActionModel {
             SKAction.moveBy(x: -1*moveSpace, y:    0, duration: Const.moveSpeed/2.0),
             ])
 
+        speedMaxMoveLeft = SKAction.sequence([
+            SKAction.moveBy(x: -1*moveSpace, y:    0, duration: Const.moveSpeed/3.0),
+            SKAction.moveBy(x: -1*moveSpace, y:    0, duration: Const.moveSpeed/3.0),
+            SKAction.moveBy(x: -1*moveSpace, y:    0, duration: Const.moveSpeed/3.0),
+            SKAction.moveBy(x: -1*moveSpace, y:    0, duration: Const.moveSpeed/3.0),
+            ])
+
+        
         floatMoveRight = SKAction.sequence([
             SKAction.moveBy(x: 2*moveSpace, y:    10*Const.jumpSpace, duration: Const.moveSpeed*3),
             SKAction.moveBy(x: 2*moveSpace, y:   -10*Const.jumpSpace, duration: Const.moveSpeed*3),

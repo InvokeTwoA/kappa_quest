@@ -71,6 +71,9 @@ class MenuScene: BaseScene {
         self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
     }
     
+    /***********************************************************************************/
+    /********************************** 遷移   ******************************************/
+    /***********************************************************************************/
     func goBack(){
         if back == "world" {
             goWorld()
@@ -138,7 +141,7 @@ class MenuScene: BaseScene {
             case "NameNode", "NameLabel":
                 changeName()
             case "NazoNode", "NazoLabel":
-                displayAlert("何か音がした", message: "", okString: "OK")
+                displayAlert("ポチッとな", message: "何か変化が起こった気がする", okString: "OK")
                 GameData.clearCountUp("question2")
             default:
                 break

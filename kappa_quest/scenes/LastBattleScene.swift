@@ -19,7 +19,7 @@ class LastBattleScene: GameScene {
         createKappa()
         updateName()
         updateStatus()
-        j
+        
         // 音楽関係の処理
         prepareBGM(fileName: Const.bgm_fantasy)
         prepareSoundEffect()
@@ -246,24 +246,36 @@ class LastBattleScene: GameScene {
             break
         }
 
+        let rnd = CommonUtil.rnd(Const.maxPosition - 1)
         for (index, key) in target_array0.enumerated() {
             if key != "" {
-                setStaffRole(pos: index, key: key, height: kappa_first_position_y + 350)
+                if index == rnd {
+                    setStaffRole(pos: index, key: key, height: kappa_first_position_y + 350, pattern: "fade")
+                } else {
+                    setStaffRole(pos: index, key: key, height: kappa_first_position_y + 350, pattern: randomPattern())
+                }
             }
         }
         for (index, key) in target_array1.enumerated() {
             if key != "" {
-                setStaffRole(pos: index, key: key, height: kappa_first_position_y + 250)
+                if index == rnd {
+                    setStaffRole(pos: index, key: key, height: kappa_first_position_y + 250, pattern: "fade")
+                } else {
+                    setStaffRole(pos: index, key: key, height: kappa_first_position_y + 250, pattern: randomPattern())
+                }
             }
         }
     }
+    
+    func randomPattern() -> String {
+        return move_pattern[CommonUtil.rnd(move_pattern.count)]
+    }
 
-    func setStaffRole(pos: Int, key: String, height: CGFloat){
+    func setStaffRole(pos: Int, key: String, height: CGFloat, pattern: String){
         if key == "" {
             return
         }
 
-        let pattern = move_pattern[CommonUtil.rnd(move_pattern.count)]
         var action = actionModel.downSlow
         var color = UIColor.white
         var textColor = UIColor.black
@@ -371,7 +383,7 @@ class LastBattleScene: GameScene {
         attack_num += 1
         let boss = childNode(withName: "//boss") as! SKSpriteNode
         makeSpark(point: boss.position, isCtirical: false)
-        if attack_num == 5 {
+        if attack_num == 10 {
             if boss_position != Const.maxPosition {
                 boss.run(actionModel.moveRight)
                 map.positionData[boss_position] = "free"
@@ -450,6 +462,9 @@ class LastBattleScene: GameScene {
         bg.zPosition = 5
         addChild(bg)
 
+        GameData.clearCountUp("last")
+        GameData.resetClearCount("dark_kappa")
+        
         bg.run(SKAction.move(to: CGPoint(x:0, y: 0), duration: 15.0), completion: {() -> Void in
             self.appearNode(name: "dancer",  position: CGPoint(x: -100, y: -400 ))
             self.appearNode(name: "miyuki",  position: CGPoint(x: -200, y: -400 ))
@@ -476,14 +491,14 @@ class LastBattleScene: GameScene {
 
             let label = SKLabelNode(fontNamed: Const.pixelFont)
             label.text = "タップ回数: \(self.gameData.tapCount)"
-            label.position = CGPoint(x:0, y:300)
+            label.position = CGPoint(x:0, y:100)
             label.zPosition = 99
             label.fontSize = 32
             self.addChild(label)
 
             let label2 = SKLabelNode(fontNamed: Const.pixelFont)
             label2.text = "トータルLV: \(self.kappa.lv)"
-            label2.position = CGPoint(x:0, y:200)
+            label2.position = CGPoint(x:0, y:0)
             label2.zPosition = 99
             label2.fontSize = 32
             self.addChild(label2)
@@ -626,8 +641,6 @@ class LastBattleScene: GameScene {
             endingAttack(stage)
         case 70:
             showBigMessage(text0: "しぶとい奴め……", text1: "")
-        case 76:
-            showBigMessage(text0: "special thanks で", text1: "とどめだ！")
         case 105:
             showBigMessage(text0: "エンディングが終わる……", text1: "")
         case 110:

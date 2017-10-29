@@ -345,6 +345,26 @@
 			<key>text2</key>
 			<string></string>
 		</dict>
+		<dict>
+			<key>name</key>
+			<string>スカラー</string>
+			<key>image</key>
+			<string>priest</string>
+			<key>text1</key>
+			<string>あなたこそが神！！</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>いや、俺はカッパです。</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
 	</array>
 	<key>thief_pre</key>
 	<array>
@@ -1484,6 +1504,62 @@
 			<string>（最終章へと続く）</string>
 			<key>text2</key>
 			<string></string>
+		</dict>
+	</array>
+	<key>kappa_pre</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>いざ、尋常に勝負！</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>うおおおおおお！</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+	</array>
+	<key>kappa_end</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>最強のカッパ</string>
+			<key>image</key>
+			<string>dark_kappa</string>
+			<key>text1</key>
+			<string>お前が、ナンバーワンだ！</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>踊り子</string>
+			<key>image</key>
+			<string>dancer</string>
+			<key>text1</key>
+			<string>きゃー、ステキー！</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>ふっ、</string>
+			<key>text2</key>
+			<string>そんなに褒めないでくれ</string>
 		</dict>
 	</array>
 </dict>

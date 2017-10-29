@@ -199,13 +199,13 @@ LVアップするたびにHPが(lv)回復。 回復量は騎士LVに等しい�
 	<key>ninja</key>
 	<dict>
 		<key>name</key>
-		<string>ネクロマンサー</string>
+		<string>忍者</string>
 		<key>explain</key>
-		<string>死者を操る禁術に魅入られし者。 呪いによる独特なスキルを扱う。</string>
+		<string>みんな大好き忍者。ニンニン！</string>
 		<key>own_skill</key>
-		<string></string>
+		<string>クリティカル２倍</string>
 		<key>general_skill</key>
-		<string>[生命奪取] 敵を撃破時に、ネクロマンサーLVだけHPを回復する。</string>
+		<string>[LV10  滅・昇熊拳] 昇熊拳を使用時、上方向に波動を発生させる。 忍者LV10で習得</string>
 		<key>hp</key>
 		<integer>4</integer>
 		<key>str</key>
@@ -247,7 +247,7 @@ LVアップするたびにHPが(lv)回復。 回復量は騎士LVに等しい�
 		<key>own_skill</key>
 		<string>炎無効</string>
 		<key>general_skill</key>
-		<string>[LV10　竜巻旋風脚の極み] 竜巻旋風脚を使用時、上方向に波動を発生させる。 機動戦士LV10で取得</string>
+		<string>[LV10　滅・竜巻旋風蹴] 竜巻旋風脚を使用時、上方向に波動を発生させる。 機動戦士LV10で取得</string>
 		<key>hp</key>
 		<integer>3</integer>
 		<key>str</key>
@@ -289,7 +289,7 @@ LVアップするたびにHPが(lv)回復。 回復量は騎士LVに等しい�
 		<key>own_skill</key>
 		<string>必殺技チャージ２倍</string>
 		<key>general_skill</key>
-		<string>[LV10 カッパ昇熊拳の極み] 昇熊拳を打つたびにHPが回復する。 回復量は魔王LVに等しい。</string>
+		<string>[カッパ昇熊拳の極み] 昇熊拳を打つたびにHPが回復する。 回復量は魔王LVに等しい。</string>
 		<key>hp</key>
 		<integer>5</integer>
 		<key>str</key>
@@ -301,26 +301,89 @@ LVアップするたびにHPが(lv)回復。 回復量は騎士LVに等しい�
 		<key>luc</key>
 		<integer>3</integer>
 	</dict>
-	<key>dark_knight</key>
+	<key>assassin</key>
+	<dict>
+		<key>name</key>
+		<string>暗殺者</string>
+		<key>explain</key>
+		<string>確実にターゲットを暗殺する闇の業者。  物理攻撃を極めるならばこの職業</string>
+		<key>own_skill</key>
+		<string>[超縮地] 移動速度が最速になる</string>
+		<key>general_skill</key>
+		<string>[カッパ竜巻の極み] カッパ旋風蹴を使うたびにHPが回復。 回復量は暗殺者LVに等しい。</string>
+		<key>hp</key>
+		<integer>1</integer>
+		<key>str</key>
+		<integer>7</integer>
+		<key>agi</key>
+		<integer>1</integer>
+		<key>int</key>
+		<integer>1</integer>
+		<key>luc</key>
+		<integer>1</integer>
+	</dict>
+	<key>miyuki</key>
+	<dict>
+		<key>name</key>
+		<string>妹</string>
+		<key>explain</key>
+		<string>兄を敬愛する存在。  スキルは無いが、成長率がとても高い</string>
+		<key>own_skill</key>
+		<string>なし</string>
+		<key>general_skill</key>
+		<string>なし</string>
+		<key>hp</key>
+		<integer>7</integer>
+		<key>str</key>
+		<integer>3</integer>
+		<key>agi</key>
+		<integer>3</integer>
+		<key>int</key>
+		<integer>3</integer>
+		<key>luc</key>
+		<integer>3</integer>
+	</dict>
+	<key>dark_kappa</key>
 	<dict>
 		<key>name</key>
 		<string>暗黒騎士</string>
 		<key>explain</key>
-		<string></string>
+		<string>ある目的を叶えるため、他の全てを捨てた騎士。  固有アビリティは強力だが、 ステータスは成長しないので注意。 </string>
 		<key>own_skill</key>
-		<string></string>
+		<string>必殺技チャージ３倍</string>
 		<key>general_skill</key>
-		<string></string>
+		<string>なし</string>
 		<key>hp</key>
 		<integer>0</integer>
 		<key>str</key>
-		<integer>5</integer>
+		<integer>0</integer>
 		<key>agi</key>
-		<integer>5</integer>
+		<integer>0</integer>
 		<key>int</key>
-		<integer>5</integer>
+		<integer>0</integer>
 		<key>luc</key>
-		<integer>5</integer>
+		<integer>0</integer>
+	</dict>
+	<key>arakure</key>
+	<dict>
+		<key>name</key>
+		<string>荒くれ</string>
+		<key>explain</key>
+		<string>世紀末を自由に生きる無法者。  一切の経験値が入らないので、 敢えてハードなプレイをしたい人向けの職業。 ヒャッハー！</string>
+		<key>own_skill</key>
+		<string>[無成長] 一切の経験値が手に入らない。 まるで成長していない……。</string>
+		<key>general_skill</key>
+		<string>なし</string>
+		<key>hp</key>
+		<integer>0</integer>
+		<key>str</key>
+		<integer>0</integer>
+		<key>agi</key>
+		<integer>0</integer>
+		<key>int</key>
+		<integer>0</integer>
+		<key>luc</key>
+		<integer>0</integer>
 	</dict>
 </dict>
 </plist>

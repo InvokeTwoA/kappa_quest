@@ -34,7 +34,11 @@ class ListViewController : BaseTableViewController {
         "samurai",
         "ninja",
         "tokage",
+        "cross",
         "angel",
+        "assassin",
+        "king",
+        "maou"
     ]
 
     // モンスター図鑑（詳細）
@@ -272,6 +276,7 @@ class ListViewController : BaseTableViewController {
         case "library":
             if indexPath.section == LIBRARY_ENEMY_BACK {
                 type = "enemies"
+                setData()
                 _tableView.reloadData()
             }
         case "bar":

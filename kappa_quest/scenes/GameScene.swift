@@ -54,6 +54,8 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     private var isSceneDidMoved = false
     override func didMove(to view: SKView) {
         updateStatus()
+        updateName()
+        
         updateDistance()
 
         playBGM()
@@ -120,6 +122,8 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         var action : SKAction!
         if jobModel.isHighSpeed() {
             action = actionModel.speedMoveRight
+        } else if jobModel.name == "assassin" {
+            action = actionModel.speedMaxMoveRight
         } else {
             action = actionModel.moveRight
         }
@@ -167,6 +171,8 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         
         if jobModel.isHighSpeed() {
             action = actionModel.speedMoveLeft
+        } else if jobModel.name == "assassin" {
+            action = actionModel.speedMaxMoveLeft
         } else {
             action = actionModel.moveLeft
         }
@@ -218,7 +224,12 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
             def = enemy.pie
         }
 
-        if BattleModel.isCritical(luc: Double(kappa.luc)) {
+        var luck = kappa.luc
+        if jobModel.name == "ninja" {
+            luck *= 2
+        }
+        
+        if BattleModel.isCritical(luc: Double(luck)) {
             for _ in 0...2 {
                 makeSpark(point: CGPoint(x: enemy.position.x, y: enemyModel.enemies[pos].position.y), isCtirical: true)
             }
@@ -358,6 +369,10 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
 
     // 経験値更新
     func updateExp(_ getExp : Int){
+        if jobModel.name == "arakure" {
+            return
+        }
+        
         kappa.exp += getExp
         if kappa.nextExp <= kappa.exp {
             LvUp()
@@ -431,6 +446,10 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         gameData.tapCount += 1
         specialAttackModel.countUp()
         if jobModel.name == "maou" {
+            specialAttackModel.countUp()
+        }
+        if jobModel.name == "dark_kappa" {
+            specialAttackModel.countUp()
             specialAttackModel.countUp()
         }
 
@@ -663,7 +682,6 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     
     // レーザー攻撃
     func makeLazer(_ damage: Int){
-        
         for i in 0...6 {
             let delay = 1.2 - 0.2*Double(i)
             _ = CommonUtil.setTimeout(delay: delay, block: { () -> Void in
@@ -991,11 +1009,14 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     // 昇竜拳
     func specialAttackUpper(){
         kappa.upper()
+        heal(skillModel.upper_heal)
         specialAttackModel.execUpper()
         if skillModel.upper_rotate_flag {
             kappa.isSpin = true
         }
-
+        if skillModel.super_upper_flag {
+            upHado()
+        }
         kappa.run(actionModel.upper!, completion: {() -> Void in
             self.kappa.isSpin = false
             self.specialAttackModel.finishAttack()
@@ -1005,11 +1026,9 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     // 竜巻旋風脚
     func specialAttackTornado(){
         kappa.tornado()
+        heal(skillModel.tornado_heal)
         if skillModel.super_tornado_flag {
-            let hado = FireEmitterNode.makeKappaUpperFire()
-            hado.position = kappa.position
-            hado.upShot()
-            addChild(hado)
+            upHado()
         }
         specialAttackModel.execTornado()
 
@@ -1059,6 +1078,14 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         headBar.size.width      = CGFloat(specialAttackModel.barSpecialHead())
         tornadoBar.size.width   = CGFloat(specialAttackModel.barSpecialTornado())
         hadoBar.size.width      = CGFloat(specialAttackModel.barSpecialHado())
+    }
+    
+    // 上方向に波動を放つ
+    func upHado(){
+        let hado = FireEmitterNode.makeKappaUpperFire()
+        hado.position = kappa.position
+        hado.upShot()
+        addChild(hado)
     }
 
     /***********************************************************************************/

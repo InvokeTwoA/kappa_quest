@@ -130,8 +130,12 @@ class JobModel {
             let text = skillModel.getExplain("maou")
             res += text.replacingOccurrences(of: "(lv)", with: "\(maou_lv)")
         }
-        
-        
+        let assassin_lv = getLV("assassin")
+        if assassin_lv >= 1 {
+            let text = skillModel.getExplain("assassin")
+            res += text.replacingOccurrences(of: "(lv)", with: "\(assassin_lv)")
+        }
+                
         return res
     }
     

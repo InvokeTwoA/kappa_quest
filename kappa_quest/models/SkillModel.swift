@@ -24,7 +24,8 @@ class SkillModel {
     var tap_dance_flag = false
     var super_head_flag = false
     var super_tornado_flag = false
-
+    var super_upper_flag = false
+    
     // スキル変数
     var heal_val = 0
     var necro_heal = 0
@@ -33,6 +34,7 @@ class SkillModel {
     var map_heal = 0
     var hado_heal = 0
     var upper_heal = 0
+    var tornado_heal = 0
     
 
     func judgeSKill(){
@@ -54,7 +56,10 @@ class SkillModel {
         if JobModel.getLV("gundom") >= 10 {
             super_tornado_flag = true
         }
-
+        if JobModel.getLV("ninja") >= 10 {
+            super_upper_flag = true
+        }
+        
         heal_val    = JobModel.getLV("priest")
         necro_heal  = JobModel.getLV("necro")
         angel_heal  = JobModel.getLV("angel")
@@ -62,6 +67,7 @@ class SkillModel {
         map_heal    = JobModel.getLV("thief")
         hado_heal   = JobModel.getLV("king")
         upper_heal  = JobModel.getLV("maou")
+        tornado_heal  = JobModel.getLV("assassin")
     }
 
 }

@@ -122,6 +122,7 @@
 		CEEB83D01F1BBD240025E021 /* PixelMplus12-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEC2B6AB1F1BB9EF0014B114 /* PixelMplus12-Regular.ttf */; };
 		CEEB83D21F1BCE200025E021 /* CommonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB83D11F1BCE200025E021 /* CommonUtil.swift */; };
 		CEEB83D61F1C46760025E021 /* GN-KillGothic-U-KanaNA.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEEB83D31F1C464B0025E021 /* GN-KillGothic-U-KanaNA.ttf */; };
+		CEF1531F1F9FB01E005065DF /* map_kappa.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEF1531E1F9FB01E005065DF /* map_kappa.plist */; };
 		D6218922036AAB3CF0E99D5F /* libPods-kappa_quest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C1A9F14ECD26DB31A1C9115 /* libPods-kappa_quest.a */; };
 /* End PBXBuildFile section */
 
@@ -246,6 +247,7 @@
 		CEEB83D31F1C464B0025E021 /* GN-KillGothic-U-KanaNA.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "GN-KillGothic-U-KanaNA.ttf"; path = "resources/fonts/GN-KillGothic-U-KanaNA.ttf"; sourceTree = "<group>"; };
 		CEEB83D41F1C464B0025E021 /* GN-KillGothic-U-KanaNB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "GN-KillGothic-U-KanaNB.ttf"; path = "resources/fonts/GN-KillGothic-U-KanaNB.ttf"; sourceTree = "<group>"; };
 		CEEB83D51F1C464B0025E021 /* GN-KillGothic-U-KanaO.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "GN-KillGothic-U-KanaO.ttf"; path = "resources/fonts/GN-KillGothic-U-KanaO.ttf"; sourceTree = "<group>"; };
+		CEF1531E1F9FB01E005065DF /* map_kappa.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_kappa.plist; path = resources/plists/map_kappa.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -344,6 +346,7 @@
 				CE7E697D1F92054D000ECC33 /* map_master.plist */,
 				CE7E697F1F92148C000ECC33 /* map_dark_kappa.plist */,
 				CE7E69851F9320B0000ECC33 /* map_last.plist */,
+				CEF1531E1F9FB01E005065DF /* map_kappa.plist */,
 			);
 			name = map;
 			sourceTree = "<group>";
@@ -646,6 +649,7 @@
 				CED621D61F4035B600C92480 /* bokeh.sks in Resources */,
 				CED377971F77FF590068768B /* map_ninja.plist in Resources */,
 				CED621DB1F40361200C92480 /* fire.sks in Resources */,
+				CEF1531F1F9FB01E005065DF /* map_kappa.plist in Resources */,
 				CE7E69581F888FAA000ECC33 /* Tutorial2Scene.sks in Resources */,
 				CEEB83D01F1BBD240025E021 /* PixelMplus12-Regular.ttf in Resources */,
 				CE7E69701F8B6FCE000ECC33 /* bgm_maoudamashii_8bit06.mp3 in Resources */,
