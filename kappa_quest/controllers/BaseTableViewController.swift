@@ -35,7 +35,7 @@ class BaseTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     // スワイプによる削除を許可するかどうか
-    func tableView(tableView: UITableView,canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView,canEditRowAt indexPath: IndexPath) -> Bool {
         return false
     }
 

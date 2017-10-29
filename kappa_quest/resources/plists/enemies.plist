@@ -148,8 +148,6 @@
 		<true/>
 		<key>canFire</key>
 		<true/>
-		<key>canThunder</key>
-		<true/>
 		<key>type</key>
 		<string>human</string>
 		<key>explain</key>
@@ -537,17 +535,17 @@
 		<key>name</key>
 		<string>機動戦士ガソダム</string>
 		<key>hp</key>
-		<integer>100</integer>
+		<integer>70</integer>
 		<key>str</key>
 		<integer>20</integer>
 		<key>def</key>
-		<integer>14</integer>
+		<integer>1</integer>
 		<key>agi</key>
 		<integer>8</integer>
 		<key>int</key>
 		<integer>25</integer>
 		<key>pie</key>
-		<integer>10</integer>
+		<integer>1</integer>
 		<key>range</key>
 		<integer>0</integer>
 		<key>canFire</key>
@@ -556,8 +554,6 @@
 		<true/>
 		<key>type</key>
 		<string>flying</string>
-		<key>heal</key>
-		<integer>3</integer>
 		<key>explain</key>
 		<string>古代兵器。 誰が、どのような目的でこのようなロマン溢れる兵器を作ったのかは一切不明。  動きは死神をモチーフに作られており、 物理攻撃は一切効かない。  まさに白い死神と言ったところだろうか。</string>
 		<key>isMovingFree</key>

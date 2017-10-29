@@ -246,6 +246,16 @@
 			<key>text2</key>
 			<string></string>
 		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>（敵は強力な雷魔法を使ってくる……</string>
+			<key>text2</key>
+			<string>　ターゲットマークが表示されたら要注意だ）</string>
+		</dict>
 	</array>
 	<key>knight_end</key>
 	<array>
