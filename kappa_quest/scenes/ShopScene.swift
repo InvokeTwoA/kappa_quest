@@ -94,6 +94,7 @@ class ShopScene: BaseScene, JobDelegate {
                 setJobInfo(pos: pos, job: job)
                 enableJob[pos] = true
             } else {
+                setHatenaImage(pos: pos)
                 enableJob[pos] = false
             }
         case "dark_kappa":
@@ -101,6 +102,7 @@ class ShopScene: BaseScene, JobDelegate {
                 setJobInfo(pos: pos, job: job)
                 enableJob[pos] = true
             } else {
+                setHatenaImage(pos: pos)
                 enableJob[pos] = false
             }
         case "wizard", "knight", "priest", "thief", "archer", "necro", "fighter", "dancer", "ninja", "samurai", "gundom", "king", "angel", "maou", "miyuki", "dark_knight":

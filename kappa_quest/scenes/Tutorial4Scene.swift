@@ -52,11 +52,11 @@ class Tutorial4Scene: BaseScene {
     /********************************** 画面遷移  ****************************************/
     /***********************************************************************************/
     func goMenu(){
-        let scene = MenuScene(fileNamed: "MenuScene")!
-        scene.size = self.scene!.size
-        scene.scaleMode = SKSceneScaleMode.aspectFill
-        scene.back = "tutorial"
-        self.view!.presentScene(scene, transition: .fade(withDuration: Const.transitionInterval))
+        let nextScene = MenuScene(fileNamed: "MenuScene")!
+        nextScene.size = self.scene!.size
+        nextScene.scaleMode = SKSceneScaleMode.aspectFit
+        nextScene.back = "tutorial"
+        self.view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
     }
 
     // 初めてのゲーム画面へ
@@ -70,11 +70,11 @@ class Tutorial4Scene: BaseScene {
 
         GameData.clearCountUp("tutorial0")
         
-        let scene = GameScene(fileNamed: "GameScene")!
-        scene.size = self.scene!.size
-        scene.scaleMode = SKSceneScaleMode.aspectFill
-        scene.world_name = "tutorial"
-        self.view!.presentScene(scene, transition: .fade(withDuration: Const.transitionInterval))
+        let nextScene = GameScene(fileNamed: "GameScene")!
+        nextScene.size = self.scene!.size
+        nextScene.scaleMode = SKSceneScaleMode.aspectFit
+        nextScene.world_name = "tutorial"
+        self.view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
     }
 
     /***********************************************************************************/

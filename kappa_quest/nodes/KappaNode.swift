@@ -7,8 +7,8 @@ class KappaNode: SKSpriteNode {
     // ステータス
     var lv = 1
     var job_lv = 1
-    var maxHp = 10
-    var hp = 10
+    var maxHp = 15
+    var hp = 15
     var str = 2
     var agi = 2
     var int = 2
@@ -16,14 +16,11 @@ class KappaNode: SKSpriteNode {
     var nextExp = 10
     var exp = 0
     var physic_type = "normal"
-
-
     var mode = ""
-
+    
     // フラグ
     var konjoEndFlag = false
     var isSpin = false
-    
 
     // パラメーターを userDefault から読み取り
     func setParameterByUserDefault(){

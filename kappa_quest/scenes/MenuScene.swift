@@ -80,7 +80,7 @@ class MenuScene: BaseScene {
         } else if back == "tutorial" {
             let nextScene = Tutorial4Scene(fileNamed: "Tutorial4Scene")!
             nextScene.size = nextScene.size
-            nextScene.scaleMode = SKSceneScaleMode.aspectFill
+            nextScene.scaleMode = SKSceneScaleMode.aspectFit
             view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
         } else {
             view!.presentScene(backScene!, transition: .fade(withDuration: Const.transitionInterval))
@@ -96,7 +96,7 @@ class MenuScene: BaseScene {
     func goOption(){
         let nextScene = OptionScene(fileNamed: "OptionScene")!
         nextScene.size = scene!.size
-        nextScene.scaleMode = SKSceneScaleMode.aspectFill
+        nextScene.scaleMode = SKSceneScaleMode.aspectFit
         nextScene.backScene = scene as! MenuScene
         view!.presentScene(nextScene, transition: .flipVertical(withDuration: Const.transitionInterval))
     }

@@ -97,8 +97,6 @@
 		CED377821F7002850068768B /* worlds.plist in Resources */ = {isa = PBXBuildFile; fileRef = CED377811F7002850068768B /* worlds.plist */; };
 		CED377841F7003D50068768B /* WorldModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED377831F7003D50068768B /* WorldModel.swift */; };
 		CED377871F72C2EE0068768B /* Job.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED377851F72C2EE0068768B /* Job.storyboard */; };
-		CED3778B1F72CD0E0068768B /* Dungeon.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CED377891F72CD0E0068768B /* Dungeon.storyboard */; };
-		CED3778D1F74232A0068768B /* DungeonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED3778C1F74232A0068768B /* DungeonViewController.swift */; };
 		CED3778F1F74B26C0068768B /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED3778E1F74B26C0068768B /* BaseTableViewController.swift */; };
 		CED377911F74D8300068768B /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED377901F74D8300068768B /* ListViewController.swift */; };
 		CED377931F74EEC00068768B /* map_dancer.plist in Resources */ = {isa = PBXBuildFile; fileRef = CED377921F74EEC00068768B /* map_dancer.plist */; };
@@ -224,8 +222,6 @@
 		CED377811F7002850068768B /* worlds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = worlds.plist; path = resources/plists/worlds.plist; sourceTree = "<group>"; };
 		CED377831F7003D50068768B /* WorldModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WorldModel.swift; path = models/WorldModel.swift; sourceTree = "<group>"; };
 		CED377861F72C2EE0068768B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Job.storyboard; sourceTree = "<group>"; };
-		CED3778A1F72CD0E0068768B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Dungeon.storyboard; sourceTree = "<group>"; };
-		CED3778C1F74232A0068768B /* DungeonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DungeonViewController.swift; path = controllers/DungeonViewController.swift; sourceTree = "<group>"; };
 		CED3778E1F74B26C0068768B /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseTableViewController.swift; path = controllers/BaseTableViewController.swift; sourceTree = "<group>"; };
 		CED377901F74D8300068768B /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListViewController.swift; path = controllers/ListViewController.swift; sourceTree = "<group>"; };
 		CED377921F74EEC00068768B /* map_dancer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_dancer.plist; path = resources/plists/map_dancer.plist; sourceTree = "<group>"; };
@@ -379,7 +375,6 @@
 				CEC2B6861F177A3C0014B114 /* GameViewController.swift */,
 				CED3778E1F74B26C0068768B /* BaseTableViewController.swift */,
 				CE8D513B1F6E46DF004F8D0B /* JobViewController.swift */,
-				CED3778C1F74232A0068768B /* DungeonViewController.swift */,
 				CED377901F74D8300068768B /* ListViewController.swift */,
 			);
 			name = controllers;
@@ -511,7 +506,6 @@
 			children = (
 				CEC2B6881F177A3C0014B114 /* Main.storyboard */,
 				CED377851F72C2EE0068768B /* Job.storyboard */,
-				CED377891F72CD0E0068768B /* Dungeon.storyboard */,
 			);
 			name = storyboards;
 			sourceTree = "<group>";
@@ -673,7 +667,6 @@
 				CE7E69661F8AB48C000ECC33 /* map_king.plist in Resources */,
 				CE7E695D1F88A02A000ECC33 /* Tutorial3Scene.sks in Resources */,
 				CE31F9211F5156C200E868FB /* OptionScene.sks in Resources */,
-				CED3778B1F72CD0E0068768B /* Dungeon.storyboard in Resources */,
 				CE31F9411F626CF600E868FB /* WorldScene.sks in Resources */,
 				CE8D513E1F6FB3F4004F8D0B /* map_knight.plist in Resources */,
 				CE524F801F20D5B900A6D14C /* jpn.strings in Resources */,
@@ -774,7 +767,6 @@
 				CE6BB81F1F23C8860046DA65 /* Map.swift in Sources */,
 				CED3778F1F74B26C0068768B /* BaseTableViewController.swift in Sources */,
 				CE7E69501F872578000ECC33 /* NotificationModel.swift in Sources */,
-				CED3778D1F74232A0068768B /* DungeonViewController.swift in Sources */,
 				CE7E69621F88D501000ECC33 /* Tutorial4Scene.swift in Sources */,
 				CED621DF1F40380600C92480 /* SparkEmitterNode.swift in Sources */,
 				CE7E69541F87CD5C000ECC33 /* TutorialScene.swift in Sources */,
@@ -823,14 +815,6 @@
 				CED377861F72C2EE0068768B /* Base */,
 			);
 			name = Job.storyboard;
-			sourceTree = "<group>";
-		};
-		CED377891F72CD0E0068768B /* Dungeon.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CED3778A1F72CD0E0068768B /* Base */,
-			);
-			name = Dungeon.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -890,7 +874,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -939,7 +923,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

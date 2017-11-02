@@ -13,14 +13,14 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         // adMob
-//        self.view.addSubview(_bannerView)
         _bannerView.adUnitID = Const.adMobID
         _bannerView.rootViewController = self
         _bannerView.load(GADRequest())
 
         if let scene = GKScene(fileNamed: "TitleScene") {
             if let sceneNode = scene.rootNode as! TitleScene? {
-                sceneNode.scaleMode = .aspectFill
+                sceneNode.scaleMode = .aspectFit
+
                 _skView.presentScene(sceneNode)
                 _skView.ignoresSiblingOrder = true
 //                _skView.showsFPS = true

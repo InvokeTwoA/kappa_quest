@@ -65,13 +65,7 @@ class TitleScene: BaseScene {
     }
     
     func goGame(){
-        /*
-        let resetNode = childNode(withName: "//ResetNode") as! SKSpriteNode
-        resetNode.physicsBody = SKPhysicsBody(rectangleOf: resetNode.size)
-        WorldNode.setWorldEnd(resetNode.physicsBody!)
- */
         stopBGM()
-        
         if GameData.isClear("tutorial") {
             goWorld()
         } else if GameData.isClear("tutorial0") {
@@ -79,25 +73,25 @@ class TitleScene: BaseScene {
         } else {
             let nextScene = TutorialScene(fileNamed: "TutorialScene")!
             nextScene.size = nextScene.size
-            nextScene.scaleMode = SKSceneScaleMode.aspectFill
+            nextScene.scaleMode = SKSceneScaleMode.aspectFit
             view!.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
         }
     }
     
     func goFirstWorld(){
-        let scene = GameScene(fileNamed: "GameScene")!
-        scene.size = self.scene!.size
-        scene.scaleMode = SKSceneScaleMode.aspectFill
-        scene.world_name = "tutorial"
-        self.view!.presentScene(scene, transition: .fade(withDuration: Const.transitionInterval))
+        let nextScene = GameScene(fileNamed: "GameScene")!
+        nextScene.size = self.scene!.size
+        nextScene.scaleMode = SKSceneScaleMode.aspectFit
+        nextScene.world_name = "tutorial"
+        self.view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
     }
     
     func goMusic(){
         stopBGM()
-        let scene = MusicScene(fileNamed: "MusicScene")!
-        scene.size = self.scene!.size
-        scene.scaleMode = SKSceneScaleMode.aspectFill
-        self.view!.presentScene(scene, transition: .fade(withDuration: Const.transitionInterval))
+        let nextScene = MusicScene(fileNamed: "MusicScene")!
+        nextScene.size = self.scene!.size
+        nextScene.scaleMode = SKSceneScaleMode.aspectFit
+        self.view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
     }
     
     func resetAlert(){
@@ -118,10 +112,10 @@ class TitleScene: BaseScene {
         let appDomain:String = Bundle.main.bundleIdentifier!
         UserDefaults.standard.removePersistentDomain(forName: appDomain)
 
-        let scene = TitleScene(fileNamed: "TitleScene")
-        scene?.size = self.scene!.size
-        scene?.scaleMode = SKSceneScaleMode.aspectFill
-        self.view!.presentScene(scene!, transition: .fade(with: .white, duration: Const.gameOverInterval))
+        let nextScene = TitleScene(fileNamed: "TitleScene")!
+        nextScene.size = self.scene!.size
+        nextScene.scaleMode = SKSceneScaleMode.aspectFit
+        self.view!.presentScene(nextScene, transition: .fade(with: .white, duration: Const.gameOverInterval))
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

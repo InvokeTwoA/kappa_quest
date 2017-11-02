@@ -2,7 +2,7 @@
 import SpriteKit
 import GameplayKit
 
-class WorldScene: BaseScene, DungeonDelegate {
+class WorldScene: BaseScene {
 
     private let map_nodes = [
         "wizard",
@@ -33,11 +33,6 @@ class WorldScene: BaseScene, DungeonDelegate {
     
     private let worldModel : WorldModel = WorldModel()
 
-    // delegate method
-    func didEnteredDungeon(key : String) {
-        goDungeon(key)
-    }
-    
     override func sceneDidLoad() {
         worldModel.readDataByPlist()
         gameData.setParameterByUserDefault()
@@ -143,16 +138,6 @@ class WorldScene: BaseScene, DungeonDelegate {
 
     }
     
-    
-    func explainDungeon(_ key: String){
-        let storyboard = UIStoryboard(name: "Dungeon", bundle: nil)
-        let nextViewController = storyboard.instantiateViewController(withIdentifier: "DungeonViewController") as! DungeonViewController
-        nextViewController.world = key
-        nextViewController.delegate = self
-        self.view?.window?.rootViewController?.present(nextViewController, animated: true, completion: nil)
-    }
-    
-    
     func goDungeon(_ key : String){
         stopBGM()
         
@@ -161,7 +146,7 @@ class WorldScene: BaseScene, DungeonDelegate {
         
         let scene = GameScene(fileNamed: "GameScene")!
         scene.size = self.scene!.size
-        scene.scaleMode = SKSceneScaleMode.aspectFill
+        scene.scaleMode = SKSceneScaleMode.aspectFit
         scene.world_name = key
         self.view!.presentScene(scene, transition: .doorway(withDuration: Const.doorTransitionInterval))
     }
@@ -170,7 +155,7 @@ class WorldScene: BaseScene, DungeonDelegate {
     func goShop(){
         let scene = ShopScene(fileNamed: "ShopScene")!
         scene.size = self.scene!.size
-        scene.scaleMode = SKSceneScaleMode.aspectFill
+        scene.scaleMode = SKSceneScaleMode.aspectFit
         self.view!.presentScene(scene, transition: .doorway(withDuration: Const.doorTransitionInterval))
     }
     
@@ -189,7 +174,7 @@ class WorldScene: BaseScene, DungeonDelegate {
     func goMenu(){
         let nextScene = MenuScene(fileNamed: "MenuScene")!
         nextScene.size = scene!.size
-        nextScene.scaleMode = SKSceneScaleMode.aspectFill
+        nextScene.scaleMode = SKSceneScaleMode.aspectFit
         nextScene.back = "world"
         view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
     }
@@ -197,7 +182,7 @@ class WorldScene: BaseScene, DungeonDelegate {
     func goLast(){
         let nextScene = LastBattleScene(fileNamed: "LastBattleScene")!
         nextScene.size = scene!.size
-        nextScene.scaleMode = SKSceneScaleMode.aspectFill
+        nextScene.scaleMode = SKSceneScaleMode.aspectFit
         nextScene.world_name = "last"
         view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
     }

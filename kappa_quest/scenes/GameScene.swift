@@ -950,7 +950,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         stopBGM()
         let scene = MenuScene(fileNamed: "MenuScene")!
         scene.size = self.scene!.size
-        scene.scaleMode = SKSceneScaleMode.aspectFill
+        scene.scaleMode = SKSceneScaleMode.aspectFit
         scene.backScene = self.scene as! GameScene
         self.view!.presentScene(scene, transition: .fade(withDuration: Const.transitionInterval))
     }
@@ -963,7 +963,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         stopBGM()
         let nextScene = GameOverScene(fileNamed: "GameOverScene")!
         nextScene.size = nextScene.size
-        nextScene.scaleMode = SKSceneScaleMode.aspectFill
+        nextScene.scaleMode = SKSceneScaleMode.aspectFit
         nextScene.backScene = self.scene as! GameScene
         view!.presentScene(nextScene, transition: .fade(with: .white, duration: Const.gameOverInterval))
     }
@@ -972,7 +972,7 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     func goCutin(_ key : String){
         let nextScene = CutinScene(fileNamed: "CutinScene")!
         nextScene.size = scene!.size
-        nextScene.scaleMode = SKSceneScaleMode.aspectFill
+        nextScene.scaleMode = SKSceneScaleMode.aspectFit
         nextScene.backScene = scene as! GameScene
         nextScene.key = key
         nextScene.world = world_name

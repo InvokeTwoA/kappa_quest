@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -43,9 +43,13 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="qHh-Mt-9TT" firstAttribute="top" secondItem="Z22-8u-c4A" secondAttribute="bottom" id="AX2-8m-A8d"/>
+                            <constraint firstAttribute="trailing" secondItem="Z22-8u-c4A" secondAttribute="trailing" id="ECx-ku-JzW"/>
                             <constraint firstItem="Z22-8u-c4A" firstAttribute="bottom" secondItem="qHh-Mt-9TT" secondAttribute="top" id="NlL-B1-UBA"/>
+                            <constraint firstItem="Z22-8u-c4A" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="QHd-3O-IF7"/>
                             <constraint firstItem="Z22-8u-c4A" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="SJK-z1-RBm"/>
                             <constraint firstItem="Z22-8u-c4A" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="kOP-G2-oQ0"/>
+                            <constraint firstItem="Z22-8u-c4A" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="wzf-zo-5sC"/>
                         </constraints>
                     </view>
                     <connections>
@@ -69,9 +73,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uJp-9D-8l2">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uJp-9D-8l2">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="tableCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableCell" id="6N0-sZ-gsA">
@@ -86,6 +89,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1bJ-Wg-080" firstAttribute="top" secondItem="uJp-9D-8l2" secondAttribute="bottom" id="DaT-KY-nqN"/>
+                            <constraint firstItem="uJp-9D-8l2" firstAttribute="leading" secondItem="Aur-29-vaO" secondAttribute="leading" id="nOL-ju-ewa"/>
+                            <constraint firstItem="uJp-9D-8l2" firstAttribute="top" secondItem="Pz2-bC-eEI" secondAttribute="bottom" id="rMA-nW-Q5D"/>
+                            <constraint firstAttribute="trailing" secondItem="uJp-9D-8l2" secondAttribute="trailing" id="vud-LI-aeZ"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="_tableView" destination="uJp-9D-8l2" id="cS3-33-GIi"/>

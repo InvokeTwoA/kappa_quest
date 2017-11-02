@@ -25,8 +25,7 @@ class TutorialScene: BaseScene {
     func goNextMap(){
         let nextScene = Tutorial2Scene(fileNamed: "Tutorial2Scene")!
         nextScene.size = nextScene.size
-        nextScene.scaleMode = SKSceneScaleMode.aspectFill
-//        view?.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
+        nextScene.scaleMode = SKSceneScaleMode.aspectFit
         view?.presentScene(nextScene, transition: .crossFade(withDuration: 0.1))
     }
 

@@ -32,7 +32,7 @@ class Tutorial3Scene: BaseScene, SKPhysicsContactDelegate {
     func goNextMap(){
         let nextScene = Tutorial4Scene(fileNamed: "Tutorial4Scene")!
         nextScene.size = nextScene.size
-        nextScene.scaleMode = SKSceneScaleMode.aspectFill
+        nextScene.scaleMode = SKSceneScaleMode.aspectFit
         view!.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
     }
     

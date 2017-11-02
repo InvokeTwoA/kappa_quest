@@ -57,7 +57,7 @@ class CutinScene: BaseScene {
         }
         let nextScene = GameClearScene(fileNamed: "GameClearScene")!
         nextScene.size = nextScene.size
-        nextScene.scaleMode = SKSceneScaleMode.aspectFill
+        nextScene.scaleMode = SKSceneScaleMode.aspectFit
         nextScene.world = world
         view!.presentScene(nextScene, transition: .doorsCloseHorizontal(withDuration: Const.gameOverInterval))
     }

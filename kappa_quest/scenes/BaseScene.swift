@@ -72,14 +72,14 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
     func goTitle(){
         let nextScene = TitleScene(fileNamed: "TitleScene")!
         nextScene.size = nextScene.size
-        nextScene.scaleMode = SKSceneScaleMode.aspectFill
+        nextScene.scaleMode = SKSceneScaleMode.aspectFit
         view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
     }
     
     func goWorld(){
         let nextScene = WorldScene(fileNamed: "WorldScene")!
         nextScene.size = nextScene.size
-        nextScene.scaleMode = SKSceneScaleMode.aspectFill
+        nextScene.scaleMode = SKSceneScaleMode.aspectFit
         view!.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
     }
     
