@@ -10,6 +10,7 @@ class Tutorial4Scene: BaseScene {
     override func sceneDidLoad() {
         setKappa()
         actionModel.setActionData(sceneWidth: size.width)
+        prepareBGM(fileName: Const.bgm_ahurera)
     }
     
     func setKappa(){
@@ -62,6 +63,8 @@ class Tutorial4Scene: BaseScene {
     // 初めてのゲーム画面へ
     // 初期値登録
     func goNextMap(){
+        stopBGM()
+        
         KappaNode.setInitLv()
         JobModel.setInitLv()
         gameData.saveParam()

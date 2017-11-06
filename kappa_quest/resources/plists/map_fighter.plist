@@ -7,7 +7,7 @@
 		<key>background</key>
 		<string>bg_haikyo</string>
 		<key>lv</key>
-		<integer>9</integer>
+		<integer>10</integer>
 		<key>enemies</key>
 		<array/>
 		<key>event</key>

@@ -911,7 +911,7 @@
 		<key>isMovingFree</key>
 		<true/>
 		<key>dx</key>
-		<integer>200</integer>
+		<integer>150</integer>
 		<key>type</key>
 		<string>human</string>
 	</dict>

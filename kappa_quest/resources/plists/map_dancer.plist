@@ -7,7 +7,7 @@
 		<key>background</key>
 		<string>bg_snow</string>
 		<key>lv</key>
-		<integer>6</integer>
+		<integer>15</integer>
 		<key>enemies</key>
 		<array/>
 		<key>event</key>

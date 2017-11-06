@@ -948,11 +948,12 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
     // メニュー画面へ遷移
     func goMenu(){
         stopBGM()
-        let scene = MenuScene(fileNamed: "MenuScene")!
-        scene.size = self.scene!.size
-        scene.scaleMode = SKSceneScaleMode.aspectFit
-        scene.backScene = self.scene as! GameScene
-        self.view!.presentScene(scene, transition: .fade(withDuration: Const.transitionInterval))
+        let nextScene = MenuScene(fileNamed: "MenuScene")!
+        nextScene.size = self.scene!.size
+        nextScene.scaleMode = SKSceneScaleMode.aspectFit
+        nextScene.backScene = self.scene as! GameScene
+        nextScene.back = "game"
+        self.view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
     }
 
     // ゲームオーバー画面へ
@@ -1206,6 +1207,9 @@ class GameScene: BaseScene, SKPhysicsContactDelegate {
         }
 
         if isFirstBodyKappa(firstBody) {
+            if bossStopFlag {
+                return
+            }
             if secondBody.categoryBitMask & Const.fireCategory != 0 {
                 if jobModel.name != "gundom" {
                     let fire = secondBody.node as! FireEmitterNode

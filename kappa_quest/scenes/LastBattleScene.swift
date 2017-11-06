@@ -120,8 +120,19 @@ class LastBattleScene: GameScene {
         boss_kappa.size = kappa.size
         boss_kappa.name = "boss"
         boss_kappa.anchorPoint = CGPoint(x: 0.5, y: 0)     // 中央下がアンカーポイント
+        boss_position = Const.maxPosition-1
         map.positionData[Const.maxPosition-1] = "enemy"
         addChild(boss_kappa)
+    }
+    
+    func setBossFirstPosition(){
+        boss_kappa.position.x = getPositionX(Const.maxPosition - 1)
+        boss_kappa.position.y = kappa.position.y
+        for i in 0...6 {
+            map.positionData[i] = "free"
+        }
+        map.positionData[Const.maxPosition-1] = "enemy"
+        boss_position = Const.maxPosition-1
     }
 
     override func setFirstPosition(){
@@ -370,8 +381,12 @@ class LastBattleScene: GameScene {
         goEnding()
     }
 
-    private var boss_position = 6
+    private var boss_position = Const.maxPosition-1
     private func bossMoveLeft(){
+        if boss_position <= 1 {
+            setBossFirstPosition()
+            return
+        }
         let boss = childNode(withName: "//boss") as! SKSpriteNode
         boss.run(actionModel.moveLeft)
         map.positionData[boss_position] = "free"
@@ -571,6 +586,9 @@ class LastBattleScene: GameScene {
     /***********************************************************************************/
     private var attack_num = 0
     override func touchDown(atPoint pos : CGPoint) {
+        print("position  kappa=\(map.myPosition). boss=\(boss_position)")
+        
+        
         if gameClearFlag {
             return
         }
@@ -589,10 +607,16 @@ class LastBattleScene: GameScene {
             }
         } else {
             if map.canMoveLeft() {
+                if map.isMoving {
+                    return
+                }
                 moveLeft()
                 if bossStartFlag {
                     if map.myPosition == 1 || map.myPosition == 3 || map.myPosition == 5 {
                         bossMoveLeft()
+                        if boss_position < map.myPosition {
+                            setBossFirstPosition()
+                        }
                     }
                 }
             } else {

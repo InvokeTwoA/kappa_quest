@@ -10,6 +10,11 @@ class TitleScene: BaseScene {
             let resetLabel = childNode(withName: "//ResetLabel") as? SKLabelNode
             resetNode?.removeFromParent()
             resetLabel?.removeFromParent()
+            
+            let debugNode = childNode(withName: "//DebugNode") as? SKSpriteNode
+            let debugLabel = childNode(withName: "//DebugLabel") as? SKLabelNode
+            debugNode?.removeFromParent()
+            debugLabel?.removeFromParent()
         }
         prepareBGM(fileName: Const.bgm_ahurera)
         playBGM()
@@ -65,17 +70,10 @@ class TitleScene: BaseScene {
     }
     
     func goGame(){
-        stopBGM()
-        if GameData.isClear("tutorial") {
-            goWorld()
-        } else if GameData.isClear("tutorial0") {
-            goFirstWorld()
-        } else {
-            let nextScene = TutorialScene(fileNamed: "TutorialScene")!
-            nextScene.size = nextScene.size
-            nextScene.scaleMode = SKSceneScaleMode.aspectFit
-            view!.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
-        }
+        let nextScene = ChapterScene(fileNamed: "ChapterScene")!
+        nextScene.size = nextScene.size
+        nextScene.scaleMode = SKSceneScaleMode.aspectFit
+        view!.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
     }
     
     func goFirstWorld(){
@@ -117,7 +115,8 @@ class TitleScene: BaseScene {
         nextScene.scaleMode = SKSceneScaleMode.aspectFit
         self.view!.presentScene(nextScene, transition: .fade(with: .white, duration: Const.gameOverInterval))
     }
-    
+
+    private var debug_flag = false
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
             let positionInScene = t.location(in: self)
@@ -132,6 +131,20 @@ class TitleScene: BaseScene {
                 goGame()
             case "ResetNode", "ResetLabel":
                 resetAlert()
+            case "DebugNode", "DebugLabel":
+                let root = self.view?.window?.rootViewController as! GameViewController
+                root.changeDebugMode()
+                if debug_flag {
+                    debug_flag = false
+                    displayAlert("デバッグモードを解除しました", message: "今日も頑張るぞい。", okString: "ほほう")
+                    let label = childNode(withName: "//DebugLabel") as? SKLabelNode
+                    label?.text = "デバッグモード"
+                } else {
+                    debug_flag = true
+                    displayAlert("デバッグモードになりました", message: "開発者のデバッグモードでプレイできます。\nFPSや衝突判定が可視化できます。", okString: "ほほう")
+                    let label = childNode(withName: "//DebugLabel") as? SKLabelNode
+                    label?.text = "解除"
+                }
             case "CrossMusic":
                 goMusic()
             default:

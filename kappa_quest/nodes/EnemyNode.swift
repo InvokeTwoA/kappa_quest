@@ -336,6 +336,9 @@ class EnemyNode: SKSpriteNode {
         if dx > 0 {
             dx *= -1
         }
+        if dx == 0 {
+            dx = -30
+        }
     }
 
     func convertDyPlus(){

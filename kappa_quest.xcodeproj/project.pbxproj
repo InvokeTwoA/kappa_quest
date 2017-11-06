@@ -81,6 +81,9 @@
 		CE8D51391F6D8E9B004F8D0B /* map_archer.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE8D51381F6D8E9B004F8D0B /* map_archer.plist */; };
 		CE8D513C1F6E46DF004F8D0B /* JobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8D513B1F6E46DF004F8D0B /* JobViewController.swift */; };
 		CE8D513E1F6FB3F4004F8D0B /* map_knight.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE8D513D1F6FB3F4004F8D0B /* map_knight.plist */; };
+		CEA04A0E1FAF1484008C8C7F /* map_cross.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEA04A0D1FAF1484008C8C7F /* map_cross.plist */; };
+		CEA04A101FAF5C07008C8C7F /* ChapterScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CEA04A0F1FAF5C07008C8C7F /* ChapterScene.sks */; };
+		CEA04A121FAF6385008C8C7F /* ChapterScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA04A111FAF6385008C8C7F /* ChapterScene.swift */; };
 		CEB904551F24EBA10061A919 /* ShopScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CEB904541F24EBA10061A919 /* ShopScene.sks */; };
 		CEB904571F24EBBE0061A919 /* ShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB904561F24EBBE0061A919 /* ShopScene.swift */; };
 		CEC2B67F1F177A3C0014B114 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC2B67E1F177A3C0014B114 /* AppDelegate.swift */; };
@@ -202,6 +205,9 @@
 		CE8D51381F6D8E9B004F8D0B /* map_archer.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_archer.plist; path = resources/plists/map_archer.plist; sourceTree = "<group>"; };
 		CE8D513B1F6E46DF004F8D0B /* JobViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JobViewController.swift; path = controllers/JobViewController.swift; sourceTree = "<group>"; };
 		CE8D513D1F6FB3F4004F8D0B /* map_knight.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_knight.plist; path = resources/plists/map_knight.plist; sourceTree = "<group>"; };
+		CEA04A0D1FAF1484008C8C7F /* map_cross.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = map_cross.plist; path = resources/plists/map_cross.plist; sourceTree = "<group>"; };
+		CEA04A0F1FAF5C07008C8C7F /* ChapterScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = ChapterScene.sks; path = scenes/ChapterScene.sks; sourceTree = "<group>"; };
+		CEA04A111FAF6385008C8C7F /* ChapterScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChapterScene.swift; path = scenes/ChapterScene.swift; sourceTree = "<group>"; };
 		CEB904541F24EBA10061A919 /* ShopScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = ShopScene.sks; path = sks/ShopScene.sks; sourceTree = "<group>"; };
 		CEB904561F24EBBE0061A919 /* ShopScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShopScene.swift; path = scenes/ShopScene.swift; sourceTree = "<group>"; };
 		CEC2B67B1F177A3C0014B114 /* kappa_quest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kappa_quest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -331,8 +337,8 @@
 				CE31F9441F62964F00E868FB /* map_thief.plist */,
 				CE8D51381F6D8E9B004F8D0B /* map_archer.plist */,
 				CED377921F74EEC00068768B /* map_dancer.plist */,
-				CE31F9481F63BFE000E868FB /* map_necro.plist */,
 				CE7E69491F82745D000ECC33 /* map_gundom.plist */,
+				CE31F9481F63BFE000E868FB /* map_necro.plist */,
 				CE7E694B1F828C0E000ECC33 /* map_angel.plist */,
 				CED377941F77F7480068768B /* map_fighter.plist */,
 				CED377961F77FF590068768B /* map_ninja.plist */,
@@ -343,6 +349,7 @@
 				CE7E697F1F92148C000ECC33 /* map_dark_kappa.plist */,
 				CE7E69851F9320B0000ECC33 /* map_last.plist */,
 				CEF1531E1F9FB01E005065DF /* map_kappa.plist */,
+				CEA04A0D1FAF1484008C8C7F /* map_cross.plist */,
 			);
 			name = map;
 			sourceTree = "<group>";
@@ -444,6 +451,7 @@
 			children = (
 				CE31F92E1F55B77B00E868FB /* BaseScene.swift */,
 				CE31F9261F53BCE700E868FB /* TitleScene.swift */,
+				CEA04A111FAF6385008C8C7F /* ChapterScene.swift */,
 				CE7E695B1F889B8D000ECC33 /* tutorial */,
 				CE31F9421F626F4D00E868FB /* WorldScene.swift */,
 				CEC2B6841F177A3C0014B114 /* GameScene.swift */,
@@ -474,6 +482,7 @@
 			children = (
 				CE31F9281F53BD4200E868FB /* TitleScene.sks */,
 				CE6BB8261F24CAA30046DA65 /* GameScene.sks */,
+				CEA04A0F1FAF5C07008C8C7F /* ChapterScene.sks */,
 				CE7E69871F938F84000ECC33 /* LastBattleScene.sks */,
 				CE6BB8241F24CA2E0046DA65 /* MenuScene.sks */,
 				CE31F9401F626CF600E868FB /* WorldScene.sks */,
@@ -664,6 +673,7 @@
 				CE31F9451F62964F00E868FB /* map_thief.plist in Resources */,
 				CE31F93B1F5BFFE700E868FB /* blue_spark.sks in Resources */,
 				CE049FDE1F36238D0079DEDB /* maoudamashii_fantasy15.mp3 in Resources */,
+				CEA04A101FAF5C07008C8C7F /* ChapterScene.sks in Resources */,
 				CE7E69661F8AB48C000ECC33 /* map_king.plist in Resources */,
 				CE7E695D1F88A02A000ECC33 /* Tutorial3Scene.sks in Resources */,
 				CE31F9211F5156C200E868FB /* OptionScene.sks in Resources */,
@@ -684,6 +694,7 @@
 				CE5884E91F7E97A500ABAC1C /* bar.plist in Resources */,
 				CEDBE7961F1CC469007E72B9 /* enemies.plist in Resources */,
 				CE7E69881F938F84000ECC33 /* LastBattleScene.sks in Resources */,
+				CEA04A0E1FAF1484008C8C7F /* map_cross.plist in Resources */,
 				CEC2B6831F177A3C0014B114 /* Actions.sks in Resources */,
 				CE6BB8251F24CA2E0046DA65 /* MenuScene.sks in Resources */,
 				CE31F94F1F653B9000E868FB /* GameClearScene.sks in Resources */,
@@ -772,6 +783,7 @@
 				CE7E69541F87CD5C000ECC33 /* TutorialScene.swift in Sources */,
 				CEDBE7991F1CECA9007E72B9 /* KappaNode.swift in Sources */,
 				CE049FD91F3312EB0079DEDB /* ActionModel.swift in Sources */,
+				CEA04A121FAF6385008C8C7F /* ChapterScene.swift in Sources */,
 				CE7E69741F8D2852000ECC33 /* MusicScene.swift in Sources */,
 				CE31F9511F653F0200E868FB /* GameClearScene.swift in Sources */,
 				CE6BB8231F24C2430046DA65 /* EnemyModel.swift in Sources */,

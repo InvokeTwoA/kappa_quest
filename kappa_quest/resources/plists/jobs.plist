@@ -222,11 +222,11 @@ LVアップするたびにHPが(lv)回復。 回復量は騎士LVに等しい�
 		<key>name</key>
 		<string>天使</string>
 		<key>explain</key>
-		<string>天界より舞い降りた神の使い。 人智を超えた力を持つ。</string>
+		<string>天界より舞い降りた神の使い。 人智を超えた力を持つ。  ただでさえ天使なカッパが、職業まで天使になったら僕たちはどうすれば良いんだ……。</string>
 		<key>own_skill</key>
 		<string>なし</string>
 		<key>general_skill</key>
-		<string>[頭突き回復] カッパ頭突きを行うたびにHPが回復する。 回復量は天使LVに等しい。 敵を撃破時に、ネクロマンサーLVだけHPを回復する。</string>
+		<string>[頭突き回復] カッパ頭突きを行うたびにHPが回復する。 回復量は天使LVに等しい。</string>
 		<key>hp</key>
 		<integer>1</integer>
 		<key>str</key>

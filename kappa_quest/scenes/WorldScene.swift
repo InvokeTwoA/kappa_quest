@@ -12,6 +12,7 @@ class WorldScene: BaseScene {
         "archer",
         "dancer",
         "ninja",
+        "cross",
         "fighter",
         "necro",
         "gundom",

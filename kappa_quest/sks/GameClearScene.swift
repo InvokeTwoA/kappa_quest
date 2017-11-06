@@ -14,7 +14,8 @@ class GameClearScene: BaseScene {
         let getLabel1      = childNode(withName: "//clearText1")  as! SKLabelNode
         let getLabel2      = childNode(withName: "//clearText2")  as! SKLabelNode
         let getLabel3      = childNode(withName: "//clearText3")  as! SKLabelNode
-
+        getLabel1.text = ""
+        getLabel2.text = ""
         getLabel3.text = ""
         
         switch world {
@@ -49,7 +50,7 @@ class GameClearScene: BaseScene {
             if !GameData.isClear(world) {
                 getLabel1.text = "「僧侶」のジョブを取得！"
                 getLabel2.text = "「僧侶」が酒場に登場！"
-                getLabel3.text = "「勇者」のステージが出現！"
+                getLabel3.text = "「天使」のステージが出現！"
                 NotificationModel.plusBarCount()
                 NotificationModel.plusShopCount(0)
             }
@@ -108,7 +109,7 @@ class GameClearScene: BaseScene {
             clearLabel.text = "これで忍者になれる！"
             if !GameData.isClear(world) {
                 getLabel1.text = "「忍者」のジョブを取得！"
-                getLabel2.text = "「忍者」が酒場に登場！"
+                getLabel2.text = ""
                 NotificationModel.plusBarCount()
                 NotificationModel.plusShopCount(1)
             }
@@ -180,12 +181,20 @@ class GameClearScene: BaseScene {
             getLabel1.text = "クリアおめでとう！"
             getLabel2.text = "君こそが、伝説のカッパだ"
             getLabel3.text = ""
+        case "cross":
+            getLabel1.text = "経験値稼ぎ終了！"
+            getLabel2.text = "世界一強くなりたい！"
+            getLabel3.text = ""
         default:
             clearLabel.text = "未設定"
             getLabel1.text = "未設定"
             getLabel2.text = "未設定"
         }
         
+        if getLabel1.text == "" && getLabel2.text == "" && getLabel3.text == "" {
+           getLabel1.text = "かっぱの戦いは続く……"
+        }
+
         // クリアフラグを立てる
         GameData.clearCountUp(world)
     }

@@ -30,6 +30,11 @@ class MenuScene: BaseScene {
             let optionNode     = childNode(withName: "//OptionNode") as! SKSpriteNode
             optionLabel.removeFromParent()
             optionNode.removeFromParent()
+        } else if back == "game" {
+            let nameLabel   = childNode(withName: "//NameLabel") as! SKLabelNode
+            let nameNode    = childNode(withName: "//NameNode") as! SKSpriteNode
+            nameLabel.removeFromParent()
+            nameNode.removeFromParent()
         }
         
         if !GameData.isClear("tutorial0") {
@@ -60,6 +65,10 @@ class MenuScene: BaseScene {
                     let str = textFields.first!.text!
                     let name = CommonUtil.cutString(str: str, maxLength: 4)
                     GameData.setName(value: name)
+                    if name == "お兄様" {
+                        self.displayAlert("さすがお兄様！", message: "お兄様は不可能を可能にされました", okString: "こらこら、よさないか")
+                        
+                    }
                 }
             }
         })

@@ -242,7 +242,7 @@
 			<key>image</key>
 			<string>kappa</string>
 			<key>text1</key>
-			<string>（なんて無口な敵だ）</string>
+			<string>なんて無口な敵だ。</string>
 			<key>text2</key>
 			<string></string>
 		</dict>
@@ -266,6 +266,16 @@
 			<string>knight</string>
 			<key>text1</key>
 			<string>お見事……</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>（とことん無口な人だ）</string>
 			<key>text2</key>
 			<string></string>
 		</dict>
@@ -605,6 +615,46 @@
 			<key>text2</key>
 			<string></string>
 		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>ふっ、この刀をよく見るでござる</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>死霊術師リスプ</string>
+			<key>image</key>
+			<string>necro</string>
+			<key>text1</key>
+			<string>それは逆刃刀！！</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>新しい時代を、生きるでござるよ</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>死霊術師リスプ</string>
+			<key>image</key>
+			<string>necro</string>
+			<key>text1</key>
+			<string>あ、あなたという人は……</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
 	</array>
 	<key>gundom_pre</key>
 	<array>
@@ -763,9 +813,49 @@
 			<key>image</key>
 			<string>angel</string>
 			<key>text1</key>
-			<string>しかし、時間稼ぎこそが私の使命</string>
+			<string>褒美に極秘情報を教えましょう</string>
 			<key>text2</key>
-			<string>フフフフフ……</string>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>天使</string>
+			<key>image</key>
+			<string>angel</string>
+			<key>text1</key>
+			<string>遥か西に……</string>
+			<key>text2</key>
+			<string>経験値稼ぎの場があります。</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>天使</string>
+			<key>image</key>
+			<string>angel</string>
+			<key>text1</key>
+			<string>ワンランク上のレベルを目指すなら</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>天使</string>
+			<key>image</key>
+			<string>angel</string>
+			<key>text1</key>
+			<string>ワールドマップの</string>
+			<key>text2</key>
+			<string>クラーケンぽい場所を調べなさい</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>天使</string>
+			<key>image</key>
+			<string>angel</string>
+			<key>text1</key>
+			<string>よく見ればうっすらと</string>
+			<key>text2</key>
+			<string>十字架が見えるのでそこをタップするのです。</string>
 		</dict>
 		<dict>
 			<key>name</key>
@@ -773,9 +863,9 @@
 			<key>image</key>
 			<string>kappa</string>
 			<key>text1</key>
-			<string>（関わらない方が良さそうだ）</string>
+			<string>効率的な経験値稼ぎ場所！</string>
 			<key>text2</key>
-			<string></string>
+			<string>……ありがたや、ありがたや</string>
 		</dict>
 	</array>
 	<key>fighter_pre</key>
@@ -819,7 +909,7 @@
 			<key>image</key>
 			<string>fighter</string>
 			<key>text1</key>
-			<string>君こそが……</string>
+			<string>流し斬りが完全に入ったのに……</string>
 			<key>text2</key>
 			<string></string>
 		</dict>
@@ -829,9 +919,9 @@
 			<key>image</key>
 			<string>fighter</string>
 			<key>text1</key>
-			<string>真のイケメンだ……</string>
+			<string>君こそが、真のイケメンだ。</string>
 			<key>text2</key>
-			<string></string>
+			<string>……ぐふっ。</string>
 		</dict>
 		<dict>
 			<key>name</key>
@@ -862,6 +952,26 @@
 			<key>image</key>
 			<string>king</string>
 			<key>text1</key>
+			<string>私はただ……</string>
+			<key>text2</key>
+			<string>先帝の無念を晴らしたいだけだ。</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>先帝の無念？</string>
+			<key>text2</key>
+			<string>（話が長くなりそうだな）</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>リッチキング</string>
+			<key>image</key>
+			<string>king</string>
+			<key>text1</key>
 			<string>この世界がおかしいと</string>
 			<key>text2</key>
 			<string>感じた事はないか？</string>
@@ -882,7 +992,7 @@
 			<key>image</key>
 			<string>king</string>
 			<key>text1</key>
-			<string>私はただ、</string>
+			<string>私たちはただ、</string>
 			<key>text2</key>
 			<string>その支配から逃れたいだけだ！</string>
 		</dict>
@@ -1414,6 +1524,16 @@
 		</dict>
 		<dict>
 			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>な、なんだってー！</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
 			<string>闇のカッパ</string>
 			<key>image</key>
 			<string>dark_kappa</string>
@@ -1430,7 +1550,7 @@
 			<key>text1</key>
 			<string>お前を殺して</string>
 			<key>text2</key>
-			<string>今日から私が主人公となろう！！</string>
+			<string>今日から俺が主人公となろう！！</string>
 		</dict>
 		<dict>
 			<key>name</key>
@@ -1563,6 +1683,26 @@
 		</dict>
 		<dict>
 			<key>name</key>
+			<string>妹</string>
+			<key>image</key>
+			<string>miyuki</string>
+			<key>text1</key>
+			<string>さすがはお兄様！</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>僧侶</string>
+			<key>image</key>
+			<string>priest</string>
+			<key>text1</key>
+			<string>最強のカッパを倒すなんて</string>
+			<key>text2</key>
+			<string>中々できる事じゃないよ</string>
+		</dict>
+		<dict>
+			<key>name</key>
 			<string>(kappa)</string>
 			<key>image</key>
 			<string>kappa</string>
@@ -1570,6 +1710,62 @@
 			<string>ふっ、</string>
 			<key>text2</key>
 			<string>そんなに褒めないでくれ</string>
+		</dict>
+	</array>
+	<key>cross_pre</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>たけし</string>
+			<key>image</key>
+			<string>hiyoko</string>
+			<key>text1</key>
+			<string>私に勝てれば</string>
+			<key>text2</key>
+			<string>A級冒険者と認めよう</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>先生……俺は</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>A級のカッパではなく</string>
+			<key>text2</key>
+			<string>逃げないカッパになりたい</string>
+		</dict>
+	</array>
+	<key>cross_end</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>たけし</string>
+			<key>image</key>
+			<string>hiyoko</string>
+			<key>text1</key>
+			<string>お見事……ちはやぶるー！</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>熱いスポ根を</string>
+			<key>text2</key>
+			<string>手に入れた気がする！</string>
 		</dict>
 	</array>
 </dict>

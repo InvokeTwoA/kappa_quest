@@ -33,6 +33,15 @@ class GameViewController: UIViewController {
     func hideBanner(){
         _bannerView.isHidden = true
     }
+    
+    func changeDebugMode(){
+        _skView.showsQuadCount = true
+        _skView.showsFields = true
+        _skView.showsDrawCount = true
+        _skView.showsFPS = true
+        _skView.showsNodeCount = true
+        _skView.showsPhysics = true
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

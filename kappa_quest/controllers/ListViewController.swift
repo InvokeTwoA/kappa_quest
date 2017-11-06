@@ -349,6 +349,8 @@ class ListViewController : BaseTableViewController {
                     cell.textLabel?.textColor = .white
                     return
                 }
+            } else if indexPath.section == BAR_BACK {
+                cell.textLabel?.textColor = .black
             }
             return
         case "status":
