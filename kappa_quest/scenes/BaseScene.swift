@@ -13,6 +13,12 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
     override func didMove(to view: SKView) {
         gameData.setParameterByUserDefault()
     }
+    
+    
+    func hideNode(name : String){
+        
+        
+    }
 
     // メッセージダイアログを表示
     func displayAlert(_ title: String, message: String, okString: String){
@@ -52,6 +58,47 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
         addChild(black_particle)
     }
     
+    // 左からpos番目のx座標を返す
+    func getPositionX(_ pos : Int) -> CGFloat {
+        let position = CGFloat(pos)/7.0-1.0/2.0
+        return size.width*position
+    }
+
+    
+    /***********************************************************************************/
+    /*************************** Node Label 操作 ****************************************/
+    /***********************************************************************************/
+    func hideSpriteNode(_ name : String){
+        let node = childNode(withName: "//\(name)") as? SKSpriteNode
+        node?.isHidden = true
+    }
+
+    func removeSpriteNode(_ name : String){
+        let node = childNode(withName: "//\(name)") as? SKSpriteNode
+        node?.removeFromParent()
+    }
+
+    func showSpriteNode(_ name : String){
+        let node = childNode(withName: "//\(name)") as? SKSpriteNode
+        node?.isHidden = false
+    }
+
+    func hideLabelNode(_ name : String){
+        let node = childNode(withName: "//\(name)") as? SKLabelNode
+        node?.isHidden = true
+    }
+    
+    func removeLabelNode(_ name : String){
+        let node = childNode(withName: "//\(name)") as? SKLabelNode
+        node?.removeFromParent()
+    }
+    
+    func showLabelNode(_ name : String){
+        let node = childNode(withName: "//\(name)") as? SKLabelNode
+        node?.isHidden = false
+    }
+
+    
     func deleteSPriteNode(_ name : String){
         let node = childNode(withName: "//\(name)") as? SKSpriteNode
         if (node != nil) {
@@ -60,12 +107,7 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
         }
     }
     
-    // 左からpos番目のx座標を返す
-    func getPositionX(_ pos : Int) -> CGFloat {
-        let position = CGFloat(pos)/7.0-1.0/2.0
-        return size.width*position
-    }
-    
+
     /***********************************************************************************/
     /********************************** 画面遷移 ****************************************/
     /***********************************************************************************/
@@ -81,6 +123,14 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
         nextScene.size = nextScene.size
         nextScene.scaleMode = SKSceneScaleMode.aspectFit
         view!.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
+    }
+    
+    // アップデート履歴の ListViewController を表示
+    func goUpdate(){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let listViewController = storyboard.instantiateViewController(withIdentifier: "ListViewController") as! ListViewController
+        listViewController.type = "update"
+        view?.window?.rootViewController?.present(listViewController, animated: true, completion: nil)
     }
     
     /***********************************************************************************/
@@ -103,10 +153,11 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
         _audioPlayer.prepareToPlay()
     }
 
-    func playBGM(){
+    func playBGM(volume : Float = 1.0){
         if !gameData.bgmFlag {
             return
         }
+        _audioPlayer.volume = volume
         _audioPlayer.numberOfLoops = -1;
         if !_audioPlayer.isPlaying {
             _audioPlayer.play()

@@ -67,12 +67,20 @@ class ListViewController : BaseTableViewController {
     private let STATUS_GENERAL_SKILL = 4
     private let STATUS_BACK = 5
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setData()        
     }
-
+    
+    // アップデート履歴
+    private let update_section = ["", "2.0.0", "1.1.0", "1.0.0", ""]
+    private let UPDATE_BACK = 0
+    private let UPDATE_V2_0_0 = 1
+    private let UPDATE_V1_1_0 = 2
+    private let UPDATE_V1_0_0 = 3
+    private let UPDATE_BACK2 = 4
+    private var updateModel = UpdateModel()
+    
     func setData(){
         switch type {
         case "enemies":
@@ -93,6 +101,9 @@ class ListViewController : BaseTableViewController {
             NotificationModel.resetBarCount()
         case "status":
             setSections(status_section)
+        case "update":
+            setSections(update_section)
+            updateModel.readDataByPlist()
         default:
             break
         }
@@ -127,7 +138,6 @@ class ListViewController : BaseTableViewController {
         }
     }
     
-
     // row count
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch type {
@@ -147,11 +157,12 @@ class ListViewController : BaseTableViewController {
             }
         case "status":
             return 1
+        case "update":
+            return 1
         default:
             return 0
         }
     }
-
     // cell に関するデータソースメソッド
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for:indexPath) as UITableViewCell
@@ -254,6 +265,23 @@ class ListViewController : BaseTableViewController {
             default:
                 break
             }
+        case "update":
+            if indexPath.section == UPDATE_BACK || indexPath.section == UPDATE_BACK2 {
+                cell.textLabel?.text = "戻る"
+                cell.imageView?.isHidden = true
+            } else {
+                switch indexPath.section {
+                case UPDATE_V1_0_0:
+                    cell.textLabel?.text = updateModel.getHistory("1.0.0")
+                case UPDATE_V1_1_0:
+                    cell.textLabel?.text = updateModel.getHistory("1.1.0")
+                case UPDATE_V2_0_0:
+                    cell.textLabel?.text = updateModel.getHistory("2.0.0")
+                default:
+                    cell.textLabel?.text = ""
+                }
+                cell.imageView?.isHidden = true
+            }
         default:
             break
         }
@@ -297,6 +325,10 @@ class ListViewController : BaseTableViewController {
             }
         case "status":
             if indexPath.section == STATUS_BACK {
+                dismiss(animated: false, completion: nil)
+            }
+        case "update":
+            if indexPath.section == UPDATE_BACK || indexPath.section == UPDATE_BACK2 {
                 dismiss(animated: false, completion: nil)
             }
         default:
@@ -358,6 +390,12 @@ class ListViewController : BaseTableViewController {
                 cell.backgroundColor = CommonUtil.UIColorFromRGB(0xfff0f5)
                 return
             }
+        case "update":
+            if indexPath.section == UPDATE_BACK || indexPath.section == UPDATE_BACK2 {
+                cell.backgroundColor = CommonUtil.UIColorFromRGB(0xfff0f5)
+                return
+            }
+
         default:
             break
         }

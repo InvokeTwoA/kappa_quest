@@ -116,7 +116,6 @@ class TitleScene: BaseScene {
         self.view!.presentScene(nextScene, transition: .fade(with: .white, duration: Const.gameOverInterval))
     }
 
-    private var debug_flag = false
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
             let positionInScene = t.location(in: self)
@@ -131,20 +130,8 @@ class TitleScene: BaseScene {
                 goGame()
             case "ResetNode", "ResetLabel":
                 resetAlert()
-            case "DebugNode", "DebugLabel":
-                let root = self.view?.window?.rootViewController as! GameViewController
-                root.changeDebugMode()
-                if debug_flag {
-                    debug_flag = false
-                    displayAlert("デバッグモードを解除しました", message: "今日も頑張るぞい。", okString: "ほほう")
-                    let label = childNode(withName: "//DebugLabel") as? SKLabelNode
-                    label?.text = "デバッグモード"
-                } else {
-                    debug_flag = true
-                    displayAlert("デバッグモードになりました", message: "開発者のデバッグモードでプレイできます。\nFPSや衝突判定が可視化できます。", okString: "ほほう")
-                    let label = childNode(withName: "//DebugLabel") as? SKLabelNode
-                    label?.text = "解除"
-                }
+            case "UpdateNode", "UpdateLabel":
+                goUpdate()
             case "CrossMusic":
                 goMusic()
             default:

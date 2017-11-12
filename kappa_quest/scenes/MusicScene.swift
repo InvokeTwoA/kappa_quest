@@ -5,22 +5,38 @@ import GameplayKit
 
 class MusicScene: BaseScene {
     
-    var volume : Float = 1.0
+    private var volume : Float = 1.0
+    private var page = 0
     
+    private var music_list = ["", "", "", "", ""]
+    private var music_names = ["", "", "", "", ""]
+    
+    private var music_list0 = [Const.bgm_ahurera, Const.bgm_castle, Const.bgm_gameover, Const.bgm_fantasy,  Const.bgm_last_battle]
+    private var music_names0 = ["オープニング「アフレラ」", "ワールドマップ", "ゲームオーバー", "1章ステージ", "1章ボス"]
+
+    private var music_list1 = [Const.bgm_bit_cry, Const.bgm_bit_ahurera, Const.bgm_bit_millky, Const.bgm_zinna, Const.bgm_brave]
+    private var music_names1 = ["闇のカッパ「crying again」", "スタッフロール「アフレラ piano ver」", "１章エンディング「millky way」", "2章ラスボス「zinnia」", "2章フィールド「bravery heart」"]
+
     override func sceneDidLoad() {
         prepareBGM(fileName: "maoudamashii_fantasy15")
         gameData.setParameterByUserDefault()
     }
 
+    override func didMove(to view: SKView) {
+        loadPageData()
+    }
+
+    
     override func willMove(from view: SKView) {
         stopBGM()
     }
+    
 
     
     func play(_ name : String) {
         stopBGM()
         prepareBGM(fileName: name)
-        playBGM()
+        playBGM(volume: volume)
     }
     
     func volumeUp(){
@@ -51,6 +67,56 @@ class MusicScene: BaseScene {
         gameData.saveParam()
     }
     
+    func goNextPage(){
+        page += 1
+        loadPageData()
+    }
+    
+    func goBackPage(){
+        page -= 1
+        loadPageData()
+    }
+    
+    func loadPageData(){
+        print("load page data")
+        
+        if page == 0 {
+            music_list = music_list0
+            music_names = music_names0
+        } else if page == 1 {
+            music_list = music_list1
+            music_names = music_names1
+        }
+        
+        if page == 0 {
+            hideLabelNode("BackPageLabel")
+            hideSpriteNode("BackPageNode")
+        } else {
+            showLabelNode("BackPageLabel")
+            showSpriteNode("BackPageNode")
+        }
+        
+        if page == 1 {
+            hideLabelNode("NextPageLabel")
+            hideSpriteNode("NextPageNode")
+
+        } else {
+            showLabelNode("NextPageLabel")
+            showSpriteNode("NextPageNode")
+        }
+        
+        updateMusicList()
+    }
+    
+    func updateMusicList(){
+        for i in 0...4 {
+            let node = childNode(withName: "//bgm\(i)") as! SKLabelNode
+            node.text = music_names[i]
+        }
+    }
+    
+    
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
             let positionInScene = t.location(in: self)
@@ -60,12 +126,17 @@ class MusicScene: BaseScene {
             }
             
             switch tapNode.name! {
-            case "maoudamashii_fantasy15", "maoudamashii_lastboss02", "bgm_maoudamashii_piano_ahurera", "bgm_maoudamashii_8bit06", "bgm_maoudamashii_8bit20", "bgm_maoudamashii_8bit22", "bgm_maoudamashii_8bit23", "bgm_maoudamashii_8bit26":
-                play(tapNode.name!)
+            case "0", "1", "2", "3", "4":
+                let name = music_list[Int(tapNode.name!)!]
+                play(name)
             case "VolumeUp":
                 volumeUp()
             case "VolumeDown":
                 volumeDown()
+            case "NextPageNode", "NextPageLabel":
+                goNextPage()
+            case "BackPageNode", "BackPageLabel":
+                goBackPage()
             case "BackNode", "BackLabel":
                 goTitle()
             default:

@@ -51,6 +51,7 @@ class OptionScene: BaseScene {
         }
     }
     
+    private var debug_flag = false
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
             let positionInScene = t.location(in: self)
@@ -66,6 +67,20 @@ class OptionScene: BaseScene {
                 bgmChange()
             case "SoundEffectNode", "SoundEffectLabel":
                 soundEffectChange()
+            case "DebugNode", "DebugLabel":
+                let root = self.view?.window?.rootViewController as! GameViewController
+                root.changeDebugMode()
+                if debug_flag {
+                    debug_flag = false
+                    displayAlert("デバッグモードを解除しました", message: "今日も頑張るぞい。", okString: "ほほう")
+                    let label = childNode(withName: "//DebugLabel") as? SKLabelNode
+                    label?.text = "デバッグモードOn"
+                } else {
+                    debug_flag = true
+                    displayAlert("デバッグモードになりました", message: "開発者のデバッグモードでプレイできます。\nFPSや衝突判定が可視化できます。", okString: "ほほう")
+                    let label = childNode(withName: "//DebugLabel") as? SKLabelNode
+                    label?.text = "解除"
+                }
             default:
                 break
             }

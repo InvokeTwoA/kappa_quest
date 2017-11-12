@@ -1,5 +1,4 @@
-// メニュー画面
-
+// 音楽画面
 import SpriteKit
 import GameplayKit
 
@@ -10,7 +9,7 @@ class MenuScene: BaseScene {
 
     override func sceneDidLoad() {
     }
-
+    
     override func didMove(to view: SKView) {
         
         if !GameData.isClear("question") {
