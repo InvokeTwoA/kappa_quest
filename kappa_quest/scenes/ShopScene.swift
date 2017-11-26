@@ -162,7 +162,12 @@ class ShopScene: BaseScene, JobDelegate {
         let nextNode = childNode(withName: "//nextNode") as? SKSpriteNode
         let backLabel  = childNode(withName: "//backLabel") as? SKLabelNode
         let backNode = childNode(withName: "//backNode") as? SKSpriteNode
-        if page == 1 {
+        if page == 0 {
+            nextLabel?.isHidden = false
+            nextNode?.isHidden = false
+            backLabel?.isHidden = true
+            backNode?.isHidden = true
+        } else if page == 1 {
             nextLabel?.isHidden = false
             nextNode?.isHidden = false
             backLabel?.isHidden = false

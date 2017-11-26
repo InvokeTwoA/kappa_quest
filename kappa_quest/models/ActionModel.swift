@@ -9,6 +9,8 @@ class ActionModel {
 
     var moveSpace : CGFloat = 0.0
 
+    
+    var openingUpper      : SKAction!
     var attack            : SKAction!
     var upper             : SKAction!
     var moveRight         : SKAction!
@@ -33,6 +35,8 @@ class ActionModel {
     var fadeInOut         : SKAction!
     var fadeOutQuickly    : SKAction!
     var fadeOutEternal    : SKAction!
+    var fadeOutEternal2   : SKAction!
+    var leftFadeOutEternal: SKAction!
     var enemyJump         : SKAction!
     var enemyHighJump     : SKAction!
     var enemyMiniJump     : SKAction!
@@ -51,6 +55,10 @@ class ActionModel {
 
     func setActionData(sceneWidth : CGFloat){
         moveSpace = sceneWidth/7.0/4.0
+        
+        openingUpper = SKAction.sequence([
+                SKAction.moveBy(x: 0, y: 10000, duration: 60.0)
+        ])
 
         // 攻撃アクション
         attack = SKAction.sequence([
@@ -196,8 +204,8 @@ class ActionModel {
 
         longMessage  = SKAction.sequence([
             SKAction.fadeIn(withDuration: 1.0),
-            SKAction.wait(forDuration: 0.5),
-            SKAction.fadeOut(withDuration: 1.0)
+            SKAction.wait(forDuration: 1.0),
+            SKAction.fadeOut(withDuration: 1.2)
             ])
         
         moveButton = SKAction.sequence([
@@ -218,6 +226,20 @@ class ActionModel {
             SKAction.fadeOut(withDuration: 4.5),
             SKAction.removeFromParent()
         ])
+        
+        fadeOutEternal2 = SKAction.sequence([
+            SKAction.fadeOut(withDuration: 2.5),
+            SKAction.removeFromParent()
+            ])
+        
+        leftFadeOutEternal = SKAction.sequence([
+            SKAction.fadeIn(withDuration: 0.01),
+            SKAction.moveBy(x: -180, y: 0 , duration: 0.1),
+            SKAction.wait(forDuration: 1.0),
+            SKAction.moveBy(x: -180, y: 0 , duration: 0.1),
+            SKAction.fadeOut(withDuration: 0.01),
+            SKAction.removeFromParent()
+            ])
 
         fadeOutQuickly = SKAction.sequence([
             SKAction.fadeOut(withDuration: 1.5),

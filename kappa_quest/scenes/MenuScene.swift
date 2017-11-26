@@ -6,54 +6,39 @@ class MenuScene: BaseScene {
 
     var back = ""
     var backScene : GameScene!
+    var back2Scene: Game2Scene!
 
+    var chapter = 1
+    
     override func sceneDidLoad() {
     }
     
     override func didMove(to view: SKView) {
         
         if !GameData.isClear("question") {
-            let label    = childNode(withName: "//NazoLabel") as! SKLabelNode
-            let node     = childNode(withName: "//NazoNode") as! SKSpriteNode
-            label.removeFromParent()
-            node.removeFromParent()
+            removeSpriteNode("NazoNode")
+            removeLabelNode("NazoLabel")
         }
         
         if back == "world" {
-            let worldLabel    = childNode(withName: "//WorldLabel") as! SKLabelNode
-            let worldNode     = childNode(withName: "//WorldNode") as! SKSpriteNode
-            worldLabel.removeFromParent()
-            worldNode.removeFromParent()
-            
-            let optionLabel    = childNode(withName: "//OptionLabel") as! SKLabelNode
-            let optionNode     = childNode(withName: "//OptionNode") as! SKSpriteNode
-            optionLabel.removeFromParent()
-            optionNode.removeFromParent()
+            removeSpriteNode("WorldNode")
+            removeLabelNode("WorldLabel")
+
+            removeSpriteNode("OptionNode")
+            removeLabelNode("OptionLabel")
         } else if back == "game" {
-            let nameLabel   = childNode(withName: "//NameLabel") as! SKLabelNode
-            let nameNode    = childNode(withName: "//NameNode") as! SKSpriteNode
-            nameLabel.removeFromParent()
-            nameNode.removeFromParent()
+            removeSpriteNode("NameNode")
+            removeLabelNode("NameLabel")
         }
         
         if !GameData.isClear("tutorial0") {
-            let optionLabel   = childNode(withName: "//OptionLabel") as! SKLabelNode
-            let optionNode    = childNode(withName: "//OptionNode") as! SKSpriteNode
-            optionLabel.removeFromParent()
-            optionNode.removeFromParent()
-            
-            let worldLabel    = childNode(withName: "//WorldLabel") as! SKLabelNode
-            let worldNode     = childNode(withName: "//WorldNode") as! SKSpriteNode
-            worldLabel.removeFromParent()
-            worldNode.removeFromParent()
-            
-            let resetLabel    = childNode(withName: "//ResetLabel") as! SKLabelNode
-            let resetNode     = childNode(withName: "//ResetNode") as! SKSpriteNode
-            resetLabel.removeFromParent()
-            resetNode.removeFromParent()
+            removeSpriteNode("OptionNode")
+            removeLabelNode("OptionLabel")
+
+            removeSpriteNode("WorldNode")
+            removeLabelNode("WorldLabel") 
         }
     }
-    
     
     func changeName(){
         let alert = UIAlertController(title: "カッパの名は？(4文字以内)", message: "", preferredStyle: .alert)
@@ -85,13 +70,19 @@ class MenuScene: BaseScene {
     func goBack(){
         if back == "world" {
             goWorld()
+        } else if back == "world2" {
+            goWorld2()
         } else if back == "tutorial" {
             let nextScene = Tutorial4Scene(fileNamed: "Tutorial4Scene")!
             nextScene.size = nextScene.size
             nextScene.scaleMode = SKSceneScaleMode.aspectFit
             view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
         } else {
-            view!.presentScene(backScene!, transition: .fade(withDuration: Const.transitionInterval))
+            if chapter == 1 {
+                view!.presentScene(backScene!, transition: .fade(withDuration: Const.transitionInterval))
+            } else {
+                view!.presentScene(back2Scene!, transition: .fade(withDuration: Const.transitionInterval))
+            }
         }
     }
     
@@ -148,6 +139,10 @@ class MenuScene: BaseScene {
                 goWorld()
             case "NameNode", "NameLabel":
                 changeName()
+            case "UpdateNode", "UpdateLabel":
+                goUpdate()
+            case "LegendNode", "LegendLabel":
+                displayAlert("この機能はまだ公開されていない", message: "作者の頑張りを待つんだ！", okString: "OK")
             case "NazoNode", "NazoLabel":
                 displayAlert("ポチッとな", message: "何か変化が起こった気がする", okString: "OK")
                 GameData.clearCountUp("question2")

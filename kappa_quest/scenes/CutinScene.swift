@@ -1,4 +1,4 @@
-// 手紙（オープニング）画面
+// １章カットイン画面
 import SpriteKit
 import GameplayKit
 import AVFoundation
@@ -6,21 +6,22 @@ import AVFoundation
 class CutinScene: BaseScene {
     
     var backScene : GameScene!
+    var back2Scene : Game2Scene!
     private var cutinModel = CutinModel()
     private var page = 0
     var key = ""
     var world = ""
     var bgm:AVAudioPlayer!
+    var chapter = 1
     
     override func didMove(to view: SKView) {
         let read_key = "\(world)_\(key)"
-        cutinModel.readDataByPlist(read_key)
+        cutinModel.readDataByPlist(read_key, chapter: chapter)
         cutinModel.setDataByPage(page)
         
         gameData.setParameterByUserDefault()
         jobModel.readDataByPlist()
         jobModel.loadParam()
-        
         updateScreen()
     }
     
@@ -38,7 +39,11 @@ class CutinScene: BaseScene {
             nameLabel.text = cutinModel.name.replacingOccurrences(of: "(kappa)", with: gameData.name)
         } else {
             enemyImage.isHidden = false
+            let texture = SKTexture(imageNamed: cutinModel.image)
             enemyImage.texture = SKTexture(imageNamed: cutinModel.image)
+            if cutinModel.sizeFreeFlag {
+                enemyImage.size = texture.size()
+            }
             kappa.isHidden = true
             nameLabel.text = cutinModel.name
         }
@@ -48,7 +53,11 @@ class CutinScene: BaseScene {
     }
     
     func goBack(){
-        view!.presentScene(backScene, transition: .fade(with: .red, duration: Const.gameOverInterval))
+        if chapter == 1 {
+            view!.presentScene(backScene, transition: .fade(with: .red, duration: Const.gameOverInterval))
+        } else if chapter == 2 {
+            view!.presentScene(back2Scene, transition: .fade(with: .red, duration: Const.gameOverInterval))
+        }
     }
     
     func goClear(){
@@ -59,6 +68,7 @@ class CutinScene: BaseScene {
         nextScene.size = nextScene.size
         nextScene.scaleMode = SKSceneScaleMode.aspectFit
         nextScene.world = world
+        nextScene.chapter = chapter
         view!.presentScene(nextScene, transition: .doorsCloseHorizontal(withDuration: Const.gameOverInterval))
     }
     
@@ -75,6 +85,9 @@ class CutinScene: BaseScene {
                     } else if key == "end" {
                         goClear()
                     }
+                case "tweet":
+                    tweet("#かっぱクエスト")
+                    return
                 default:
                     break
                 }

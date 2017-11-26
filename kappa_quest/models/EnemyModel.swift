@@ -11,16 +11,16 @@ class EnemyModel {
         enemiesData = NSDictionary(contentsOfFile: enemiesDataPath)!
     }
 
-    func getRnadomEnemy(_ enemyList : [String], lv : Int) -> EnemyNode {
+    func getRnadomEnemy(_ enemyList : [String], lv : Int, enemy_size : String = "not_free") -> EnemyNode {
         let enemy_name = enemyList[CommonUtil.rnd(enemyList.count)]
 
-        let enemyNode = EnemyNode.makeEnemy(name: enemy_name)
+        let enemyNode = EnemyNode.makeEnemy(name: enemy_name, enemy_size: enemy_size)
         enemyNode.setParameterByDictionary(dictionary: enemiesData.object(forKey: enemy_name) as! NSDictionary)
         return enemyNode
     }
 
-    func getEnemy(enemy_name: String) -> EnemyNode {
-        let enemyNode = EnemyNode.makeEnemy(name: enemy_name)
+    func getEnemy(enemy_name: String, enemy_size : String = "not_free") -> EnemyNode {
+        let enemyNode = EnemyNode.makeEnemy(name: enemy_name, enemy_size: enemy_size)
         enemyNode.setParameterByDictionary(dictionary: enemiesData.object(forKey: enemy_name) as! NSDictionary)
         return enemyNode
     }

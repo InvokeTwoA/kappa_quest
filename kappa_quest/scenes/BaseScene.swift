@@ -4,6 +4,7 @@ import Foundation
 import SpriteKit
 import GameplayKit
 import AVFoundation
+import TwitterKit
 
 class BaseScene: SKScene, AVAudioPlayerDelegate {
 
@@ -66,6 +67,27 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
 
     
     /***********************************************************************************/
+    /*************************** SNS操作         ****************************************/
+    /***********************************************************************************/
+    
+    // スクショを貼り付けてツィート
+    func tweet(_ message : String) {
+        
+        // 呟く前に広告を非表示にしてスクショを撮る
+        let root = self.view?.window?.rootViewController as! GameViewController
+        root.hideBanner()
+        let screen_shot = CommonUtil.screenShot(self.view!)
+        
+        var composer = TWTRComposer()
+        composer.setText(message)
+        composer.setImage(screen_shot)
+//        composer.setURL(URL(string: "https://goo.gl/GyrTzZ"))
+        composer.show(from: self.view!.window!.rootViewController!, completion: { result in
+            root.showBanner()
+        })
+    }
+    
+    /***********************************************************************************/
     /*************************** Node Label 操作 ****************************************/
     /***********************************************************************************/
     func hideSpriteNode(_ name : String){
@@ -120,6 +142,21 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
     
     func goWorld(){
         let nextScene = WorldScene(fileNamed: "WorldScene")!
+        nextScene.size = nextScene.size
+        nextScene.scaleMode = SKSceneScaleMode.aspectFit
+        view!.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
+    }
+
+    func goWorld2(){
+        let nextScene = World2Scene(fileNamed: "World2Scene")!
+        nextScene.size = nextScene.size
+        nextScene.scaleMode = SKSceneScaleMode.aspectFit
+        view!.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
+    }
+    
+    // ２章へ
+    func goGame2(){
+        let nextScene = World2Scene(fileNamed: "World2Scene")!
         nextScene.size = nextScene.size
         nextScene.scaleMode = SKSceneScaleMode.aspectFit
         view!.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))

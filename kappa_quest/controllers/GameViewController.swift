@@ -34,6 +34,19 @@ class GameViewController: UIViewController {
         _bannerView.isHidden = true
     }
     
+    var hideBannerFlag = false
+    func hideBannerEternal(){
+        _bannerView.isHidden = true
+        hideBannerFlag = true
+    }
+    
+    func showBanner(){
+        if hideBannerFlag {
+            return
+        }
+        _bannerView.isHidden = false
+    }
+    
     func changeDebugMode(){
         _skView.showsQuadCount = true
         _skView.showsFields = true
@@ -63,5 +76,5 @@ class GameViewController: UIViewController {
         get {
             return .portrait
         }
-    }
+    }    
 }

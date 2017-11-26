@@ -73,12 +73,13 @@ class ListViewController : BaseTableViewController {
     }
     
     // アップデート履歴
-    private let update_section = ["", "2.0.0", "1.1.0", "1.0.0", ""]
+    private let update_section = ["", "2.0.0", "1.2.0", "1.1.0", "1.0.0", ""]
     private let UPDATE_BACK = 0
     private let UPDATE_V2_0_0 = 1
-    private let UPDATE_V1_1_0 = 2
-    private let UPDATE_V1_0_0 = 3
-    private let UPDATE_BACK2 = 4
+    private let UPDATE_V1_2_0 = 2
+    private let UPDATE_V1_1_0 = 3
+    private let UPDATE_V1_0_0 = 4
+    private let UPDATE_BACK2 = 5
     private var updateModel = UpdateModel()
     
     func setData(){
@@ -275,6 +276,8 @@ class ListViewController : BaseTableViewController {
                     cell.textLabel?.text = updateModel.getHistory("1.0.0")
                 case UPDATE_V1_1_0:
                     cell.textLabel?.text = updateModel.getHistory("1.1.0")
+                case UPDATE_V1_2_0:
+                    cell.textLabel?.text = updateModel.getHistory("1.2.0")
                 case UPDATE_V2_0_0:
                     cell.textLabel?.text = updateModel.getHistory("2.0.0")
                 default:
@@ -380,9 +383,13 @@ class ListViewController : BaseTableViewController {
                     cell.backgroundColor = .black
                     cell.textLabel?.textColor = .white
                     return
+                } else {
+                    cell.textLabel?.textColor = .black
                 }
             } else if indexPath.section == BAR_BACK {
                 cell.textLabel?.textColor = .black
+            } else {
+                cell.textLabel?.textColor = .black                
             }
             return
         case "status":

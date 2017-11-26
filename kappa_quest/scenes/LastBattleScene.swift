@@ -1,8 +1,9 @@
 // ラストバトル
 import SpriteKit
 import GameplayKit
+import Social
 
-class LastBattleScene: GameScene {
+class LastBattleScene: GameBaseScene {
 
     // Scene load 時に呼ばれる
     override func sceneDidLoad() {
@@ -20,6 +21,9 @@ class LastBattleScene: GameScene {
         updateName()
         updateStatus()
         
+        // ノードを非表示
+        hideTitleNode()
+        
         // 音楽関係の処理
         prepareBGM(fileName: Const.bgm_fantasy)
         prepareSoundEffect()
@@ -31,15 +35,34 @@ class LastBattleScene: GameScene {
     override func willMove(from view: SKView) {
     }
 
+    func hideTitleNode(){
+        hideLabelNode("TitleLabel")
+        hideSpriteNode("TitleNode")
+        hideSpriteNode("tweet")
+    }
+    
+    func showTitleNode(){
+        showLabelNode("TitleLabel")
+        showSpriteNode("TitleNode")
+        showSpriteNode("tweet")
+    }
+    
     // 次のマップに移動
     private var map_no = 0
     override func goNextMap(){
+        
         clearMap()
         resetMessage()
         setFirstPosition()
         map.goNextMap()
         createMap()
         updateDistance()
+        
+        if gameData.name == "クリア丸" {
+            gameClear()
+            changeBGM()
+            return
+        }
 
         map_no += 1
         if map_no == 1 {
@@ -468,7 +491,7 @@ class LastBattleScene: GameScene {
     // メニュー画面へ遷移
     private func goEnding(){
         let root = self.view?.window?.rootViewController as! GameViewController
-        root.hideBanner()
+        root.hideBannerEternal()
         let bg = SKSpriteNode(imageNamed: "bg_green")
         bg.position.x = 0
         bg.position.y = 1500
@@ -497,7 +520,7 @@ class LastBattleScene: GameScene {
             self.appearNode(name: "ninja",   position: CGPoint(x: 200, y: -300 ))
             self.appearNode(name: "samurai", position: CGPoint(x: 300, y: -300 ))
 
-            self.showBigMessage(text0: "……こうして", text1: "世界は救われた")
+            self.showBigMessage(text0: "……こうして", text1: "世界は救われた")   // 6.7
             self.showBigMessage(text0: "広告のなくなった世界で", text1: "")
             self.showBigMessage(text0: "16ドットのキャラクタ達は", text1: "幸せに暮らしていくだろう")
             self.showBigMessage(text0: "人々は偉大なるカッパの冒険を", text1: "")
@@ -517,6 +540,17 @@ class LastBattleScene: GameScene {
             label2.zPosition = 99
             label2.fontSize = 32
             self.addChild(label2)
+            
+            let label3 = SKLabelNode(fontNamed: Const.pixelFont)
+            label3.text = self.gameData.displayName(self.jobModel.displayName)
+            label3.position = CGPoint(x:0, y: -100)
+            label3.zPosition = 99
+            label3.fontSize = 32
+            self.addChild(label3)
+            
+            _ = CommonUtil.setTimeout(delay: 46.0, block: { () -> Void in
+                self.showTitleNode()
+            })
         })
     }
 
@@ -586,9 +620,6 @@ class LastBattleScene: GameScene {
     /***********************************************************************************/
     private var attack_num = 0
     override func touchDown(atPoint pos : CGPoint) {
-        print("position  kappa=\(map.myPosition). boss=\(boss_position)")
-        
-        
         if gameClearFlag {
             return
         }
@@ -633,6 +664,13 @@ class LastBattleScene: GameScene {
         for t in touches {
             let positionInScene = t.location(in: self)
             touchDown(atPoint: positionInScene)
+            let tapNode = atPoint(positionInScene)
+            if tapNode.name == "TitleNode" || tapNode.name == "TitleLabel" {
+                goTitle()
+            } else if tapNode.name == "tweet" {
+                let name = gameData.displayName(jobModel.displayName)
+                tweet("【朗報】\(name)は世界を救った！【この時を待ってたぜ】  #かっぱクエスト")
+            }
         }
     }
 

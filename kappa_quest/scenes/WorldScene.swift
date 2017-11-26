@@ -46,75 +46,59 @@ class WorldScene: BaseScene {
         setNotificationCount()
         
         if !GameData.isClear("wizard") {
-            let node = childNode(withName: "//knight")
-            node?.removeFromParent()
+            removeSpriteNode("knight")
         }
         if !GameData.isClear("knight") {
-            let node1 = childNode(withName: "//thief")
-            let node2 = childNode(withName: "//priest")
-            let node3 = childNode(withName: "//archer")
-            node1?.removeFromParent()
-            node2?.removeFromParent()
-            node3?.removeFromParent()
+            removeSpriteNode("thief")
+            removeSpriteNode("priest")
+            removeSpriteNode("archer")
         }
         
         if CommonUtil.rnd(6) != 0 {
-            let node4 = childNode(withName: "//dancer")
-            node4?.removeFromParent()
+            removeSpriteNode("dancer")
         }
         
         if !GameData.isClear("priest") {
-            hideNode("angel")
+            removeSpriteNode("angel")
         }
         if !GameData.isClear("thief") {
-            hideNode("gundom")
+            removeSpriteNode("gundom")
         }
         if !GameData.isClear("archer") {
-            hideNode("necro")
+            removeSpriteNode("necro")
         }
         
         // 上位を一つでもクリアしていたら行ける
         if !GameData.isClear("necro") && !GameData.isClear("angel") && !GameData.isClear("gundom"){
-            let node = childNode(withName: "//fighter")
-            node?.removeFromParent()
+            removeSpriteNode("fighter")
         }
         if !GameData.isClear("fighter") {
-            let node = childNode(withName: "//king")
-            node?.removeFromParent()
+            removeSpriteNode("king")
         }
         if !GameData.isClear("king") {
-            let node = childNode(withName: "//maou")
-            node?.removeFromParent()
+            removeSpriteNode("maou")
         }
         if !GameData.isClear("maou") {
-            let node = childNode(withName: "//miyuki")
-            node?.removeFromParent()
+            removeSpriteNode("miyuki")
         }
         
         if !GameData.isClear("question2") {
-            let node = childNode(withName: "//master")
-            node?.removeFromParent()
+            removeSpriteNode("master")
         }
         if !GameData.isClear("master") {
-            hideNode("dark_kappa")
+            removeSpriteNode("dark_kappa")
         }
         
         if GameData.isClear("dark_kappa") {
-            hideNode("dark_kappa")
+            removeSpriteNode("dark_kappa")
         } else {
-            hideNode("last")
+            removeSpriteNode("last")
         }
         
         // 裏面
         if !GameData.isClear("last") {
-            hideNode("kappa")
+            removeSpriteNode("kappa")
         }
-        
-    }
-    
-    func hideNode(_ name : String){
-        let node = childNode(withName: "//\(name)")
-        node?.removeFromParent()
     }
     
     
@@ -169,7 +153,6 @@ class WorldScene: BaseScene {
         listViewController.type = "bar"
         self.view?.window?.rootViewController?.present(listViewController, animated: true, completion: nil)
     }
-
 
     // メニュー画面へ遷移
     func goMenu(){

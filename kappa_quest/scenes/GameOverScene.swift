@@ -5,6 +5,9 @@ import GameplayKit
 class GameOverScene: BaseScene {
     
     var backScene : GameScene!
+    var back2Scene : Game2Scene!
+
+    var chapter = 1
     
     private var hintLabel0 : SKLabelNode!
     private var hintLabel1 : SKLabelNode!
@@ -23,15 +26,17 @@ class GameOverScene: BaseScene {
     override func didMove(to view: SKView) {
         prepareBGM(fileName: Const.bgm_gameover)
         playBGM()
-        if backScene.world_name == "dancer" || backScene.world_name == "last" {
-            let continueLabel = childNode(withName: "//ContinueLabel") as! SKLabelNode
-            let continueNode  = childNode(withName: "//ContinueNode")  as! SKSpriteNode
-            continueLabel.removeFromParent()
-            continueNode.removeFromParent()
+        if chapter == 1 {
+            if backScene.world_name == "dancer" || backScene.world_name == "last" {
+                removeSpriteNode("ContinueNode")
+                removeLabelNode("ContinueLabel")
+            }
+            backScene.gameData.death += 1
+            backScene.gameData.saveParam()
+        } else if chapter == 2 {
+            back2Scene.gameData.death += 1
+            back2Scene.gameData.saveParam()
         }
-        
-        backScene.gameData.death += 1
-        backScene.gameData.saveParam()
     }
     
     func goBack(){
@@ -39,14 +44,25 @@ class GameOverScene: BaseScene {
         
         gameData.changeNicknameByDeath()
         resetData()
-        self.view!.presentScene(backScene, transition: .flipHorizontal(withDuration: 3.5))
+        if chapter == 1 {
+            self.view!.presentScene(backScene, transition: .flipHorizontal(withDuration: 3.5))
+        } else if chapter == 2 {
+            self.view!.presentScene(back2Scene, transition: .flipHorizontal(withDuration: 3.5))
+        }
     }
     
     func resetData(){
-        backScene.resetData()
-        _ = CommonUtil.setTimeout(delay: 3.5, block: { () -> Void in
-            self.backScene.playBGM()
-        })
+        if chapter == 1 {
+            backScene.resetData()
+            _ = CommonUtil.setTimeout(delay: 3.5, block: { () -> Void in
+                self.backScene.playBGM()
+            })
+        } else if chapter == 2 {
+            back2Scene.resetData()
+            _ = CommonUtil.setTimeout(delay: 3.5, block: { () -> Void in
+                self.back2Scene.playBGM()
+            })
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

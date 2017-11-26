@@ -15,7 +15,10 @@ class MusicScene: BaseScene {
     private var music_names0 = ["オープニング「アフレラ」", "ワールドマップ", "ゲームオーバー", "1章ステージ", "1章ボス"]
 
     private var music_list1 = [Const.bgm_bit_cry, Const.bgm_bit_ahurera, Const.bgm_bit_millky, Const.bgm_zinna, Const.bgm_brave]
-    private var music_names1 = ["闇のカッパ「crying again」", "スタッフロール「アフレラ piano ver」", "１章エンディング「millky way」", "2章ラスボス「zinnia」", "2章フィールド「bravery heart」"]
+    private var music_names1 = ["闇のカッパ「crying again」", "スタッフロール「アフレラ (piano)」", "１章エンディング「millky way」", "2章ラスボス「zinnia」", "2章ステージ「bravery heart」"]
+
+    private var music_list2 = [Const.bgm_moon, Const.bgm_kessen, Const.bgm_opening, Const.bgm_piano_millky, Const.bgm_brave]
+    private var music_names2 = ["２章ステージ２", "２章特殊ボス「けっせん」", "２章オープニング", "2章エンディング「millky way (piano)」", "2章フィールド「bravery heart」"]
 
     override func sceneDidLoad() {
         prepareBGM(fileName: "maoudamashii_fantasy15")
@@ -26,12 +29,9 @@ class MusicScene: BaseScene {
         loadPageData()
     }
 
-    
     override func willMove(from view: SKView) {
         stopBGM()
     }
-    
-
     
     func play(_ name : String) {
         stopBGM()
@@ -86,6 +86,9 @@ class MusicScene: BaseScene {
         } else if page == 1 {
             music_list = music_list1
             music_names = music_names1
+        } else if page == 2 {
+            music_list = music_list2
+            music_names = music_names2
         }
         
         if page == 0 {
@@ -96,7 +99,7 @@ class MusicScene: BaseScene {
             showSpriteNode("BackPageNode")
         }
         
-        if page == 1 {
+        if page == 2 {
             hideLabelNode("NextPageLabel")
             hideSpriteNode("NextPageNode")
 

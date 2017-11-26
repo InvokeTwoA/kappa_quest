@@ -17,6 +17,7 @@ class EnemyNode: SKSpriteNode {
     var heal = 0
     var range = 1.0     // 物理攻撃の距離
     var diff_agi = 0
+    var key_name = "name"
 
     // 特殊能力
     var canFire = false
@@ -39,10 +40,22 @@ class EnemyNode: SKSpriteNode {
     var fire : FireEmitterNode!
     var dx = 0
     var dy = 0
+    
+    var eSize = "free"
 
-    class func makeEnemy(name : String) -> EnemyNode {
+    class func makeEnemy(name : String, enemy_size : String = "not_free") -> EnemyNode {
         let enemy = EnemyNode(imageNamed: name)
-        enemy.size = CGSize(width: Const.enemySize, height: Const.enemySize)
+        enemy.eSize = enemy_size
+
+        if enemy_size == "not_free" {
+                        print("not free")
+            enemy.size = CGSize(width: Const.enemySize, height: Const.enemySize)
+        } else {
+            print("free")
+            let texture = SKTexture(imageNamed: name)
+            enemy.texture = texture
+            enemy.size = texture.size()
+        }
         enemy.anchorPoint = CGPoint(x: 0.5, y: 0)     // 中央下がアンカーポイント
         enemy.zPosition = 2
         enemy.attackTimer   = CommonUtil.rnd(100)
@@ -52,6 +65,7 @@ class EnemyNode: SKSpriteNode {
         enemy.lazerTimer    = CommonUtil.rnd(120)
         enemy.isDead = false
         enemy.name = "enemy"
+        enemy.key_name = name
         return enemy
     }
 
@@ -92,7 +106,6 @@ class EnemyNode: SKSpriteNode {
         if dictionary["canLazer"] != nil {
             canLazer = dictionary.object(forKey: "canLazer") as! Bool
         }
-
 
         if dictionary["heal"] != nil {
             heal = dictionary.object(forKey: "heal") as! Int
@@ -137,7 +150,10 @@ class EnemyNode: SKSpriteNode {
         pie += 1
         lv += 1
         isBoss = true
-        size = CGSize(width: Const.bossSize, height: Const.bossSize)
+        
+        if eSize == "not_free" {
+            size = CGSize(width: Const.bossSize, height: Const.bossSize)
+        }
     }
     
     // HP の割合を返す  32% ならば　32
@@ -277,12 +293,19 @@ class EnemyNode: SKSpriteNode {
     /******************************** 物理属性      ************************************/
     /***********************************************************************************/
     func setPhysic(){
-        var enemy_size = Const.kappaSize
-        if isBoss {
-            enemy_size = Const.bossSize
+        var enemyPhysicSize : CGSize!
+        if eSize == "not_free" {
+            var enemy_size = Const.kappaSize
+            if isBoss {
+                enemy_size = Const.bossSize
+            }
+            enemyPhysicSize = CGSize(width: enemy_size, height: enemy_size)
+        } else {
+            let texture = SKTexture(imageNamed: key_name)
+            enemyPhysicSize = texture.size()
         }
         
-        let physic = SKPhysicsBody(rectangleOf: CGSize(width: enemy_size, height: enemy_size), center: CGPoint(x: 0, y: size.height/2.0))
+        let physic = SKPhysicsBody(rectangleOf: enemyPhysicSize, center: CGPoint(x: 0, y: size.height/2.0))
         if canFly {
             physic.affectedByGravity = true
         } else {

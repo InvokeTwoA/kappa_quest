@@ -60,7 +60,15 @@ class CommonUtil {
         } else {
             return str
         }
-        
+    }
+    
+    // 現在の画面のスクリーンショットを取得
+    class func screenShot(_ view : UIView) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, true, 1.0)
+        view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+        let screenShot = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return screenShot
     }
     
 }

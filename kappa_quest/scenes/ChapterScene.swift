@@ -10,6 +10,7 @@ class ChapterScene: BaseScene {
     override func willMove(from view: SKView) {
     }
     
+    // １章へ
     func goGame(){
         if GameData.isClear("tutorial") {
             stopBGM()
@@ -23,6 +24,13 @@ class ChapterScene: BaseScene {
             nextScene.scaleMode = SKSceneScaleMode.aspectFit
             view!.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
         }
+    }
+    
+    func goOpening2(){
+        let nextScene = Opening2Scene(fileNamed: "Opening2Scene")!
+        nextScene.size = nextScene.size
+        nextScene.scaleMode = SKSceneScaleMode.aspectFit
+        view!.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
     }
     
     func goFirstWorld(){
@@ -44,11 +52,18 @@ class ChapterScene: BaseScene {
             case "Chapter1Node", "Chapter1Label":
                 goGame()
             case "Chapter2Node", "Chapter2Label":
-                displayAlert("まだ２章は公開されてません", message: "お茶でも飲んで落ち着くんだ！", okString: "OK")
+                if GameData.isClear("opening2") {
+                    goGame2()
+                } else {
+                    goOpening2()
+                }
+            case "Chapter3Node", "Chapter3Label":
+                displayAlert("まだ3章は公開されてません", message: "お茶でも飲んで落ち着くんだ！", okString: "OK")
+            case "odoriko":
+                displayAlert("今日もがんばるぞい！", message: "", okString: "OK")
             default:
                 break
             }
         }
     }
 }
-

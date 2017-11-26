@@ -1,12 +1,26 @@
 PODS:
+  - Crashlytics (3.3.4)
+  - Fabric (1.5.5):
+    - Fabric/Base (= 1.5.5)
+  - Fabric/Base (1.5.5)
   - Google-Mobile-Ads-SDK (7.21.0)
+  - TwitterCore (1.11.4)
+  - TwitterKit (1.11.4)
 
 DEPENDENCIES:
+  - Crashlytics (~> 3.3.1)
+  - Fabric (~> 1.5.1)
   - Google-Mobile-Ads-SDK
+  - TwitterCore (~> 1.11.1)
+  - TwitterKit (~> 1.11.1)
 
 SPEC CHECKSUMS:
+  Crashlytics: 41c082440d2e14da444186fff65e79c0b4b35d4c
+  Fabric: 190bf1a6eb65f7500de1347d027d2e59a7e53db1
   Google-Mobile-Ads-SDK: 4a6f1b43c8cc0e1e95a3b59d9f52a01671c6f9f3
+  TwitterCore: 171dbd2f8d55707397f461af5158d987fb34aa36
+  TwitterKit: e96cc8d3bd32d544b8bc6d1b2febf2eab1c5298e
 
-PODFILE CHECKSUM: 01089d6effb6daed1ed64875e0e2dad7f18f40d0
+PODFILE CHECKSUM: 562c8e09274ecff4cfac49faa59cb9181ff31607
 
 COCOAPODS: 1.0.1

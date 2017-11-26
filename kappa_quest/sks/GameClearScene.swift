@@ -5,6 +5,7 @@ import GameplayKit
 class GameClearScene: BaseScene {
 
     var world = ""
+    var chapter = 1
 
     override func sceneDidLoad() {
     }
@@ -209,7 +210,11 @@ class GameClearScene: BaseScene {
             }
             switch tapNode.name! {
             case "ContinueNode", "ContinueLabel":
-                goWorld()
+                if chapter == 1 {
+                    goWorld()
+                } else if chapter == 2 {
+                    goWorld2()
+                }
             default:
                 break
             }

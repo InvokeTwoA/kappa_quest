@@ -1,15 +1,16 @@
 import UIKit
 import GoogleMobileAds
+import TwitterKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         GADMobileAds.configure(withApplicationID: Const.adMobID)
-
+        
+        Twitter.sharedInstance().start(withConsumerKey: Const.twitterAccessKey, consumerSecret: Const.twitterSecretKey)
         return true
     }
 

@@ -23,7 +23,7 @@
 		<array>
 			<string>zombi</string>
 			<string>skelton</string>
-			<string>death</string>
+			<string>ghost</string>
 		</array>
 		<key>is_random</key>
 		<true/>

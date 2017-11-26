@@ -1,21 +1,11 @@
 // タイトル画面
 import SpriteKit
 import GameplayKit
+import Social
 
 class TitleScene: BaseScene {
     override func sceneDidLoad() {
         setRandomImage()
-        if !GameData.isExistData() {
-            let resetNode = childNode(withName: "//ResetNode") as? SKSpriteNode
-            let resetLabel = childNode(withName: "//ResetLabel") as? SKLabelNode
-            resetNode?.removeFromParent()
-            resetLabel?.removeFromParent()
-            
-            let debugNode = childNode(withName: "//DebugNode") as? SKSpriteNode
-            let debugLabel = childNode(withName: "//DebugLabel") as? SKLabelNode
-            debugNode?.removeFromParent()
-            debugLabel?.removeFromParent()
-        }
         prepareBGM(fileName: Const.bgm_ahurera)
         playBGM()
     }
