@@ -135,29 +135,41 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
     /***********************************************************************************/
     func goTitle(){
         let nextScene = TitleScene(fileNamed: "TitleScene")!
-        nextScene.size = nextScene.size
+        nextScene.size = scene!.size
         nextScene.scaleMode = SKSceneScaleMode.aspectFit
         view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
     }
     
+    // 1章ワールドへ
+    func goGame(_ world_name : String){
+        let nextScene = GameScene(fileNamed: "GameScene")!
+        nextScene.size = self.scene!.size
+        nextScene.scaleMode = SKSceneScaleMode.aspectFit
+        nextScene.world_name = world_name
+        view!.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
+    }
+    
     func goWorld(){
         let nextScene = WorldScene(fileNamed: "WorldScene")!
-        nextScene.size = nextScene.size
+        nextScene.size = scene!.size
         nextScene.scaleMode = SKSceneScaleMode.aspectFit
         view!.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
     }
 
-    func goWorld2(){
-        let nextScene = World2Scene(fileNamed: "World2Scene")!
-        nextScene.size = nextScene.size
+    // 2章ゲーム画面へ
+    func goGame2(_ world_name : String){
+        print(world_name)
+        let nextScene = Game2Scene(fileNamed: "Game2Scene.sks")!
+        nextScene.size = scene!.size
         nextScene.scaleMode = SKSceneScaleMode.aspectFit
-        view!.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
+        nextScene.world_name = world_name
+        self.view!.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
     }
     
-    // ２章へ
-    func goGame2(){
+    // ２章ワールドへ
+    func goWorld2(){
         let nextScene = World2Scene(fileNamed: "World2Scene")!
-        nextScene.size = nextScene.size
+        nextScene.size = scene!.size
         nextScene.scaleMode = SKSceneScaleMode.aspectFit
         view!.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
     }
@@ -170,6 +182,24 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
         view?.window?.rootViewController?.present(listViewController, animated: true, completion: nil)
     }
     
+    // 1章ボス画面へ遷移
+    func goLast(){
+        let nextScene = LastBattleScene(fileNamed: "LastBattleScene")!
+        nextScene.size = scene!.size
+        nextScene.scaleMode = SKSceneScaleMode.aspectFit
+        nextScene.world_name = "last"
+        view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
+    }
+
+    // ２章ボス画面へ遷移
+    func goLastBoss2(){
+        print("go Last Boss2")
+        let nextScene = LastBattle2Scene(fileNamed: "LastBattle2Scene")!
+        nextScene.size = scene!.size
+        nextScene.scaleMode = SKSceneScaleMode.aspectFit
+        view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
+    }
+
     /***********************************************************************************/
     /********************************** music ******************************************/
     /***********************************************************************************/

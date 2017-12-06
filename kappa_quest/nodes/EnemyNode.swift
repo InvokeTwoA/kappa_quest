@@ -27,10 +27,12 @@ class EnemyNode: SKSpriteNode {
     var canDeath = false
     var canLazer = false
     var isGhost = false
-    var isMovingFree = false
     var isZombi = ""
     var isBoss = false
 
+    var isMovingFree = false
+    var isSizeFree = false
+    
     // 各種フラグ
     var isDead = true
     var isAttacking = false
@@ -43,18 +45,17 @@ class EnemyNode: SKSpriteNode {
     
     var eSize = "free"
 
-    class func makeEnemy(name : String, enemy_size : String = "not_free") -> EnemyNode {
+    class func makeEnemy(name : String, enemy_data : NSDictionary) -> EnemyNode {
         let enemy = EnemyNode(imageNamed: name)
-        enemy.eSize = enemy_size
-
-        if enemy_size == "not_free" {
-                        print("not free")
-            enemy.size = CGSize(width: Const.enemySize, height: Const.enemySize)
-        } else {
-            print("free")
+        enemy.setParameterByDictionary(dictionary: enemy_data)        
+        if enemy.isSizeFree {
             let texture = SKTexture(imageNamed: name)
             enemy.texture = texture
             enemy.size = texture.size()
+            enemy.eSize = "free"
+        } else {
+            enemy.size = CGSize(width: Const.enemySize, height: Const.enemySize)
+            enemy.eSize = "not_free"
         }
         enemy.anchorPoint = CGPoint(x: 0.5, y: 0)     // 中央下がアンカーポイント
         enemy.zPosition = 2
@@ -106,7 +107,6 @@ class EnemyNode: SKSpriteNode {
         if dictionary["canLazer"] != nil {
             canLazer = dictionary.object(forKey: "canLazer") as! Bool
         }
-
         if dictionary["heal"] != nil {
             heal = dictionary.object(forKey: "heal") as! Int
         }
@@ -128,7 +128,9 @@ class EnemyNode: SKSpriteNode {
         if dictionary["dy"] != nil {
             dy = dictionary.object(forKey: "dy") as! Int
         }
-
+        if dictionary["isSizeFree"] != nil {
+            isSizeFree = dictionary.object(forKey: "isSizeFree") as! Bool
+        }
     }
     
     func healHP(_ heal : Int){
@@ -138,7 +140,6 @@ class EnemyNode: SKSpriteNode {
         }
     }
     
-
     // ボス敵はステータス強化される
     func bossPowerUp(){
         maxHp *= 5
@@ -150,7 +151,6 @@ class EnemyNode: SKSpriteNode {
         pie += 1
         lv += 1
         isBoss = true
-        
         if eSize == "not_free" {
             size = CGSize(width: Const.bossSize, height: Const.bossSize)
         }

@@ -7,9 +7,8 @@ class Game2Scene: GameBaseScene {
     
     // 章に応じて変数を上書き
     override func setBaseVariable(){
-        enemy_size = "free"
+        chapter = 2        
     }
-    
     
     // メニュー画面へ遷移
     override func goMenu(){
@@ -23,19 +22,6 @@ class Game2Scene: GameBaseScene {
         self.view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
     }
     
-    // ゲームオーバー画面へ
-    override func goGameOver(){
-        if beat_boss_flag {
-            return
-        }
-        stopBGM()
-        let nextScene = GameOverScene(fileNamed: "GameOverScene")!
-        nextScene.size = nextScene.size
-        nextScene.scaleMode = SKSceneScaleMode.aspectFit
-        nextScene.back2Scene = self.scene as! Game2Scene
-        nextScene.chapter = 2
-        view!.presentScene(nextScene, transition: .fade(with: .white, duration: Const.gameOverInterval))
-    }
     // カットイン画面へ
     override func goCutin(_ key : String){
         
@@ -52,8 +38,18 @@ class Game2Scene: GameBaseScene {
     
     
 
-    
-    
+    // フレーム毎の処理
+    override func frameExec(){
+        for enemy in enemyModel.enemies {
+            if enemy.isDead {
+                continue
+            }
+            enemy.position.x = enemy.position.x + CGFloat(enemy.dx)
+            enemy.position.y = enemy.position.y + CGFloat(enemy.dy)
+        }
+        
+    }
+
     // モンスターが1秒おきに実行する処理
     override func enemyAction(){
         for enemy in enemyModel.enemies {
@@ -122,7 +118,8 @@ class Game2Scene: GameBaseScene {
                 } else if enemy.position.y > kappa_first_position_y + 250.0 {
                     enemy.convertDyMinus()
                 }
-                enemy.run(SKAction.moveBy(x: CGFloat(enemy.dx), y: CGFloat(enemy.dy) , duration: 1.0))
+                
+//                enemy.run(SKAction.moveBy(x: CGFloat(enemy.dx), y: CGFloat(enemy.dy) , duration: 1.0))
             }
             
             // 移動制限
@@ -131,6 +128,6 @@ class Game2Scene: GameBaseScene {
             }
         }
     }
-    
+
 }
 

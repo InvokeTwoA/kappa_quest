@@ -11,7 +11,7 @@ class ChapterScene: BaseScene {
     }
     
     // １章へ
-    func goGame(){
+    func startGame1(){
         if GameData.isClear("tutorial") {
             stopBGM()
             goWorld()
@@ -50,10 +50,10 @@ class ChapterScene: BaseScene {
             }            
             switch tapNode.name! {
             case "Chapter1Node", "Chapter1Label":
-                goGame()
+                startGame1()
             case "Chapter2Node", "Chapter2Label":
                 if GameData.isClear("opening2") {
-                    goGame2()
+                    goWorld2()
                 } else {
                     goOpening2()
                 }

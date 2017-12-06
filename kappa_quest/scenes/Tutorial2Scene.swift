@@ -24,8 +24,7 @@ class Tutorial2Scene: BaseScene {
         let nextScene = Tutorial3Scene(fileNamed: "Tutorial3Scene")!
         nextScene.size = nextScene.size
         nextScene.scaleMode = SKSceneScaleMode.aspectFit
-
-        view!.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
+        view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
     }
     
     private var kappa_position = 1
@@ -109,6 +108,18 @@ class Tutorial2Scene: BaseScene {
         for t in touches {
             let positionInScene = t.location(in: self)
             touchDown(atPoint: positionInScene)
+            
+            let tapNode = self.atPoint(positionInScene)
+            if tapNode.name == nil {
+                self.touchDown(atPoint: positionInScene)
+                return
+            }
+            switch tapNode.name! {
+            case "SkipNode", "SkipLabel":
+                goNextMap()
+            default:
+                self.touchDown(atPoint: positionInScene)
+            }
         }
     }
     

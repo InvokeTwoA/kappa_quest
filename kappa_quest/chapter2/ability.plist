@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>shukuchi</key>
+	<dict>
+		<key>cost</key>
+		<integer>10</integer>
+		<key>name</key>
+		<string>縮地LV1</string>
+		<key>explain</key>
+		<string>カッパの移動速度が速くなります。 縮地LV2をセットしている場合、このスキルは無視されます（とほほ）</string>
+		<key>getInfo</key>
+		<string> なし</string>
+	</dict>
+	<key>shukuchi2</key>
+	<dict>
+		<key>cost</key>
+		<integer>20</integer>
+		<key>name</key>
+		<string>縮地LV2</string>
+		<key>explain</key>
+		<string>カッパの移動速度が更に速くなります。</string>
+		<key>getInfo</key>
+		<string> なし</string>
+	</dict>
+	<key>time_heal</key>
+	<dict>
+		<key>cost</key>
+		<integer>20</integer>
+		<key>name</key>
+		<string>昼寝ヒール</string>
+		<key>explain</key>
+		<string>１秒毎にHPが１回復します。</string>
+		<key>getInfo</key>
+		<string> なし</string>
+	</dict>
+</dict>
+</plist>

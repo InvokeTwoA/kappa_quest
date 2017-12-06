@@ -127,7 +127,6 @@ class GameClearScene: BaseScene {
             if !GameData.isClear(world) {
                 getLabel1.text = "「皇帝」のジョブを取得！"
                 getLabel2.text = "「魔王城」が出現！"
-                NotificationModel.plusBarCount()
                 NotificationModel.plusShopCount(2)
             }
         case "maou":
@@ -136,6 +135,7 @@ class GameClearScene: BaseScene {
                 getLabel1.text = "「魔王」のジョブが解禁！"
                 getLabel2.text = "「妹」が酒場に登場！"
                 getLabel3.text = "「妹」のステージが出現！"
+                NotificationModel.plusBarCount()
                 NotificationModel.plusShopCount(3)
             }
         case "miyuki":

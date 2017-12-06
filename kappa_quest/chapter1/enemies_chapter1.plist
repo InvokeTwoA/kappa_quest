@@ -915,28 +915,5 @@
 		<key>type</key>
 		<string>human</string>
 	</dict>
-	<key>real_skelton</key>
-	<dict>
-		<key>name</key>
-		<string></string>
-		<key>hp</key>
-		<integer>1000</integer>
-		<key>str</key>
-		<integer>300</integer>
-		<key>def</key>
-		<integer>0</integer>
-		<key>agi</key>
-		<integer>1200</integer>
-		<key>int</key>
-		<integer>60</integer>
-		<key>pie</key>
-		<integer>0</integer>
-		<key>range</key>
-		<integer>3</integer>
-		<key>canLazer</key>
-		<true/>
-		<key>type</key>
-		<string>human</string>
-	</dict>
 </dict>
 </plist>

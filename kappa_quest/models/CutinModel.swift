@@ -6,7 +6,6 @@ class CutinModel {
     private var dictionary : NSDictionary!
     private var pageData : [NSDictionary]!
     
-    
     var image = ""
     var name = ""
     var text1 = ""
@@ -17,8 +16,6 @@ class CutinModel {
     
     // plist からデータを読み込む
     func readDataByPlist(_ key : String, chapter : Int = 1) {
-        print("chapter=\(chapter)")
-        
         var dataPath = Bundle.main.path(forResource: "cutin", ofType:"plist" )!
 
         if chapter == 2 {
@@ -36,7 +33,7 @@ class CutinModel {
         text1   = data["text1"] as! String
         text2   = data["text2"] as! String
         
-        if dictionary["sizeFree"] != nil {
+        if data["sizeFree"] != nil {
             sizeFreeFlag = true
         } else {
             sizeFreeFlag = false

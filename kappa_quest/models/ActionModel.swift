@@ -52,12 +52,12 @@ class ActionModel {
     var downBack          : SKAction!
     var downFade          : SKAction!
     var kappaDown         : SKAction!
-
+    
     func setActionData(sceneWidth : CGFloat){
         moveSpace = sceneWidth/7.0/4.0
         
         openingUpper = SKAction.sequence([
-                SKAction.moveBy(x: 0, y: 10000, duration: 60.0)
+                SKAction.moveBy(x: 0, y: 10000, duration: 70.0)
         ])
 
         // 攻撃アクション

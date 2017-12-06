@@ -10,31 +10,29 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
     internal var kappa_first_position_y : CGFloat!
     internal var kappa : KappaNode!   // かっぱ画像
     internal var map : Map = Map()
-    
     internal var enemyModel : EnemyModel = EnemyModel()
     internal var specialAttackModel : SpecialAttackModel = SpecialAttackModel()
     internal var skillModel : SkillModel = SkillModel()
+
+    internal var chapter = 1
+
     var world_name = "tutorial"
-    
-    internal var enemy_size = "not_free"
     
     // Scene load 時に呼ばれる
     internal var isSceneDidLoaded = false
     override func sceneDidLoad() {
-        
         // 二重読み込みの防止
         if isSceneDidLoaded {
             return
         }
-        setBaseVariable()
-        
         isSceneDidLoaded = true
-        
         lastUpdateTime = 0
+
+        setBaseVariable()  // 章による変数設定
         setWorld()
         
         // データをセット
-        enemyModel.readDataByPlist()
+        enemyModel.readDataByPlist(chapter)
         jobModel.readDataByPlist()
         jobModel.loadParam()
         skillModel.readDataByPlist()
@@ -576,12 +574,12 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
         
         var enemy : EnemyNode!
         if map.isRandom {
-            enemy = enemyModel.getRnadomEnemy(map.enemies, lv : map.lv, enemy_size: enemy_size)
+            enemy = enemyModel.getRnadomEnemy(map.enemies, lv : map.lv)
         } else {
             let num = pos-3
             if map.enemies.count > num {
                 if map.enemies[num] != "" {
-                    enemy = enemyModel.getEnemy(enemy_name: map.enemies[num], enemy_size: enemy_size)
+                    enemy = enemyModel.getEnemy(enemy_name: map.enemies[num])
                 } else {
                     return false
                 }
@@ -756,10 +754,14 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
         for i in 0 ..< Const.maxPosition {
             removeEnemyLifeBar(i)
         }
-        
+
+        hideBigMessage()
+    }
+    
+    func hideBigMessage(){
         let bigMessageNode = childNode(withName: "//BigMessageNode") as! SKSpriteNode
         bigMessageNode.isHidden = true
-        bigMessageNode.removeAllActions()
+        bigMessageNode.removeAllActions()        
     }
     
     /***********************************************************************************/
@@ -989,23 +991,34 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
     func goMenu(){
         stopBGM()
         let nextScene = MenuScene(fileNamed: "MenuScene")!
-        nextScene.size = self.scene!.size
+        nextScene.size = scene!.size
         nextScene.scaleMode = SKSceneScaleMode.aspectFit
-        nextScene.backScene = self.scene as! GameScene
+        nextScene.backScene = scene as! GameScene
         nextScene.back = "game"
-        self.view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
+        view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
     }
     
     // ゲームオーバー画面へ
+    var gameover_check_flag = false
     func goGameOver(){
         if beat_boss_flag {
             return
         }
+        if gameover_check_flag {
+            return
+        }
+        gameover_check_flag = true
+
+        // 死亡カウントを増やす
+        gameData.death += 1
+        gameData.saveParam()
+        
         stopBGM()
         let nextScene = GameOverScene(fileNamed: "GameOverScene")!
-        nextScene.size = nextScene.size
+        nextScene.size = scene!.size
         nextScene.scaleMode = SKSceneScaleMode.aspectFit
-        nextScene.backScene = self.scene as! GameScene
+        nextScene.world_name = world_name
+        nextScene.chapter = chapter
         view!.presentScene(nextScene, transition: .fade(with: .white, duration: Const.gameOverInterval))
     }
     
@@ -1264,6 +1277,9 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
                     makeSpark(point: (secondBody.node?.position)!)
                     secondBody.node?.removeFromParent()
                 }
+            } else if secondBody.categoryBitMask & Const.lazerCategory != 0 {
+                attacked(attack: 30, point: (firstBody.node?.position)!)
+                makeSpark(point: (secondBody.node?.position)!)
             } else if secondBody.categoryBitMask & Const.enemyCategory != 0 {
                 let enemy = secondBody.node as! EnemyNode
                 if enemy.isDead {
@@ -1347,12 +1363,7 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
         let dt = currentTime - lastUpdateTime
         lastUpdateTime = currentTime
         
-        // カッパの回転処理
-        if specialAttackModel.is_tornado || kappa.isSpin {
-            if CommonUtil.rnd(4) == 0 {
-                kappa.xScale *= -1
-            }
-        }
+        frameExec()
         
         doubleTimer += dt
         if doubleTimer > 1.0 {
@@ -1363,6 +1374,16 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
         enemyAction()
     }
  
+    // フレーム毎の処理
+    func frameExec(){
+        // カッパの回転処理
+        if specialAttackModel.is_tornado || kappa.isSpin {
+            if CommonUtil.rnd(4) == 0 {
+                kappa.xScale *= -1
+            }
+        }
+    }
+    
     // 敵の行動
     func enemyAction(){
         

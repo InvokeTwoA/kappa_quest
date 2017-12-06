@@ -1,27 +1,25 @@
+// モンスターの情報を格納したモデル
 import Foundation
-
-
 class EnemyModel {
 
     var enemies : Array<EnemyNode> = [EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode(),EnemyNode()]
     var enemiesData = NSDictionary()
 
-    func readDataByPlist(){
-        let enemiesDataPath = Bundle.main.path(forResource: "enemies", ofType:"plist" )!
+    func readDataByPlist(_ chapter : Int){
+        let enemiesDataPath = Bundle.main.path(forResource: "enemies_chapter\(chapter)", ofType:"plist" )!
         enemiesData = NSDictionary(contentsOfFile: enemiesDataPath)!
     }
 
-    func getRnadomEnemy(_ enemyList : [String], lv : Int, enemy_size : String = "not_free") -> EnemyNode {
+    func getRnadomEnemy(_ enemyList : [String], lv : Int) -> EnemyNode {
         let enemy_name = enemyList[CommonUtil.rnd(enemyList.count)]
-
-        let enemyNode = EnemyNode.makeEnemy(name: enemy_name, enemy_size: enemy_size)
-        enemyNode.setParameterByDictionary(dictionary: enemiesData.object(forKey: enemy_name) as! NSDictionary)
+        let enemy_data = enemiesData.object(forKey: enemy_name) as! NSDictionary
+        let enemyNode = EnemyNode.makeEnemy(name: enemy_name, enemy_data: enemy_data)
         return enemyNode
     }
 
-    func getEnemy(enemy_name: String, enemy_size : String = "not_free") -> EnemyNode {
-        let enemyNode = EnemyNode.makeEnemy(name: enemy_name, enemy_size: enemy_size)
-        enemyNode.setParameterByDictionary(dictionary: enemiesData.object(forKey: enemy_name) as! NSDictionary)
+    func getEnemy(enemy_name: String) -> EnemyNode {
+        let enemy_data = enemiesData.object(forKey: enemy_name) as! NSDictionary
+        let enemyNode = EnemyNode.makeEnemy(name: enemy_name, enemy_data: enemy_data)
         return enemyNode
     }
 
@@ -55,5 +53,4 @@ class EnemyModel {
         text += "攻撃の射程 : \(range)"
         return text
     }
-
 }

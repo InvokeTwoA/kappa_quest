@@ -17,7 +17,11 @@ class Tutorial3Scene: BaseScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
         
 //        let enemy = childNode(withName: "//enemy") as! EnemyNode
-        let enemy = EnemyNode.makeEnemy(name: "ghost")
+        
+        let enemyModel = EnemyModel()
+        enemyModel.readDataByPlist(1)
+        let enemy_data = enemyModel.enemiesData.object(forKey: "ghost") as! NSDictionary
+        let enemy = EnemyNode.makeEnemy(name: "ghost", enemy_data: enemy_data)
         enemy.setPhysic()
         enemy.position.y = kappa.position.y
         enemy.position.x = getPositionX(4)
@@ -33,7 +37,7 @@ class Tutorial3Scene: BaseScene, SKPhysicsContactDelegate {
         let nextScene = Tutorial4Scene(fileNamed: "Tutorial4Scene")!
         nextScene.size = nextScene.size
         nextScene.scaleMode = SKSceneScaleMode.aspectFit
-        view!.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
+        view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
     }
     
     // ダメージを数字で表示
@@ -166,7 +170,7 @@ class Tutorial3Scene: BaseScene, SKPhysicsContactDelegate {
                 touchDown(atPoint: positionInScene)
                 return
             }
-            
+                
             switch tapNode.name! {
             case "IconKappaHado":
                 if specialAttackModel.canSpecialHado() {
@@ -177,6 +181,8 @@ class Tutorial3Scene: BaseScene, SKPhysicsContactDelegate {
                     specialAttackModel.countUp()
                     updateSpecialView()
                 }
+            case "SkipNode", "SkipLabel":
+                goNextMap()
             default:
                 specialAttackModel.countUp()
                 touchDown(atPoint: positionInScene)

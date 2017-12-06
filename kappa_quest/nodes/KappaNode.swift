@@ -22,6 +22,10 @@ class KappaNode: SKSpriteNode {
     var konjoEndFlag = false
     var isSpin = false
 
+    // 加速度（２章ラスボスで使用）
+    var dx = 0
+    var dy = 0
+    
     // パラメーターを userDefault から読み取り
     func setParameterByUserDefault(){
         // FIXME guard
@@ -104,6 +108,15 @@ class KappaNode: SKSpriteNode {
         physicsBody = physic
     }
     
+    // 宇宙空間でのカッパの physics
+    func spaceMode(){
+        physicsBody?.isDynamic = true
+        physicsBody?.collisionBitMask = Const.worldCategory | Const.unvisibleWorldCategory
+        physicsBody?.contactTestBitMask = Const.fireCategory | Const.enemyCategory | Const.thunderCategory | Const.lazerCategory
+        maxHp = 100
+        hp = 100
+    }
+    
     // カッパの華麗なる攻撃
     // 画像をランダムに変更
     func attack(){
@@ -159,18 +172,30 @@ class KappaNode: SKSpriteNode {
         int = 999
         agi = 999
         luc = 999
+        lv = 100
     }
     
     // 名前をラッキーにすることで幸運なステータスになる
     func lucky(){
         luc = 77
     }
-
-    
     
     class func setInitLv(){
         UserDefaults.standard.set(1, forKey: "lv")
     }
-    
+
+    private var kappa_punch_num = 0
+    func punchRush(){
+        if kappa_punch_num == 0 {
+            texture = SKTexture(imageNamed: "kappa_punch_r")
+            kappa_punch_num = 1
+        } else if kappa_punch_num == 1 {
+            texture = SKTexture(imageNamed: "kappa_punch")
+            kappa_punch_num = 2
+        } else {
+            texture = SKTexture(imageNamed: "kappa_upper")
+            kappa_punch_num = 0
+        }
+    }
 
 }

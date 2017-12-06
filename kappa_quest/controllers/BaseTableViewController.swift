@@ -6,6 +6,18 @@ class BaseTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     private var sections = [""]
 
+    // メッセージダイアログを表示
+    func displayAlert(_ title: String, message: String, okString: String){
+        let alert = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
+        let defaultAction = UIAlertAction(title: okString, style: .default, handler: nil)
+        alert.addAction(defaultAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     func setSections(_ array : [String]){
         sections = array
     }

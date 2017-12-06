@@ -9,6 +9,13 @@ class WorldNode: SKSpriteNode {
         physicBody.affectedByGravity = false
         physicBody.isDynamic = false
     }
+    
+    class func setUnvisibleWorldPhysic(_ physicBody : SKPhysicsBody) {
+        physicBody.categoryBitMask = Const.unvisibleWorldCategory
+        physicBody.affectedByGravity = false
+        physicBody.isDynamic = false
+    }
+
 
     // 重力を持つ事で要素は沈んでいく
     class func setWorldEnd(_ physicBody : SKPhysicsBody){

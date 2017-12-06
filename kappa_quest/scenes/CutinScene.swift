@@ -43,6 +43,7 @@ class CutinScene: BaseScene {
             enemyImage.texture = SKTexture(imageNamed: cutinModel.image)
             if cutinModel.sizeFreeFlag {
                 enemyImage.size = texture.size()
+            } else {
             }
             kappa.isHidden = true
             nameLabel.text = cutinModel.name

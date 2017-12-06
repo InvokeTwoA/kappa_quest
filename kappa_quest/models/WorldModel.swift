@@ -1,7 +1,6 @@
 import Foundation
 
 class WorldModel {
-    
     // plist から読み込んだ職業データ
     private var dictionary : NSDictionary!
     

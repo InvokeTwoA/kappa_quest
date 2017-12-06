@@ -77,7 +77,7 @@ class Tutorial4Scene: BaseScene {
         nextScene.size = self.scene!.size
         nextScene.scaleMode = SKSceneScaleMode.aspectFit
         nextScene.world_name = "tutorial"
-        self.view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
+        view!.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
     }
 
     /***********************************************************************************/

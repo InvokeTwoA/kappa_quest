@@ -125,15 +125,7 @@ class WorldScene: BaseScene {
     
     func goDungeon(_ key : String){
         stopBGM()
-        
-        let map = Map()
-        map.initData()
-        
-        let scene = GameScene(fileNamed: "GameScene")!
-        scene.size = self.scene!.size
-        scene.scaleMode = SKSceneScaleMode.aspectFit
-        scene.world_name = key
-        self.view!.presentScene(scene, transition: .doorway(withDuration: Const.doorTransitionInterval))
+        goGame(key)
     }
 
     // 店へ行く
@@ -163,14 +155,6 @@ class WorldScene: BaseScene {
         view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
     }
     
-    func goLast(){
-        let nextScene = LastBattleScene(fileNamed: "LastBattleScene")!
-        nextScene.size = scene!.size
-        nextScene.scaleMode = SKSceneScaleMode.aspectFit
-        nextScene.world_name = "last"
-        view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
-    }
-
     func moveObject(_ vector: CGVector){
         enumerateChildNodes(withName: "*") { node, _ in
             if node.name != nil {

@@ -35,7 +35,6 @@ class SkillModel {
     var hado_heal = 0
     var upper_heal = 0
     var tornado_heal = 0
-    
 
     func judgeSKill(){
         if JobModel.getLV("murabito") >= 5 {

@@ -78,8 +78,6 @@ class MusicScene: BaseScene {
     }
     
     func loadPageData(){
-        print("load page data")
-        
         if page == 0 {
             music_list = music_list0
             music_names = music_names0

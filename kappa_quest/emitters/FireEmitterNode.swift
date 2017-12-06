@@ -39,6 +39,12 @@ class FireEmitterNode: SKEmitterNode {
 //        physicsBody?.applyTorque(5.0)
     }
 
+    func fingerFlareBoms(){
+        let dx = CommonUtil.rnd(200) - 100
+        physicsBody?.applyImpulse(CGVector(dx: -dx, dy: 200))
+    }
+
+    
     func upShot(){
         run(SKAction.moveBy(x: 0, y: 900, duration: 2.0))
     }
