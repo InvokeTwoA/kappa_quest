@@ -1278,7 +1278,10 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
                     secondBody.node?.removeFromParent()
                 }
             } else if secondBody.categoryBitMask & Const.lazerCategory != 0 {
-                attacked(attack: 30, point: (firstBody.node?.position)!)
+                attacked(attack: 18, point: (firstBody.node?.position)!)
+                makeSpark(point: (secondBody.node?.position)!)
+            } else if secondBody.categoryBitMask & Const.usagiCategory != 0 {
+                attacked(attack: 22, point: (firstBody.node?.position)!)
                 makeSpark(point: (secondBody.node?.position)!)
             } else if secondBody.categoryBitMask & Const.enemyCategory != 0 {
                 let enemy = secondBody.node as! EnemyNode

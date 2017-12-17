@@ -13,13 +13,14 @@ class KappaNode: SKSpriteNode {
     var agi = 2
     var int = 2
     var luc = 2
+    var beauty = 1
     var nextExp = 10
     var exp = 0
     var physic_type = "normal"
     var mode = ""
     
     // フラグ
-    var konjoEndFlag = false
+    var konjoEndFlag = false  // スキル根性が発動したかどうか（１ゲームに１回きり）
     var isSpin = false
 
     // 加速度（２章ラスボスで使用）
@@ -39,6 +40,7 @@ class KappaNode: SKSpriteNode {
         agi     = UserDefaults.standard.integer(forKey: "agi")
         int     = UserDefaults.standard.integer(forKey: "int")
         luc     = UserDefaults.standard.integer(forKey: "luc")
+        beauty  = UserDefaults.standard.integer(forKey: "beauty")
         exp     = UserDefaults.standard.integer(forKey: "exp")
         
         hp  = maxHp
@@ -73,6 +75,7 @@ class KappaNode: SKSpriteNode {
         UserDefaults.standard.set(agi, forKey: "agi")
         UserDefaults.standard.set(int, forKey: "int")
         UserDefaults.standard.set(luc, forKey: "luc")
+        UserDefaults.standard.set(beauty, forKey: "beauty")
         UserDefaults.standard.set(exp, forKey: "exp")
     }
     
@@ -112,7 +115,7 @@ class KappaNode: SKSpriteNode {
     func spaceMode(){
         physicsBody?.isDynamic = true
         physicsBody?.collisionBitMask = Const.worldCategory | Const.unvisibleWorldCategory
-        physicsBody?.contactTestBitMask = Const.fireCategory | Const.enemyCategory | Const.thunderCategory | Const.lazerCategory
+        physicsBody?.contactTestBitMask = Const.fireCategory | Const.thunderCategory | Const.lazerCategory | Const.usagiCategory
         maxHp = 100
         hp = 100
     }
@@ -165,7 +168,7 @@ class KappaNode: SKSpriteNode {
     }
     
     // 裏技
-    // 名前を司波達也にすることで最強のステータスになる
+    // 名前をお兄様にすることで最強のステータスになる
     func oniisama(){
         maxHp = 1000
         str = 999
@@ -179,6 +182,17 @@ class KappaNode: SKSpriteNode {
     func lucky(){
         luc = 77
     }
+    
+    // 名前をお爺様にすることで１章クリア想定のステータスになる
+    func ojiisama(){
+        maxHp = 200
+        str = 130
+        int = 130
+        agi = 150
+        luc = 100
+        lv = 120
+    }
+
     
     class func setInitLv(){
         UserDefaults.standard.set(1, forKey: "lv")

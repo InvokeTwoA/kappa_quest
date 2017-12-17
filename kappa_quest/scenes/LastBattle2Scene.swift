@@ -6,7 +6,8 @@ import CoreMotion
 
 class LastBattle2Scene: GameBaseScene {
     private let motionManager = CMMotionManager()
-    private var usagi : EnemyNode!
+    private var usagi : UsagiNode!
+    private let usagi_first_position : CGPoint = CGPoint(x: 0, y: 224)
     
     // 章に応じて変数を上書き
     override func setBaseVariable(){
@@ -16,7 +17,6 @@ class LastBattle2Scene: GameBaseScene {
     
     // Scene load 時に呼ばれる
     override func sceneDidLoad() {
-        print("last scene did load")
         // 二重読み込みの防止
         if isSceneDidLoaded {
             return
@@ -49,8 +49,6 @@ class LastBattle2Scene: GameBaseScene {
     }
     
     override func didMove(to view: SKView) {
-        print("last scene did moved")
-
     }
         
     override func tapCountUp(){
@@ -58,8 +56,8 @@ class LastBattle2Scene: GameBaseScene {
     }
     
     func createUsagi(){
-        usagi = enemyModel.getEnemy(enemy_name: "usagi")
-        usagi.position = CGPoint(x: 0, y: 224)
+        usagi = UsagiNode.makeUsagi()
+        usagi.position = usagi_first_position
         usagi.setPhysic()
         addChild(usagi)
     }
@@ -102,7 +100,6 @@ class LastBattle2Scene: GameBaseScene {
         WorldNode.setUnvisibleWorldPhysic(background.physicsBody!)
         addChild(background)
     }
-
     
     // 攻撃をされた
     override func attacked(attack:Int, point: CGPoint){
@@ -229,7 +226,7 @@ class LastBattle2Scene: GameBaseScene {
     }
     
     /***********************************************************************************/
-    /********************************* 画面遷移 ****************************************/
+    /********************************* 画面遷移 *****************************************/
     /***********************************************************************************/
     // メニュー画面へ遷移
     private func goEnding(){
@@ -318,6 +315,9 @@ class LastBattle2Scene: GameBaseScene {
     private var stage = 0
     override func update(_ currentTime: TimeInterval) {
         execMessages()
+        if gameover_check_flag || kappa.hp <= 0 {
+            return
+        }
 
         // 加速度の処理
         if let accelerometerData = motionManager.accelerometerData {
@@ -361,7 +361,9 @@ class LastBattle2Scene: GameBaseScene {
             createThunder(pos: 2, damage: 5)
             createThunder(pos: 3, damage: 5)
             createThunder(pos: 4, damage: 5)
-        case 18, 20, 22:
+        case 18:
+            usagi.attack(from: usagi_first_position, to: kappa.position)
+        case 20, 22, 24:
             showSkillBox("アローレイン")
             arrowRain()
         case 23:
@@ -390,6 +392,8 @@ class LastBattle2Scene: GameBaseScene {
             createArrow(pos: CommonUtil.rnd(6) + 1, damage: 6)
             createArrow(pos: CommonUtil.rnd(6) + 1, damage: 6)
             createArrow(pos: CommonUtil.rnd(6) + 1, damage: 6)
+        case 56:
+            usagi.attack(from: usagi_first_position, to: kappa.position)
         case 57:
             showBigMessage(text0: "僕は広告を通して様々なゲームを見てきた。", text1: "")
         case 59:
@@ -398,6 +402,8 @@ class LastBattle2Scene: GameBaseScene {
         case 61:
             showSkillBox("初剣殺し2")
             rotateLazer(angle: CGFloat(Double.pi*2),interval: 8.0)
+        case 67:
+            usagi.attack(from: usagi_first_position, to: kappa.position)
         case 69:
             showBigMessage(text0: "必殺技を", text1: "くらえ")
         case 70,72,74,76,78:
@@ -412,9 +418,13 @@ class LastBattle2Scene: GameBaseScene {
             createThunder(pos: 4, damage: 5)
             createThunder(pos: 5, damage: 5)
             createThunder(pos: 6, damage: 5)
-
-            
-        case 80,81,82,83,84,85,86,87,88,89,90:
+        case 81:
+            usagi.attack(from: usagi_first_position, to: kappa.position)
+        case 90:
+            showBigMessage(text0: "お前の", text1: "勝ちだ……")
+        case 115:
+            showBigMessage(text0: "とどめを刺せ", text1: "")
+        case 310,311,312,323,323,324,325,326,327,328,329:
             showSkillBox("必殺の一撃")
             createArrow(pos: CommonUtil.rnd(6) + 1, damage: 6)
             createArrow(pos: CommonUtil.rnd(6) + 1, damage: 6)
@@ -422,10 +432,12 @@ class LastBattle2Scene: GameBaseScene {
             usagiFire()
             usagiFire()
             usagiFire()
-        case 90:
-            showBigMessage(text0: "お前の", text1: "勝ちだ……")
-        case 115:
-            showBigMessage(text0: "とどめを刺せ", text1: "")
+        case 330:
+            showBigMessage(text0: "これで、終わりだ", text1: "")
+        case 331:
+            stopBGM()
+            prepareBGM(fileName: Const.bgm_piano_millky)
+            playBGM()
         default:
             break
         }

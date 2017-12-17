@@ -6,6 +6,16 @@
 	<array>
 		<dict>
 			<key>name</key>
+			<string>ホネ</string>
+			<key>image</key>
+			<string>skelton</string>
+			<key>text1</key>
+			<string>来たか。カッパよ</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
 			<string>(kappa)</string>
 			<key>image</key>
 			<string>kappa</string>
@@ -30,6 +40,16 @@
 			<key>image</key>
 			<string>skelton</string>
 			<key>text1</key>
+			<string>ふっふっふ</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>ホネ</string>
+			<key>image</key>
+			<string>skelton</string>
+			<key>text1</key>
 			<string>新しく手に入れたこの力……</string>
 			<key>text2</key>
 			<string></string>
@@ -40,22 +60,244 @@
 			<key>image</key>
 			<string>real_skelton</string>
 			<key>text1</key>
-			<string>試させてもらうよ！</string>
+			<string>試させてもらおう！</string>
 			<key>text2</key>
 			<string></string>
 			<key>sizeFree</key>
 			<true/>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>な、なんだこのグラフィックはーー！</string>
+			<key>text2</key>
+			<string></string>
 		</dict>
 	</array>
 	<key>skelton_end</key>
 	<array>
 		<dict>
 			<key>name</key>
-			<string>(kappa)</string>
+			<string>ホネ</string>
 			<key>image</key>
 			<string>skelton</string>
 			<key>text1</key>
-			<string>お見事……</string>
+			<string>バカな……</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>ホネ</string>
+			<key>image</key>
+			<string>skelton</string>
+			<key>text1</key>
+			<string>最高のグラフィックの、力が……</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>信念のない力など、ただの暴力にすぎん</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>ホネ</string>
+			<key>image</key>
+			<string>skelton</string>
+			<key>text1</key>
+			<string>その言葉……骨身にしみるぜ……</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+	</array>
+	<key>tokage_pre</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>降伏しろ。</string>
+			<key>text2</key>
+			<string>１章をやり込んだ俺は無敵だ。</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>トカゲ</string>
+			<key>image</key>
+			<string>tokage</string>
+			<key>text1</key>
+			<string>ふっふっふ。</string>
+			<key>text2</key>
+			<string>２章に来てから、違和感がないか？</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>確かに、なんかダメージが低いし</string>
+			<key>text2</key>
+			<string>一部のスキルが発動しない……。</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>トカゲ</string>
+			<key>image</key>
+			<string>tokage</string>
+			<key>text1</key>
+			<string>ゲームで一番重要なのは</string>
+			<key>text2</key>
+			<string>グラフィック。</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>トカゲ</string>
+			<key>image</key>
+			<string>real_tokage</string>
+			<key>text1</key>
+			<string>２章ではかっこいい者こそが</string>
+			<key>text2</key>
+			<string>最強なのだ！</string>
+			<key>sizeFree</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>こいつも、新グラフィックを……！</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>トカゲ</string>
+			<key>image</key>
+			<string>real_tokage</string>
+			<key>text1</key>
+			<string>スタイリッシュな攻撃で</string>
+			<key>text2</key>
+			<string>貴様を倒す！</string>
+			<key>sizeFree</key>
+			<true/>
+		</dict>
+	</array>
+	<key>tokage_end</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>トカゲ</string>
+			<key>image</key>
+			<string>real_tokage</string>
+			<key>text1</key>
+			<string>ぐへー</string>
+			<key>text2</key>
+			<string></string>
+			<key>sizeFree</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>トカゲ</string>
+			<key>image</key>
+			<string>tokage</string>
+			<key>text1</key>
+			<string>カッパよ……</string>
+			<key>text2</key>
+			<string>俺は　正気に戻った</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>（なんか知らんが改心したぞ）</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>知ってる事を話してもらおうか</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>トカゲ</string>
+			<key>image</key>
+			<string>tokage</string>
+			<key>text1</key>
+			<string>広告の向こうには……</string>
+			<key>text2</key>
+			<string>別の世界があったんだ</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>トカゲ</string>
+			<key>image</key>
+			<string>tokage</string>
+			<key>text1</key>
+			<string>広告はこの世界と、別世界を繋ぐ</string>
+			<key>text2</key>
+			<string>ゲートなんだ。</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>トカゲ</string>
+			<key>image</key>
+			<string>tokage</string>
+			<key>text1</key>
+			<string>広告の力をうまく利用すれば</string>
+			<key>text2</key>
+			<string>新グラフィックを手にいれる事ができるんだ。</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>(kappa)</string>
+			<key>image</key>
+			<string>kappa</string>
+			<key>text1</key>
+			<string>な、なんだってー！</string>
+			<key>text2</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>トカゲ</string>
+			<key>image</key>
+			<string>tokage</string>
+			<key>text1</key>
+			<string>カッパ。</string>
+			<key>text2</key>
+			<string>広告の力に魅せられた者たちに</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>トカゲ</string>
+			<key>image</key>
+			<string>tokage</string>
+			<key>text1</key>
+			<string>どうか負けないで欲しい。</string>
 			<key>text2</key>
 			<string></string>
 		</dict>

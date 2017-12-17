@@ -6,6 +6,7 @@ class World2Scene: WorldScene {
     
     private let map_nodes = [
         "skelton",
+        "tokage",
         "miira",
         "red_dragon",
         "dancer",
@@ -22,11 +23,19 @@ class World2Scene: WorldScene {
         prepareBGM(fileName: Const.bgm_castle)
         playBGM()
         
-//        setNotificationCount()
-        
+        if !GameData.isClear("skelton") {
+            removeSpriteNode("tokage")
+        }
 
+        
+        
+//        setNotificationCount()
     }
     
+    
+    /***********************************************************************************/
+    /********************************* 画面遷移 *****************************************/
+    /***********************************************************************************/    
     override func goDungeon(_ key : String){
         stopBGM()
         goGame2(key)
@@ -54,7 +63,7 @@ class World2Scene: WorldScene {
         let nextScene = MenuScene(fileNamed: "MenuScene")!
         nextScene.size = scene!.size
         nextScene.scaleMode = SKSceneScaleMode.aspectFit
-        nextScene.back = "world2"
+        nextScene.back = "world"
         nextScene.chapter = 2
         view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
     }
@@ -64,7 +73,6 @@ class World2Scene: WorldScene {
         let listViewController = storyboard.instantiateViewController(withIdentifier: "AbilityViewController") as! AbilityViewController
         self.view?.window?.rootViewController?.present(listViewController, animated: true, completion: nil)
     }
-
     
     override func moveObject(_ vector: CGVector){
         enumerateChildNodes(withName: "*") { node, _ in
@@ -76,6 +84,9 @@ class World2Scene: WorldScene {
         }
     }
     
+    /***********************************************************************************/
+    /********************************** touch ******************************************/
+    /***********************************************************************************/
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
             beganPosition = t.location(in: self)

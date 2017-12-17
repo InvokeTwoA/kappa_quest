@@ -132,6 +132,8 @@
 		CEDBE7941F1C5278007E72B9 /* GN-KillGothic-U-KanaO.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEEB83D51F1C464B0025E021 /* GN-KillGothic-U-KanaO.ttf */; };
 		CEDBE7961F1CC469007E72B9 /* enemies_chapter1.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEDBE7951F1CC469007E72B9 /* enemies_chapter1.plist */; };
 		CEDBE7991F1CECA9007E72B9 /* KappaNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDBE7981F1CECA9007E72B9 /* KappaNode.swift */; };
+		CEE0ED561FE39820002FB7AF /* UsagiNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE0ED551FE39820002FB7AF /* UsagiNode.swift */; };
+		CEE0ED581FE6AB75002FB7AF /* map_tokage.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEE0ED571FE6AB75002FB7AF /* map_tokage.plist */; };
 		CEEB83CF1F1BBD240025E021 /* PixelMplus12-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEC2B6AA1F1BB9EF0014B114 /* PixelMplus12-Bold.ttf */; };
 		CEEB83D01F1BBD240025E021 /* PixelMplus12-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CEC2B6AB1F1BB9EF0014B114 /* PixelMplus12-Regular.ttf */; };
 		CEEB83D21F1BCE200025E021 /* CommonUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB83D11F1BCE200025E021 /* CommonUtil.swift */; };
@@ -285,6 +287,8 @@
 		CED621E91F41EE6C00C92480 /* map_wizard.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = map_wizard.plist; path = resources/plists/map_wizard.plist; sourceTree = "<group>"; };
 		CEDBE7951F1CC469007E72B9 /* enemies_chapter1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = enemies_chapter1.plist; sourceTree = "<group>"; };
 		CEDBE7981F1CECA9007E72B9 /* KappaNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KappaNode.swift; path = nodes/KappaNode.swift; sourceTree = "<group>"; };
+		CEE0ED551FE39820002FB7AF /* UsagiNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UsagiNode.swift; path = nodes/UsagiNode.swift; sourceTree = "<group>"; };
+		CEE0ED571FE6AB75002FB7AF /* map_tokage.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = map_tokage.plist; sourceTree = "<group>"; };
 		CEEB83D11F1BCE200025E021 /* CommonUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommonUtil.swift; path = common/CommonUtil.swift; sourceTree = "<group>"; };
 		CEEB83D31F1C464B0025E021 /* GN-KillGothic-U-KanaNA.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "GN-KillGothic-U-KanaNA.ttf"; path = "resources/fonts/GN-KillGothic-U-KanaNA.ttf"; sourceTree = "<group>"; };
 		CEEB83D41F1C464B0025E021 /* GN-KillGothic-U-KanaNB.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "GN-KillGothic-U-KanaNB.ttf"; path = "resources/fonts/GN-KillGothic-U-KanaNB.ttf"; sourceTree = "<group>"; };
@@ -560,6 +564,7 @@
 			isa = PBXGroup;
 			children = (
 				CEDBE7981F1CECA9007E72B9 /* KappaNode.swift */,
+				CEE0ED551FE39820002FB7AF /* UsagiNode.swift */,
 				CEC2B6A51F1A4DE70014B114 /* EnemyNode.swift */,
 				CE5884DF1F793A2B00ABAC1C /* WorldNode.swift */,
 			);
@@ -647,6 +652,7 @@
 			isa = PBXGroup;
 			children = (
 				CEF8A47A1FC15FC600AF499E /* map_skelton.plist */,
+				CEE0ED571FE6AB75002FB7AF /* map_tokage.plist */,
 				CEED32EA1FD7FCEA001F8268 /* map_miira.plist */,
 				CE46EC931FCADB90006857E6 /* map_red_dragon.plist */,
 				CE46EC951FCAEF25006857E6 /* map_dancer2.plist */,
@@ -693,9 +699,9 @@
 		CEF8A48C1FC172FA00AF499E /* chapter2 */ = {
 			isa = PBXGroup;
 			children = (
+				CEF8A47F1FC1613100AF499E /* Opening2Scene.swift */,
 				CE7B13531FBAC63D0049B932 /* World2Scene.swift */,
 				CEF8A4881FC1702800AF499E /* Game2Scene.swift */,
-				CEF8A47F1FC1613100AF499E /* Opening2Scene.swift */,
 				CE46EC8D1FC6765A006857E6 /* LastBattle2Scene.swift */,
 			);
 			name = chapter2;
@@ -769,6 +775,7 @@
 				CE5884E31F7CF70100ABAC1C /* map_tutorial.plist in Resources */,
 				CE31F92B1F5449CF00E868FB /* CutinScene.sks in Resources */,
 				CEDBE7941F1C5278007E72B9 /* GN-KillGothic-U-KanaO.ttf in Resources */,
+				CEE0ED581FE6AB75002FB7AF /* map_tokage.plist in Resources */,
 				CEF8A48E1FC1B37200AF499E /* Game2Scene.sks in Resources */,
 				CE7E69601F88D39B000ECC33 /* Tutorial4Scene.sks in Resources */,
 				CEED32ED1FD807D9001F8268 /* enemies_chapter2.plist in Resources */,
@@ -920,6 +927,7 @@
 				CE7E69841F931495000ECC33 /* LastBattleScene.swift in Sources */,
 				CE524F851F236EEC00A6D14C /* GameData.swift in Sources */,
 				CED377841F7003D50068768B /* WorldModel.swift in Sources */,
+				CEE0ED561FE39820002FB7AF /* UsagiNode.swift in Sources */,
 				CEF8A4891FC1702800AF499E /* Game2Scene.swift in Sources */,
 				CEF8A47E1FC1611D00AF499E /* OpeningScene.swift in Sources */,
 				CEF8A4801FC1613100AF499E /* Opening2Scene.swift in Sources */,

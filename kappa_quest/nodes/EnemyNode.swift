@@ -1,9 +1,7 @@
 // 敵の図形クラス
 import Foundation
 import SpriteKit
-
 class EnemyNode: SKSpriteNode {
-
     // ステータス
     var lv = 1
     var maxHp = 10

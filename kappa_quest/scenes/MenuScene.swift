@@ -7,7 +7,6 @@ class MenuScene: BaseScene {
     var back = ""
     var backScene : GameScene!
     var back2Scene: Game2Scene!
-
     var chapter = 1
     
     override func sceneDidLoad() {
@@ -51,7 +50,8 @@ class MenuScene: BaseScene {
                     GameData.setName(value: name)
                     if name == "お兄様" {
                         self.displayAlert("さすがお兄様！", message: "お兄様は不可能を可能にされました", okString: "こらこら、よさないか")
-                        
+                    } else if name == "お爺様" {
+                        self.displayAlert("あらお爺様", message: "あまり無理をしないでね", okString: "OK")
                     }
                 }
             }
@@ -69,9 +69,11 @@ class MenuScene: BaseScene {
     /***********************************************************************************/
     func goBack(){
         if back == "world" {
-            goWorld()
-        } else if back == "world2" {
-            goWorld2()
+            if chapter == 1 {
+                goWorld()
+            } else {
+                goWorld2()
+            }
         } else if back == "tutorial" {
             let nextScene = Tutorial4Scene(fileNamed: "Tutorial4Scene")!
             nextScene.size = nextScene.size

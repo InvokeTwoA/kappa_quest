@@ -10,6 +10,20 @@ class Game2Scene: GameBaseScene {
         chapter = 2        
     }
     
+    // ２章では「かっこよさ」以上に回復しない
+    override func heal(_ heal_val : Int){
+        if heal_val <= 0 {
+            return
+        }
+        var val = heal_val
+        if val > kappa.beauty {
+            val = kappa.beauty
+        }
+        kappa.hp += val
+        displayDamage(value: val, point: kappa.position, color: .green, direction: "up")
+        updateStatus()
+    }
+    
     // メニュー画面へ遷移
     override func goMenu(){
         stopBGM()
@@ -35,6 +49,9 @@ class Game2Scene: GameBaseScene {
         nextScene.chapter = 2
         view!.presentScene(nextScene, transition: .fade(with: .black, duration: Const.gameOverInterval))
     }
+    
+    
+    
     
     
 

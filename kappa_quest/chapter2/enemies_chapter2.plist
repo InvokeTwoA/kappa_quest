@@ -2,6 +2,50 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>hiyoko</key>
+	<dict>
+		<key>name</key>
+		<string>ひよこ将軍</string>
+		<key>hp</key>
+		<integer>30</integer>
+		<key>str</key>
+		<integer>23</integer>
+		<key>def</key>
+		<integer>1</integer>
+		<key>agi</key>
+		<integer>70</integer>
+		<key>int</key>
+		<integer>1</integer>
+		<key>pie</key>
+		<integer>1</integer>
+		<key>range</key>
+		<integer>1</integer>
+	</dict>
+	<key>ghost</key>
+	<dict>
+		<key>name</key>
+		<string>ゆうれい</string>
+		<key>hp</key>
+		<integer>30</integer>
+		<key>str</key>
+		<integer>35</integer>
+		<key>def</key>
+		<integer>999</integer>
+		<key>agi</key>
+		<integer>8</integer>
+		<key>int</key>
+		<integer>0</integer>
+		<key>pie</key>
+		<integer>0</integer>
+		<key>range</key>
+		<integer>1</integer>
+		<key>isGhost</key>
+		<true/>
+		<key>type</key>
+		<string>undead</string>
+		<key>explain</key>
+		<string>ゆうれい</string>
+	</dict>
 	<key>tanuki</key>
 	<dict>
 		<key>name</key>
@@ -24,6 +68,81 @@
 		<true/>
 		<key>dx</key>
 		<integer>3</integer>
+	</dict>
+	<key>arakure</key>
+	<dict>
+		<key>name</key>
+		<string>荒くれ</string>
+		<key>hp</key>
+		<integer>400</integer>
+		<key>str</key>
+		<integer>67</integer>
+		<key>def</key>
+		<integer>12</integer>
+		<key>agi</key>
+		<integer>3</integer>
+		<key>int</key>
+		<integer>1</integer>
+		<key>pie</key>
+		<integer>-999</integer>
+		<key>range</key>
+		<integer>3</integer>
+		<key>type</key>
+		<string>normal</string>
+		<key>explain</key>
+		<string>世紀末でヒャッハーする人たち。 好き放題やれているのはその高いHPのおかげ。</string>
+	</dict>
+	<key>real_skelton</key>
+	<dict>
+		<key>name</key>
+		<string></string>
+		<key>hp</key>
+		<real>1000</real>
+		<key>str</key>
+		<integer>180</integer>
+		<key>def</key>
+		<integer>0</integer>
+		<key>agi</key>
+		<integer>1200</integer>
+		<key>int</key>
+		<integer>60</integer>
+		<key>pie</key>
+		<integer>0</integer>
+		<key>range</key>
+		<integer>3</integer>
+		<key>canLazer</key>
+		<true/>
+		<key>isSizeFree</key>
+		<true/>
+		<key>type</key>
+		<string>human</string>
+	</dict>
+	<key>real_tokage</key>
+	<dict>
+		<key>name</key>
+		<string></string>
+		<key>hp</key>
+		<integer>1200</integer>
+		<key>str</key>
+		<integer>200</integer>
+		<key>def</key>
+		<integer>0</integer>
+		<key>agi</key>
+		<real>1200</real>
+		<key>int</key>
+		<integer>180</integer>
+		<key>pie</key>
+		<integer>0</integer>
+		<key>range</key>
+		<integer>3</integer>
+		<key>isSizeFree</key>
+		<true/>
+		<key>type</key>
+		<string>human</string>
+		<key>isMovingFree</key>
+		<true/>
+		<key>dx</key>
+		<integer>5</integer>
 	</dict>
 	<key>red_dragon</key>
 	<dict>
@@ -49,31 +168,6 @@
 		<string>human</string>
 		<key>isSizeFree</key>
 		<true/>
-	</dict>
-	<key>real_skelton</key>
-	<dict>
-		<key>name</key>
-		<string></string>
-		<key>hp</key>
-		<integer>1000</integer>
-		<key>str</key>
-		<integer>300</integer>
-		<key>def</key>
-		<integer>0</integer>
-		<key>agi</key>
-		<integer>1200</integer>
-		<key>int</key>
-		<integer>60</integer>
-		<key>pie</key>
-		<integer>0</integer>
-		<key>range</key>
-		<integer>3</integer>
-		<key>canLazer</key>
-		<true/>
-		<key>isSizeFree</key>
-		<true/>
-		<key>type</key>
-		<string>human</string>
 	</dict>
 	<key>usagi</key>
 	<dict>

@@ -5,9 +5,9 @@
 	<key>0.0</key>
 	<dict>
 		<key>background</key>
-		<string>bg_dungeon</string>
+		<string>bg_green</string>
 		<key>lv</key>
-		<integer>25</integer>
+		<integer>50</integer>
 		<key>enemies</key>
 		<array/>
 		<key>event</key>
@@ -21,27 +21,26 @@
 	<dict>
 		<key>enemies</key>
 		<array>
+			<string>hiyoko</string>
 			<string>tanuki</string>
-			<string>tanuki</string>
-			<string>tanuki</string>
-			<string>tanuki</string>
+			<string>ghost</string>
 		</array>
 		<key>is_random</key>
-		<false/>
+		<true/>
 	</dict>
-	<key>0.4</key>
+	<key>0.5</key>
 	<dict>
 		<key>enemies</key>
 		<array>
-			<string></string>
-			<string></string>
-			<string></string>
+			<string>hiyoko</string>
+			<string>hiyoko</string>
+			<string>hiyoko</string>
 			<string>real_skelton</string>
 		</array>
 		<key>is_boss</key>
 		<true/>
 		<key>boss_name</key>
-		<string>メガデス</string>
+		<string>名もなき骨　メガデス</string>
 		<key>is_random</key>
 		<false/>
 		<key>event</key>

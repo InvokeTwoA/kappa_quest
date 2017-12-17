@@ -143,12 +143,15 @@ class GameData {
             let kappa = KappaNode()
             kappa.oniisama()
             kappa.saveParam()
-            
             UserDefaults.standard.set(10,  forKey: "wizard_lv")
             UserDefaults.standard.set(300,  forKey: "priest_lv")
         } else if value == "ラッキー" {
             let kappa = KappaNode()
             kappa.lucky()
+            kappa.saveParam()
+        } else if value == "お爺様" {
+            let kappa = KappaNode()
+            kappa.ojiisama()
             kappa.saveParam()
         }
     }

@@ -152,6 +152,7 @@ class WorldScene: BaseScene {
         nextScene.size = scene!.size
         nextScene.scaleMode = SKSceneScaleMode.aspectFit
         nextScene.back = "world"
+        nextScene.chapter = 1
         view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
     }
     

@@ -158,7 +158,6 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
 
     // 2章ゲーム画面へ
     func goGame2(_ world_name : String){
-        print(world_name)
         let nextScene = Game2Scene(fileNamed: "Game2Scene.sks")!
         nextScene.size = scene!.size
         nextScene.scaleMode = SKSceneScaleMode.aspectFit
@@ -193,7 +192,6 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
 
     // ２章ボス画面へ遷移
     func goLastBoss2(){
-        print("go Last Boss2")
         let nextScene = LastBattle2Scene(fileNamed: "LastBattle2Scene")!
         nextScene.size = scene!.size
         nextScene.scaleMode = SKSceneScaleMode.aspectFit
