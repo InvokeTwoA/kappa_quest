@@ -13,7 +13,7 @@ class KappaNode: SKSpriteNode {
     var agi = 2
     var int = 2
     var luc = 2
-    var beauty = 1
+    var beauty = 2
     var nextExp = 10
     var exp = 0
     var physic_type = "normal"

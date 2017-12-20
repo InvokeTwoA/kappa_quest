@@ -7,7 +7,6 @@ class MenuScene: BaseScene {
     var back = ""
     var backScene : GameScene!
     var back2Scene: Game2Scene!
-    var chapter = 1
     
     override func sceneDidLoad() {
     }

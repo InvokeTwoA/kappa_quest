@@ -10,16 +10,16 @@ class AbilityViewController : BaseTableViewController {
     let kappa = KappaNode()
     let abilityModel = AbilityModel()
 
-    private let sections = ["", "移動系スキル", "回復系スキル", "1.1.0", "宇宙スキル", ""]
+    private let sections = ["", "移動系スキル", "回復系スキル", "かっぱバスター", "宇宙スキル", ""]
     private let ABILITY_BACK = 0
     private let ABILITY_MOVE = 1
     private let ABILITY_HEAL = 2
+    private let ABILITY_BUSTER = 3
     private let ABILITY_BACK2 = 5
-    private let MOVE_SHUKUCHI = 0
-    private let MOVE_SHUKUCHI2 = 1
 
-    private let move_list = ["shukuchi", "shukuchi2"]
-    private let heal_list = ["time_heal"]
+    private let move_list = ["shukuchi", "shukuchi2", "jump_plus"]
+    private let heal_list = ["time_heal", "jump_heal", "buster_heal"]
+    private let buster_list = ["buster_long", "buster_penetrate", "buster_big"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,9 +52,11 @@ class AbilityViewController : BaseTableViewController {
         case ABILITY_BACK:
             row = 1
         case ABILITY_MOVE:
-            row = 2
+            row = move_list.count
         case ABILITY_HEAL:
-            row = 1
+            row = heal_list.count
+        case ABILITY_BUSTER:
+            row = buster_list.count
         case ABILITY_BACK2:
             row = 1
         default:
@@ -66,28 +68,38 @@ class AbilityViewController : BaseTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableCell", for:indexPath) as UITableViewCell
         cell.textLabel?.numberOfLines = 0
+
+        var skill_name = ""
         switch indexPath.section {
         case ABILITY_MOVE:
-            cell.accessoryType = .detailButton
-            let skill_name = move_list[indexPath.row]
-            let name = abilityModel.getName(skill_name)
+            skill_name = move_list[indexPath.row]
+        case ABILITY_HEAL:
+            skill_name = heal_list[indexPath.row]
+        case ABILITY_BUSTER:
+            skill_name = buster_list[indexPath.row]
+        default:
+            break
+        }
+        
+        switch indexPath.section {
+        case ABILITY_MOVE, ABILITY_HEAL, ABILITY_BUSTER:
             var head = ""
-            if abilityModel.haveSkill(skill_name) {
+            if AbilityModel.haveSkill(skill_name) {
                 head = "✔︎"
             }
-            cell.textLabel?.text = "\(head)\(name)"
-            cell.detailTextLabel?.text = "取得条件: なし"
-        case ABILITY_HEAL:
-            let head = ""
-            let skill_name = heal_list[indexPath.row]
             let name = abilityModel.getName(skill_name)
+            let cost = abilityModel.getCost(skill_name)
+            let info = abilityModel.getInfo(skill_name)
+            cell.accessoryType = .detailButton
             cell.textLabel?.text = "\(head)\(name)"
-            cell.detailTextLabel?.text = "取得条件: なし"
+            cell.detailTextLabel?.text = "コスト: \(cost)  \(info)"
         case ABILITY_BACK, ABILITY_BACK2:
             cell.textLabel?.text = "戻る"
+            cell.detailTextLabel?.text = ""
         default:
-            print("")
+            break
         }
+        
         cell.imageView?.isHidden = true
         return cell
     }
@@ -95,10 +107,21 @@ class AbilityViewController : BaseTableViewController {
     // タップ時の処理
     var bar_tap_count = 0
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var skill_name = ""
         switch indexPath.section {
         case ABILITY_MOVE:
-            let skill_name = move_list[indexPath.row]
-            if abilityModel.haveSkill(skill_name) {
+            skill_name = move_list[indexPath.row]
+        case ABILITY_HEAL:
+            skill_name = heal_list[indexPath.row]
+        case ABILITY_BUSTER:
+            skill_name = buster_list[indexPath.row]
+        default:
+            break
+        }
+
+        switch indexPath.section {
+        case ABILITY_MOVE, ABILITY_HEAL, ABILITY_BUSTER:
+            if AbilityModel.haveSkill(skill_name) {
                 abilityModel.forgetSkill(skill_name)
             } else {
                 if abilityModel.canGetSkill(skill_name) {
@@ -108,8 +131,6 @@ class AbilityViewController : BaseTableViewController {
                     displayAlert("アビリティを取得できません", message: "諦めよ", okString: "OK")
                 }
             }
-        case ABILITY_HEAL:
-            print("heal")
         case ABILITY_BACK, ABILITY_BACK2:
             dismiss(animated: false, completion: nil)
         default:
@@ -120,39 +141,54 @@ class AbilityViewController : BaseTableViewController {
     }
     
     // アクセサリボタンを押した時の処理
-
     func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        
+        var skill_name = ""
         switch indexPath.section {
         case ABILITY_MOVE:
-            let skill_name = move_list[indexPath.row]
-            let name = abilityModel.getName(skill_name)
-            let explain = abilityModel.getExplain(skill_name)
-            displayAlert(name, message: explain, okString: "OK")
+            skill_name = move_list[indexPath.row]
         case ABILITY_HEAL:
-            let skill_name = move_list[indexPath.row]
+            skill_name = heal_list[indexPath.row]
+        case ABILITY_BUSTER:
+            skill_name = buster_list[indexPath.row]
+        default:
+            break
+        }
+        
+        switch indexPath.section {
+        case ABILITY_MOVE, ABILITY_HEAL, ABILITY_BUSTER:
             let name = abilityModel.getName(skill_name)
             let explain = abilityModel.getExplain(skill_name)
             displayAlert(name, message: explain, okString: "OK")
         default:
-            print("")
+            break
         }
     }
     
     // cell の色表示
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell,
                    forRowAt indexPath: IndexPath) {
+        var skill_name = ""
+        switch indexPath.section {
+        case ABILITY_MOVE:
+            skill_name = move_list[indexPath.row]
+        case ABILITY_HEAL:
+            skill_name = heal_list[indexPath.row]
+        case ABILITY_BUSTER:
+            skill_name = buster_list[indexPath.row]
+        default:
+            break
+        }
+                
         switch indexPath.section {
         case ABILITY_BACK, ABILITY_BACK2:
             cell.backgroundColor = CommonUtil.UIColorFromRGB(0xfff0f5)
-        case ABILITY_MOVE:
-            let skill_name = move_list[indexPath.row]
-            if abilityModel.haveSkill(skill_name) {
+        case ABILITY_MOVE, ABILITY_HEAL, ABILITY_BUSTER:
+            if AbilityModel.haveSkill(skill_name) {
                 cell.backgroundColor = UIColor.cyan
             } else {
                 cell.backgroundColor = UIColor.white
             }
-        case ABILITY_HEAL:
-            print("heal")
         default:
             cell.backgroundColor = UIColor.white
         }

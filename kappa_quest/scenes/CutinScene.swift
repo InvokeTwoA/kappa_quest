@@ -12,7 +12,6 @@ class CutinScene: BaseScene {
     var key = ""
     var world = ""
     var bgm:AVAudioPlayer!
-    var chapter = 1
     
     override func didMove(to view: SKView) {
         let read_key = "\(world)_\(key)"
@@ -44,6 +43,7 @@ class CutinScene: BaseScene {
             if cutinModel.sizeFreeFlag {
                 enemyImage.size = texture.size()
             } else {
+                enemyImage.size = CGSize(width: 128, height: 128)
             }
             kappa.isHidden = true
             nameLabel.text = cutinModel.name

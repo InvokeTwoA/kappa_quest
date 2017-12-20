@@ -4,10 +4,6 @@ class AbilityModel {
     public var spendCost = 0       // 使用ポイント
     public var abilityPoint = 0    // 残りポイント
     
-    let ABILITY_SHUKUCHI = "shukuchi"
-    let ABILITY_SHUKUCHI2 = "shukuchi2"
-    let ABILITY_TIME_HEAL = "time_heal"
-    
     // plist から読み込んだ職業データ
     var dictionary : NSDictionary!
     
@@ -32,7 +28,11 @@ class AbilityModel {
         return data["explain"] as! String
     }
     
-    
+    func getInfo(_ key : String) -> String {
+        let data = dictionary[key] as! NSDictionary
+        return data["info"] as! String
+    }
+
     // パラメーターを userDefault から読み取り
     func setParameterByUserDefault(){
         if UserDefaults.standard.object(forKey: "lv") == nil {
@@ -42,12 +42,34 @@ class AbilityModel {
         abilityPoint = UserDefaults.standard.integer(forKey: "lv") - spendCost
     }
     
-    func haveSkill(_ key : String) -> Bool {
+    // 各種フラグを立てる
+    var jumpPlusFlag = false
+    var busterLongFlag = false
+    var busterPenetrateFlag = false
+    var busterBigFlag = false
+    var shukuchiFlag = false
+    var shukuchi2Flag = false
+    var timeHealFlag = false
+    var jumpHealFlag = false
+    var busterHealFlag = false
+
+    func setFlag(){
+        jumpPlusFlag = AbilityModel.haveSkill("jump_plus")
+        busterLongFlag = AbilityModel.haveSkill("buster_long")
+        busterPenetrateFlag = AbilityModel.haveSkill("buster_penetrate")
+        busterBigFlag = AbilityModel.haveSkill("buster_big")
+        shukuchiFlag = AbilityModel.haveSkill("shukuchi")
+        shukuchi2Flag = AbilityModel.haveSkill("shukuchi2")
+        jumpHealFlag = AbilityModel.haveSkill("jump_heal")
+        busterHealFlag = AbilityModel.haveSkill("buster_heal")
+    }
+    
+    class func haveSkill(_ key : String) -> Bool {
         return UserDefaults.standard.bool(forKey: "skill_\(key)")
     }
 
     func canGetSkill(_ key : String) -> Bool {
-        if haveSkill(key) {
+        if AbilityModel.haveSkill(key) {
             return false
         }
 

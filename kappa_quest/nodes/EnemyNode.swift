@@ -138,7 +138,7 @@ class EnemyNode: SKSpriteNode {
         }
     }
     
-    // ボス敵はステータス強化される
+    // ボス敵はステータス強化される(1章限定)
     func bossPowerUp(){
         maxHp *= 5
         hp = maxHp
@@ -149,9 +149,7 @@ class EnemyNode: SKSpriteNode {
         pie += 1
         lv += 1
         isBoss = true
-        if eSize == "not_free" {
-            size = CGSize(width: Const.bossSize, height: Const.bossSize)
-        }
+        size = CGSize(width: Const.bossSize, height: Const.bossSize)
     }
     
     // HP の割合を返す  32% ならば　32
@@ -348,27 +346,40 @@ class EnemyNode: SKSpriteNode {
 
     
     func convertDxPlus(){
+        if dx == 0 {
+            return
+        }
+        
         if dx < 0 {
             dx *= -1
         }
     }
     
     func convertDxMinus(){
+        if dx == 0 {
+            return
+        }
+        
         if dx > 0 {
             dx *= -1
-        }
-        if dx == 0 {
-            dx = -30
         }
     }
 
     func convertDyPlus(){
+        if dy == 0 {
+            return
+        }
+        
         if dy < 0 {
             dy *= -1
         }
     }
 
     func convertDyMinus(){
+        if dy == 0 {
+            return
+        }
+        
         if dy > 0 {
             dy *= -1
         }

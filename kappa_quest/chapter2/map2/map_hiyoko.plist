@@ -5,24 +5,25 @@
 	<key>0.0</key>
 	<dict>
 		<key>background</key>
-		<string>bg_green</string>
+		<string>bg_lake</string>
 		<key>lv</key>
-		<integer>50</integer>
+		<integer>51</integer>
 		<key>enemies</key>
 		<array/>
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>
-		<string>なぜ上空に再び広告が……？</string>
+		<string>きっとヒヨコは四天王最弱</string>
 		<key>event_text1</key>
-		<string></string>
+		<string>楽勝に違いない！</string>
 	</dict>
 	<key>0.1</key>
 	<dict>
 		<key>enemies</key>
 		<array>
-			<string>hiyoko</string>
-			<string>ghost</string>
+			<string>chibidora</string>
+			<string>buffalo</string>
+			<string>knight</string>
 		</array>
 		<key>is_random</key>
 		<true/>
@@ -31,15 +32,15 @@
 	<dict>
 		<key>enemies</key>
 		<array>
-			<string>hiyoko</string>
-			<string>hiyoko</string>
-			<string>hiyoko</string>
-			<string>real_skelton</string>
+			<string>buffalo</string>
+			<string>buffalo</string>
+			<string>buffalo</string>
+			<string>real_hiyoko</string>
 		</array>
 		<key>is_boss</key>
 		<true/>
 		<key>boss_name</key>
-		<string>名もなき骨　メガデス</string>
+		<string>憎悪のヒヨコ</string>
 		<key>is_random</key>
 		<false/>
 		<key>event</key>

@@ -13,18 +13,29 @@
 		<key>event</key>
 		<true/>
 		<key>event_text0</key>
-		<string>なぜ上空に再び広告が……？</string>
+		<string>広告の力を得たモンスターたち……</string>
 		<key>event_text1</key>
-		<string></string>
+		<string>得体の知れない力だ</string>
 	</dict>
 	<key>0.1</key>
+	<dict>
+		<key>enemies</key>
+		<array>
+			<string>chibidora</string>
+			<string>arakure</string>
+			<string>tanuki</string>
+		</array>
+		<key>is_random</key>
+		<true/>
+	</dict>
+	<key>0.5</key>
 	<dict>
 		<key>enemies</key>
 		<array>
 			<string></string>
 			<string></string>
 			<string></string>
-			<string>real_skelton</string>
+			<string>real_miira</string>
 		</array>
 		<key>is_boss</key>
 		<true/>

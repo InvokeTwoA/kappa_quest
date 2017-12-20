@@ -3,7 +3,6 @@ import SpriteKit
 import GameplayKit
 class GameOverScene: BaseScene {
     
-    var chapter = 1
     var world_name = ""
     override func sceneDidLoad() {
         let worldLabel = childNode(withName: "//WorldLabel") as! SKLabelNode
@@ -21,8 +20,6 @@ class GameOverScene: BaseScene {
 
     // コンティニュー
     func goBack(){
-        print("go back")
-        
         stopBGM()
         gameData.changeNicknameByDeath()
         if chapter == 1 {

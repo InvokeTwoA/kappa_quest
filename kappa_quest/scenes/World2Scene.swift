@@ -8,6 +8,10 @@ class World2Scene: WorldScene {
         "skelton",
         "tokage",
         "miira",
+        "death",
+        "samurai",
+        "zombi",
+        "hiyoko",
         "red_dragon",
         "dancer",
         "tanuki"
@@ -26,6 +30,18 @@ class World2Scene: WorldScene {
         if !GameData.isClear("skelton") {
             removeSpriteNode("tokage")
         }
+        if !GameData.isClear("tokage") {
+            removeSpriteNode("miira")
+        }
+
+        if !GameData.isClear("miira") {
+            removeSpriteNode("death")
+            removeSpriteNode("samurai")
+            removeSpriteNode("zombi")
+            removeSpriteNode("hiyoko")
+        }
+
+        
 
         
         

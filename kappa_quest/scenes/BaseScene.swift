@@ -10,6 +10,7 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
 
     var gameData : GameData = GameData()
     var jobModel : JobModel = JobModel()
+    var chapter = 1
     
     override func didMove(to view: SKView) {
         gameData.setParameterByUserDefault()
@@ -78,7 +79,7 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
         root.hideBanner()
         let screen_shot = CommonUtil.screenShot(self.view!)
         
-        var composer = TWTRComposer()
+        let composer = TWTRComposer()
         composer.setText(message)
         composer.setImage(screen_shot)
 //        composer.setURL(URL(string: "https://goo.gl/GyrTzZ"))
@@ -150,10 +151,14 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
     }
     
     func goWorld(){
-        let nextScene = WorldScene(fileNamed: "WorldScene")!
-        nextScene.size = scene!.size
-        nextScene.scaleMode = SKSceneScaleMode.aspectFit
-        view!.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
+        if chapter == 1 {
+            let nextScene = WorldScene(fileNamed: "WorldScene")!
+            nextScene.size = scene!.size
+            nextScene.scaleMode = SKSceneScaleMode.aspectFit
+            view!.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
+        } else if chapter == 2 {
+            goWorld2()
+        }
     }
 
     // 2章ゲーム画面へ

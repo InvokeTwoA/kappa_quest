@@ -136,6 +136,13 @@ class GameData {
         return UserDefaults.standard.bool(forKey: "change_job")
     }
     
+    class func plusBeauty(){
+        var beauty  = UserDefaults.standard.integer(forKey: "beauty")
+        beauty += 1
+        UserDefaults.standard.set(beauty, forKey: "beauty")
+    }
+    
+    
     class func setName(value : String) {
         UserDefaults.standard.set(value,  forKey: "name")
         if value == "お兄様" {

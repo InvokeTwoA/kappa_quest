@@ -5,8 +5,6 @@ import GameplayKit
 class GameClearScene: BaseScene {
 
     var world = ""
-    var chapter = 1
-
     override func sceneDidLoad() {
     }
 
@@ -186,6 +184,14 @@ class GameClearScene: BaseScene {
             getLabel1.text = "経験値稼ぎ終了！"
             getLabel2.text = "世界一強くなりたい！"
             getLabel3.text = ""
+        case "skelton":
+            getLabel1.text = "２章のチュートリアル完了！"
+            getLabel2.text = ""
+            getLabel3.text = ""
+            if !GameData.isClear(world) {
+                getLabel3.text = "かっこよさが１上がった"
+                GameData.plusBeauty()
+            }
         default:
             clearLabel.text = "未設定"
             getLabel1.text = "未設定"

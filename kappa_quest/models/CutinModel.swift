@@ -11,7 +11,6 @@ class CutinModel {
     var text1 = ""
     var text2 = ""
     var max_page = 0
-    var chapter = 1
     var sizeFreeFlag = false
     
     // plist からデータを読み込む
@@ -32,7 +31,6 @@ class CutinModel {
         name    = data["name"] as! String
         text1   = data["text1"] as! String
         text2   = data["text2"] as! String
-        
         if data["sizeFree"] != nil {
             sizeFreeFlag = true
         } else {

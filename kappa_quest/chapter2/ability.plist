@@ -8,10 +8,10 @@
 		<integer>10</integer>
 		<key>name</key>
 		<string>縮地LV1</string>
+		<key>info</key>
+		<string>カッパの移動速度が速くなります。</string>
 		<key>explain</key>
 		<string>カッパの移動速度が速くなります。 縮地LV2をセットしている場合、このスキルは無視されます（とほほ）</string>
-		<key>getInfo</key>
-		<string> なし</string>
 	</dict>
 	<key>shukuchi2</key>
 	<dict>
@@ -19,10 +19,21 @@
 		<integer>20</integer>
 		<key>name</key>
 		<string>縮地LV2</string>
+		<key>info</key>
+		<string>カッパの移動速度が更に速くなります。</string>
 		<key>explain</key>
 		<string>カッパの移動速度が更に速くなります。</string>
-		<key>getInfo</key>
-		<string> なし</string>
+	</dict>
+	<key>jump_plus</key>
+	<dict>
+		<key>cost</key>
+		<integer>5</integer>
+		<key>name</key>
+		<string>ガンバfly high</string>
+		<key>info</key>
+		<string>滞空時間が長くなります。</string>
+		<key>explain</key>
+		<string>滞空時間が長くなります。  頂点でぴったり止まる時間が 0.2 秒から 0.6 秒になります。</string>
 	</dict>
 	<key>time_heal</key>
 	<dict>
@@ -30,10 +41,65 @@
 		<integer>20</integer>
 		<key>name</key>
 		<string>昼寝ヒール</string>
+		<key>info</key>
+		<string>１秒毎にHPが１回復</string>
 		<key>explain</key>
 		<string>１秒毎にHPが１回復します。</string>
-		<key>getInfo</key>
-		<string> なし</string>
+	</dict>
+	<key>jump_heal</key>
+	<dict>
+		<key>cost</key>
+		<integer>25</integer>
+		<key>name</key>
+		<string>ジャンプ少年</string>
+		<key>info</key>
+		<string>ジャンプするたびにHPが回復</string>
+		<key>explain</key>
+		<string>ジャンプするたびにHPが回復します。 回復量はカッパのかっこよさの数値になります。</string>
+	</dict>
+	<key>buster_heal</key>
+	<dict>
+		<key>cost</key>
+		<integer>25</integer>
+		<key>name</key>
+		<string>回復バスター</string>
+		<key>info</key>
+		<string>かっぱバスターを撃つたびに１回復</string>
+		<key>explain</key>
+		<string>かっぱバスターを撃つたびに１回復します。 タップしまくって回復しましょう。</string>
+	</dict>
+	<key>buster_long</key>
+	<dict>
+		<key>cost</key>
+		<integer>20</integer>
+		<key>name</key>
+		<string>かっぱバスター　ロング</string>
+		<key>info</key>
+		<string>かっぱバスターの射程が伸びます</string>
+		<key>explain</key>
+		<string>かっぱバスターの射程が伸びます。 具体的には射程が 300 から 600 に伸びます。 これで遠くの敵も当てまくりだ！</string>
+	</dict>
+	<key>buster_penetrate</key>
+	<dict>
+		<key>cost</key>
+		<integer>30</integer>
+		<key>name</key>
+		<string>牙突</string>
+		<key>info</key>
+		<string>かっぱバスターが敵を貫通します。</string>
+		<key>explain</key>
+		<string>かっぱバスターが悪・即・斬の精神で敵を貫通するようになります。  かっぱバスターロングと合わせて使うと効果的です。</string>
+	</dict>
+	<key>buster_big</key>
+	<dict>
+		<key>cost</key>
+		<integer>20</integer>
+		<key>name</key>
+		<string>重力子放射線射出装置</string>
+		<key>info</key>
+		<string>かっぱバスターが大きくなります</string>
+		<key>explain</key>
+		<string>かっぱバスターが大きくなります。  </string>
 	</dict>
 </dict>
 </plist>

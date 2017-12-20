@@ -22,7 +22,7 @@
 		<key>enemies</key>
 		<array>
 			<string>ghost</string>
-			<string>arakure</string>
+			<string>chibidora</string>
 			<string>tanuki</string>
 		</array>
 		<key>is_random</key>

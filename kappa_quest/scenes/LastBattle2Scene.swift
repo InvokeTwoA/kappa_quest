@@ -32,8 +32,10 @@ class LastBattle2Scene: GameBaseScene {
         setWorldWall()
         
         prepareBGM(fileName: Const.bgm_zinna)
+//        prepareBGM(fileName: Const.bgm_short_harujion)
         prepareSoundEffect()
         stopBGM()
+//        playBGM()
 
         createKappa()
         createUsagi()
@@ -277,7 +279,44 @@ class LastBattle2Scene: GameBaseScene {
     /***********************************************************************************/
     /********************************** 衝突判定 ****************************************/
     /***********************************************************************************/
-    
+    override func didBegin(_ contact: SKPhysicsContact) {
+        var firstBody, secondBody: SKPhysicsBody
+        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+            firstBody = contact.bodyA
+            secondBody = contact.bodyB
+        } else {
+            firstBody = contact.bodyB
+            secondBody = contact.bodyA
+        }
+        if firstBody.node == nil || secondBody.node == nil {
+            return
+        }
+        
+        if isFirstBodyKappa(firstBody) {
+            if secondBody.categoryBitMask & Const.fireCategory != 0 {
+                let fire = secondBody.node as! FireEmitterNode
+                attacked(attack: fire.damage, point: (firstBody.node?.position)!)
+                makeSpark(point: (secondBody.node?.position)!)
+                secondBody.node?.removeFromParent()
+            } else if secondBody.categoryBitMask & Const.thunderCategory != 0 {
+                let thunder = secondBody.node as! ThunderEmitterNode
+                attacked(attack: thunder.damage, point: (firstBody.node?.position)!)
+                makeSpark(point: (secondBody.node?.position)!)
+                secondBody.node?.removeFromParent()
+            } else if secondBody.categoryBitMask & Const.lazerCategory != 0 {
+                attacked(attack: 18, point: (firstBody.node?.position)!)
+                makeSpark(point: (secondBody.node?.position)!)
+            } else if secondBody.categoryBitMask & Const.usagiCategory != 0 {
+                attacked(attack: 22, point: (firstBody.node?.position)!)
+                makeSpark(point: (secondBody.node?.position)!)
+            }
+        } else if isMagickNode(firstBody) {
+            if secondBody.categoryBitMask & Const.worldCategory != 0 {
+                makeSpark(point: (firstBody.node?.position)!)
+                firstBody.node?.removeFromParent()
+            }
+        }
+    }
     
     /***********************************************************************************/
     /********************************** touch ******************************************/
@@ -339,7 +378,7 @@ class LastBattle2Scene: GameBaseScene {
         stage += 1
         switch stage {
         case 1:
-            showBigMessage(text0: "カッパよ……宇宙まで追ってくるとは……", text1: "")
+            showBigMessage(text0: "カッパ……宇宙まで追ってくるとは……", text1: "")
         case 9:
             showBigMessage(text0: "今こそ決着をつけよう！", text1: "")
             playBGM()
