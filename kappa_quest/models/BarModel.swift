@@ -3,7 +3,6 @@ import Foundation
 class BarModel {
     var chapter = 1
     
-    
     // plist から読み込んだ職業データ
     var dictionary : NSDictionary!
     

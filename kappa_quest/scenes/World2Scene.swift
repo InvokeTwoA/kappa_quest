@@ -51,9 +51,10 @@ class World2Scene: WorldScene {
             removeSpriteNode("tanuki")
         }
 
-        if !GameData.isClear("tanuki") {
+        // ラストバトル
+//        if !GameData.isClear("tanuki") {
             removeSpriteNode("usagi")
-        }
+//        }
 
 //        setNotificationCount()
     }

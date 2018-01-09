@@ -5,7 +5,7 @@ class JobModel {
     // plist から読み込んだ職業データ
     var dictionary : NSDictionary!
     
-    var name = "murabito"
+    var name = "murabito"    // 職業名
     var displayName = "村人"
     var lv = 1
     
@@ -21,43 +21,33 @@ class JobModel {
     var general_skill = ""
     
     // plist からデータを読み込む
-    func readDataByPlist(){
-        let dataPath = Bundle.main.path(forResource: "jobs", ofType:"plist" )!
+    func readDataByPlist(_ chapter: Int){
+        var dataPath = Bundle.main.path(forResource: "jobs", ofType:"plist" )!
+        if chapter == 2 {
+            dataPath = Bundle.main.path(forResource: "jobs_chapter2", ofType:"plist" )!
+        }
         dictionary = NSDictionary(contentsOfFile: dataPath)!
-    }
-
-    // 職業データを設定
-    func setData(_ key : String){
-        name = key
-        lv = JobModel.getLV(name)
-        let data = dictionary.object(forKey: name) as! NSDictionary
-        displayName     = data.object(forKey: "name") as! String
-        hp              = data.object(forKey: "hp") as! Int
-        str             = data.object(forKey: "str") as! Int
-        agi             = data.object(forKey: "agi") as! Int
-        int             = data.object(forKey: "int") as! Int
-        luc             = data.object(forKey: "luc") as! Int
-        
-        explain         = data.object(forKey: "explain") as! String
-        own_skill       = data.object(forKey: "own_skill") as! String
-        general_skill   = data.object(forKey: "general_skill") as! String
     }
     
     // 職業レベルを保存
-    func saveParam(){
+    func saveParam(_ chapter : Int){
         UserDefaults.standard.set(lv,  forKey: "\(name)_lv")
-        UserDefaults.standard.set(name,  forKey: "job")
+        if chapter == 1 {
+            UserDefaults.standard.set(name,  forKey: "job")
+        } else {
+            UserDefaults.standard.set(name,  forKey: "job2")
+        }
     }
     
-    func loadParam(){
-        if UserDefaults.standard.object(forKey: "job") == nil {
-            name = "murabito"
-            lv = 1
-        } else {
+    func loadParam(_ chapter : Int){
+        if chapter == 1 {
             name = UserDefaults.standard.string(forKey: "job")!
             lv  = UserDefaults.standard.integer(forKey: "\(name)_lv")
+            setDataByChapter1(name)
+        } else if chapter == 2 {
+            name = UserDefaults.standard.string(forKey: "job2")!
+            lv  = UserDefaults.standard.integer(forKey: "\(name)_lv")
         }
-        setData(name)
     }
     
     func getDisplayName(key : String) -> String {
@@ -74,6 +64,8 @@ class JobModel {
         return name == "niinja" || name == "thief" || name == "dancer"
     }
     
+    
+    // １章にて、全てのスキルを表示
     class func allSkillExplain(_ skillModel : SkillModel, kappa : KappaNode, gameData : GameData) -> String {
         var res = ""
         res += "クリティカル発生率：　\(BattleModel.displayCriticalPer(luc: kappa.luc))% \n"
@@ -148,9 +140,54 @@ class JobModel {
         }
     }
     
-    class func setInitLv(){
-        UserDefaults.standard.set(1,  forKey: "murabito_lv")
+    class func setInitLv(_ chapter : Int){
+        if chapter == 1 {
+            UserDefaults.standard.set(1,  forKey: "murabito_lv")
+        } else if chapter == 2 {
+            UserDefaults.standard.set(1,  forKey: "prince_lv")
+            UserDefaults.standard.set("prince",  forKey: "job2")
+        }
     }
+    
+    /***********************************************************************************/
+    /********************************** 1章     ****************************************/
+    /***********************************************************************************/
+    // 職業データを設定
+    func setDataByChapter1(_ key : String){
+        name = key
+        lv = JobModel.getLV(name)
+        let data = dictionary.object(forKey: name) as! NSDictionary
+        displayName     = data.object(forKey: "name") as! String
+        hp              = data.object(forKey: "hp") as! Int
+        str             = data.object(forKey: "str") as! Int
+        agi             = data.object(forKey: "agi") as! Int
+        int             = data.object(forKey: "int") as! Int
+        luc             = data.object(forKey: "luc") as! Int
+        
+        explain         = data.object(forKey: "explain") as! String
+        own_skill       = data.object(forKey: "own_skill") as! String
+        general_skill   = data.object(forKey: "general_skill") as! String
+    }
+    
+    /***********************************************************************************/
+    /********************************** ２章     ****************************************/
+    /***********************************************************************************/
+    // 職業データを設定
+    var buster_long = 300
+    func setDataByChapter2(_ key : String){
+        name = key
+        lv = JobModel.getLV(name)
+        let data = dictionary.object(forKey: name) as! NSDictionary
+        
+        displayName     = data.object(forKey: "name") as! String
+        hp              = data.object(forKey: "hp") as! Int
+        buster_long     = data.object(forKey: "buster_long") as! Int
+        
+        explain         = data.object(forKey: "explain") as! String
+        own_skill       = data.object(forKey: "own_skill") as! String
+        general_skill   = data.object(forKey: "general_skill") as! String
+    }
+    
     
     
 }

@@ -13,42 +13,28 @@ class LastBattle2Scene: GameBaseScene {
     override func setBaseVariable(){
         chapter = 2
         world_name = "usagi"
-    }
-    
-    // Scene load 時に呼ばれる
-    override func sceneDidLoad() {
-        // 二重読み込みの防止
-        if isSceneDidLoaded {
-            return
-        }
-        isSceneDidLoaded = true
-        lastUpdateTime = 0
-        
-        setBaseVariable()
-        enemyModel.readDataByPlist(chapter)
         
         setMotion()
         setWorld()
         setWorldWall()
         
+        actionModel.setActionData(sceneWidth: size.width)
+        
+        createKappa()
+        createUsagi()
+        kappa.spaceMode()
+
+        gameData.setParameterByUserDefault()
+        changeLifeLabel()
+
+    }
+    
+    override func setMusic() {
         prepareBGM(fileName: Const.bgm_zinna)
 //        prepareBGM(fileName: Const.bgm_short_harujion)
         prepareSoundEffect()
         stopBGM()
 //        playBGM()
-
-        createKappa()
-        createUsagi()
-        kappa.spaceMode()
-        
-        actionModel.setActionData(sceneWidth: size.width)
-        
-        // 各要素を非表示にする
-        hideBigMessage()
-        hideSkillBox()
-
-        gameData.setParameterByUserDefault()
-        changeLifeLabel()
     }
     
     override func didMove(to view: SKView) {

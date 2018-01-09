@@ -65,11 +65,11 @@ class Tutorial4Scene: BaseScene {
     func goNextMap(){
         stopBGM()
         
-        KappaNode.setInitLv()
-        JobModel.setInitLv()
+        KappaNode.setInitLv(chapter)
+        JobModel.setInitLv(chapter)
         gameData.saveParam()
         let kappaNode = KappaNode()
-        kappaNode.saveParam()
+        kappaNode.saveParam(chapter: chapter)
 
         GameData.clearCountUp("tutorial0")
         

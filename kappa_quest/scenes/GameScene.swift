@@ -5,10 +5,25 @@ import AVFoundation
 
 class GameScene: GameBaseScene {
     
+    private var skillModel : SkillModel = SkillModel()
+    private var specialAttackModel : SpecialAttackModel = SpecialAttackModel()
+
     // 章に応じて変数を上書き
     override func setBaseVariable(){
         chapter = 1
         prepareBGM(fileName: Const.bgm_fantasy)
+                
+        enemyModel.readDataByPlist(chapter)
+        jobModel.readDataByPlist(chapter)
+        jobModel.loadParam(chapter)
+        skillModel.readDataByPlist()
+        actionModel.setActionData(sceneWidth: size.width)
+        createKappa()
+        skillModel.judgeSKill()
+        displayExpLabel()
+        changeExpBar()
+        updateName()
+        updateSpecialView()
     }
     
     override func bossExec(){
@@ -21,11 +36,93 @@ class GameScene: GameBaseScene {
         playBGM()
     }
     
+    // それぞれの章ごとのマップ移動時の処理
+    override func goMapByChapter(){
+        heal(skillModel.map_heal)
+    }
+    
+    override func LvUp(){
+        kappa.LvUp(jobModel)
+        showMessage("LVがあがった", type: "lv")
+        
+        let HPUpLabel      = childNode(withName: "//HPUpLabel")  as! SKLabelNode
+        let StrUpLabel     = childNode(withName: "//StrUpLabel") as! SKLabelNode
+        let AgiUpLabel     = childNode(withName: "//AgiUpLabel") as! SKLabelNode
+        let IntUpLabel     = childNode(withName: "//IntUpLabel") as! SKLabelNode
+        let LucUpLabel     = childNode(withName: "//LucUpLabel") as! SKLabelNode
+        
+        if jobModel.hp != 0 {
+            HPUpLabel.text = "+\(jobModel.hp)"
+            HPUpLabel.run(actionModel.fadeInOut!)
+        }
+        if jobModel.str != 0 {
+            StrUpLabel.text = "+\(jobModel.str)"
+            StrUpLabel.run(actionModel.fadeInOut!)
+        }
+        if jobModel.str != 0 {
+            AgiUpLabel.text = "+\(jobModel.agi)"
+            AgiUpLabel.run(actionModel.fadeInOut!)
+        }
+        if jobModel.int != 0 {
+            IntUpLabel.text = "+\(jobModel.int)"
+            IntUpLabel.run(actionModel.fadeInOut!)
+        }
+        if jobModel.luc != 0 {
+            LucUpLabel.text = "+\(jobModel.luc)"
+            LucUpLabel.run(actionModel.fadeInOut!)
+        }
+        
+        if isGetSkill() {
+            showMessage("スキル習得", type: "skill")
+        }
+        saveData()
+        
+        // スキル判定
+        skillModel.judgeSKill()
+        
+        heal(skillModel.lv_up_heal)
+        
+        gameData.changeNicknameByLV(lv: jobModel.lv)
+        updateName()
+    }
+    
+    override func tapCountUpByChapter(){
+        specialAttackModel.countUp()
+        if jobModel.name == "maou" {
+            specialAttackModel.countUp()
+        }
+        if jobModel.name == "dark_kappa" {
+            specialAttackModel.countUp()
+            specialAttackModel.countUp()
+        }
+        if gameData.tapCount%Const.tapHealCount == 0 {
+            heal(skillModel.heal_val)
+        }
+        if skillModel.tap_dance_flag {
+            updateExp(1)
+        }
+    }
+    
+    override func kappaKonjo(){
+        if kappa.hp <= 0 && skillModel.konjo_flag && !kappa.konjoEndFlag {
+            kappa.hp = 0
+            heal(kappa.luc)
+            showMessage("カッパのど根性！", type: "skill")
+            kappa.konjoEndFlag = true
+        }
+    }
+    
+    // モンスター撃破時、章ごとの処理
+    override func beatByChapter(){
+        heal(skillModel.necro_heal)
+    }
+
+    
     /***********************************************************************************/
     /********************************** specialAttack **********************************/
     /***********************************************************************************/
     // スーパー頭突き
-    override func specialAttackHead(){
+    func specialAttackHead(){
         kappa.head()
         heal(skillModel.angel_heal)
         specialAttackModel.execHead()
@@ -48,7 +145,7 @@ class GameScene: GameBaseScene {
     }
     
     // 昇竜拳
-    override func specialAttackUpper(){
+    func specialAttackUpper(){
         kappa.upper()
         heal(skillModel.upper_heal)
         specialAttackModel.execUpper()
@@ -65,7 +162,7 @@ class GameScene: GameBaseScene {
     }
     
     // 竜巻旋風脚
-    override func specialAttackTornado(){
+    func specialAttackTornado(){
         kappa.tornado()
         heal(skillModel.tornado_heal)
         if skillModel.super_tornado_flag {
@@ -84,12 +181,20 @@ class GameScene: GameBaseScene {
     }
     
     // 波動砲
-    override func specialAttackHado(){
+    func specialAttackHado(){
         kappa.hado()
         heal(skillModel.hado_heal)
         specialAttackModel.execHado()
         createHado()
         specialAttackModel.finishAttack()
+    }
+    
+    override func createKappaByChapter(){
+        kappa.setParameterByChapter1()
+        kappa.setNextExp(jobModel)
+        if jobModel.name == "knight" {
+            kappa.physic_type = "noppo"
+        }
     }
     
     override func updateSpecialView(){
@@ -310,6 +415,18 @@ class GameScene: GameBaseScene {
     /***********************************************************************************/
     /********************************** フレーム処理    **********************************/
     /***********************************************************************************/
+    
+    // フレーム毎の処理
+    override func frameExec(){
+        // カッパの回転処理
+        if specialAttackModel.is_tornado || kappa.isSpin {
+            if CommonUtil.rnd(4) == 0 {
+                kappa.xScale *= -1
+            }
+        }
+    }
+
+    
     // モンスターが1秒おきに実行する処理
     override func enemyAction(){
         

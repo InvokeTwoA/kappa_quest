@@ -5,9 +5,19 @@ import GameplayKit
 class ChapterScene: BaseScene {
     override func sceneDidLoad() {
         prepareBGM(fileName: Const.bgm_ahurera)
+        updateLabel()
     }
     
     override func willMove(from view: SKView) {
+    }
+    
+    func updateLabel(){
+        let chapter1 = childNode(withName: "//chapter1_label") as! SKLabelNode
+        chapter1.text = "世界LV1  カッパLV \(GameData.getChapter1LV())"
+
+        let chapter2 = childNode(withName: "//chapter2_label") as! SKLabelNode
+        chapter2.text = "世界LV1  カッパLV \(GameData.getChapter2LV())"
+
     }
     
     // １章へ
@@ -24,6 +34,13 @@ class ChapterScene: BaseScene {
             nextScene.scaleMode = SKSceneScaleMode.aspectFit
             view!.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
         }
+    }
+    
+    // ２章の初期値を登録
+    func setInitDataByChapter2(){
+        chapter = 2
+        KappaNode.setInitLv(chapter)
+        JobModel.setInitLv(chapter)
     }
         
     func goFirstWorld(){
@@ -48,6 +65,8 @@ class ChapterScene: BaseScene {
                 if GameData.isClear("opening2") {
                     goWorld2()
                 } else {
+                    // ２章の初期値登録
+                    setInitDataByChapter2()
                     goOpening2()
                 }
             case "Chapter3Node", "Chapter3Label":

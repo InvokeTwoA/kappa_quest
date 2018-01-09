@@ -5,7 +5,6 @@ import Foundation
 class GameData {
 
     var tapCount = 0
-    
     var nickname = "駆け出しの"
     var name = "カッパ"
     
@@ -149,17 +148,17 @@ class GameData {
             UserDefaults.standard.set("最強の",  forKey: "nickname")
             let kappa = KappaNode()
             kappa.oniisama()
-            kappa.saveParam()
+            kappa.saveParam(chapter: 1)
             UserDefaults.standard.set(10,  forKey: "wizard_lv")
             UserDefaults.standard.set(300,  forKey: "priest_lv")
         } else if value == "ラッキー" {
             let kappa = KappaNode()
             kappa.lucky()
-            kappa.saveParam()
+            kappa.saveParam(chapter: 1)
         } else if value == "お爺様" {
             let kappa = KappaNode()
             kappa.ojiisama()
-            kappa.saveParam()
+            kappa.saveParam(chapter: 1)
         }
     }
     
@@ -169,10 +168,22 @@ class GameData {
         } else {
             return "カッパ"
         }
-        
     }
     
-
+    class func getTotalLv() -> Int {
+        let total_lv = getChapter1LV() + getChapter2LV()
+        return total_lv
+    }
     
+    class func getChapter1LV() -> Int {
+        let lv_chapter1 = UserDefaults.standard.integer(forKey: "lv")
+        return lv_chapter1
+    }
+
+    class func getChapter2LV() -> Int {
+        let lv_chapter2 = UserDefaults.standard.integer(forKey: "lv2")
+        return lv_chapter2
+    }
+
     
 }

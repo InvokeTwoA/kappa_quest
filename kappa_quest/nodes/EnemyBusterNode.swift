@@ -1,13 +1,10 @@
-// 敵の図形クラス
+// ２章専用
+// 敵の弾の図形クラス
 import Foundation
 import SpriteKit
 class EnemyBusterNode: SKShapeNode {
     
     var str = 1
-    
-//    class func createEnemyBuster(point: CGPoint, height : CGFloat, str: Int) -> EnemyBusterNode {
-    
-    //         let buster = EnemyBusterNode.createEnemyBuster(point: enemy.position, height: (enemy.texture?.size().height)!, str: enemy.str)
     
     class func createEnemyBuster(_ enemy : EnemyNode) -> EnemyBusterNode {
         let BUSTER_RADIUS : CGFloat = 24.0

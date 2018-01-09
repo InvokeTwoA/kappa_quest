@@ -1,5 +1,5 @@
+// １章専用
 import Foundation
-
 class SkillModel {
     
     // plist から読み込んだ職業データ

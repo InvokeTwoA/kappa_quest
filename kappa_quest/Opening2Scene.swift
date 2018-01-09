@@ -7,7 +7,7 @@ class Opening2Scene: BaseScene {
     
     private let nodes = [
         "text1", "text2", "text3", "text4", "text5", "text6", "text7", "text8", "text9", "text10",
-        "text11", "text12", "text13", "text14", "text15", "text16",
+        "text11", "text12", "text13", "text14", "text15", "text16", "text17",
         "kappa2",
         "maou",
         "miyuki", "sister", "priest", "usagi",
@@ -38,9 +38,6 @@ class Opening2Scene: BaseScene {
         openingFlag = true
         
         textUpper()
-        _ = CommonUtil.setTimeout(delay: 25.0, block: { () -> Void in
-            self.openingEnd()
-        })
     }
     
     func textUpper(){
@@ -52,7 +49,6 @@ class Opening2Scene: BaseScene {
     }
     
     func openingEnd(){
-        print("opening end  chapter=\(chapter)")
         GameData.clearCountUp("opening2")
         stopBGM()
         goMovie()
@@ -64,5 +60,30 @@ class Opening2Scene: BaseScene {
         }
     }
     
+    /***********************************************************************************/
+    /********************************** touch ******************************************/
+    /***********************************************************************************/
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for t in touches {
+            let beganPosition : CGPoint!
+            beganPosition = t.location(in: self)
+            let tapNode = atPoint(beganPosition)
+            if tapNode.name == nil {
+                return
+            }
+            
+            if tapNode.name! == "SkipLabel" || tapNode.name == "SkipNode" {
+                openingEnd()
+            }
+        }
+    }
     
+    /***********************************************************************************/
+    /********************************* update ******************************************/
+    /***********************************************************************************/
+    override func secondTimerExec() {
+        if step == 25 {
+            openingEnd()
+        }
+    }
 }

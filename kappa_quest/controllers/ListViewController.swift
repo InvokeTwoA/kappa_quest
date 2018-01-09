@@ -247,12 +247,12 @@ class ListViewController : BaseTableViewController {
             }
         case "status":
             let kappa = KappaNode()
-            kappa.setParameterByUserDefault()
+            kappa.setParameterByChapter1()
             let gameData = GameData()
             gameData.setParameterByUserDefault()
             let jobModel = JobModel()
-            jobModel.readDataByPlist()
-            jobModel.loadParam()
+            jobModel.readDataByPlist(chapter)
+            jobModel.loadParam(chapter)
             let skillModel = SkillModel()
             skillModel.readDataByPlist()
 

@@ -299,4 +299,36 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
             break
         }
     }
+    
+    
+    /***********************************************************************************/
+    /********************************* update ******************************************/
+    /***********************************************************************************/
+    private var lastUpdateTime : TimeInterval = 0
+    private var doubleTimer = 0.0 // 経過時間（小数点単位で厳密）
+    var step = 0
+    override func update(_ currentTime: TimeInterval) {
+        if (lastUpdateTime == 0) {
+            lastUpdateTime = currentTime
+        }
+        let dt = currentTime - lastUpdateTime
+        lastUpdateTime = currentTime
+        frameExec()
+        doubleTimer += dt
+        if doubleTimer > 1.0 {
+            doubleTimer = 0.0
+        } else {
+            return
+        }
+        step += 1
+        secondTimerExec()
+    }
+    
+    // 秒ごとの処理
+    func secondTimerExec(){
+    }
+    
+    // フレーム毎の処理
+    func frameExec(){
+    }
 }

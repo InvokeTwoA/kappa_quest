@@ -6,7 +6,6 @@ class AbilityViewController : BaseTableViewController {
     @IBOutlet weak var _tableView: UITableView!
     @IBOutlet weak var _abilityLabel: UILabel!
     
-    let kappa = KappaNode()
     let abilityModel = AbilityModel()
 
     private let sections = ["", "移動系スキル", "かっぱバスター", "かっぱ張り手",  "回復系スキル","宇宙スキル", "その他のスキル", ""]
@@ -55,12 +54,12 @@ class AbilityViewController : BaseTableViewController {
         abilityModel.setParameterByUserDefault()
         setSections(sections)
         setTableSetting(_tableView)
-        kappa.setParameterByUserDefault()
         updateAbilityLabel()
     }
     
     func updateAbilityLabel(){
-        _abilityLabel.text = "アビリティポイント　 \(abilityModel.abilityPoint) / \(kappa.lv)"
+        let total_lv = GameData.getTotalLv()
+        _abilityLabel.text = "アビリティポイント　 \(abilityModel.abilityPoint) / \(total_lv)"
     }
     
     override func viewWillAppear(_ animated: Bool) {

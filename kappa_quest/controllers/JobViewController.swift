@@ -11,18 +11,7 @@ class JobViewController : BaseTableViewController {
 
     @IBOutlet weak var _tableView: UITableView!
 
-    /*
-    @IBAction func didBackButtonPushed(_ sender: Any) {
-    }
-    
-    @IBAction func didChangeButtonPushed(_ sender: Any) {
-        jobModel.saveParam()
-        delegate?.jobDidChanged()
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @IBOutlet weak var jobChangeButton: UIButton!
- */
+    var chapter = 1
     
     private var jobModel : JobModel = JobModel()
     var delegate : JobDelegate? = nil
@@ -40,12 +29,12 @@ class JobViewController : BaseTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setSections(sections)
+        let chapter = 1
         
-        jobModel.readDataByPlist()
-        jobModel.loadParam()
-        jobModel.setData(job)
+        jobModel.readDataByPlist(chapter)
+        jobModel.loadParam(chapter)
+        jobModel.setDataByChapter1(job)
         
         setTableSetting(_tableView)
     }
@@ -56,7 +45,7 @@ class JobViewController : BaseTableViewController {
     }
     
     func jobChange(){
-        jobModel.saveParam()
+        jobModel.saveParam(chapter)
         delegate?.jobDidChanged()
         dismiss(animated: true, completion: nil)
     }

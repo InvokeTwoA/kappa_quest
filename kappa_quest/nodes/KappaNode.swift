@@ -3,38 +3,33 @@ import Foundation
 import SpriteKit
 
 class KappaNode: SKSpriteNode {
-
-    // ステータス
+    // ステータス(1章)
     var lv = 1
     var job_lv = 1
     var maxHp = 15
     var hp = 15
-    var str = 2
-    var agi = 2
-    var int = 2
-    var luc = 2
-    var beauty = 2
     var nextExp = 10
     var exp = 0
     var physic_type = "normal"
     var mode = ""
-    var isTanuki = false
     
     // フラグ
-    var konjoEndFlag = false  // スキル根性が発動したかどうか（１ゲームに１回きり）
     var isSpin = false
-
-    // 加速度（２章ラスボスで使用）
-    var dx = 0
-    var dy = 0
     
-    // パラメーターを userDefault から読み取り
-    func setParameterByUserDefault(){
+    func setParameter(chapter: Int) {
+        if chapter == 1 {
+            setParameterByChapter1()
+        } else {
+            setParameterByChapter2()
+        }
+    }
+    
+    // １章パラメーターを userDefault から読み取り
+    func setParameterByChapter1(){
         // FIXME guard
         if UserDefaults.standard.object(forKey: "lv") == nil {
             return
         }
-
         lv      = UserDefaults.standard.integer(forKey: "lv")
         maxHp   = UserDefaults.standard.integer(forKey: "hp")
         str     = UserDefaults.standard.integer(forKey: "str")
@@ -43,8 +38,11 @@ class KappaNode: SKSpriteNode {
         luc     = UserDefaults.standard.integer(forKey: "luc")
         beauty  = UserDefaults.standard.integer(forKey: "beauty")
         exp     = UserDefaults.standard.integer(forKey: "exp")
-        
         hp  = maxHp
+    }
+    
+    func setDefaultParameterByChapter2(){
+        
     }
 
     // LVアップ
@@ -69,16 +67,27 @@ class KappaNode: SKSpriteNode {
         nextExp = lv + jobModel.lv*10
     }
 
-    func saveParam(){
+    func saveParam(chapter: Int) {
+        if chapter == 1 {
+            saveParamChapter1()
+        } else {
+            saveParamChapter2()
+        }
+    }
+    
+    func saveParamChapter1(){
         UserDefaults.standard.set(lv,  forKey: "lv")
         UserDefaults.standard.set(maxHp,  forKey: "hp")
         UserDefaults.standard.set(str, forKey: "str")
         UserDefaults.standard.set(agi, forKey: "agi")
         UserDefaults.standard.set(int, forKey: "int")
         UserDefaults.standard.set(luc, forKey: "luc")
-        UserDefaults.standard.set(beauty, forKey: "beauty")
         UserDefaults.standard.set(exp, forKey: "exp")
     }
+    
+    func saveParamChapter2(){
+    }
+
     
     func displayStatus() -> String {
         var res = ""
@@ -177,17 +186,28 @@ class KappaNode: SKSpriteNode {
         xScale = 1
         texture = SKTexture(imageNamed: "kappa_punch")
     }
-
-    // カッパバスター
-    func buster(){
-        texture = SKTexture(imageNamed: "kappa_punch")
-    }
-
     
     func dead(){
         texture = SKTexture(imageNamed: "kappa_dead")
     }
     
+    class func setInitLv(_ chapter : Int){
+        if chapter == 1 {
+            UserDefaults.standard.set(1, forKey: "lv")
+        } else if chapter == 2 {
+            UserDefaults.standard.set(1, forKey: "lv2")
+        }
+    }
+
+    /***********************************************************************************/
+    /********************************** 1章     ****************************************/
+    /***********************************************************************************/
+    var str = 2
+    var agi = 2
+    var int = 2
+    var luc = 2
+    var konjoEndFlag = false  // スキル根性が発動したかどうか（１ゲームに１回きり）
+
     // 裏技
     // 名前をお兄様にすることで最強のステータスになる
     func oniisama(){
@@ -213,11 +233,41 @@ class KappaNode: SKSpriteNode {
         luc = 100
         lv = 120
     }
+    
+    /***********************************************************************************/
+    /********************************** ２章     ****************************************/
+    /***********************************************************************************/
+    
+    // ステータス２章
+    var buster_long = 300
+    var isTanuki = false
+    var dx = 0  // 宇宙ステージの加速度
+    var dy = 0  // 宇宙ステージの加速度
+    var beauty = 2
+
+    // ２章は職業とアビリティによりパラメーターが決定
+    func setParameterByChapter2(){
+
+        
+        lv      = 12
+        maxHp   = 12
+        str     = 5
+        agi     = 6
+        int     = 7
+        luc     = 8
+        beauty  = 9
+        exp     = 10
+        hp  = maxHp
+    }
 
     
-    class func setInitLv(){
-        UserDefaults.standard.set(1, forKey: "lv")
+    // カッパバスター
+    func buster(){
+        texture = SKTexture(imageNamed: "kappa_punch")
     }
+    
+    
+
 
     private var kappa_punch_num = 0
     func punchRush(){
@@ -232,5 +282,7 @@ class KappaNode: SKSpriteNode {
             kappa_punch_num = 0
         }
     }
+    
+
 
 }

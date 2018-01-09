@@ -1,5 +1,6 @@
+// １章専用
+// 必殺技の管理モデル
 import Foundation
-
 class SpecialAttackModel {
     
     private let BAR_LENGTH : Double = 131.0

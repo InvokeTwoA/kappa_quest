@@ -11,16 +11,12 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
     internal var kappa : KappaNode!   // かっぱ画像
     internal var map : Map = Map()
     internal var enemyModel : EnemyModel = EnemyModel()
-    internal var specialAttackModel : SpecialAttackModel = SpecialAttackModel()
-    internal var skillModel : SkillModel = SkillModel()
-
+    
     var world_name = "tutorial"
-    var max_damage = 99999
     
     // Scene load 時に呼ばれる
     internal var isSceneDidLoaded = false
     override func sceneDidLoad() {
-        // 二重読み込みの防止
         if isSceneDidLoaded {
             return
         }
@@ -28,41 +24,27 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
         lastUpdateTime = 0
 
         setBaseVariable()  // 章による変数設定
-        setWorld()
-        
-        // データをセット
-        enemyModel.readDataByPlist(chapter)
-        jobModel.readDataByPlist()
-        jobModel.loadParam()
-        skillModel.readDataByPlist()
-        actionModel.setActionData(sceneWidth: size.width)
-        createKappa()
-        skillModel.judgeSKill()
-        displayExpLabel()
-        changeExpBar()
-        updateName()
-        updateSpecialView()
-        
-        // 各要素を非表示にする
+        hideEachNode()
+        setMusic()
+        setWorld()  // 地面に物理判定を設定
+    }
+    
+    // 各要素を非表示にする
+    func hideEachNode(){
         hideLongMessage()
         hideSkillBox()
         hideMagicCircuit()
-        
-        // 音楽関係の処理
+    }
+    
+    func setMusic(){
         prepareSoundEffect()
         playBGM()
-        
-        setBaseVariableLast()
     }
+    
     
     // 章に応じて変数を上書き
     func setBaseVariable(){
-    }
-    
-    // 章に応じて変数を上書き（loadの最後）
-    func setBaseVariableLast(){
-        
-    }
+    }    
     
     // 画面が読み込まれた時に呼ばれる
     private var isSceneDidMoved = false
@@ -97,16 +79,21 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
     // かっぱ画像にphysic属性を与える
     func createKappa(){
         kappa = childNode(withName: "//kappa") as! KappaNode
-        kappa.setParameterByUserDefault()
-        kappa.setNextExp(jobModel)
-        if jobModel.name == "knight" {
-            kappa.physic_type = "noppo"
-        }
+        createKappaByChapter()
         kappa.setPhysic()
         kappa_first_position_y = kappa.position.y
         setFirstPosition()
         if map.distance == 0.0 {
             kappa.heal()
+        }
+    }
+    
+    // カッパ作成時の章ごとの処理
+    func createKappaByChapter(){
+        kappa.setParameter(chapter: chapter)
+        kappa.setNextExp(jobModel)
+        if jobModel.name == "knight" {
+            kappa.physic_type = "noppo"
         }
     }
     
@@ -120,9 +107,9 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
     }
     
     func saveData(){
-        kappa?.saveParam()
+        kappa.saveParam(chapter: chapter)
         gameData.saveParam()
-        jobModel.saveParam()
+        jobModel.saveParam(chapter)
     }
     
     // 右へ移動
@@ -163,7 +150,11 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
         createMap()
         updateDistance()
         
-        heal(skillModel.map_heal)
+        goMapByChapter()
+    }
+    
+    // それぞれの章ごとのマップ移動時の処理
+    func goMapByChapter(){
     }
     
     func stageClear(){
@@ -234,10 +225,6 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
             playSoundEffect(type: 3)
         }
         
-        if damage >= max_damage {
-            damage = max_damage
-        }
-        
         let point = CGPoint(x: enemy.position.x, y: enemy.position.y + 30)
         displayDamage(value: damage, point: point, color: UIColor.white)
         
@@ -255,12 +242,7 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
         playSoundEffect(type: 1)
         
         kappa.hp -= damage
-        if kappa.hp <= 0 && skillModel.konjo_flag && !kappa.konjoEndFlag {
-            kappa.hp = 0
-            heal(kappa.luc)
-            showMessage("カッパのど根性！", type: "skill")
-            kappa.konjoEndFlag = true
-        }
+        kappaKonjo()
         if kappa.hp <= 0 {
             kappa.hp = 0
         }
@@ -270,6 +252,10 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
         if kappa.hp == 0 {
             gameOver()
         }
+    }
+    
+    // カッパ根性が発動する場合の処理
+    func kappaKonjo(){
     }
     
     func heal(_ heal_val : Int){
@@ -346,7 +332,11 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
         if map.isBoss && pos == Const.maxPosition - 1 {
             beatBoss()
         }
-        heal(skillModel.necro_heal)
+        beatByChapter()
+    }
+    
+    // モンスター撃破時、章ごとの処理
+    func beatByChapter(){
     }
     
     func beatBoss(){
@@ -383,48 +373,6 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
     }
     
     func LvUp(){
-        kappa.LvUp(jobModel)
-        showMessage("LVがあがった", type: "lv")
-        
-        let HPUpLabel      = childNode(withName: "//HPUpLabel")  as! SKLabelNode
-        let StrUpLabel     = childNode(withName: "//StrUpLabel") as! SKLabelNode
-        let AgiUpLabel     = childNode(withName: "//AgiUpLabel") as! SKLabelNode
-        let IntUpLabel     = childNode(withName: "//IntUpLabel") as! SKLabelNode
-        let LucUpLabel     = childNode(withName: "//LucUpLabel") as! SKLabelNode
-        
-        if jobModel.hp != 0 {
-            HPUpLabel.text = "+\(jobModel.hp)"
-            HPUpLabel.run(actionModel.fadeInOut!)
-        }
-        if jobModel.str != 0 {
-            StrUpLabel.text = "+\(jobModel.str)"
-            StrUpLabel.run(actionModel.fadeInOut!)
-        }
-        if jobModel.str != 0 {
-            AgiUpLabel.text = "+\(jobModel.agi)"
-            AgiUpLabel.run(actionModel.fadeInOut!)
-        }
-        if jobModel.int != 0 {
-            IntUpLabel.text = "+\(jobModel.int)"
-            IntUpLabel.run(actionModel.fadeInOut!)
-        }
-        if jobModel.luc != 0 {
-            LucUpLabel.text = "+\(jobModel.luc)"
-            LucUpLabel.run(actionModel.fadeInOut!)
-        }
-        
-        if isGetSkill() {
-            showMessage("スキル習得", type: "skill")
-        }
-        saveData()
-        
-        // スキル判定
-        skillModel.judgeSKill()
-        
-        heal(skillModel.lv_up_heal)
-        
-        gameData.changeNicknameByLV(lv: jobModel.lv)
-        updateName()
     }
     
     func isGetSkill() -> Bool {
@@ -436,24 +384,14 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
     // 40タップごとに僧侶のアビリティを発動
     func tapCountUp(){
         gameData.tapCount += 1
-        specialAttackModel.countUp()
-        if jobModel.name == "maou" {
-            specialAttackModel.countUp()
-        }
-        if jobModel.name == "dark_kappa" {
-            specialAttackModel.countUp()
-            specialAttackModel.countUp()
-        }
-        
         let TapCountLabel  = childNode(withName: "//TapCountLabel") as! SKLabelNode
         TapCountLabel.text = "\(gameData.tapCount)"
         
-        if gameData.tapCount%Const.tapHealCount == 0 {
-            heal(skillModel.heal_val)
-        }
-        if skillModel.tap_dance_flag {
-            updateExp(1)
-        }
+        tapCountUpByChapter()
+    }
+    
+    // 章ごとのタップ時の操作
+    func tapCountUpByChapter(){
     }
     
     /***********************************************************************************/
@@ -544,8 +482,6 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
             self.addChild(dark)
         })
     }
-    
-    
     
     /***********************************************************************************/
     /********************************** 敵を描画  ****************************************/
@@ -1029,21 +965,6 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
     /***********************************************************************************/
     /********************************** specialAttack **********************************/
     /***********************************************************************************/
-    // スーパー頭突き
-    func specialAttackHead(){
-    }
-    
-    // 昇竜拳
-    func specialAttackUpper(){
-    }
-    
-    // 竜巻旋風脚
-    func specialAttackTornado(){
-    }
-    
-    // 波動砲
-    func specialAttackHado(){
-    }
     func createHado(){
         let fire = FireEmitterNode.makeKappaFire()
         fire.position = CGPoint(x: kappa.position.x - 60, y: kappa.position.y + 20)
@@ -1063,96 +984,9 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
     /********************************** touch ******************************************/
     /***********************************************************************************/
     func touchDown(atPoint pos : CGPoint) {
-        if specialAttackModel.is_attacking {
-            if specialAttackModel.mode != "tornado" {
-                return
-            } else {
-                specialAttackModel.finishAttack()
-                kappa.removeAllActions()
-                kappa.position.y = kappa_first_position_y
-            }
-        }
-        if gameOverFlag || bossStopFlag {
-            return
-        }
-        
-        if pos.x >= 0 {
-            if map.canMoveRight() {
-                moveRight()
-            } else if map.isRightEnemy() {
-                attack()
-            } else {
-                kappa.run(actionModel.moveBack2)
-            }
-        } else {
-            if map.canMoveLeft() {
-                moveLeft()
-            } else {
-                kappa!.run(actionModel.moveBack!)
-            }
-        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        tapCountUp()
-        if specialAttackModel.is_attacking {
-            if specialAttackModel.mode != "tornado" {
-                return
-            } else {
-                specialAttackModel.finishAttack()
-                kappa.removeAllActions()
-                kappa.position.y = kappa_first_position_y
-            }
-        }
-        if gameOverFlag || bossStopFlag {
-            return
-        }
-        if map.myPosition+1 > Const.maxPosition {
-            return
-        }
-        for t in touches {
-            let positionInScene = t.location(in: self)
-            let tapNode = atPoint(positionInScene)
-            if tapNode.name == nil {
-                touchDown(atPoint: positionInScene)
-                return
-            }
-            switch tapNode.name! {
-            case "ButtonNode", "ButtonLabel":
-                goMenu()
-            case "IconKappaHado":
-                if specialAttackModel.canSpecialHado() {
-                    specialAttackHado()
-                } else {
-                    self.touchDown(atPoint: positionInScene)
-                }
-            case "IconKappaHead":
-                if specialAttackModel.canSpecialHead() {
-                    specialAttackHead()
-                } else {
-                    self.touchDown(atPoint: positionInScene)
-                }
-            case "IconKappaTornado":
-                if specialAttackModel.canSpecialTornado() {
-                    specialAttackTornado()
-                } else {
-                    self.touchDown(atPoint: positionInScene)
-                }
-            case "IconKappaUpper":
-                if specialAttackModel.canSpecialUpper() {
-                    specialAttackUpper()
-                } else {
-                    self.touchDown(atPoint: positionInScene)
-                }
-            case "IconKappaBuster":
-                kappaBuster()
-            case "IconKappaJump":
-                kappaBuster()
-            default:
-                self.touchDown(atPoint: positionInScene)
-            }
-            updateSpecialView()
-        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -1202,24 +1036,13 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
             return
         }
         secondTimerExec()
-        enemyAction()
     }
  
     // 秒ごとの処理
-    func secondTimerExec(){
+    override func secondTimerExec(){
+        enemyAction()
     }
     
-    // フレーム毎の処理
-    func frameExec(){
-        // カッパの回転処理
-        if specialAttackModel.is_tornado || kappa.isSpin {
-            if CommonUtil.rnd(4) == 0 {
-                kappa.xScale *= -1
-            }
-        }
-    }
-    
-    // 敵の行動
     func enemyAction(){
         
     }

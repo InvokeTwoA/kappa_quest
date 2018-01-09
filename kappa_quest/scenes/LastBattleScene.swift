@@ -5,36 +5,31 @@ import Social
 
 class LastBattleScene: GameBaseScene {
 
-    // Scene load 時に呼ばれる
-    override func sceneDidLoad() {
-        // 二重読み込みの防止
-        if isSceneDidLoaded {
-            return
-        }
-        isSceneDidLoaded = true
-        lastUpdateTime = 0
-        setWorld()
-
-        // データをセット
-        actionModel.setActionData(sceneWidth: size.width)
-        createKappa()
-        updateName()
-        updateStatus()
-        
-        // ノードを非表示
+    // 章ごとの処理
+    override func setBaseVariable() {
         hideTitleNode()
-        
-        // 音楽関係の処理
+    }
+    
+    override func setMusic() {
         prepareBGM(fileName: Const.bgm_fantasy)
         prepareSoundEffect()
         playBGM()
-
+        
+        createKappa()
+        
         gameData.setParameterByUserDefault()
+        actionModel.setActionData(sceneWidth: size.width)
     }
-
+    
+    
     override func willMove(from view: SKView) {
     }
 
+    override func createKappaByChapter(){
+        kappa.setParameterByChapter1()
+        kappa.setNextExp(jobModel)
+    }
+    
     func hideTitleNode(){
         hideLabelNode("TitleLabel")
         hideSpriteNode("TitleNode")
@@ -45,6 +40,10 @@ class LastBattleScene: GameBaseScene {
         showLabelNode("TitleLabel")
         showSpriteNode("TitleNode")
         showSpriteNode("tweet")
+    }
+    
+    override func hideLongMessage(){
+        
     }
     
     // 次のマップに移動

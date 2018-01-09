@@ -11,14 +11,26 @@ class Game2Scene: GameBaseScene {
         chapter = 2
         abilityModel.setFlag()
         prepareBGM(fileName: Const.bgm_brave)
-    }
-    
-    // 章に応じて変数を上書き（loadの最後）
-    override func setBaseVariableLast(){
-        max_damage = kappa.beauty * 10
+        
+        enemyModel.readDataByPlist(chapter)
+        jobModel.readDataByPlist(chapter)
+        jobModel.loadParam(chapter)
+        actionModel.setActionData(sceneWidth: size.width)
+        createKappa()
+        displayExpLabel()
+        changeExpBar()
+        updateName()
+        updateSpecialView()
+
+
         if abilityModel.canUse("body_tanuki") {
             kappa.isTanuki = true
         }
+    }
+    
+    override func createKappaByChapter(){
+        kappa.setParameterByChapter2()
+        kappa.setNextExp(jobModel)
     }
     
     // ２章では「かっこよさ」以上に回復しない
@@ -291,12 +303,10 @@ class Game2Scene: GameBaseScene {
                     secondBody.node?.removeFromParent()
                 }
             } else if secondBody.categoryBitMask & Const.thunderCategory != 0 {
-                if !specialAttackModel.is_head {
-                    let thunder = secondBody.node as! ThunderEmitterNode
-                    attacked(attack: thunder.damage, point: (firstBody.node?.position)!)
-                    makeSpark(point: (secondBody.node?.position)!)
-                    secondBody.node?.removeFromParent()
-                }
+                let thunder = secondBody.node as! ThunderEmitterNode
+                attacked(attack: thunder.damage, point: (firstBody.node?.position)!)
+                makeSpark(point: (secondBody.node?.position)!)
+                secondBody.node?.removeFromParent()
             } else if secondBody.categoryBitMask & Const.busterEnemyCategory != 0 {
                 let buster = secondBody.node as! EnemyBusterNode
                 attacked(attack: buster.str, point: (firstBody.node?.position)!)
@@ -335,10 +345,6 @@ class Game2Scene: GameBaseScene {
                 }
                 makeSpark(point: (secondBody.node?.position)!)
                 attackCalculate(str: kappa.int, type: "magick", enemy: enemy)
-                // 貫通スキルがなければ波動拳は消滅
-                if !skillModel.hado_penetrate_flag {
-                    firstBody.node?.removeFromParent()
-                }
             }
         } else if firstBody.categoryBitMask & Const.busterCategory != 0 {
             if secondBody.categoryBitMask & Const.enemyCategory != 0 {
@@ -396,15 +402,6 @@ class Game2Scene: GameBaseScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         tapCountUp()
-        if specialAttackModel.is_attacking {
-            if specialAttackModel.mode != "tornado" {
-                return
-            } else {
-                specialAttackModel.finishAttack()
-                kappa.removeAllActions()
-                kappa.position.y = kappa_first_position_y
-            }
-        }
         if gameOverFlag || bossStopFlag {
             return
         }
@@ -449,9 +446,9 @@ class Game2Scene: GameBaseScene {
         if abilityModel.canUse("time_heal") {
             heal(1)
         }
+        enemyAction()
     }
 
-    
     // フレーム毎の処理
     override func frameExec(){
         if isRushing {

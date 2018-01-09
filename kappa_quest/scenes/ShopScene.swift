@@ -23,8 +23,9 @@ class ShopScene: BaseScene, JobDelegate {
     }
 
     func setPageData(){
-        jobModel.readDataByPlist()
-        jobModel.loadParam()
+        chapter = 1
+        jobModel.readDataByPlist(chapter)
+        jobModel.loadParam(chapter)
         setJobData()
         updatePageButton()
     }

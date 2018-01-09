@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>prince</key>
+	<dict>
+		<key>name</key>
+		<string>王子</string>
+		<key>explain</key>
+		<string>カッパ王国の王子。  １章での活躍を認められ、一国の主となったカッパ。 しかしハイヤーエムブレムが大好きなカッパは 王ではなく王子という役職を選んだ。
+
+２章になりステータスがリセットされたが １書でやり込んだ記憶は総合LVとして２章でも役立つ。 具体的には１章と２章の合計LVがスキルポイントの割振れる値となっている。 詳しくは「カッパ改造」を観るべし。</string>
+		<key>own_skill</key>
+		<string>なし</string>
+		<key>general_skill</key>
+		<string>[LV5 :  ど根性カッパ] HPが2以上の時に攻撃を受けても、一度だけ復活します。 復活後のHPは幸運の値と一緒になります。 村人LV5で習得。</string>
+		<key>buster_long</key>
+		<integer>3</integer>
+		<key>hp</key>
+		<integer>20</integer>
+	</dict>
+</dict>
+</plist>

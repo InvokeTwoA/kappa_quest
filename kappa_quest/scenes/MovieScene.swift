@@ -136,7 +136,6 @@ class MovieScene: BaseScene {
     }
     
     
-    
     func kappaBuster(){
         let left = childNode(withName: "//left_image") as! SKSpriteNode
         
@@ -247,37 +246,40 @@ class MovieScene: BaseScene {
             hideNodes()
             changeMessage(name: "かっぱ", text1: "またね、かっぱ……", text2: "")
         case 90:
-            stopBGM()
-            goWorld2()
+            movieEnd()
         default:
             break
         }
     }
     
+    func movieEnd(){
+        stopBGM()
+        goWorld2()
+    }
+    
+    
+    /***********************************************************************************/
+    /********************************** touch ******************************************/
+    /***********************************************************************************/
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for t in touches {
+            let beganPosition : CGPoint!
+            beganPosition = t.location(in: self)
+            let tapNode = atPoint(beganPosition)
+            if tapNode.name == nil {
+                return
+            }
+            
+            if tapNode.name! == "SkipLabel" || tapNode.name == "SkipNode" {
+                movieEnd()
+            }
+        }
+    }
+
     /***********************************************************************************/
     /********************************* update ******************************************/
     /***********************************************************************************/
-    private var lastUpdateTime : TimeInterval = 0
-    private var doubleTimer = 0.0 // 経過時間（小数点単位で厳密）
-    var step = 0
-    override func update(_ currentTime: TimeInterval) {
-        if (lastUpdateTime == 0) {
-            lastUpdateTime = currentTime
-        }
-        let dt = currentTime - lastUpdateTime
-        lastUpdateTime = currentTime
-
-        doubleTimer += dt
-        if doubleTimer > 1.0 {
-            doubleTimer = 0.0
-        } else {
-            return
-        }
-        step += 1
-        secondTimerExec()
-    }
-
-    func secondTimerExec() {
+    override func secondTimerExec() {
         if chapter == 2 {
             displayMovie2()
         } else {

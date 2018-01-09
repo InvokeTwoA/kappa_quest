@@ -19,8 +19,8 @@ class CutinScene: BaseScene {
         cutinModel.setDataByPage(page)
         
         gameData.setParameterByUserDefault()
-        jobModel.readDataByPlist()
-        jobModel.loadParam()
+        jobModel.readDataByPlist(chapter)
+        jobModel.loadParam(chapter)
         updateScreen()
     }
     
