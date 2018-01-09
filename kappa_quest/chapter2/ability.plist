@@ -29,11 +29,22 @@
 		<key>cost</key>
 		<integer>5</integer>
 		<key>name</key>
-		<string>ガンバfly high</string>
+		<string>かっぱ舞空術</string>
 		<key>info</key>
 		<string>滞空時間が長くなります。</string>
 		<key>explain</key>
 		<string>滞空時間が長くなります。  頂点でぴったり止まる時間が 0.2 秒から 0.6 秒になります。</string>
+	</dict>
+	<key>jump_high</key>
+	<dict>
+		<key>cost</key>
+		<integer>5</integer>
+		<key>name</key>
+		<string>ガンバfly high</string>
+		<key>info</key>
+		<string>ジャンプが高くなります</string>
+		<key>explain</key>
+		<string>ジャンプが高くなります。 具体的には 250 の高さから 350 の高さになります。 敵を避けて通るのに便利かもしれません。</string>
 	</dict>
 	<key>time_heal</key>
 	<dict>
@@ -56,6 +67,17 @@
 		<string>ジャンプするたびにHPが回復</string>
 		<key>explain</key>
 		<string>ジャンプするたびにHPが回復します。 回復量はカッパのかっこよさの数値になります。</string>
+	</dict>
+	<key>rush_heal</key>
+	<dict>
+		<key>cost</key>
+		<integer>10</integer>
+		<key>name</key>
+		<string>爆裂拳ヒール</string>
+		<key>info</key>
+		<string>かっぱ爆裂拳を行うと回復します。</string>
+		<key>explain</key>
+		<string>かっぱ爆裂拳を行うと回復します。  回復量はかっこよさの値と一緒です。</string>
 	</dict>
 	<key>buster_heal</key>
 	<dict>
@@ -90,16 +112,137 @@
 		<key>explain</key>
 		<string>かっぱバスターが悪・即・斬の精神で敵を貫通するようになります。  かっぱバスターロングと合わせて使うと効果的です。</string>
 	</dict>
+	<key>buster_gravity</key>
+	<dict>
+		<key>cost</key>
+		<integer>5</integer>
+		<key>name</key>
+		<string>重力子放射線射出装置</string>
+		<key>info</key>
+		<string>かっぱバスターが重力の影響を受ける</string>
+		<key>explain</key>
+		<string>かっぱバスターが重力の影響を受けます。 ジャンプしながら地上にいる敵を攻撃するのに便利です。</string>
+	</dict>
+	<key>buster_up</key>
+	<dict>
+		<key>cost</key>
+		<integer>50</integer>
+		<key>name</key>
+		<string>二丁拳銃</string>
+		<key>info</key>
+		<string>かっぱバスターを２発同時に撃ちます</string>
+		<key>explain</key>
+		<string>かっぱバスターを２発同時に撃ちます ２発目の軌道は斜め上方になります。  至近距離で打てば同時に２発当てる事も可能です。 巨大な敵と戦う時のダメージソースとしても優秀です。</string>
+	</dict>
 	<key>buster_big</key>
 	<dict>
 		<key>cost</key>
 		<integer>20</integer>
 		<key>name</key>
-		<string>重力子放射線射出装置</string>
+		<string>ビッグ弾</string>
 		<key>info</key>
-		<string>かっぱバスターが大きくなります</string>
+		<string>かっぱバスターが大きくなります。</string>
 		<key>explain</key>
-		<string>かっぱバスターが大きくなります。  </string>
+		<string>かっぱバスターが大きくなります。  弾が大きくなることで敵に攻撃を当てやすくなります。 また、重力弾による重さの影響が上がります。  実はダメージが+1されるという隠された効果もあります。</string>
+	</dict>
+	<key>buster_slow</key>
+	<dict>
+		<key>cost</key>
+		<integer>5</integer>
+		<key>name</key>
+		<string>強力スロー弾</string>
+		<key>info</key>
+		<string>かっぱバスターのダメージがアップするが、遅くなる。</string>
+		<key>explain</key>
+		<string>かっぱバスターのダメージがアップし、遅くなります。 具体的にはダメージが2アップします。 本来ならば 0.5 秒で目標値に届くかっぱバスターが、0.9秒かけて目標に届くようになります。</string>
+	</dict>
+	<key>buster_right</key>
+	<dict>
+		<key>cost</key>
+		<integer>5</integer>
+		<key>name</key>
+		<string>右撃ち</string>
+		<key>info</key>
+		<string>かっぱの方向に関わらずバスターを右に撃ちます</string>
+		<key>explain</key>
+		<string>かっぱの方向に関わらずバスターを右に撃ちます。  ２章からカッパに向きという概念が加わったのですが、 作者がテストプレイしてみたところ左側に撃つのが非常に大変すぎてこのスキルが作成されたのです。</string>
+	</dict>
+	<key>buster_back</key>
+	<dict>
+		<key>cost</key>
+		<integer>5</integer>
+		<key>name</key>
+		<string>俺の後ろに立つな</string>
+		<key>info</key>
+		<string>後ろ方向にも弾を撃ちます</string>
+		<key>explain</key>
+		<string>後ろ方向にも弾を撃ちます。 カッパは振り向く時に一歩進んでしまう悲しい生物なので、 振り向かずに後ろを撃てるこのスキルは非常に便利です。</string>
+	</dict>
+	<key>rush_muteki</key>
+	<dict>
+		<key>cost</key>
+		<integer>20</integer>
+		<key>name</key>
+		<string>かっぱ爆裂拳の極み</string>
+		<key>info</key>
+		<string>かっぱ爆裂拳を実行中は無敵になります</string>
+		<key>explain</key>
+		<string>かっぱ爆裂拳を実行中はあらゆるダメージを受けなくなります。  </string>
+	</dict>
+	<key>rush_move</key>
+	<dict>
+		<key>cost</key>
+		<integer>10</integer>
+		<key>name</key>
+		<string>進撃のカッパ</string>
+		<key>info</key>
+		<string>かっぱ爆裂拳中に動けるようになります</string>
+		<key>explain</key>
+		<string>かっぱ爆裂拳の実行中に動けるようになります。 かっぱ爆裂拳の極みのスキルと併用すれば、体当たりでどんどん敵を薙ぎ倒せます。  もはや進撃するカッパは誰にも止められないのか！</string>
+	</dict>
+	<key>rush_hado</key>
+	<dict>
+		<key>cost</key>
+		<integer>10</integer>
+		<key>name</key>
+		<string>かっぱ波動砲</string>
+		<key>info</key>
+		<string>かっぱ爆裂拳を行うと、かっぱ波動砲を放ちます</string>
+		<key>explain</key>
+		<string>かっぱ爆裂拳を行うと、かっぱ波動砲を放ちます。  １章で活躍したあの伝説の技です。</string>
+	</dict>
+	<key>space_hp_up</key>
+	<dict>
+		<key>cost</key>
+		<integer>20</integer>
+		<key>name</key>
+		<string>宇宙兄貴かっぱ</string>
+		<key>info</key>
+		<string>宇宙空間でのHPがアップします。</string>
+		<key>explain</key>
+		<string>宇宙空間でのHPがアップします。 具体的には HP が 100 から 120 にアップします。</string>
+	</dict>
+	<key>tanuki_body</key>
+	<dict>
+		<key>cost</key>
+		<integer>10</integer>
+		<key>name</key>
+		<string>たぬきアーマー</string>
+		<key>info</key>
+		<string>外見がタヌキになります</string>
+		<key>explain</key>
+		<string>外見がタヌキになります。  攻撃をする瞬間などうっかりカッパ画像になります。 たとえ外見がタヌキになっても、かっぱ魂を忘れられません。</string>
+	</dict>
+	<key>eyes</key>
+	<dict>
+		<key>cost</key>
+		<integer>10</integer>
+		<key>name</key>
+		<string>サザン・アイズ</string>
+		<key>info</key>
+		<string>敵の弾丸が遅く見えます</string>
+		<key>explain</key>
+		<string>第三の目を開眼する事により、敵の弾丸が遅く見えます。  本来ならば1.1秒かけて800の距離を進む敵の弾丸が、 1.5秒かけて到達するように見えます。</string>
 	</dict>
 </dict>
 </plist>

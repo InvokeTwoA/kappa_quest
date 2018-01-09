@@ -22,6 +22,8 @@
 		<integer>1</integer>
 		<key>isMovingFree</key>
 		<true/>
+		<key>canBuster</key>
+		<true/>
 		<key>dx</key>
 		<integer>2</integer>
 	</dict>
@@ -44,6 +46,10 @@
 		<key>range</key>
 		<integer>1</integer>
 		<key>isGhost</key>
+		<true/>
+		<key>canBuster</key>
+		<true/>
+		<key>canBusterGravity</key>
 		<true/>
 		<key>type</key>
 		<string>undead</string>
@@ -107,7 +113,7 @@
 		<key>name</key>
 		<string>荒くれ</string>
 		<key>hp</key>
-		<integer>5</integer>
+		<integer>7</integer>
 		<key>str</key>
 		<integer>36</integer>
 		<key>def</key>
@@ -180,6 +186,8 @@
 		<integer>1</integer>
 		<key>isGhost</key>
 		<true/>
+		<key>canBusterGravity</key>
+		<true/>
 		<key>canFire</key>
 		<true/>
 		<key>explain</key>
@@ -205,6 +213,8 @@
 		<integer>1</integer>
 		<key>canThunder</key>
 		<true/>
+		<key>canBuster</key>
+		<true/>
 		<key>type</key>
 		<string>human</string>
 		<key>isMovingFree</key>
@@ -214,12 +224,37 @@
 		<key>explain</key>
 		<string>帝国に忠誠を誓った騎士。  無口な男はクールでモテると思い、口数が減った。 しかしコミュ障はモテないと知って絶望して悪となった悲しい騎士。  世界各地にいる騎士は彼のクローン。</string>
 	</dict>
+	<key>cross</key>
+	<dict>
+		<key>name</key>
+		<string>悪の十字架</string>
+		<key>hp</key>
+		<integer>1</integer>
+		<key>str</key>
+		<integer>1</integer>
+		<key>def</key>
+		<integer>1</integer>
+		<key>agi</key>
+		<integer>1</integer>
+		<key>int</key>
+		<integer>1</integer>
+		<key>pie</key>
+		<integer>1</integer>
+		<key>range</key>
+		<integer>1</integer>
+		<key>isZombi</key>
+		<string>ghost</string>
+		<key>type</key>
+		<string>human</string>
+		<key>explain</key>
+		<string>倒すと堕天使が現れるとても危険な十字架。  ある親子が回転寿司を食べに朝早くに家を出た。 しかし朝早くに家を出すぎたのが仇となった。父親は店の前の看板を見て悲しそうに言った。 「開くの十時かー」</string>
+	</dict>
 	<key>real_skelton</key>
 	<dict>
 		<key>name</key>
 		<string></string>
 		<key>hp</key>
-		<integer>34</integer>
+		<integer>44</integer>
 		<key>str</key>
 		<integer>30</integer>
 		<key>def</key>
@@ -234,6 +269,8 @@
 		<integer>3</integer>
 		<key>canLazer</key>
 		<true/>
+		<key>canBuster</key>
+		<true/>
 		<key>isSizeFree</key>
 		<true/>
 		<key>type</key>
@@ -244,7 +281,7 @@
 		<key>name</key>
 		<string></string>
 		<key>hp</key>
-		<integer>42</integer>
+		<integer>62</integer>
 		<key>str</key>
 		<integer>7</integer>
 		<key>def</key>
@@ -261,6 +298,8 @@
 		<true/>
 		<key>canFire</key>
 		<true/>
+		<key>canBuster</key>
+		<true/>
 		<key>type</key>
 		<string>human</string>
 		<key>isMovingFree</key>
@@ -273,7 +312,7 @@
 		<key>name</key>
 		<string></string>
 		<key>hp</key>
-		<integer>62</integer>
+		<integer>80</integer>
 		<key>str</key>
 		<integer>200</integer>
 		<key>def</key>
@@ -290,6 +329,8 @@
 		<true/>
 		<key>canArrow</key>
 		<true/>
+		<key>canBuster</key>
+		<true/>
 		<key>type</key>
 		<string>human</string>
 		<key>isMovingFree</key>
@@ -302,11 +343,11 @@
 		<key>name</key>
 		<string></string>
 		<key>hp</key>
-		<integer>78</integer>
+		<integer>300</integer>
 		<key>str</key>
-		<integer>210</integer>
+		<integer>100</integer>
 		<key>def</key>
-		<integer>7000</integer>
+		<real>7000</real>
 		<key>agi</key>
 		<integer>1</integer>
 		<key>int</key>
@@ -324,7 +365,67 @@
 		<key>isMovingFree</key>
 		<true/>
 		<key>dx</key>
+		<integer>8</integer>
+	</dict>
+	<key>real_samurai</key>
+	<dict>
+		<key>name</key>
+		<string></string>
+		<key>hp</key>
+		<integer>112</integer>
+		<key>str</key>
+		<integer>100</integer>
+		<key>def</key>
+		<real>7000</real>
+		<key>agi</key>
+		<integer>100</integer>
+		<key>int</key>
+		<integer>90</integer>
+		<key>pie</key>
 		<integer>0</integer>
+		<key>range</key>
+		<integer>3</integer>
+		<key>isSizeFree</key>
+		<true/>
+		<key>type</key>
+		<string>human</string>
+		<key>isMovingFree</key>
+		<true/>
+		<key>canBuster</key>
+		<true/>
+		<key>dx</key>
+		<integer>0</integer>
+	</dict>
+	<key>real_death</key>
+	<dict>
+		<key>name</key>
+		<string></string>
+		<key>hp</key>
+		<integer>150</integer>
+		<key>str</key>
+		<integer>100</integer>
+		<key>def</key>
+		<real>7000</real>
+		<key>agi</key>
+		<integer>1</integer>
+		<key>int</key>
+		<integer>90</integer>
+		<key>pie</key>
+		<integer>0</integer>
+		<key>range</key>
+		<integer>3</integer>
+		<key>isSizeFree</key>
+		<true/>
+		<key>type</key>
+		<string>human</string>
+		<key>isMovingFree</key>
+		<true/>
+		<key>canBuster</key>
+		<true/>
+		<key>dx</key>
+		<integer>1</integer>
+		<key>dy</key>
+		<integer>1</integer>
 	</dict>
 	<key>real_hiyoko</key>
 	<dict>
@@ -333,7 +434,7 @@
 		<key>hp</key>
 		<integer>999999</integer>
 		<key>str</key>
-		<integer>1000</integer>
+		<integer>100</integer>
 		<key>def</key>
 		<real>6000</real>
 		<key>agi</key>
@@ -344,6 +445,8 @@
 		<integer>0</integer>
 		<key>range</key>
 		<integer>1</integer>
+		<key>canBuster</key>
+		<true/>
 		<key>isSizeFree</key>
 		<true/>
 		<key>type</key>
@@ -368,6 +471,8 @@
 		<key>range</key>
 		<integer>3</integer>
 		<key>canLazer</key>
+		<true/>
+		<key>canBuster</key>
 		<true/>
 		<key>type</key>
 		<string>human</string>

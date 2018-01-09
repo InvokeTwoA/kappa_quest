@@ -92,13 +92,6 @@ class GameScene: GameBaseScene {
         specialAttackModel.finishAttack()
     }
     
-    func createHado(){
-        let fire = FireEmitterNode.makeKappaFire()
-        fire.position = CGPoint(x: kappa.position.x - 60, y: kappa.position.y + 20)
-        self.addChild(fire)
-        fire.hado()
-    }
-    
     override func updateSpecialView(){
         let upperNode   = childNode(withName: "//IconNotKappaUpper") as! SKSpriteNode
         let headNode    = childNode(withName: "//IconNotKappaHead") as! SKSpriteNode
@@ -305,6 +298,8 @@ class GameScene: GameBaseScene {
                 } else {
                     self.touchDown(atPoint: positionInScene)
                 }
+            case "specialBack", "IconNotKappaUpper", "IconNotKappaHead", "IconNotKappaTornado", "IconNotKappaHado":
+                break
             default:
                 self.touchDown(atPoint: positionInScene)
             }

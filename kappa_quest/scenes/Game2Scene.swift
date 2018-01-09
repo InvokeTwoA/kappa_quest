@@ -4,18 +4,26 @@ import GameplayKit
 import AVFoundation
 
 class Game2Scene: GameBaseScene {
-    private var abilityMoedl = AbilityModel()
+    private var abilityModel = AbilityModel()
     
     // 章に応じて変数を上書き
     override func setBaseVariable(){
         chapter = 2
-        abilityMoedl.setFlag()
+        abilityModel.setFlag()
         prepareBGM(fileName: Const.bgm_brave)
+    }
+    
+    // 章に応じて変数を上書き（loadの最後）
+    override func setBaseVariableLast(){
+        max_damage = kappa.beauty * 10
+        if abilityModel.canUse("body_tanuki") {
+            kappa.isTanuki = true
+        }
     }
     
     // ２章では「かっこよさ」以上に回復しない
     override func heal(_ heal_val : Int){
-        if heal_val <= 0 {
+        if heal_val <= 0 || kappa.hp == kappa.maxHp {
             return
         }
         var val = heal_val
@@ -28,9 +36,9 @@ class Game2Scene: GameBaseScene {
     }
     
     override func getMoveActionRight() -> SKAction {
-        if abilityMoedl.shukuchi2Flag {
+        if abilityModel.canUse("shukuchi2") {
             return actionModel.speedMaxMoveRight
-        } else if abilityMoedl.shukuchiFlag {
+        } else if abilityModel.canUse("shukuchi") {
             return actionModel.speedMoveRight
         } else {
             return actionModel.moveRight
@@ -38,9 +46,9 @@ class Game2Scene: GameBaseScene {
     }
 
     override func getMoveActionLeft() -> SKAction {
-        if abilityMoedl.shukuchi2Flag {
+        if abilityModel.canUse("shukuchi2") {
             return actionModel.speedMaxMoveLeft
-        } else if abilityMoedl.shukuchiFlag {
+        } else if abilityModel.canUse("shukuchi") {
             return actionModel.speedMoveLeft
         } else {
             return actionModel.moveLeft
@@ -86,24 +94,53 @@ class Game2Scene: GameBaseScene {
         prepareBGM(fileName: Const.bgm_kessen)
         playBGM()
     }
+    
+    override func setEnemyBirthSpeed(_ enemy : EnemyNode) {
+    }
 
+    /***********************************************************************************/
+    /********************************** 敵の攻撃 ****************************************/
+    /***********************************************************************************/
+    // 敵のバスター
+    func createEnemyBuster(_ enemy : EnemyNode){
+        let buster = EnemyBusterNode.createEnemyBuster(enemy)
+        self.addChild(buster)        
+        buster.shot()
+    }
     
     /***********************************************************************************/
     /********************************** specialAttack **********************************/
     /***********************************************************************************/
     // カッパバスター
     override func kappaBuster(){
-        kappa.hado()
-        createBuster()
-        if abilityMoedl.busterHealFlag {
+        // 正面に一撃
+        if abilityModel.canUse("buster_right") {
+            kappa.xScale = 1.0
+            createBuster(xScale: 1.0, y: 0.0)
+        } else {
+            createBuster(xScale: kappa.xScale, y: 0.0)
+        }
+        kappa.buster()
+        // 二丁拳銃
+        if abilityModel.canUse("buster_up") {
+            createBuster(xScale: kappa.xScale, y: Const.enemyFlyHeight)
+        }
+        
+        // 背後に一撃
+        if abilityModel.canUse("buster_back") {
+            createBuster(xScale: -1.0*kappa.xScale, y: 0.0)
+        }
+        
+        if abilityModel.canUse("buster_heal") {
             heal(1)
         }
+        rushCount += 1
+        updateSpecialView()
     }
     
-    func createBuster(){
+    func createBuster(xScale: CGFloat, y : CGFloat){
         var BUSTER_RADIUS : CGFloat = 16.0
-        
-        if abilityMoedl.busterBigFlag {
+        if abilityModel.canUse("buster_big") {
             BUSTER_RADIUS = 32.0
         }
         
@@ -115,14 +152,25 @@ class Game2Scene: GameBaseScene {
         self.addChild(circle)
 
         var BUSTER_LONG : CGFloat = 300.0
-        if abilityMoedl.busterLongFlag {
+        if abilityModel.canUse("buster_long") {
             BUSTER_LONG = 600.0
-        }        
+        }
+        if xScale < 0 {
+            BUSTER_LONG *= -1
+        }
+        
         let busterAction = SKAction.sequence([
-            SKAction.moveBy(x: BUSTER_LONG, y: 0, duration: 0.5),
+            SKAction.moveBy(x: BUSTER_LONG, y: y, duration: busterSpeed()),
             SKAction.removeFromParent()
         ])
         circle.run(busterAction)
+    }
+    
+    func busterSpeed() -> TimeInterval {
+        if abilityModel.canUse("buster_slow") {
+            return 0.9
+        }
+        return 0.5
     }
     
     func busterPhysic(_ r : CGFloat) -> SKPhysicsBody {
@@ -130,14 +178,18 @@ class Game2Scene: GameBaseScene {
         let physics = SKPhysicsBody(rectangleOf: CGSize(width: r*2.0, height: r*2.0))
         physics.categoryBitMask = Const.busterCategory
         physics.contactTestBitMask = Const.enemyCategory
-        physics.collisionBitMask = 0
-        physics.affectedByGravity = false
+        physics.collisionBitMask = Const.worldCategory
+        physics.affectedByGravity = abilityModel.canUse("buster_gravity")
+        physics.restitution = 0.0
         return physics
     }
     
     override func updateSpecialView(){
+        let rushNode = childNode(withName: "//IconNotKappaRush") as! SKSpriteNode
+        rushNode.isHidden = canRush()
+        let rushBar  = childNode(withName: "//RushBar") as! SKSpriteNode
+        rushBar.size.width = barRush()
     }
-    
     
     // kappa jump
     private var jumpFlag = false
@@ -149,14 +201,14 @@ class Game2Scene: GameBaseScene {
         
         let JUMP_DURATION = 0.4
         var JUMP_STOP = 0.2
-        if abilityMoedl.jumpPlusFlag {
+        if abilityModel.canUse("jump_plus") {
             JUMP_STOP = 0.6
         }
         
         let jumpAction = SKAction.sequence([
-            SKAction.moveBy(x: 0, y: Const.enemyFlyHeight, duration: JUMP_DURATION),
+            SKAction.moveBy(x: 0, y: jumpHeight(), duration: JUMP_DURATION),
             SKAction.wait(forDuration: JUMP_STOP),
-            SKAction.moveBy(x: 0, y: -1*Const.enemyFlyHeight, duration: JUMP_DURATION),
+            SKAction.moveBy(x: 0, y: -1*jumpHeight(), duration: JUMP_DURATION),
             ])
         kappa.run(jumpAction)
         
@@ -165,11 +217,52 @@ class Game2Scene: GameBaseScene {
             self.jumpFlag = false
         })
         
-        if abilityMoedl.jumpHealFlag {
+        if abilityModel.canUse("jump_heal") {
             heal(kappa.beauty)
         }
     }
+    
+    func jumpHeight() -> CGFloat {
+        if abilityModel.canUse("jump_high") {
+            return Const.enemyFlyHeight + 100.0
+        }
+        return Const.enemyFlyHeight
+    }
+    
 
+    var rushCount = 0
+    var isRushing = false
+    func kappaRush(){
+        if isRushing || rushCount < 10 {
+            return
+        }
+        rushCount = 0
+        isRushing = true
+        _ = CommonUtil.setTimeout(delay: 2.0, block: { () -> Void in
+            self.isRushing = false
+        })
+        if abilityModel.canUse("rush_heal") {
+            heal(kappa.beauty)
+        }
+        if abilityModel.canUse("rash_hado") {
+            createHado()
+        }
+        updateSpecialView()
+    }
+    
+    func canRush() -> Bool {
+        return rushCount >= 10
+    }
+    
+    func barRush() -> CGFloat {
+        let BAR_LENGTH = 131.0
+        var length = Double(rushCount)/Double(10)*BAR_LENGTH
+        if length > BAR_LENGTH {
+            length = BAR_LENGTH
+        }
+        return CGFloat(length)
+    }
+    
     /***********************************************************************************/
     /********************************** 衝突判定        *********************************/
     /***********************************************************************************/
@@ -204,37 +297,26 @@ class Game2Scene: GameBaseScene {
                     makeSpark(point: (secondBody.node?.position)!)
                     secondBody.node?.removeFromParent()
                 }
+            } else if secondBody.categoryBitMask & Const.busterEnemyCategory != 0 {
+                let buster = secondBody.node as! EnemyBusterNode
+                attacked(attack: buster.str, point: (firstBody.node?.position)!)
+                makeSpark(point: (secondBody.node?.position)!)
+                secondBody.node?.removeFromParent()
             } else if secondBody.categoryBitMask & Const.enemyCategory != 0 {
                 let enemy = secondBody.node as! EnemyNode
                 if enemy.isDead {
                     return
                 }
                 // 敵の攻撃
-                if enemy.isAttacking && !specialAttackModel.is_tornado && !specialAttackModel.is_upper {
+                if enemy.isAttacking && !(isRushing && abilityModel.canUse("rush_muteki")) {
                     attacked(attack: enemy.str, point: (firstBody.node?.position)!)
                     makeSpark(point: (firstBody.node?.position)!)
                 }
                 
-                // カッパの攻撃
-                if specialAttackModel.is_attacking {
-                    switch specialAttackModel.mode {
-                    case "head":
-                        let damage = 1 + CommonUtil.rnd(kappa.str + kappa.int)
-                        attackCalculate(str: damage, type: "magick", enemy: enemy)
-                    case "upper":
-                        if skillModel.upper_rotate_flag {
-                            let damage = 1 + CommonUtil.rnd(kappa.str + kappa.int + kappa.agi)
-                            attackCalculate(str: damage, type: "magick", enemy: enemy)
-                        } else {
-                            let damage = 1 + CommonUtil.rnd(kappa.str + kappa.int)
-                            attackCalculate(str: damage, type: "magick", enemy: enemy)
-                        }
-                    case "tornado":
-                        let damage = enemy.str + CommonUtil.rnd(kappa.agi + kappa.int)
-                        attackCalculate(str: damage, type: "magick", enemy: enemy)
-                    default:
-                        break
-                    }
+                // カッパの反撃
+                if isRushing {
+                    let damage = CommonUtil.minimumRnd(kappa.agi + kappa.int + kappa.str)
+                    attackCalculate(str: damage, type: "physic", enemy: enemy)
                 } else if kappa.hasActions() && !enemy.isMovingFree {
                     let damage = 1 + CommonUtil.rnd(kappa.str)
                     attackCalculate(str: damage, type: "physic", enemy: enemy)
@@ -245,6 +327,19 @@ class Game2Scene: GameBaseScene {
                 makeSpark(point: (firstBody.node?.position)!)
                 firstBody.node?.removeFromParent()
             }
+        } else if firstBody.categoryBitMask & Const.kappaFireCategory != 0 {
+            if secondBody.categoryBitMask & Const.enemyCategory != 0 {
+                let enemy = secondBody.node as! EnemyNode
+                if enemy.isDead {
+                    return
+                }
+                makeSpark(point: (secondBody.node?.position)!)
+                attackCalculate(str: kappa.int, type: "magick", enemy: enemy)
+                // 貫通スキルがなければ波動拳は消滅
+                if !skillModel.hado_penetrate_flag {
+                    firstBody.node?.removeFromParent()
+                }
+            }
         } else if firstBody.categoryBitMask & Const.busterCategory != 0 {
             if secondBody.categoryBitMask & Const.enemyCategory != 0 {
                 let enemy = secondBody.node as! EnemyNode
@@ -252,14 +347,25 @@ class Game2Scene: GameBaseScene {
                     return
                 }
                 makeSpark(point: (secondBody.node?.position)!)
-                attackCalculate(str: kappa.beauty, type: "beauty", enemy: enemy)
+                attackCalculate(str: busterDamage(), type: "beauty", enemy: enemy)
                 
                 // 貫通スキルがなければ消滅
-                if !abilityMoedl.busterPenetrateFlag {
+                if !abilityModel.canUse("buster_penetrate") {
                     firstBody.node?.removeFromParent()
                 }
             }
         }
+    }
+    
+    func busterDamage() -> Int {
+        var damage = kappa.beauty
+        if abilityModel.canUse("buster_slow") {
+            damage += 2
+        }
+        if abilityModel.canUse("buster_big") {
+            damage += 1
+        }
+        return damage
     }
     
     
@@ -267,16 +373,7 @@ class Game2Scene: GameBaseScene {
     /********************************** touch ******************************************/
     /***********************************************************************************/
     override func touchDown(atPoint pos : CGPoint) {
-        if specialAttackModel.is_attacking {
-            if specialAttackModel.mode != "tornado" {
-                return
-            } else {
-                specialAttackModel.finishAttack()
-                kappa.removeAllActions()
-                kappa.position.y = kappa_first_position_y
-            }
-        }
-        if gameOverFlag || bossStopFlag {
+        if gameOverFlag || bossStopFlag || (!abilityModel.canUse("rush_muteki") && isRushing){
             return
         }
         
@@ -314,6 +411,7 @@ class Game2Scene: GameBaseScene {
         if map.myPosition+1 > Const.maxPosition {
             return
         }
+        
         for t in touches {
             let positionInScene = t.location(in: self)
             let tapNode = atPoint(positionInScene)
@@ -332,10 +430,13 @@ class Game2Scene: GameBaseScene {
                 kappaBuster()
             case "IconKappaJump":
                 kappaJump()
+            case "IconKappaRush":
+                kappaRush()
+            case "specialBack", "IconNotKappaRush":
+                break
             default:
                 self.touchDown(atPoint: positionInScene)
             }
-            updateSpecialView()
         }
     }
 
@@ -345,7 +446,7 @@ class Game2Scene: GameBaseScene {
     /***********************************************************************************/
     // 秒ごとの処理
     override func secondTimerExec(){
-        if abilityMoedl.timeHealFlag {
+        if abilityModel.canUse("time_heal") {
             heal(1)
         }
     }
@@ -353,6 +454,10 @@ class Game2Scene: GameBaseScene {
     
     // フレーム毎の処理
     override func frameExec(){
+        if isRushing {
+            kappa.punchRush()
+        }
+        
         for enemy in enemyModel.enemies {
             if enemy.isDead {
                 continue
@@ -406,6 +511,8 @@ class Game2Scene: GameBaseScene {
                 showSkillBox("ヨルのかまいたち")
                 makeLazer(enemy.int)
                 enemy.lazerTimerReset()
+            } else if enemy.isBuster() {
+                createEnemyBuster(enemy)
             } else if enemy.jumpTimer%4 == 0 && !enemy.canFly {
                 enemy.run(actionModel.enemyMiniJump!)
                 enemy.jumpTimerReset()

@@ -18,6 +18,7 @@ class KappaNode: SKSpriteNode {
     var exp = 0
     var physic_type = "normal"
     var mode = ""
+    var isTanuki = false
     
     // フラグ
     var konjoEndFlag = false  // スキル根性が発動したかどうか（１ゲームに１回きり）
@@ -104,7 +105,7 @@ class KappaNode: SKSpriteNode {
         physic.allowsRotation = false
         physic.isDynamic = false
         physic.categoryBitMask = Const.kappaCategory
-        physic.contactTestBitMask = Const.fireCategory | Const.enemyCategory | Const.thunderCategory
+        physic.contactTestBitMask = Const.fireCategory | Const.enemyCategory | Const.thunderCategory | Const.busterEnemyCategory
         physic.collisionBitMask = 0
         physic.linearDamping = 0
         physic.friction = 0
@@ -116,8 +117,14 @@ class KappaNode: SKSpriteNode {
         physicsBody?.isDynamic = true
         physicsBody?.collisionBitMask = Const.worldCategory | Const.unvisibleWorldCategory
         physicsBody?.contactTestBitMask = Const.fireCategory | Const.thunderCategory | Const.lazerCategory | Const.usagiCategory
-        maxHp = 100
-        hp = 100
+        
+        if AbilityModel.haveSkill("space_hp_up") {
+            maxHp = 120
+            hp = 120
+        } else {
+            maxHp = 100
+            hp = 100
+        }
     }
     
     // カッパの華麗なる攻撃
@@ -132,12 +139,20 @@ class KappaNode: SKSpriteNode {
 
     func walkRight(){
         xScale = 1
-        texture = SKTexture(imageNamed: "kappa")
+        if isTanuki {
+            texture = SKTexture(imageNamed: "tanuki")
+        } else {
+            texture = SKTexture(imageNamed: "kappa")
+        }
     }
 
     func walkLeft(){
         xScale = -1
-        texture = SKTexture(imageNamed: "kappa")
+        if isTanuki {
+            texture = SKTexture(imageNamed: "tanuki")
+        } else {
+            texture = SKTexture(imageNamed: "kappa")
+        }
     }
 
     // カッパ頭突き
@@ -163,6 +178,12 @@ class KappaNode: SKSpriteNode {
         texture = SKTexture(imageNamed: "kappa_punch")
     }
 
+    // カッパバスター
+    func buster(){
+        texture = SKTexture(imageNamed: "kappa_punch")
+    }
+
+    
     func dead(){
         texture = SKTexture(imageNamed: "kappa_dead")
     }

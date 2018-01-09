@@ -24,6 +24,8 @@ class EnemyNode: SKSpriteNode {
     var canArrow  = false
     var canDeath = false
     var canLazer = false
+    var canBuster = false
+    var canBusterGravity = false
     var isGhost = false
     var isZombi = ""
     var isBoss = false
@@ -62,6 +64,7 @@ class EnemyNode: SKSpriteNode {
         enemy.thunderTimer  = CommonUtil.rnd(100)
         enemy.arrowTimer    = CommonUtil.rnd(100)
         enemy.lazerTimer    = CommonUtil.rnd(120)
+        enemy.busterTimer   = CommonUtil.rnd(100)
         enemy.isDead = false
         enemy.name = "enemy"
         enemy.key_name = name
@@ -118,6 +121,13 @@ class EnemyNode: SKSpriteNode {
         if dictionary["isZombi"] != nil {
             isZombi = dictionary.object(forKey: "isZombi") as! String
         }
+        if dictionary["canBuster"] != nil {
+            canBuster = dictionary.object(forKey: "canBuster") as! Bool
+        }
+        if dictionary["canBusterGravity"] != nil {
+            canBusterGravity = dictionary.object(forKey: "canBusterGravity") as! Bool
+        }
+
         
         if dictionary["dx"] != nil {
             dx = dictionary.object(forKey: "dx") as! Int
@@ -167,6 +177,7 @@ class EnemyNode: SKSpriteNode {
     var arrowTimer = 100
     var deathTimer = 80
     var lazerTimer = 100
+    var busterTimer = 90
     var jumpTimer = 0     // この数値が 7 の倍数の時、小さくジャンプする
 
     func timerUp(){
@@ -186,7 +197,10 @@ class EnemyNode: SKSpriteNode {
         if canLazer {
             lazerTimer += timerRnd()
         }
-        
+        if canBuster {
+            busterTimer += 10 + CommonUtil.rnd(agi)
+        }
+
         jumpTimer += CommonUtil.rnd(3)
     }
 
@@ -221,7 +235,10 @@ class EnemyNode: SKSpriteNode {
     func isLazer() -> Bool {
         return canLazer && lazerTimer > 120
     }
-
+    
+    func isBuster() -> Bool {
+        return canBuster && busterTimer > 70
+    }
 
     func attackTimerReset(){
         if attackTimer >= 100 {

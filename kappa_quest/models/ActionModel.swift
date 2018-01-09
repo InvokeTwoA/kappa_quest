@@ -57,7 +57,7 @@ class ActionModel {
         moveSpace = sceneWidth/7.0/4.0
         
         openingUpper = SKAction.sequence([
-                SKAction.moveBy(x: 0, y: 10000, duration: 70.0)
+                SKAction.moveBy(x: 0, y: 3000, duration: 28.0)
         ])
 
         // 攻撃アクション

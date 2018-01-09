@@ -32,9 +32,9 @@
 	<dict>
 		<key>enemies</key>
 		<array>
-			<string>wizard</string>
-			<string>wizard</string>
-			<string>wizard</string>
+			<string></string>
+			<string></string>
+			<string></string>
 			<string>real_zombi</string>
 		</array>
 		<key>is_boss</key>

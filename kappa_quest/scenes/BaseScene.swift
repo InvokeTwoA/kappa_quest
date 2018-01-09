@@ -16,12 +16,6 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
         gameData.setParameterByUserDefault()
     }
     
-    
-    func hideNode(name : String){
-        
-        
-    }
-
     // メッセージダイアログを表示
     func displayAlert(_ title: String, message: String, okString: String){
         let alert = UIAlertController(
@@ -202,6 +196,26 @@ class BaseScene: SKScene, AVAudioPlayerDelegate {
         nextScene.scaleMode = SKSceneScaleMode.aspectFit
         view!.presentScene(nextScene, transition: .fade(withDuration: Const.transitionInterval))
     }
+    
+    // ムービー画面へ
+    func goMovie(){
+        let nextScene = MovieScene(fileNamed: "MovieScene")!
+        nextScene.size = scene!.size
+        nextScene.scaleMode = SKSceneScaleMode.aspectFit
+        nextScene.chapter = chapter
+        view!.presentScene(nextScene, transition: .crossFade(withDuration: 1.8))
+    }
+    
+    // ２章オープニングへ
+    func goOpening2(){
+        let nextScene = Opening2Scene(fileNamed: "Opening2Scene")!
+        nextScene.size = nextScene.size
+        nextScene.scaleMode = SKSceneScaleMode.aspectFit
+        nextScene.chapter = 2
+        view!.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
+    }
+
+
 
     /***********************************************************************************/
     /********************************** music ******************************************/

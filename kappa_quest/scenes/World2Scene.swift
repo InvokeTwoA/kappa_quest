@@ -14,11 +14,13 @@ class World2Scene: WorldScene {
         "hiyoko",
         "red_dragon",
         "dancer",
-        "tanuki"
+        "tanuki",
+        "dog"
     ]
     private let worldModel : WorldModel = WorldModel()
     
     override func sceneDidLoad() {
+        chapter = 2
         worldModel.readDataByPlist()
         gameData.setParameterByUserDefault()
     }
@@ -41,13 +43,20 @@ class World2Scene: WorldScene {
             removeSpriteNode("hiyoko")
         }
 
+        if !GameData.isClear("death") && !GameData.isClear("samurai") && !GameData.isClear("zombi") && !GameData.isClear("hiyoko") {
+            removeSpriteNode("dancer")
+        }
         
+        if !GameData.isClear("dancer") {
+            removeSpriteNode("tanuki")
+        }
 
-        
-        
+        if !GameData.isClear("tanuki") {
+            removeSpriteNode("usagi")
+        }
+
 //        setNotificationCount()
     }
-    
     
     /***********************************************************************************/
     /********************************* 画面遷移 *****************************************/
@@ -71,6 +80,7 @@ class World2Scene: WorldScene {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let listViewController = storyboard.instantiateViewController(withIdentifier: "ListViewController") as! ListViewController
         listViewController.type = "bar"
+        listViewController.chapter = chapter
         self.view?.window?.rootViewController?.present(listViewController, animated: true, completion: nil)
     }
     
@@ -127,6 +137,4 @@ class World2Scene: WorldScene {
             }
         }
     }
-
 }
-

@@ -25,14 +25,7 @@ class ChapterScene: BaseScene {
             view!.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
         }
     }
-    
-    func goOpening2(){
-        let nextScene = Opening2Scene(fileNamed: "Opening2Scene")!
-        nextScene.size = nextScene.size
-        nextScene.scaleMode = SKSceneScaleMode.aspectFit
-        view!.presentScene(nextScene, transition: .doorway(withDuration: Const.doorTransitionInterval))
-    }
-    
+        
     func goFirstWorld(){
         let nextScene = GameScene(fileNamed: "GameScene")!
         nextScene.size = self.scene!.size

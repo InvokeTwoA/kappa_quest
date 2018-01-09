@@ -48,6 +48,7 @@ class LastBattle2Scene: GameBaseScene {
         hideSkillBox()
 
         gameData.setParameterByUserDefault()
+        changeLifeLabel()
     }
     
     override func didMove(to view: SKView) {

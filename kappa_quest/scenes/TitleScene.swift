@@ -44,6 +44,8 @@ class TitleScene: BaseScene {
             "king",
             "miyuki",
             "maou",
+            "dog",
+            "tanuki"
         ]
         
         let imageNode0 = childNode(withName: "//image0") as? SKSpriteNode

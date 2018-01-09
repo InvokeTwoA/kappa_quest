@@ -6,13 +6,21 @@ class Opening2Scene: BaseScene {
     private let actionModel = ActionModel()
     
     private let nodes = [
-        "text1", "text2", "text3", "text4", "text5", "text6", "text7", "text8", "text9", "text10", "text11", "text12", "text13", "text14",
+        "text1", "text2", "text3", "text4", "text5", "text6", "text7", "text8", "text9", "text10",
+        "text11", "text12", "text13", "text14", "text15", "text16",
         "kappa2",
+        "maou",
+        "miyuki", "sister", "priest", "usagi",
+        "cross",
+        "dog", "tanuki",
+        "skelton", "zombi", "hiyoko",
         "king", "fighter", "knight",
     ]
+    
     internal var kappa : KappaNode!   // かっぱ画像
     
     override func sceneDidLoad() {
+        chapter = 2
     }
     
     override func didMove(to view: SKView) {
@@ -30,7 +38,7 @@ class Opening2Scene: BaseScene {
         openingFlag = true
         
         textUpper()
-        _ = CommonUtil.setTimeout(delay: 27.0, block: { () -> Void in
+        _ = CommonUtil.setTimeout(delay: 25.0, block: { () -> Void in
             self.openingEnd()
         })
     }
@@ -44,11 +52,10 @@ class Opening2Scene: BaseScene {
     }
     
     func openingEnd(){
+        print("opening end  chapter=\(chapter)")
         GameData.clearCountUp("opening2")
-        _ = CommonUtil.setTimeout(delay: 7.0, block: { () -> Void in
-            self.stopBGM()
-            self.goWorld2()
-        })
+        stopBGM()
+        goMovie()
     }
     
     override func update(_ currentTime: TimeInterval) {

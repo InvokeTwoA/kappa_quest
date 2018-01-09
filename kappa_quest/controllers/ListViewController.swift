@@ -6,6 +6,7 @@ class ListViewController : BaseTableViewController {
 
     @IBOutlet weak var _tableView: UITableView!
 
+    var chapter = 1
     var type = ""
     var world = ""
     private var enemy_data : NSDictionary!
@@ -67,11 +68,6 @@ class ListViewController : BaseTableViewController {
     private let STATUS_GENERAL_SKILL = 4
     private let STATUS_BACK = 5
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setData()        
-    }
-    
     // アップデート履歴
     private let update_section = ["", "2.0.0", "1.2.0", "1.1.0", "1.0.0", ""]
     private let UPDATE_BACK = 0
@@ -81,7 +77,13 @@ class ListViewController : BaseTableViewController {
     private let UPDATE_V1_0_0 = 4
     private let UPDATE_BACK2 = 5
     private var updateModel = UpdateModel()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setData()
+    }
     
+    // 初期データをセット
     func setData(){
         switch type {
         case "enemies":
@@ -97,6 +99,7 @@ class ListViewController : BaseTableViewController {
             enemy_data = EnemyModel.getData(enemy_name)
         case "bar":
             setSections(bar_section)
+            barModel.chapter = chapter
             barModel.readDataByPlist()
             setBarPeople()
             NotificationModel.resetBarCount()
@@ -117,24 +120,38 @@ class ListViewController : BaseTableViewController {
             _tableView.reloadData()
         }
     }
-    
-    func setBarPeople(){
-        let array : [String] = [
-            "miyuki",
-            "gundom",
-            "angel",
-            "fighter",
-            "wizard",
-            "necro",
-            "knight", // si
-            "archer",  // tu
-            "priest",  // du
-            "thief",  // ke
-            "dancer",  // ro
+
+    let bar1_list : [String] = [
+        "miyuki",
+        "gundom",
+        "angel",
+        "fighter",
+        "wizard",
+        "necro",
+        "knight",
+        "archer",
+        "priest",
+        "thief",
+        "dancer",
         ]
-        for name in array {
-            if GameData.isClear(name) {
-                bar_people.append(name)
+    let bar2_list : [String] = [
+        "priest",
+        "angel",
+        ]
+
+
+    func setBarPeople(){
+        if chapter == 1 {
+            for name in bar1_list {
+                if GameData.isClear(name) {
+                    bar_people.append(name)
+                }
+            }
+        } else if chapter == 2 {
+            for name in bar2_list {
+                if GameData.isClear(name) {
+                    bar_people.append(name)
+                }
             }
         }
     }

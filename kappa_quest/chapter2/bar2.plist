@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>master</key>
+	<array>
+		<string>新マスターのカッパだ。</string>
+		<string>いらっしゃい！</string>
+		<string>一応言っておくが、俺をタップしまくってももう何もないぜ</string>
+		<string></string>
+		<string></string>
+		<string></string>
+		<string></string>
+	</array>
+	<key>megane</key>
+	<array>
+		<string>かんぱ〜い。</string>
+		<string>２章では「かっこよさ」のパラメーターが追加されておる。  ２章では筋力や敏捷、魔力よりもかっこよさが大事なんじゃ。</string>
+		<string>１章をやり込んだので２章は楽勝……という事はなかったんじゃ。  総合レベルとHPはそのまま引き継げるので、 １章をやり込んだ場合は初期スキルが充実しておるぞ。 詳しくは「カッパ改造」に行くのじゃ。</string>
+		<string>２章はステージ音楽が１章と違うんじゃ！ テレッテテー♪</string>
+		<string></string>
+		<string></string>
+		<string></string>
+	</array>
+	<key>skelton</key>
+	<array>
+		<string>まさか本当に２章が配信されるなんて……  飲むしかありません！</string>
+		<string>２章では「かっこよさ」のパラメーターが追加されました。  ２章では筋力や敏捷、魔力よりもかっこよさが大事なのです。</string>
+		<string>１章をやり込んだので２章は楽勝……という事はなかったです。  総合レベルとHPはそのまま引き継げるので、 １章をやり込んだ場合は初期スキルが充実してます。 詳しくは「カッパ改造」に行くのです。</string>
+		<string>２章はステージ音楽が１章と違うのです。 テレッテテー♪</string>
+		<string></string>
+		<string></string>
+		<string></string>
+	</array>
+	<key>priest</key>
+	<array>
+		<string>まさか本当に２章が配信されるなんて……  飲むしかありません！</string>
+		<string>２章では「かっこよさ」のパラメーターが追加されました。  ２章では筋力や敏捷、魔力よりもかっこよさが大事なのです。</string>
+		<string>１章をやり込んだので２章は楽勝……という事はなかったです。  総合レベルとHPはそのまま引き継げるので、 １章をやり込んだ場合は初期スキルが充実してます。 詳しくは「カッパ改造」に行くのです。</string>
+		<string>２章はステージ音楽が１章と違うのです。 テレッテテー♪</string>
+		<string></string>
+		<string></string>
+		<string></string>
+	</array>
+	<key>angel</key>
+	<array>
+		<string></string>
+		<string></string>
+		<string></string>
+		<string></string>
+		<string></string>
+		<string></string>
+		<string></string>
+	</array>
+</dict>
+</plist>

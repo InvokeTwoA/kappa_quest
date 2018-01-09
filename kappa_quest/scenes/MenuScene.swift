@@ -147,6 +147,10 @@ class MenuScene: BaseScene {
             case "NazoNode", "NazoLabel":
                 displayAlert("ポチッとな", message: "何か変化が起こった気がする", okString: "OK")
                 GameData.clearCountUp("question2")
+            case "OPNode", "OPLabel":
+                if chapter == 2 {
+                    goOpening2()
+                }
             default:
                 break
             }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -152,18 +152,27 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アビリティポイント　 180 / 180" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSE-ju-rzj">
-                                <rect key="frame" x="0.0" y="41" width="375" height="18.5"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="18.5"/>
                                 <color key="backgroundColor" red="0.79857122899999999" green="0.98219591380000004" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" name="PixelMplus12-Regular" family="PixelMplus12" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fSG-Nu-5wj">
+                                <rect key="frame" x="27" y="46" width="320" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="全てのスキルを外す"/>
+                                <connections>
+                                    <action selector="didPushedSkillResetButton:" destination="vlw-IP-ufv" eventType="touchDown" id="Tgf-OO-PMD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.16141110659999999" green="0.16141110659999999" blue="0.16141110659999999" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="E2d-sz-fiK" firstAttribute="bottom" secondItem="IsF-R8-fIZ" secondAttribute="top" id="CoD-HI-QCy"/>
-                            <constraint firstItem="SSE-ju-rzj" firstAttribute="top" secondItem="Ma3-3N-u4I" secondAttribute="bottom" constant="21" id="G9b-3t-5p9"/>
-                            <constraint firstItem="E2d-sz-fiK" firstAttribute="top" secondItem="SSE-ju-rzj" secondAttribute="bottom" constant="25" id="KuD-gG-vUw"/>
+                            <constraint firstItem="SSE-ju-rzj" firstAttribute="top" secondItem="Ma3-3N-u4I" secondAttribute="bottom" id="G9b-3t-5p9"/>
+                            <constraint firstItem="E2d-sz-fiK" firstAttribute="top" secondItem="SSE-ju-rzj" secondAttribute="bottom" constant="46" id="KuD-gG-vUw"/>
                             <constraint firstItem="E2d-sz-fiK" firstAttribute="leading" secondItem="I6e-W8-Lyz" secondAttribute="leading" id="NwE-Ha-7X4"/>
                             <constraint firstAttribute="trailing" secondItem="SSE-ju-rzj" secondAttribute="trailing" id="Wqj-AA-RE0"/>
                             <constraint firstAttribute="trailing" secondItem="E2d-sz-fiK" secondAttribute="trailing" id="YUZ-Bi-S5U"/>
@@ -177,7 +186,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="buD-B0-30V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1112.8" y="788.45577211394311"/>
+            <point key="canvasLocation" x="708" y="780"/>
         </scene>
     </scenes>
 </document>

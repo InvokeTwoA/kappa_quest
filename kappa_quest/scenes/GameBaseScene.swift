@@ -15,6 +15,7 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
     internal var skillModel : SkillModel = SkillModel()
 
     var world_name = "tutorial"
+    var max_damage = 99999
     
     // Scene load 時に呼ばれる
     internal var isSceneDidLoaded = false
@@ -50,10 +51,17 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
         // 音楽関係の処理
         prepareSoundEffect()
         playBGM()
+        
+        setBaseVariableLast()
     }
     
     // 章に応じて変数を上書き
     func setBaseVariable(){
+    }
+    
+    // 章に応じて変数を上書き（loadの最後）
+    func setBaseVariableLast(){
+        
     }
     
     // 画面が読み込まれた時に呼ばれる
@@ -107,8 +115,7 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
         map.myPosition = 1
         kappa.position.x = getPositionX(1)
         kappa.position.y = kappa_first_position_y
-        kappa.texture = SKTexture(imageNamed: "kappa")
-        
+        kappa.walkRight()
         kappa.removeAllActions()
     }
     
@@ -196,7 +203,6 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
         kappa.run(actionModel.attack!)
     }
     
-    private var maxDamage = 0 // 最高ダメージ
     func attackCalculate(str : Int, type : String, enemy : EnemyNode){
         var damage = 0
         var def = 0
@@ -228,8 +234,8 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
             playSoundEffect(type: 3)
         }
         
-        if damage > maxDamage {
-            maxDamage = damage
+        if damage >= max_damage {
+            damage = max_damage
         }
         
         let point = CGPoint(x: enemy.position.x, y: enemy.position.y + 30)
@@ -250,10 +256,8 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
         
         kappa.hp -= damage
         if kappa.hp <= 0 && skillModel.konjo_flag && !kappa.konjoEndFlag {
-            kappa.hp = kappa.luc
-            if kappa.hp > kappa.maxHp {
-                kappa.hp = kappa.maxHp
-            }
+            kappa.hp = 0
+            heal(kappa.luc)
             showMessage("カッパのど根性！", type: "skill")
             kappa.konjoEndFlag = true
         }
@@ -612,12 +616,17 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
         addChild(enemy)
         enemyModel.enemies[pos] = enemy
         enemy.diff_agi = CommonUtil.valueMin1(enemy.agi - kappa.agi)
-        enemy.dx += CommonUtil.rnd(300)
-        enemy.dy += CommonUtil.rnd(300)
+        setEnemyBirthSpeed(enemy)
         if world_name == "dancer" {
             enemy.str = 999999999
         }
     }
+    
+    func setEnemyBirthSpeed(_ enemy : EnemyNode){
+        enemy.dx += CommonUtil.rnd(300)
+        enemy.dy += CommonUtil.rnd(300)
+    }
+    
     
     func createEnemyLifeBar(pos: Int, x: CGFloat, y: CGFloat){
         let lifeBarBackGround = SKSpriteNode(color: .black, size: CGSize(width: 90, height: 20))
@@ -1035,6 +1044,12 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
     // 波動砲
     func specialAttackHado(){
     }
+    func createHado(){
+        let fire = FireEmitterNode.makeKappaFire()
+        fire.position = CGPoint(x: kappa.position.x - 60, y: kappa.position.y + 20)
+        self.addChild(fire)
+        fire.hado()
+    }
     
     // 技ラベルを更新
     func updateSpecialView(){
@@ -1177,12 +1192,9 @@ class GameBaseScene: BaseScene, SKPhysicsContactDelegate {
         if (lastUpdateTime == 0) {
             lastUpdateTime = currentTime
         }
-        
         let dt = currentTime - lastUpdateTime
         lastUpdateTime = currentTime
-        
         frameExec()
-        
         doubleTimer += dt
         if doubleTimer > 1.0 {
             doubleTimer = 0.0
